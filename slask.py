@@ -1,12 +1,16 @@
 from glob import glob
 import importlib
 import json
+import os
 import re
 import sys
 import traceback
 
 from flask import Flask, request
 app = Flask(__name__)
+
+curdir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(curdir)
 
 hooks = {}
 def init_plugins():
