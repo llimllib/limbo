@@ -1,39 +1,45 @@
-from flask import Flask, request
-from pprint import pformat
+from glob import glob
+import importlib
 import json
+import re
+import sys
+import traceback
+
+from flask import Flask, request
 app = Flask(__name__)
 
-import urllib2
-from urllib import quote
-import re
-from random import shuffle
+hooks = {}
+def init_plugins():
+    for plugin in glob('plugins/[!_]*.py'):
+        print "plugin: %s" % plugin
+        try:
+            mod = importlib.import_module(plugin.replace("/", ".")[:-3])
+            modname = mod.__name__.split('.')[1]
 
-def gif(searchterm, unsafe=False):
-    searchterm = quote(searchterm)
+            for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
+                hookfun = getattr(mod, "on_" + hook)
+                print "attaching %s.%s to %s" % (modname, hookfun, hook)
+                hooks.setdefault(hook, []).append(hookfun)
 
-    safe = "&safe=" if unsafe else "&safe=active"
-    searchurl = "https://www.google.com/search?tbs=itp:animated&tbm=isch&q={0}{1}".format(searchterm, safe)
+            if mod.__doc__:
+                firstline = mod.__doc__.split('\n')[0]
+                hooks.setdefault('help', []).append(firstline)
+                hooks.setdefault('extendedhelp', {})[modname] = mod.__doc__
 
-    # this is an old iphone user agent. Seems to make google return good results.
-    useragent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Versio  n/4.0.5 Mobile/8A293 Safari/6531.22.7"
+        #bare except, because the modules could raise any number of errors
+        #on import, and we want them not to kill our server
+        except:
+            print "import failed on module %s, module not loaded" % plugin
+            print "%s" % sys.exc_info()[0]
+            print "%s" % traceback.format_exc()
 
-    opener = urllib2.build_opener()
-    opener.addheaders = [('User-agent', useragent)]
-    result = opener.open(searchurl).read()
-
-    gifs = re.findall(r'imgurl.*?(http.*?)\\', result)
-    shuffle(gifs)
-
-    return gifs[0] if gifs else ""
+init_plugins()
 
 @app.route("/", methods=['POST'])
-def hello():
-    text = request.form.get("text", "")
-    if text.startswith("!gif"):
-        match = re.findall(r"!gif (.*)", text)
-        term = match[0] if match else "dumb running sonic"
-        return json.dumps({"text": gif(term), "parse": "full"})
-    return ""
+def main():
+    print hooks
+    response = "\n".join(hook(request.form) for hook in hooks.get("message", []))
+    return json.dumps({"text": response}) if response else ""
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
