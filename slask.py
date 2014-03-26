@@ -12,6 +12,8 @@ app = Flask(__name__)
 curdir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(curdir)
 
+from config import config
+
 hooks = {}
 def init_plugins():
     for plugin in glob('plugins/[!_]*.py'):
@@ -39,11 +41,27 @@ def init_plugins():
 
 init_plugins()
 
+def run_hook(hook, data):
+    responses = []
+    for hook in hooks.get(hook, []):
+        h = hook(data)
+        if h: responses.append(h)
+
+    return responses
+
 @app.route("/", methods=['POST'])
 def main():
-    print hooks
-    response = "\n".join(hook(request.form) for hook in hooks.get("message", []))
-    return json.dumps({"text": response}) if response else ""
+    text = "\n".join(run_hook("message", request.form))
+    if not text: return ""
+
+    username = config.get("username", "slask")
+    icon = config.get("icon", ":poop:")
+    response = {
+        "text": text,
+        "username": username,
+        "icon-emoji": icon,
+    }
+    return json.dumps(response)
 
 if __name__ == "__main__":
     app.run(debug=True)
