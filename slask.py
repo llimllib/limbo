@@ -59,7 +59,8 @@ def main():
     response = {
         "text": text,
         "username": username,
-        "icon-emoji": icon,
+        "icon_emoji": icon,
+        "parse": "full",
     }
     return json.dumps(response)
 
