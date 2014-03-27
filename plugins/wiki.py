@@ -29,11 +29,10 @@ def wiki(searchterm):
 
     r = requests.get("http://en.wikipedia.org/w/api.php?format=json&action=parse&page={}".format(page)).json()
     soup = BeautifulSoup(r["parse"]["text"]["*"])
-    p = str(soup.find('p'))
-    p = re.sub('href="(.[^\/])', r'href="http://en.wikipedia.org\1', p)
+    p = soup.find('p').get_text()
     p = p[:8000]
 
-    return p
+    return u"{}\n{}".format(p, link)
 
 def on_message(msg):
     text = msg.get("text", "")
