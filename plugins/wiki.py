@@ -1,10 +1,11 @@
 """!wiki <topic> returns a wiki link for <topic>"""
-import sys
-import argparse
-import requests
-from urllib import quote
-import re
 import json
+import re
+from urllib import quote
+import sys
+
+import requests
+from bs4 import BeautifulSoup
 
 def wiki(searchterm):
     """return the top wiki search result for the term"""
@@ -26,7 +27,13 @@ def wiki(searchterm):
     page = quote(pages[0]["title"].encode("utf8"))
     link = "http://en.wikipedia.org/wiki/{0}".format(page)
 
-    return link
+    r = requests.get("http://en.wikipedia.org/w/api.php?format=json&action=parse&page={}".format(page)).json()
+    soup = BeautifulSoup(r["parse"]["text"]["*"])
+    p = str(soup.find('p'))
+    p = re.sub('href="(.[^\/])', r'href="http://en.wikipedia.org\1', p)
+    p = p[:8000]
+
+    return p
 
 def on_message(msg):
     text = msg.get("text", "")
