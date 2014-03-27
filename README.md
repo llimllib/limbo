@@ -9,6 +9,8 @@
 ![Here's what my configuration looks like](http://i.imgur.com/k3LZrBJ.png)
 4. That's it! Try typing `!gif dubstep cat` into a chat room monitored by slask
 
+![kitten mittens](http://i.imgur.com/xhmD6QO.png)
+
 ## Commands
 
 Right now, `!gif`, `!image` and `!wiki` are the only available commands.
