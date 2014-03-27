@@ -41,17 +41,17 @@ def init_plugins():
 
 init_plugins()
 
-def run_hook(hook, data):
+def run_hook(hook, data, server):
     responses = []
     for hook in hooks.get(hook, []):
-        h = hook(data)
+        h = hook(data, server)
         if h: responses.append(h)
 
     return responses
 
 @app.route("/", methods=['POST'])
 def main():
-    text = "\n".join(run_hook("message", request.form))
+    text = "\n".join(run_hook("message", request.form, {"config": config}))
     if not text: return ""
 
     username = config.get("username", "slask")
