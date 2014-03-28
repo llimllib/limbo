@@ -55,7 +55,9 @@ def main():
     icon = config.get("icon", ":poop:")
 
     # ignore message we sent
-    if username == request.form.get("user_name", ""): return ""
+    msguser = request.form.get("user_name", "").strip()
+    if username == msguser or msguser.lower() == "slackbot":
+        return ""
 
     text = "\n".join(run_hook("message", request.form, {"config": config, "hooks": hooks}))
     if not text: return ""
