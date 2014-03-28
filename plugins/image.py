@@ -1,4 +1,4 @@
-"""!image <search term> return the first google image search result for <search term>"""
+"""!image <search term> return a random result from the google image search result for <search term>"""
 
 from urllib import quote
 import re

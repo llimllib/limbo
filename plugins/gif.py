@@ -1,4 +1,4 @@
-"""!gif <search term> return the first google gif search result for <search term>"""
+"""!gif <search term> return a random result from the  google gif search result for <search term>"""
 
 from urllib import quote
 import re

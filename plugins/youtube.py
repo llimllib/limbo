@@ -1,3 +1,5 @@
+"""!youtube <search term> return the first youtube search result for <search term>"""
+
 import re
 from urllib import quote
 
