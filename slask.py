@@ -29,7 +29,7 @@ def init_plugins():
 
             if mod.__doc__:
                 firstline = mod.__doc__.split('\n')[0]
-                hooks.setdefault('help', []).append(firstline)
+                hooks.setdefault('help', {})[modname] = firstline
                 hooks.setdefault('extendedhelp', {})[modname] = mod.__doc__
 
         #bare except, because the modules could raise any number of errors
@@ -51,7 +51,7 @@ def run_hook(hook, data, server):
 
 @app.route("/", methods=['POST'])
 def main():
-    text = "\n".join(run_hook("message", request.form, {"config": config}))
+    text = "\n".join(run_hook("message", request.form, {"config": config, "hooks": hooks}))
     if not text: return ""
 
     username = config.get("username", "slask")
