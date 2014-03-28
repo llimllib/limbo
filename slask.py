@@ -51,11 +51,15 @@ def run_hook(hook, data, server):
 
 @app.route("/", methods=['POST'])
 def main():
+    username = config.get("username", "slask")
+    icon = config.get("icon", ":poop:")
+
+    # ignore message we sent
+    if username == request.form.get("user_name", ""): return ""
+
     text = "\n".join(run_hook("message", request.form, {"config": config, "hooks": hooks}))
     if not text: return ""
 
-    username = config.get("username", "slask")
-    icon = config.get("icon", ":poop:")
     response = {
         "text": text,
         "username": username,
