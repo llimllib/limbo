@@ -12,6 +12,18 @@
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
+## Heroku
+
+You can host for free on [Heroku](http://heroku.com). Sign up and follow the steps below to deploy the app.
+
+```bash
+heroku create
+git push heroku master
+heroku ps:scale web=1
+heroku ps
+heroku logs
+```
+
 ## Commands
 
 Right now, `!gif`, `!image`, `!youtube` and `!wiki` are the only available commands.
