@@ -18,9 +18,8 @@ def get_name(string):
 
 def monologue(msg):
     """!monologue: joke from night shows """
-    body = "%(body)s" % msg
-    reg = re.compile('!monologue', re.IGNORECASE)
-    match = reg.findall(body)
+    text = msg.get("text", "")
+    match = re.match(r"!monologue", text)
     if not match:
         return False
     monologue_dict = {}
@@ -43,9 +42,8 @@ def monologue(msg):
 
 
 def hedberg_joke(msg):
-    body = "%(body)s" % msg
-    reg = re.compile('!hedberg', re.IGNORECASE)
-    match = reg.findall(body)
+    text = msg.get("text", "")
+    match = re.match(r"!hedberg", text)
     if not match:
         return False
     url = "https://raw.githubusercontent.com/petdance/scraps/master/mitch-fortunes.txt"
