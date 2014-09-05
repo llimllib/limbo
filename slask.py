@@ -19,9 +19,8 @@ def init_plugins():
     for plugin in glob('plugins/[!_]*.py'):
         print "plugin: %s" % plugin
         try:
-            mod = importlib.import_module(plugin.replace("/", ".")[:-3])
+            mod = importlib.import_module(plugin.replace(os.path.sep, ".")[:-3])
             modname = mod.__name__.split('.')[1]
-
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
                 print "attaching %s.%s to %s" % (modname, hookfun, hook)
