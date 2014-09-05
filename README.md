@@ -29,3 +29,9 @@ heroku logs
 Right now, `!gif`, `!image`, `!youtube` and `!wiki` are the only available commands.
 
 It's super easy to add your own commands! Just create a python file in the plugins directory with an `on_message` function that returns a string.
+
+
+## Contributors
+
+* @fsalum
+* @rodvodka
