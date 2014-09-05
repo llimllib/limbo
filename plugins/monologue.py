@@ -20,7 +20,7 @@ def monologue(msg):
     """!monologue: joke from night shows """
     body = "%(body)s" % msg
     reg = re.compile('!monologue', re.IGNORECASE)
-    match = reg.match(body)
+    match = reg.findall(body)
     if not match:
         return False
     monologue_dict = {}
@@ -45,7 +45,7 @@ def monologue(msg):
 def hedberg_joke(msg):
     body = "%(body)s" % msg
     reg = re.compile('!hedberg', re.IGNORECASE)
-    match = reg.match(body)
+    match = reg.findall(body)
     if not match:
         return False
     url = "https://raw.githubusercontent.com/petdance/scraps/master/mitch-fortunes.txt"
