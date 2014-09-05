@@ -14,12 +14,17 @@ os.chdir(curdir)
 
 from config import config
 
+import sys
+
 hooks = {}
 def init_plugins():
     for plugin in glob('plugins/[!_]*.py'):
         print "plugin: %s" % plugin
         try:
-            mod = importlib.import_module(plugin.replace("/", ".")[:-3])
+            replace_value = '/'
+            if sys.platform == 'win32':
+                replace_value = '\\'
+            mod = importlib.import_module(plugin.replace(replace_value, ".")[:-3])
             modname = mod.__name__.split('.')[1]
 
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
