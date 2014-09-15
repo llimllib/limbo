@@ -26,12 +26,12 @@ def weather(searchterm):
 
     dat = requests.get(url).json()
 
-    msg = []
+    msg = ["{0}: ".format(dat["city"]["name"])]
     for day in dat["list"]:
         name = time.strftime("%a", time.gmtime(day["dt"]))
         high = str(int(round(float(day["temp"]["max"]))))
         icon = iconmap.get(day["weather"][0]["icon"][:2], ":question:")
-        msg.append(u"{0}: {1}° {2}".format(name, high, icon))
+        msg.append(u"{0} {1}° {2}".format(name, high, icon))
 
     return " ".join(msg)
 
