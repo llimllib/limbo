@@ -26,10 +26,11 @@ heroku logs
 
 ## Commands
 
-Right now, `!gif`, `!image`, `!youtube` and `!wiki` are the only available commands.
+Right now, `!gif`, `!image`, `!youtube`, `!weather`, and `!wiki` are the some of the available commands.
 
 It's super easy to add your own commands! Just create a python file in the plugins directory with an `on_message` function that returns a string.
 
+You can use the `!help` command to print out all available commands and a brief help message about them. `!help <plugin>` will return just the help for a particular plugin.
 
 ## Contributors
 
