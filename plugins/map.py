@@ -11,7 +11,6 @@ import re
 def makemap(query):
     querywords = []
     args = {
-        "zoom": 13,
         "maptype": "roadmap",
     }
     for word in query.split(" "):
@@ -23,9 +22,16 @@ def makemap(query):
 
     query = quote(" ".join(querywords))
 
-    # Slack seems to ignore the size param?
-    url = "https://maps.googleapis.com/maps/api/staticmap?center={}&zoom={}&size=800x400&&maptype={}"
-    url = url.format(query, args["zoom"], args["maptype"])
+    # Slack seems to ignore the size param
+    #
+    # To get google to auto-reasonably-zoom its map, you have to use a marker
+    # instead of using a "center" parameter. I found that setting it to tiny
+    # and grey makes it the least visible.
+    url = "https://maps.googleapis.com/maps/api/staticmap?size=800x400&markers=size:tiny%7Ccolor:0xAAAAAA%7C{}&maptype={}"
+    url = url.format(query, args["maptype"])
+
+    if "zoom" in args:
+        url += "&zoom={}".format(args["zoom"])
 
     return url
 
