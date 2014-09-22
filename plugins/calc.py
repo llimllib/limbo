@@ -11,11 +11,12 @@ def calc(eq):
 
     answer = soup.findAll("h2", attrs={"class": "r"})
     if not answer:
-        print "returning a string"
         return ":crying_cat_face: Sorry, google doesn't have an answer for you :crying_cat_face:"
 
-    print "returning ", answer[0].text
-    return unicode(answer[0].text)
+    # They seem to use u\xa0 (non-breaking space) in place of a comma
+    print answer
+    answer = answer[0].text.replace(u"\xa0", ",")
+    return answer
 
 def on_message(msg, server):
     text = msg.get("text", "")
