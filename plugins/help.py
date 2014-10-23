@@ -11,4 +11,4 @@ def on_message(msg, server):
     if helptopic:
         return server["hooks"]["help"].get(helptopic, "No help found for %s" % helptopic)
     else:
-        return "\n".join(val for _, val in server["hooks"]["help"].iteritems())
+        return "\n".join(sorted(val for _, val in server["hooks"]["help"].iteritems()))
