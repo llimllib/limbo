@@ -32,6 +32,78 @@ It's super easy to add your own commands! Just create a python file in the plugi
 
 You can use the `!help` command to print out all available commands and a brief help message about them. `!help <plugin>` will return just the help for a particular plugin.
 
+### calc
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/calc.png)
+
+---
+
+### emoji
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/emoji.png)
+
+---
+
+### flip
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/flip.png)
+
+---
+
+### gif
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/gif.png)
+
+---
+
+### help
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/help.png)
+
+---
+
+### image
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/image.png)
+
+---
+
+### map
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/map.png)
+
+---
+
+### stock
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/stock.png)
+
+---
+
+### stockphoto
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/stockphoto.png)
+
+---
+
+### weather
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/weather.png)
+
+---
+
+### wiki
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/wiki.png)
+
+---
+
+### youtube
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/youtube.png)
+
+---
+
 ## Contributors
 
 * @fsalum
