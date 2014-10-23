@@ -1,24 +1,30 @@
-"""!stock <search term> return a stock photo for <search term>"""
-
-from random import shuffle
+"""$<ticker symbol> for a quote on a stock price"""
 import re
-
 import requests
 from bs4 import BeautifulSoup
+from urllib import quote
 
-def stock(searchterm):
-    url = "http://www.shutterstock.com/cat.mhtml?searchterm={}&search_group=&lang=en&language=en&search_source=search_form&version=llv1".format(searchterm)
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text)
-    images = [x["src"] for x in soup.select(".gc_clip img")]
-    shuffle(images)
+def stockprice(ticker):
+    url = "https://www.google.com/finance?q={}"
+    print url.format(quote(ticker))
+    soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text)
 
-    return images[0] if images else ""
+    try:
+        ticker = re.findall("var _ticker = '(.*?)';", soup.text)[0]
+        price = soup.select("#price-panel .pr span")[0].text
+        change, pct = soup.select("#price-panel .nwp span")[0].text.split()
+        pct.strip('()')
+
+        emoji = ":chart_with_upwards_trend:" if change.startswith("+") else ":chart_with_downwards_trend"
+
+        return "{} {}: {} {} {} {}".format(emoji, ticker, price, change, pct, emoji)
+    except:
+        return ""
 
 def on_message(msg, server):
     text = msg.get("text", "")
-    match = re.findall(r"!stock (.*)", text)
+    match = re.findall(r"\$\w{0,4}", text)
     if not match: return
 
-    searchterm = match[0]
-    return stock(searchterm)
+    prices = [stockprice(ticker[1:]) for ticker in match]
+    return "\n".join(p for p in prices if p)
