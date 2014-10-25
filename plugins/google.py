@@ -1,7 +1,7 @@
 """!search <query> will return the top google result for that query (!google is an alias)"""
 from bs4 import BeautifulSoup
 import re
-from urllib import quote
+from urllib import quote, unquote
 import requests
 
 def google(q):
@@ -13,7 +13,7 @@ def google(q):
     if not answer:
         return ":crying_cat_face: Sorry, google doesn't have an answer for you :crying_cat_face:"
 
-    return re.findall(r"q=(.*?)&", str(answer[0]))[0]
+    return unquote(re.findall(r"q=(.*?)&", str(answer[0]))[0])
 
 def on_message(msg, server):
     text = msg.get("text", "")
