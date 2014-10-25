@@ -56,6 +56,12 @@ You can use the `!help` command to print out all available commands and a brief 
 
 ---
 
+### google (or search)
+
+![](https://raw.githubusercontent.com/llimllib/slask/master/docs/google.png)
+
+---
+
 ### help
 
 ![](https://raw.githubusercontent.com/llimllib/slask/master/docs/help.png)
