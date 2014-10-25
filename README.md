@@ -26,11 +26,25 @@ heroku logs
 
 ## Commands
 
-Right now, `!gif`, `!image`, `!youtube`, `!weather`, and `!wiki` are the some of the available commands.
-
 It's super easy to add your own commands! Just create a python file in the plugins directory with an `on_message` function that returns a string.
 
 You can use the `!help` command to print out all available commands and a brief help message about them. `!help <plugin>` will return just the help for a particular plugin.
+
+These are the current default plugins:
+
+* [calc](https://github.com/llimllib/slask#calc)
+* [emoji](https://github.com/llimllib/slask#emoji)
+* [flip](https://github.com/llimllib/slask#flip)
+* [gif](https://github.com/llimllib/slask#gif)
+* [google](https://github.com/llimllib/slask#google-or-search)
+* [help](https://github.com/llimllib/slask#help)
+* [image](https://github.com/llimllib/slask#image)
+* [map](https://github.com/llimllib/slask#map)
+* [stock](https://github.com/llimllib/slask#stock)
+* [stockphoto](https://github.com/llimllib/slask#stockphoto)
+* [weather](https://github.com/llimllib/slask#weather)
+* [wiki](https://github.com/llimllib/slask#wiki)
+* [youtube](https://github.com/llimllib/slask#youtube)
 
 ### calc
 
