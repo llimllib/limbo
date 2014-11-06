@@ -16,7 +16,6 @@ def calc(eq):
             return ":crying_cat_face: Sorry, google doesn't have an answer for you :crying_cat_face:"
 
     # They seem to use u\xa0 (non-breaking space) in place of a comma
-    print answer
     answer = answer[0].text.replace(u"\xa0", ",")
     return answer
 
