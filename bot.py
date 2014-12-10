@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 from config import config
-import requests
+from glob import glob
+import importlib
+import os
+import re
 from slackclient import SlackClient
+import sys
 import time
+import traceback
 
 curdir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(curdir)
@@ -43,24 +48,25 @@ def run_hook(hook, data, server):
 
     return responses
 
-API_BASE_URL = 'https://slack.com/api/{method}?token={token}'
-def call(method, **params):
-    url = API_BASE_URL.format(method=method, token=TOKEN)
-    return requests.get(url, params=params).json()
-
-#info = call("rtm.start")
-
 def handle_message(client, event):
-    # how to get our own username?
+    # ignore bot messages and edits
+    subtype = event.get("subtype", "")
+    if subtype == "bot_message" or subtype == "message_changed": return
+
     botname = sc.server.login_data["self"]["name"]
-    msguser = client.server.users.get(event["user"])
+    try:
+        msguser = client.server.users.get(event["user"])
+    except KeyError:
+        print "event {} has no user".format(event)
+        return
 
     if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
         return
 
-    text = "hello"
+    text = "\n".join(run_hook("message", event, {"client": client, "config": config, "hooks": hooks}))
 
-    client.rtm_send_message(event["channel"], text)
+    if text:
+        client.rtm_send_message(event["channel"], text)
 
 event_handlers = {
     "message": handle_message
@@ -73,7 +79,7 @@ if __name__=="__main__":
         while True:
             events = sc.rtm_read()
             for event in events:
-                print "got {}".format(event.get("type", event))
+                #print "got {}".format(event.get("type", event))
                 handler = event_handlers.get(event.get("type"))
                 if handler:
                     handler(sc, event)
