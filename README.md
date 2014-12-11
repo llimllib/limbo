@@ -8,7 +8,7 @@
 3. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
 4. Copy `config.py.sample` to `config.py` and paste in the token you got in step 4
 5. `python slask.py`
-6. That's it! Try typing `!gif dubstep cat` into a chat room monitored by slask
+6. Invite Slask into any channels you want it in, or just message it in #general. Try typing `!gif dubstep cat` to test it out
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
