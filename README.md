@@ -6,7 +6,7 @@
 1. Clone the repo
 2. `pip install -r requirements.txt`
 3. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
-4. Copy `config.py.sample` to `config.py` and paste in the token you got in step4
+4. Copy `config.py.sample` to `config.py` and paste in the token you got in step 4
 5. `python slask.py`
 6. That's it! Try typing `!gif dubstep cat` into a chat room monitored by slask
 
