@@ -5,24 +5,12 @@
 
 1. Clone the repo
 2. `pip install -r requirements.txt`
-3. Host the web app (a sample wsgi.py is included. See [here](http://flask.pocoo.org/docs/deploying/#deployment) for more on deployment)
-4. Add the URL where you deployed the web app as an [outgoing webhook](https://my.slack.com/services/new/outgoing-webhook). Here's what my configuration looks like:
-![Here's what my configuration looks like](http://i.imgur.com/k3LZrBJ.png)
-5. That's it! Try typing `!gif dubstep cat` into a chat room monitored by slask
+3. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
+4. Copy `config.py.sample` to `config.py` and paste in the token you got in step4
+5. `python slask.py`
+6. That's it! Try typing `!gif dubstep cat` into a chat room monitored by slask
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
-
-## Heroku
-
-You can host for free on [Heroku](http://heroku.com). Sign up and follow the steps below to deploy the app.
-
-```bash
-heroku create
-git push heroku master
-heroku ps:scale web=1
-heroku ps
-heroku logs
-```
 
 ## Commands
 
