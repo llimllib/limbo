@@ -17,13 +17,13 @@ from config import config
 hooks = {}
 def init_plugins():
     for plugin in glob('plugins/[!_]*.py'):
-        print "plugin: %s" % plugin
+        print "plugin: {0}".format(plugin)
         try:
             mod = importlib.import_module(plugin.replace(os.path.sep, ".")[:-3])
             modname = mod.__name__.split('.')[1]
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
-                print "attaching %s.%s to %s" % (modname, hookfun, hook)
+                print "attaching {0}.{1} to {2}".format(modname, hookfun, hook)
                 hooks.setdefault(hook, []).append(hookfun)
 
             if mod.__doc__:
@@ -34,9 +34,9 @@ def init_plugins():
         #bare except, because the modules could raise any number of errors
         #on import, and we want them not to kill our server
         except:
-            print "import failed on module %s, module not loaded" % plugin
-            print "%s" % sys.exc_info()[0]
-            print "%s" % traceback.format_exc()
+            print "import failed on module {0}, module not loaded".format(plugin)
+            print "{0}".format(sys.exc_info()[0])
+            print "{0}".format(traceback.format_exc())
 
 init_plugins()
 
@@ -57,7 +57,7 @@ def handle_message(client, event):
     try:
         msguser = client.server.users.get(event["user"])
     except KeyError:
-        print "event {} has no user".format(event)
+        print "event {0} has no user".format(event)
         return
 
     if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
@@ -79,10 +79,10 @@ if __name__=="__main__":
         while True:
             events = sc.rtm_read()
             for event in events:
-                #print "got {}".format(event.get("type", event))
+                #print "got {0}".format(event.get("type", event))
                 handler = event_handlers.get(event.get("type"))
                 if handler:
                     handler(sc, event)
             time.sleep(1)
     else:
-        print "Connection Failed, invalid token <{}>?".format(config["token"])
+        print "Connection Failed, invalid token <{0}>?".format(config["token"])

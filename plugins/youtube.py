@@ -7,7 +7,7 @@ import requests
 
 def youtube(searchterm):
     searchterm = quote(searchterm)
-    url = "https://gdata.youtube.com/feeds/api/videos?q={}&orderBy=relevance&alt=json"
+    url = "https://gdata.youtube.com/feeds/api/videos?q={0}&orderBy=relevance&alt=json"
     url = url.format(searchterm)
 
     j = requests.get(url).json()

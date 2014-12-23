@@ -11,6 +11,6 @@ class SlackRequest(object):
         post_data["ts"] = t
         post_data["token"] = token
         post_data = urllib.urlencode(post_data)
-        url = 'https://{}/api/{}'.format(domain, request)
+        url = 'https://{0}/api/{1}'.format(domain, request)
         return urllib2.urlopen(url, post_data)
 

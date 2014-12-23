@@ -30,7 +30,7 @@ class Server(object):
     def __str__(self):
         data = ""
         for key in self.__dict__.keys():
-            data += "{} : {}\n".format(key, str(self.__dict__[key])[:40])
+            data += "{0} : {1}\n".format(key, str(self.__dict__[key])[:40])
         return data
 
     def __repr__(self):
@@ -81,7 +81,7 @@ class Server(object):
         data = ""
         while True:
             try:
-                data += "{}\n".format(self.websocket.recv())
+                data += "{0}\n".format(self.websocket.recv())
             except:
                 return data.rstrip()
 
@@ -89,7 +89,7 @@ class Server(object):
         self.channels.append(Channel(self, name, id, members))
 
     def join_channel(self, name):
-        print self.api_requester.do(self.token, "channels.join?name={}".format(name)).read()
+        print self.api_requester.do(self.token, "channels.join?name={0}".format(name)).read()
 
     def api_call(self, method, **kwargs):
         reply = self.api_requester.do(self.token, method, kwargs)

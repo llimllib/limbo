@@ -27,11 +27,11 @@ def makemap(query):
     # To get google to auto-reasonably-zoom its map, you have to use a marker
     # instead of using a "center" parameter. I found that setting it to tiny
     # and grey makes it the least visible.
-    url = "https://maps.googleapis.com/maps/api/staticmap?size=800x400&markers=size:tiny%7Ccolor:0xAAAAAA%7C{}&maptype={}"
+    url = "https://maps.googleapis.com/maps/api/staticmap?size=800x400&markers=size:tiny%7Ccolor:0xAAAAAA%7C{0}&maptype={1}"
     url = url.format(query, args["maptype"])
 
     if "zoom" in args:
-        url += "&zoom={}".format(args["zoom"])
+        url += "&zoom={0}".format(args["zoom"])
 
     return url
 

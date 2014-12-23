@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from urllib import quote
 
 def stockprice(ticker):
-    url = "https://www.google.com/finance?q={}"
+    url = "https://www.google.com/finance?q={0}"
     print url.format(quote(ticker))
     soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text)
 
@@ -17,7 +17,7 @@ def stockprice(ticker):
 
         emoji = ":chart_with_upwards_trend:" if change.startswith("+") else ":chart_with_downwards_trend:"
 
-        return "{} {} {}: {} {} {} {}".format(emoji, company, ticker, price, change, pct, emoji)
+        return "{0} {1} {2}: {3} {4} {5} {6}".format(emoji, company, ticker, price, change, pct, emoji)
     except Exception as e:
         return ""
 
