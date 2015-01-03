@@ -114,5 +114,6 @@ These are the current default plugins:
 
 ## Contributors
 
-* @fsalum
-* @rodvodka
+* [https://github.com/fsalum](@fsalum)
+* [https://github.com/rodvodka](@rodvodka)
+* [https://github.com/mattfora](@mattfora)
