@@ -117,3 +117,4 @@ These are the current default plugins:
 * [https://github.com/fsalum](@fsalum)
 * [https://github.com/rodvodka](@rodvodka)
 * [https://github.com/mattfora](@mattfora)
+* [https://github.com/dguido](@dguido)
