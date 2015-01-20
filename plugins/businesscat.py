@@ -1,5 +1,4 @@
 """Business cat is summoned when business jargon is used"""
-from __future__ import print_function
 import re
 import random
 
