@@ -1,6 +1,8 @@
 # Slask
 ### A [Slack](https://slack.com/) chatbot
 
+![](https://travis-ci.org/llimllib/slask.svg)
+
 ## Installation
 
 1. Clone the repo
