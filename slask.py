@@ -109,7 +109,7 @@ def main(config):
                         client.rtm_send_message(event["channel"], response)
             time.sleep(1)
     else:
-        logging.warn("Connection Failed, invalid token <{}>?".format(config["token"]))
+        logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
 if __name__=="__main__":
     from config import config
