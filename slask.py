@@ -2,13 +2,14 @@
 from __future__ import print_function
 from glob import glob
 import importlib
+import logging
 import os
 import re
-from slackclient import SlackClient
 import sys
 import time
 import traceback
-import logging
+
+from slackclient import SlackClient
 
 def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
