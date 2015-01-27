@@ -8,8 +8,8 @@ config = {
     "loglevel": logging.DEBUG,
 
     # The log file to write to. By default writes to whatever the pwd is, you probably want
-    # to change that
-    "logfile": "slask.log",
+    # to change that. The log goes to stderr unless you uncomment this
+    #"logfile": "slask.log",
 
     # The log file format. This is the default; you can uncomment this line to change it if you want
     # "logformat": '%(asctime)s:%(levelname)s:%(message)s',

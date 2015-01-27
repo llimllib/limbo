@@ -14,24 +14,22 @@ from slackclient import SlackClient
 def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
     logformat = config.get("logformat", '%(asctime)s:%(levelname)s:%(message)s')
-    logfile = config.get("logfile", "slask.log")
+    if config.get("logfile"):
+        logfile = config.get("logfile", "slask.log")
+        handler = logging.FileHandler(logfile)
+    else:
+        handler = logging.StreamHandler()
 
     # create logger
     logger = logging.getLogger(__name__)
     logger.setLevel(loglevel)
 
-    # create console handler and set level to debug
-    ch = logging.FileHandler(logfile)
-    ch.setLevel(loglevel)
+    handler.setLevel(loglevel)
 
     # create formatter
     formatter = logging.Formatter(logformat)
-
-    # add formatter to ch
-    ch.setFormatter(formatter)
-
-    # add ch to logger
-    logger.addHandler(ch)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
     # make it the root logger (I hate the logging module)
     logging.root = logger
