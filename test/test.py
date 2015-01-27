@@ -6,6 +6,7 @@ import logging
 from nose.tools import eq_
 
 # TODO: kill logging output into stderr.
+# TODO: test logging to STDERR
 
 # test plugin hooks
 #
