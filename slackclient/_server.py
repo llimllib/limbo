@@ -54,6 +54,7 @@ class Server(object):
         self.username = self.login_data["self"]["name"]
         self.users = dict((u["id"], u) for u in login_data["users"])
         self.parse_channel_data(login_data["channels"])
+        self.parse_channel_data(login_data["groups"])
         self.parse_channel_data(login_data["ims"])
         try:
             self.websocket = create_connection(self.login_data['url'])
