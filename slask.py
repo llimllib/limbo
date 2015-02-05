@@ -128,15 +128,18 @@ if __name__=="__main__":
     init_log(config)
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--test', '-t', dest='test', action='store_true',
+    parser.add_argument('--test', '-t', dest='test', action='store_true', required=False,
                    help='Test a command and exit instead of running the server.')
     parser.add_argument('--hook', dest='hook', action='store', default='message',
                    help='Specify the hook to test. (Defaults to "message".)')
-    parser.add_argument('command', metavar='N', nargs='+',
+    parser.add_argument('command', metavar='N', nargs='*',
                    help='the text which should be tested')
     args = parser.parse_args()
 
     if args.test:
-        test(config, args.hook, ' '.join(args.command))
+        if args.command:
+            test(config, args.hook, ' '.join(args.command))
+        else:
+            print("Nothing to test.")
     else:
         main(config)
