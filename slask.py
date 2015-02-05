@@ -90,6 +90,12 @@ event_handlers = {
     "message": handle_message
 }
 
+def handle_event(client, event, hooks, config):
+    handler = event_handlers.get(event.get("type"))
+    if handler:
+        return handler(client, event, hooks, config)
+    return None
+
 def main(config):
     hooks = init_plugins("plugins")
 
@@ -99,18 +105,38 @@ def main(config):
         while True:
             events = client.rtm_read()
             for event in events:
-                #print "got {0}".format(event.get("type", event))
-                handler = event_handlers.get(event.get("type"))
-                if handler:
-                    response = handler(client, event, hooks, config)
-                    if response:
-                        client.rtm_send_message(event["channel"], response)
+                logging.debug("got {0}".format(event.get("type", event)))
+                response = handle_event(client, event, hooks, config)
+                if response:
+                    client.rtm_send_message(event["channel"], response)
             time.sleep(1)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
+def test(config, hook, command):
+    from test import FakeClient
+    client = FakeClient()
+    hooks = init_plugins("plugins")
+    event = { 'type': hook, 'text': command, "user": "msguser" }
+    response = handle_event(client, event, hooks, config)
+    print(response)
+
+
 if __name__=="__main__":
     from config import config
-
+    import argparse
     init_log(config)
-    main(config)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--test', '-t', dest='test', action='store_true',
+                   help='Test a command and exit instead of running the server.')
+    parser.add_argument('--hook', dest='hook', action='store', default='message',
+                   help='Specify the hook to test. (Defaults to "message".)')
+    parser.add_argument('command', metavar='N', nargs='+',
+                   help='the text which should be tested')
+    args = parser.parse_args()
+
+    if args.test:
+        test(config, args.hook, ' '.join(args.command))
+    else:
+        main(config)
