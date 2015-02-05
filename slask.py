@@ -90,7 +90,14 @@ event_handlers = {
     "message": handle_message
 }
 
+def handle_event(client, event, hooks, config):
+    handler = event_handlers.get(event.get("type"))
+    if handler:
+        return handler(client, event, hooks, config)
+    return None
+
 def main(config):
+    init_log(config)
     hooks = init_plugins("plugins")
 
     client = SlackClient(config["token"])
@@ -99,18 +106,49 @@ def main(config):
         while True:
             events = client.rtm_read()
             for event in events:
-                #print "got {0}".format(event.get("type", event))
-                handler = event_handlers.get(event.get("type"))
-                if handler:
-                    response = handler(client, event, hooks, config)
-                    if response:
-                        client.rtm_send_message(event["channel"], response)
+                logging.debug("got {0}".format(event.get("type", event)))
+                response = handle_event(client, event, hooks, config)
+                if response:
+                    client.rtm_send_message(event["channel"], response)
             time.sleep(1)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
+def run_cmd(client, cmd, hook):
+    hooks = init_plugins("plugins")
+    event = { 'type': hook, 'text': cmd, "user": "msguser" }
+    return handle_event(client, event, hooks, config)
+
+def repl(config, client, hook):
+    try:
+        while 1:
+            cmd = raw_input("slask> ")
+            if cmd.lower() == "quit" or cmd.lower() == "exit":
+                return
+
+            print(run_cmd(client, cmd, hook))
+    except (EOFError, KeyboardInterrupt):
+        print()
+        pass
+
 if __name__=="__main__":
     from config import config
+    import argparse
 
-    init_log(config)
-    main(config)
+    parser = argparse.ArgumentParser(description="Run the slask chatbot for Slack")
+    parser.add_argument('--test', '-t', dest='test', action='store_true', required=False,
+                        help='Enter command line mode to enter a slask repl')
+    parser.add_argument('--hook', dest='hook', action='store', default='message',
+                        help='Specify the hook to test. (Defaults to "message")')
+    parser.add_argument('-c', dest="command",
+                        help='run a single command')
+    args = parser.parse_args()
+
+    if args.test:
+        from test import FakeClient
+        repl(config, FakeClient(), args.hook)
+    elif args.command:
+        from test import FakeClient
+        print(run_cmd(FakeClient(), args.command, args.hook))
+    else:
+        main(config)
