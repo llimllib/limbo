@@ -120,3 +120,4 @@ These are the current default plugins:
 * [https://github.com/rodvodka](@rodvodka)
 * [https://github.com/mattfora](@mattfora)
 * [https://github.com/dguido](@dguido)
+* [https://github.com/JoeGermuska](@JoeGermuska)
