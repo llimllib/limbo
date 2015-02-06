@@ -140,8 +140,7 @@ if __name__=="__main__":
                         help='Enter command line mode to enter a slask repl')
     parser.add_argument('--hook', dest='hook', action='store', default='message',
                         help='Specify the hook to test. (Defaults to "message")')
-    parser.add_argument('-c', dest="command",
-                        help='run a single command')
+    parser.add_argument('-c', dest="command", help='run a single command')
     args = parser.parse_args()
 
     if args.test:
