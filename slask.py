@@ -132,7 +132,6 @@ def repl(config, client, hook):
         pass
 
 if __name__=="__main__":
-    from config import config
     import argparse
 
     parser = argparse.ArgumentParser(description="Run the slask chatbot for Slack")
@@ -141,7 +140,16 @@ if __name__=="__main__":
     parser.add_argument('--hook', dest='hook', action='store', default='message',
                         help='Specify the hook to test. (Defaults to "message")')
     parser.add_argument('-c', dest="command", help='run a single command')
+    parser.add_argument('-p', dest='path', help='Provide an alternative path to config.py file and plugins directory')
     args = parser.parse_args()
+
+    if args.path:
+        path = os.path.dirname(args.path)
+        if path not in sys.path:
+            sys.path = [path] + sys.path
+            os.chdir(path)
+
+    from config import config
 
     if args.test:
         from test import FakeClient
