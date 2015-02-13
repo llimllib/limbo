@@ -110,6 +110,9 @@ def main(config):
                 response = handle_event(client, event, hooks, config)
                 if response:
                     client.rtm_send_message(event["channel"], response)
+            
+            run_hook(hooks, "loop", None, config)
+            
             time.sleep(1)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
