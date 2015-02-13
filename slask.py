@@ -104,6 +104,8 @@ def main(config):
     if client.rtm_connect():
         users = client.server.users
         while True:
+            start = time.time()
+            
             events = client.rtm_read()
             for event in events:
                 logging.debug("got {0}".format(event.get("type", event)))
@@ -113,7 +115,9 @@ def main(config):
             
             run_hook(hooks, "loop", None, config)
             
-            time.sleep(1)
+            correction = 1 - (time.time() - start)
+            if correction > 0:
+                time.sleep(correction)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
