@@ -144,7 +144,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     if args.path:
-        path = os.path.dirname(args.path)
+        path = os.path.abspath(args.path)
         if path not in sys.path:
             sys.path = [path] + sys.path
             os.chdir(path)
