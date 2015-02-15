@@ -1,8 +1,9 @@
+import os
 import logging
 
 config = {
     # Your slask API token
-    "token": "your-token-goes-here"
+    "token": os.environ.get('SLACK_TOKEN'),
 
     # The log level. Valid options are logging.{DEBUG, INFO, WARNING, ERROR, CRITICAL})
     "loglevel": logging.DEBUG,
