@@ -113,7 +113,7 @@ def main(config):
                 if response:
                     client.rtm_send_message(event["channel"], response)
             
-            run_hook(hooks, "loop", None, config)
+            run_hook(hooks, "loop", None, {"client": client, "config": config, "hooks": hooks})
             
             correction = 1 - (time.time() - start)
             if correction > 0:
