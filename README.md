@@ -1,7 +1,7 @@
 # Slask
 ### A [Slack](https://slack.com/) chatbot
 
-![](https://travis-ci.org/llimllib/slask.svg)
+![](https://travis-ci.org/llimllib/slask.svg?branch=master)
 
 ## Installation
 
