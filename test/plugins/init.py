@@ -1,4 +1,5 @@
 HAVE_RUN_INIT="False"
+
 def on_init(server):
     HAVE_RUN_INIT="True"
 

@@ -25,6 +25,7 @@ def test_cmd():
 def test_repl():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     proc = subprocess.Popen(["slask", "-t", "--pluginpath", TESTPLUGINS], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    import ipdb; ipdb.set_trace()
     out = proc.communicate(msg.encode("utf8"))[0]
     out = out.strip().decode("utf8")
     eq_(out, u"slask> {0}\nslask>".format(msg))

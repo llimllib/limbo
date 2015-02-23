@@ -29,7 +29,6 @@ def test_plugin_success():
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
     eq_(len(hooks["message"]), 2)
-    eq_(hooks["message"][0]({"text": u"!echo bananas"}, None), u"!echo bananas")
 
 def test_plugin_invalid_dir():
     try:
