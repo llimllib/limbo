@@ -159,7 +159,7 @@ def main(args):
     if args.test:
         return repl(FakeServer(), args)
     elif args.command is not None:
-        print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath))
+        print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
     server = init_server(args)
@@ -174,17 +174,19 @@ def main(args):
 
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
+    if type(cmd) == str:
+        cmd = cmd.decode("utf8")
     event = { 'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
     return handle_event(event, server)
 
 def repl(server, args):
     try:
         while 1:
-            cmd = raw_input("slask> ")
+            cmd = raw_input("slask> ").decode("utf8")
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath).encode("utf8"))
     except (EOFError, KeyboardInterrupt):
         print()
         pass
