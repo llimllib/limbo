@@ -104,13 +104,20 @@ def main(config):
     if client.rtm_connect():
         users = client.server.users
         while True:
+            start = time.time()
+            
             events = client.rtm_read()
             for event in events:
                 logging.debug("got {0}".format(event.get("type", event)))
                 response = handle_event(client, event, hooks, config)
                 if response:
                     client.rtm_send_message(event["channel"], response)
-            time.sleep(1)
+            
+            run_hook(hooks, "loop", None, {"client": client, "config": config, "hooks": hooks})
+            
+            correction = 1 - (time.time() - start)
+            if correction > 0:
+                time.sleep(correction)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
@@ -132,7 +139,6 @@ def repl(config, client, hook):
         pass
 
 if __name__=="__main__":
-    from config import config
     import argparse
 
     parser = argparse.ArgumentParser(description="Run the slask chatbot for Slack")
@@ -141,7 +147,16 @@ if __name__=="__main__":
     parser.add_argument('--hook', dest='hook', action='store', default='message',
                         help='Specify the hook to test. (Defaults to "message")')
     parser.add_argument('-c', dest="command", help='run a single command')
+    parser.add_argument('-p', dest='path', help='Provide an alternative path to config.py file and plugins directory')
     args = parser.parse_args()
+
+    if args.path:
+        path = os.path.abspath(args.path)
+        if path not in sys.path:
+            sys.path = [path] + sys.path
+            os.chdir(path)
+
+    from config import config
 
     if args.test:
         from test import FakeClient
