@@ -14,7 +14,7 @@ required = ['requests>=2.5']
 packages = ['slask', 'slask.slackclient', 'slask.plugins']
 
 try:
-    longdesc = open("README.md").read()
+    longdesc = open("README.rs").read()
 except:
     longdesc = ''
 
