@@ -10,6 +10,10 @@ clean:
 run: install
 	bin/slask
 
+.PHONY: repl
+repl: install
+	bin/slask -t
+
 .PHONY: install
 install:
 	python setup.py install
