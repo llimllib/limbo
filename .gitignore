@@ -2,3 +2,9 @@
 *.pyc
 config.py
 *.config.py
+slask.sqlite3
+Makefile.local
+NOTES
+build/
+dist/
+slask.egg-info/

@@ -1,9 +1,11 @@
 # -*- coding: UTF-8 -*-
+import logging
+import os
+import sqlite3
+import tempfile
+from nose.tools import eq_
 
 import slask
-import tempfile
-import logging
-from nose.tools import eq_
 
 # TODO: kill logging output into stderr.
 # TODO: test logging to STDERR
@@ -14,19 +16,27 @@ from nose.tools import eq_
 # TODO: test init_plugins with invalid plugins
 # TODO: test init_plugins with plugin without on_
 # TODO: test init_plugins __doc__ handling
+# TODO: test plugin that throws exception (on import, init and message)
+# TODO: test command line interface
+
+DIR = os.path.dirname(os.path.realpath(__file__))
+PARENT = os.path.split(DIR)[0]
 
 def test_plugin_success():
     hooks = slask.init_plugins("test/plugins")
-    eq_( len(hooks) ,  1)
+    eq_(len(hooks), 2)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
-    eq_( len(hooks["message"]) ,  1)
-    eq_( hooks["message"][0]({"text": u"bananas"}, None) ,  u"bananas")
+    eq_(len(hooks["message"]), 2)
+    eq_(hooks["message"][0]({"text": u"!echo bananas"}, None), u"!echo bananas")
 
 def test_plugin_invalid_dir():
-    hooks = slask.init_plugins("invalid/package")
-    eq_( len(hooks) ,  0)
+    try:
+        hooks = slask.init_plugins("invalid/package")
+    except slask.InvalidPluginDir:
+        return
+    1/0
 
 def test_plugin_logs():
     tfh = tempfile.NamedTemporaryFile()
@@ -41,57 +51,52 @@ def test_plugin_logs():
     log = tfh.read()
 
     assert "DEBUG:plugin: test/plugins/echo.py" in log
-    assert "DEBUG:attaching plugins." in log
+    assert "DEBUG:attaching" in log
 
 # test run_hook
 
 def test_run_hook():
     hooks = slask.init_plugins("test/plugins")
-    eq_(slask.run_hook(hooks, "message", {"text": u"bananas"}, None), [u"bananas"])
+    eq_(slask.run_hook(hooks, "message", {"text": u"!echo bananas"}, None), [u"!echo bananas"])
 
 def test_missing_hook():
     hooks = slask.init_plugins("test/plugins")
-    eq_(slask.run_hook(hooks, "nonexistant", {"text": u"bananas"}, None), [])
+    eq_(slask.run_hook(hooks, "nonexistant", {"text": u"!echo bananas"}, None), [])
 
 # test handle_message
 
 def test_handle_message_subtype():
-    eq_(slask.handle_message(None, {"subtype": "bot_message"}, None, None), None)
-    eq_(slask.handle_message(None, {"subtype": "message_changed"}, None, None), None)
-
-class FakeClient(object):
-    def __init__(self, server=None):
-        self.server = server or FakeServer()
-
-class FakeServer(object):
-    def __init__(self, botname="slask_test"):
-        self.login_data = {
-            "self": {
-                "name": botname,
-            }
-        }
-
-        self.users = {
-            "slask_test": {"name": "slask_test"},
-            "msguser": {"name": "msguser"},
-            "slackbot": {"name": "slackbot"},
-        }
+    server = slask.FakeServer()
+    eq_(slask.handle_message({"subtype": "bot_message"}, server), None)
+    eq_(slask.handle_message({"subtype": "message_changed"}, server), None)
 
 def test_handle_message_ignores_self():
-    client = FakeClient()
+    server = slask.FakeServer()
     event = {"user": "slask_test"}
-    eq_(slask.handle_message(client, event, None, None), None)
+    eq_(slask.handle_message(event, server), None)
 
 def test_handle_message_ignores_slackbot():
-    client = FakeClient()
+    server = slask.FakeServer()
     event = {"user": "slackbot"}
-    eq_(slask.handle_message(client, event, None, None), None)
+    eq_(slask.handle_message(event, server), None)
 
 def test_handle_message_basic():
-    client = FakeClient()
-
-    msg = u"Iñtërnâtiônàlizætiøn"
+    msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "msguser", "text": msg}
 
     hooks = slask.init_plugins("test/plugins")
-    eq_(slask.handle_message(client, event, hooks, None), msg)
+    server = slask.FakeServer(hooks=hooks)
+
+    eq_(slask.handle_message(event, server), msg)
+
+def test_init_db():
+    tf = tempfile.NamedTemporaryFile()
+    db = slask.init_db(tf.name)
+    eq_(type(db), type(sqlite3.connect(":memory:")))
+
+class FakeSlackClient(object):
+    def __init__(self, connect=True):
+        self.connect = connect
+    
+    def rtm_connect(self):
+        return self.connect
