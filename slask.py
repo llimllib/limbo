@@ -104,13 +104,20 @@ def main(config):
     if client.rtm_connect():
         users = client.server.users
         while True:
+            start = time.time()
+            
             events = client.rtm_read()
             for event in events:
                 logging.debug("got {0}".format(event.get("type", event)))
                 response = handle_event(client, event, hooks, config)
                 if response:
                     client.rtm_send_message(event["channel"], response)
-            time.sleep(1)
+            
+            run_hook(hooks, "loop", None, {"client": client, "config": config, "hooks": hooks})
+            
+            correction = 1 - (time.time() - start)
+            if correction > 0:
+                time.sleep(correction)
     else:
         logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
