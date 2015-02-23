@@ -121,3 +121,5 @@ These are the current default plugins:
 * [@mattfora](https://github.com/mattfora)
 * [@dguido](https://github.com/dguido)
 * [@JoeGermuska](https://github.com/JoeGermuska)
+* [@MathyV](https://github.com/MathyV)
+* [@stopspazzing](https://github.com/stopspazzing)
