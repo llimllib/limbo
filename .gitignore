@@ -1,4 +1,5 @@
 .env
+venv/
 *.pyc
 config.py
 *.config.py

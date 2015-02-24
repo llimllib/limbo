@@ -19,37 +19,26 @@ from fakeserver import FakeServer
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
+logger = logging.getLogger(__name__)
+
 class InvalidPluginDir(Exception):
     def __init__(self, plugindir):
         self.message = "Unable to find plugin dir {0}".format(plugindir)
 
 def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
-    logformat = config.get("logformat", '%(asctime)s:%(levelname)s:%(message)s')
+    logformat = config.get("logformat", '%(asctime)s:%(levelname)s:%(name)s:%(message)s')
     if config.get("logfile"):
-        logfile = config.get("logfile", "limbo.log")
-        handler = logging.FileHandler(logfile)
+        logging.basicConfig(filename=config.get("logfile"), format=logformat, level=loglevel)
+        logger.info("boo!")
     else:
-        handler = logging.StreamHandler()
-
-    # create logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(loglevel)
-    handler.setLevel(loglevel)
-
-    # create formatter
-    formatter = logging.Formatter(logformat)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-
-    # make it the root logger (I hate the logging module)
-    logging.root = logger
+        logging.basicConfig(format=logformat, level=loglevel)
 
 def init_plugins(plugindir):
     if not plugindir:
         plugindir = DIR("plugins")
 
-    logging.debug("plugindir: {0}".format(plugindir))
+    logger.debug("plugindir: {0}".format(plugindir))
 
     if not os.path.isdir(plugindir):
         raise InvalidPluginDir(plugindir)
@@ -60,13 +49,13 @@ def init_plugins(plugindir):
     sys.path.insert(0, plugindir)
 
     for plugin in glob(os.path.join(plugindir, "[!_]*.py")):
-        logging.debug("plugin: {0}".format(plugin))
+        logger.debug("plugin: {0}".format(plugin))
         try:
             mod = importlib.import_module(os.path.basename(plugin)[:-3])
             modname = mod.__name__
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
-                logging.debug("attaching {0}.{1} to {2}".format(modname, hookfun, hook))
+                logger.debug("plugin: attaching %s hook for %s", hook, modname)
                 hooks.setdefault(hook, []).append(hookfun)
 
             if mod.__doc__:
@@ -77,9 +66,9 @@ def init_plugins(plugindir):
         #bare except, because the modules could raise any number of errors
         #on import, and we want them not to kill our server
         except:
-            logging.warning("import failed on module {0}, module not loaded".format(plugin))
-            logging.warning("{0}".format(sys.exc_info()[0]))
-            logging.warning("{0}".format(traceback.format_exc()))
+            logger.warning("import failed on module {0}, module not loaded".format(plugin))
+            logger.warning("{0}".format(sys.exc_info()[0]))
+            logger.warning("{0}".format(traceback.format_exc()))
 
     sys.path = oldpath
     return hooks
@@ -91,9 +80,9 @@ def run_hook(hooks, hook, *args):
             h = hook(*args)
             if h: responses.append(h)
         except:
-            logging.warning("Failed to run plugin {0}, module not loaded".format(hook))
-            logging.warning("{0}".format(sys.exc_info()[0]))
-            logging.warning("{0}".format(traceback.format_exc()))
+            logger.warning("Failed to run plugin {0}, module not loaded".format(hook))
+            logger.warning("{0}".format(sys.exc_info()[0]))
+            logger.warning("{0}".format(traceback.format_exc()))
 
     return responses
 
@@ -106,7 +95,7 @@ def handle_message(event, server):
     try:
         msguser = server.slack.server.users.get(event["user"])
     except KeyError:
-        logging.debug("event {0} has no user".format(event))
+        logger.debug("event {0} has no user".format(event))
         return
 
     if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
@@ -139,7 +128,7 @@ def loop(server):
     while True:
         events = server.slack.rtm_read()
         for event in events:
-            logging.debug("got {0}".format(event.get("type", event)))
+            logger.debug("got {0}".format(event.get("type", event)))
             response = handle_event(event, server)
             if response:
                 server.slack.rtm_send_message(event["channel"], response)
@@ -153,7 +142,7 @@ def relevant_environ():
 def init_server(args, Server=LimboServer, Client=SlackClient):
     config = init_config()
     init_log(config)
-    logging.debug("config: {0}".format(config))
+    logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
     hooks = init_plugins(args.pluginpath)
     try:
@@ -176,6 +165,8 @@ export SLACK_TOKEN=<your-slack-bot-token>
 
 def main(args):
     if args.test:
+        config = init_config()
+        init_log(config)
         return repl(FakeServer(), args)
     elif args.command is not None:
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
@@ -189,7 +180,7 @@ def main(args):
 
         loop(server)
     else:
-        logging.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
+        logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)

@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import logging
+from mock_handler import MockHandler
 import os
 import sqlite3
 import tempfile
@@ -38,19 +39,10 @@ def test_plugin_invalid_dir():
     1/0
 
 def test_plugin_logs():
-    tfh = tempfile.NamedTemporaryFile()
-
-    limbo.init_log(config={
-        "logfile": tfh.name,
-        "loglevel": logging.DEBUG,
-    })
+    mhdr = MockHandler()
+    logging.getLogger("limbo.limbo").addHandler(mhdr)
     limbo.init_plugins("test/plugins")
-
-    tfh.seek(0)
-    log = tfh.read()
-
-    assert "DEBUG:plugin: test/plugins/echo.py" in log
-    assert "DEBUG:attaching" in log
+    mhdr.check("debug", "attaching message hook for echo")
 
 # test run_hook
 
