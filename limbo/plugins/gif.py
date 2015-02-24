@@ -1,11 +1,21 @@
-"""!gif <search term> return a random result from the  google gif search result for <search term>"""
+"""
+!gif <search term> return a random result from the google gif search result for <search term>
+!gif or !hitme to return another result for the same query
+"""
 
 from urllib import quote
+import logging
 import re
 import requests
 from random import shuffle
 
+logger = logging.getLogger(__name__)
+
+_last_gifs = []
+
+
 def gif(searchterm, unsafe=False):
+    global _last_gifs
     searchterm = quote(searchterm)
 
     safe = "&safe=" if unsafe else "&safe=active"
@@ -16,15 +26,26 @@ def gif(searchterm, unsafe=False):
 
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
-    gifs = re.findall(r'imgurl.*?(http.*?)\\', result)
-    shuffle(gifs)
+    _last_gifs = re.findall(r'imgurl.*?(http.*?)\\', result)
+    shuffle(_last_gifs)
+    one = _last_gifs.pop()
+    logger.debug("got %d gifs, chose=%r", len(_last_gifs)+1, one)
+    return one
 
-    return gifs[0] if gifs else ""
 
 def on_message(msg, server):
+    global _last_gifs
+    one = None
     text = msg.get("text", "")
     match = re.findall(r"!gif (.*)", text)
-    if not match: return
-
-    searchterm = match[0]
-    return gif(searchterm)
+    if match:
+        searchterm = match[0]
+        one = gif(searchterm)
+    elif re.findall(r"!gif$", text) or re.findall(r"!hitme$", text):
+        if len(_last_gifs) > 0:
+            # todo: re-query if we run out
+            one = _last_gifs.pop()
+            logger.debug("have %d gifs, chose=%r", len(_last_gifs)+1, one)
+        else:
+            logger.debug("ran out of gifs!")
+    return one if one else ""
