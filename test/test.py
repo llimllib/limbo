@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import logging
-from memento_handler import MementoHandler
+from mock_handler import MockHandler
 import os
 import sqlite3
 import tempfile
@@ -39,7 +39,7 @@ def test_plugin_invalid_dir():
     1/0
 
 def test_plugin_logs():
-    mhdr = MementoHandler()
+    mhdr = MockHandler()
     logging.getLogger("limbo.limbo").addHandler(mhdr)
     limbo.init_plugins("test/plugins")
     mhdr.check("debug", "attaching message hook for echo")

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
-class MementoHandler(logging.Handler):
+class MockHandler(logging.Handler):
     """A handler class which stores logging records in a list.
 
     From http://nessita.pastebin.com/mgc85uQT
