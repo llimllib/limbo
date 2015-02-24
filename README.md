@@ -1,7 +1,7 @@
 # Limbo
 ### A [Slack](https://slack.com/) chatbot
 
-![](https://travis-ci.org/llimllib/slask.svg?branch=master)
+![](https://travis-ci.org/llimllib/limbo.svg?branch=master)
 
 ## Installation
 
