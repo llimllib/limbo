@@ -1,4 +1,4 @@
-# Slask
+# Limbo
 ### A [Slack](https://slack.com/) chatbot
 
 ![](https://travis-ci.org/llimllib/slask.svg?branch=master)
@@ -10,7 +10,7 @@
 3. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
 4. export SLACK_TOKEN="your-api-token"
 5. make run (or make repl for local testing)
-6. Invite Slask into any channels you want it in, or just message it in #general. Try typing `!gif dubstep cat` to test it out
+6. Invite Limbo into any channels you want it in, or just message it in #general. Try typing `!gif dubstep cat` to test it out
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
@@ -22,95 +22,95 @@ You can use the `!help` command to print out all available commands and a brief 
 
 These are the current default plugins:
 
-* [calc](https://github.com/llimllib/slask#calc)
-* [emoji](https://github.com/llimllib/slask#emoji)
-* [flip](https://github.com/llimllib/slask#flip)
-* [gif](https://github.com/llimllib/slask#gif)
-* [google](https://github.com/llimllib/slask#google-or-search)
-* [help](https://github.com/llimllib/slask#help)
-* [image](https://github.com/llimllib/slask#image)
-* [map](https://github.com/llimllib/slask#map)
-* [stock](https://github.com/llimllib/slask#stock)
-* [stockphoto](https://github.com/llimllib/slask#stockphoto)
-* [weather](https://github.com/llimllib/slask#weather)
-* [wiki](https://github.com/llimllib/slask#wiki)
-* [youtube](https://github.com/llimllib/slask#youtube)
+* [calc](https://github.com/llimllib/limbo#calc)
+* [emoji](https://github.com/llimllib/limbo#emoji)
+* [flip](https://github.com/llimllib/limbo#flip)
+* [gif](https://github.com/llimllib/limbo#gif)
+* [google](https://github.com/llimllib/limbo#google-or-search)
+* [help](https://github.com/llimllib/limbo#help)
+* [image](https://github.com/llimllib/limbo#image)
+* [map](https://github.com/llimllib/limbo#map)
+* [stock](https://github.com/llimllib/limbo#stock)
+* [stockphoto](https://github.com/llimllib/limbo#stockphoto)
+* [weather](https://github.com/llimllib/limbo#weather)
+* [wiki](https://github.com/llimllib/limbo#wiki)
+* [youtube](https://github.com/llimllib/limbo#youtube)
 
 ### calc
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/calc.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/calc.png)
 
 ---
 
 ### emoji
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/emoji.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/emoji.png)
 
 ---
 
 ### flip
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/flip.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/flip.png)
 
 ---
 
 ### gif
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/gif.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/gif.png)
 
 ---
 
 ### google (or search)
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/google.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/google.png)
 
 ---
 
 ### help
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/help.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/help.png)
 
 ---
 
 ### image
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/image.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/image.png)
 
 ---
 
 ### map
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/map.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/map.png)
 
 ---
 
 ### stock
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/stock.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/stock.png)
 
 ---
 
 ### stockphoto
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/stockphoto.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/stockphoto.png)
 
 ---
 
 ### weather
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/weather.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/weather.png)
 
 ---
 
 ### wiki
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/wiki.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/wiki.png)
 
 ---
 
 ### youtube
 
-![](https://raw.githubusercontent.com/llimllib/slask/master/docs/youtube.png)
+![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/youtube.png)
 
 ---
 

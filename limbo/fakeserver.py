@@ -14,7 +14,7 @@ class FakeSlack(object):
         self.server = server or FakeSlackServer()
 
 class FakeSlackServer(object):
-    def __init__(self, botname="slask_test"):
+    def __init__(self, botname="limbo_test"):
         self.login_data = {
             "self": {
                 "name": botname,
@@ -22,7 +22,7 @@ class FakeSlackServer(object):
         }
 
         self.users = {
-            "slask_test": {"name": "slask_test"},
+            "limbo_test": {"name": "limbo_test"},
             "msguser": {"name": "msguser"},
             "slackbot": {"name": "slackbot"},
         }

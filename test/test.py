@@ -5,7 +5,7 @@ import sqlite3
 import tempfile
 from nose.tools import eq_
 
-import slask
+import limbo
 
 # TODO: kill logging output into stderr.
 # TODO: test logging to STDERR
@@ -23,7 +23,7 @@ DIR = os.path.dirname(os.path.realpath(__file__))
 PARENT = os.path.split(DIR)[0]
 
 def test_plugin_success():
-    hooks = slask.init_plugins("test/plugins")
+    hooks = limbo.init_plugins("test/plugins")
     eq_(len(hooks), 2)
     assert "message" in hooks
     assert isinstance(hooks, dict)
@@ -32,19 +32,19 @@ def test_plugin_success():
 
 def test_plugin_invalid_dir():
     try:
-        hooks = slask.init_plugins("invalid/package")
-    except slask.InvalidPluginDir:
+        hooks = limbo.init_plugins("invalid/package")
+    except limbo.InvalidPluginDir:
         return
     1/0
 
 def test_plugin_logs():
     tfh = tempfile.NamedTemporaryFile()
 
-    slask.init_log(config={
+    limbo.init_log(config={
         "logfile": tfh.name,
         "loglevel": logging.DEBUG,
     })
-    slask.init_plugins("test/plugins")
+    limbo.init_plugins("test/plugins")
 
     tfh.seek(0)
     log = tfh.read()
@@ -55,42 +55,42 @@ def test_plugin_logs():
 # test run_hook
 
 def test_run_hook():
-    hooks = slask.init_plugins("test/plugins")
-    eq_(slask.run_hook(hooks, "message", {"text": u"!echo bananas"}, None), [u"!echo bananas"])
+    hooks = limbo.init_plugins("test/plugins")
+    eq_(limbo.run_hook(hooks, "message", {"text": u"!echo bananas"}, None), [u"!echo bananas"])
 
 def test_missing_hook():
-    hooks = slask.init_plugins("test/plugins")
-    eq_(slask.run_hook(hooks, "nonexistant", {"text": u"!echo bananas"}, None), [])
+    hooks = limbo.init_plugins("test/plugins")
+    eq_(limbo.run_hook(hooks, "nonexistant", {"text": u"!echo bananas"}, None), [])
 
 # test handle_message
 
 def test_handle_message_subtype():
-    server = slask.FakeServer()
-    eq_(slask.handle_message({"subtype": "bot_message"}, server), None)
-    eq_(slask.handle_message({"subtype": "message_changed"}, server), None)
+    server = limbo.FakeServer()
+    eq_(limbo.handle_message({"subtype": "bot_message"}, server), None)
+    eq_(limbo.handle_message({"subtype": "message_changed"}, server), None)
 
 def test_handle_message_ignores_self():
-    server = slask.FakeServer()
-    event = {"user": "slask_test"}
-    eq_(slask.handle_message(event, server), None)
+    server = limbo.FakeServer()
+    event = {"user": "limbo_test"}
+    eq_(limbo.handle_message(event, server), None)
 
 def test_handle_message_ignores_slackbot():
-    server = slask.FakeServer()
+    server = limbo.FakeServer()
     event = {"user": "slackbot"}
-    eq_(slask.handle_message(event, server), None)
+    eq_(limbo.handle_message(event, server), None)
 
 def test_handle_message_basic():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "msguser", "text": msg}
 
-    hooks = slask.init_plugins("test/plugins")
-    server = slask.FakeServer(hooks=hooks)
+    hooks = limbo.init_plugins("test/plugins")
+    server = limbo.FakeServer(hooks=hooks)
 
-    eq_(slask.handle_message(event, server), msg)
+    eq_(limbo.handle_message(event, server), msg)
 
 def test_init_db():
     tf = tempfile.NamedTemporaryFile()
-    db = slask.init_db(tf.name)
+    db = limbo.init_db(tf.name)
     eq_(type(db), type(sqlite3.connect(":memory:")))
 
 class FakeSlackClient(object):

@@ -2,7 +2,7 @@
 *.pyc
 config.py
 *.config.py
-slask.sqlite3
+limbo.sqlite3
 Makefile.local
 NOTES
 build/

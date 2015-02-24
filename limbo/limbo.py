@@ -13,7 +13,7 @@ import time
 import traceback
 
 from slackclient import SlackClient
-from server import SlaskServer
+from server import LimboServer
 from fakeserver import FakeServer
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
@@ -27,7 +27,7 @@ def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
     logformat = config.get("logformat", '%(asctime)s:%(levelname)s:%(message)s')
     if config.get("logfile"):
-        logfile = config.get("logfile", "slask.log")
+        logfile = config.get("logfile", "limbo.log")
         handler = logging.FileHandler(logfile)
     else:
         handler = logging.StreamHandler()
@@ -130,9 +130,9 @@ def getif(config, name, envvar):
 def init_config():
     config = {}
     getif(config, "token", "SLACK_TOKEN")
-    getif(config, "loglevel", "SLASK_LOGLEVEL")
-    getif(config, "logfile", "SLASK_LOGFILE")
-    getif(config, "logformat", "SLASK_LOGFORMAT")
+    getif(config, "loglevel", "LIMBO_LOGLEVEL")
+    getif(config, "logfile", "LIMBO_LOGFILE")
+    getif(config, "logformat", "LIMBO_LOGFORMAT")
     return config
 
 def loop(server):
@@ -145,7 +145,7 @@ def loop(server):
                 server.slack.rtm_send_message(event["channel"], response)
         time.sleep(1)
 
-def init_server(args, Server=SlaskServer, Client=SlackClient):
+def init_server(args, Server=LimboServer, Client=SlackClient):
     config = init_config()
     init_log(config)
     logging.debug("config: {0}".format(config))
@@ -182,7 +182,7 @@ def run_cmd(cmd, server, hook, pluginpath):
 def repl(server, args):
     try:
         while 1:
-            cmd = raw_input("slask> ").decode("utf8")
+            cmd = raw_input("limbo> ").decode("utf8")
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 

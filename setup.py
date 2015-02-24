@@ -11,7 +11,7 @@ except ImportError:
     from distutils.core import setup
 
 required = ['requests>=2.5']
-packages = ['slask', 'slask.slackclient', 'slask.plugins']
+packages = ['limbo', 'limbo.slackclient', 'limbo.plugins']
 
 try:
     longdesc = open("README.rs").read()
@@ -19,16 +19,16 @@ except:
     longdesc = ''
 
 setup(
-    name='slask',
+    name='limbo',
     version='3.0.0a1',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
     author_email='bill@billmill.org',
-    url='https://github.com/llimllib/slask',
+    url='https://github.com/llimllib/limbo',
     packages=packages,
-    scripts = ['bin/slask'],
-    package_data={'': ['LICENSE',], '': ['slask/plugins/*.py']},
+    scripts = ['bin/limbo'],
+    package_data={'': ['LICENSE',], '': ['limbo/plugins/*.py']},
     include_package_data=True,
     install_requires=required,
     license='MIT',

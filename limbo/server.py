@@ -1,4 +1,4 @@
-class SlaskServer(object):
+class LimboServer(object):
     def __init__(self, slack, config, hooks, db):
         self.slack = slack
         self.config = config
