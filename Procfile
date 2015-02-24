@@ -1,1 +1,1 @@
-worker: python bin/slask
+worker: python bin/limbo
