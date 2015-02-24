@@ -145,13 +145,32 @@ def loop(server):
                 server.slack.rtm_send_message(event["channel"], response)
         time.sleep(1)
 
+def relevant_environ():
+    return dict((key, val)
+                for key, val in os.environ.iteritems()
+                if key.startswith("SLACK") or key.startswith("LIMBO"))
+
 def init_server(args, Server=LimboServer, Client=SlackClient):
     config = init_config()
     init_log(config)
     logging.debug("config: {0}".format(config))
     db = init_db(args.database_name)
     hooks = init_plugins(args.pluginpath)
-    slack = Client(config["token"])
+    try:
+        slack = Client(config["token"])
+    except KeyError:
+        logging.error("""Unable to find a slack token. The environment variables
+limbo sees are:
+{0}
+
+and the current config is:
+{1}
+
+Try setting your bot's slack token with:
+
+export SLACK_TOKEN=<your-slack-bot-token>
+""".format(relevant_environ(), config))
+        raise
     server = Server(slack, config, hooks, db)
     return server
 
