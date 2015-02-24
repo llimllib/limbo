@@ -24,3 +24,7 @@ publish:
 	pandoc -s -w rst README.md -o README.rs
 	python setup.py sdist upload
 	rm README.rs
+
+.PHONY: flake8
+flake8:
+	flake8 limbo test
