@@ -19,7 +19,8 @@ def stock(searchterm):
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!stock (.*)", text)
-    if not match: return
+    if not match:
+        return
 
     searchterm = quote(match[0])
     return stock(searchterm)

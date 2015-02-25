@@ -16,7 +16,7 @@ iconmap = {
     "10": ":droplet:",
     "11": ":zap:",
     "13": ":snowflake:",
-    "50": ":umbrella:", #mist?
+    "50": ":umbrella:",    # mist?
 }
 
 def weather(searchterm):
@@ -38,7 +38,8 @@ def weather(searchterm):
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!weather (.*)", text)
-    if not match: return
+    if not match:
+        return
 
     searchterm = match[0]
     return weather(searchterm)

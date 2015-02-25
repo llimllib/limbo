@@ -24,7 +24,8 @@ def image(searchterm, unsafe=False):
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!image (.*)", text)
-    if not match: return
+    if not match:
+        return
 
     searchterm = match[0]
     return image(searchterm)

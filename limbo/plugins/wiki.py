@@ -1,8 +1,6 @@
 """!wiki <topic> returns a wiki link for <topic>"""
-import json
 import re
 from urllib import quote
-import sys
 
 import requests
 from bs4 import BeautifulSoup
@@ -19,7 +17,7 @@ def wiki(searchterm):
     pages = result["query"]["search"]
 
     # try to reject disambiguation pages
-    pages = [p for p in pages if not 'may refer to' in p["snippet"]]
+    pages = [p for p in pages if 'may refer to' not in p["snippet"]]
 
     if not pages:
         return ""
@@ -37,7 +35,8 @@ def wiki(searchterm):
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!wiki (.*)", text)
-    if not match: return
+    if not match:
+        return
 
     searchterm = match[0]
     return wiki(searchterm)

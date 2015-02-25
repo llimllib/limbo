@@ -1,7 +1,8 @@
-HAVE_RUN_INIT="False"
+HAVE_RUN_INIT = "False"
 
 def on_init(server):
-    HAVE_RUN_INIT="True"
+    global HAVE_RUN_INIT
+    HAVE_RUN_INIT = "True"
 
 def on_message(msg, server):
     if msg["text"] == u"test_init":

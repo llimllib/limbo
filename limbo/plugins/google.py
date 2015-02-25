@@ -18,6 +18,7 @@ def google(q):
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!(?:google|search) (.*)", text)
-    if not match: return
+    if not match:
+        return
 
     return google(match[0])

@@ -20,14 +20,15 @@ def stockprice(ticker):
         emoji = ":chart_with_upwards_trend:" if change.startswith("+") else ":chart_with_downwards_trend:"
 
         return "{0} {1} {2}: {3} {4} {5} {6}".format(emoji, company, ticker, price, change, pct, emoji)
-    except Exception as e:
+    except Exception:
         return ""
 
 
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"\$\w{0,4}", text)
-    if not match: return
+    if not match:
+        return
 
     prices = [stockprice(ticker[1:]) for ticker in match]
     return "\n".join(p for p in prices if p)

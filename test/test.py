@@ -33,10 +33,10 @@ def test_plugin_success():
 
 def test_plugin_invalid_dir():
     try:
-        hooks = limbo.init_plugins("invalid/package")
+        limbo.init_plugins("invalid/package")
     except limbo.InvalidPluginDir:
         return
-    1/0
+    1 / 0
 
 def test_plugin_logs():
     mhdr = MockHandler()
@@ -88,6 +88,6 @@ def test_init_db():
 class FakeSlackClient(object):
     def __init__(self, connect=True):
         self.connect = connect
-    
+
     def rtm_connect(self):
         return self.connect

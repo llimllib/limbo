@@ -63,8 +63,8 @@ def init_plugins(plugindir):
                 hooks.setdefault('help', {})[modname] = firstline
                 hooks.setdefault('extendedhelp', {})[modname] = mod.__doc__
 
-        #bare except, because the modules could raise any number of errors
-        #on import, and we want them not to kill our server
+        # bare except, because the modules could raise any number of errors
+        # on import, and we want them not to kill our server
         except:
             logger.warning("import failed on module {0}, module not loaded".format(plugin))
             logger.warning("{0}".format(sys.exc_info()[0]))
@@ -78,7 +78,8 @@ def run_hook(hooks, hook, *args):
     for hook in hooks.get(hook, []):
         try:
             h = hook(*args)
-            if h: responses.append(h)
+            if h:
+                responses.append(h)
         except:
             logger.warning("Failed to run plugin {0}, module not loaded".format(hook))
             logger.warning("{0}".format(sys.exc_info()[0]))
@@ -89,7 +90,8 @@ def run_hook(hooks, hook, *args):
 def handle_message(event, server):
     # ignore bot messages and edits
     subtype = event.get("subtype", "")
-    if subtype == "bot_message" or subtype == "message_changed": return
+    if subtype == "bot_message" or subtype == "message_changed":
+        return
 
     botname = server.slack.server.login_data["self"]["name"]
     try:
@@ -175,7 +177,7 @@ def main(args):
     server = init_server(args)
 
     if server.slack.rtm_connect():
-        #run init hook. This hook doesn't send messages to the server (ought it?)
+        # run init hook. This hook doesn't send messages to the server (ought it?)
         run_hook(server.hooks, "init", server)
 
         loop(server)
@@ -186,7 +188,7 @@ def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
     if type(cmd) == str:
         cmd = cmd.decode("utf8")
-    event = { 'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
+    event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
     return handle_event(event, server)
 
 def repl(server, args):

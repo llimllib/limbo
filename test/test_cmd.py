@@ -10,10 +10,10 @@ TESTPLUGINS = os.path.join(DIR, "plugins")
 
 # http://stackoverflow.com/a/13160748/42559
 def sh(cmd):
-     proc = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
-     output = proc.communicate()[0].decode("utf8")
-     ret = proc.returncode
-     return output, ret
+    proc = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
+    output = proc.communicate()[0].decode("utf8")
+    ret = proc.returncode
+    return output, ret
 
 def test_cmd():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
@@ -31,8 +31,8 @@ def test_repl():
     ret = proc.returncode
     eq_(ret, 0)
 
-# XXX: TODO
-#def test_hook():
-#    out, ret = sh(u"limbo -c '' --pluginpath {0} --hook loop".format(TESTPLUGINS))
-#    out = out.strip()
-#    eq(out, ["init"])
+#  XXX: TODO
+# def test_hook():
+#     out, ret = sh(u"limbo -c '' --pluginpath {0} --hook loop".format(TESTPLUGINS))
+#     out = out.strip()
+#     eq(out, ["init"])
