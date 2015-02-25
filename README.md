@@ -123,3 +123,4 @@ These are the current default plugins:
 * [@JoeGermuska](https://github.com/JoeGermuska)
 * [@MathyV](https://github.com/MathyV)
 * [@stopspazzing](https://github.com/stopspazzing)
+* [@noise](https://github.com/noise)
