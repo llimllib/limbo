@@ -4,6 +4,7 @@ venv/
 config.py
 *.config.py
 limbo.sqlite3
+limbo.egg-info
 Makefile.local
 NOTES
 build/
