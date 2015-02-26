@@ -149,7 +149,7 @@ def init_server(args, Server=LimboServer, Client=SlackClient):
     try:
         slack = Client(config["token"])
     except KeyError:
-        logging.error("""Unable to find a slack token. The environment variables
+        logger.error("""Unable to find a slack token. The environment variables
 limbo sees are:
 {0}
 
