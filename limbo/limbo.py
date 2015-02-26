@@ -30,7 +30,6 @@ def init_log(config):
     logformat = config.get("logformat", '%(asctime)s:%(levelname)s:%(name)s:%(message)s')
     if config.get("logfile"):
         logging.basicConfig(filename=config.get("logfile"), format=logformat, level=loglevel)
-        logger.info("boo!")
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
