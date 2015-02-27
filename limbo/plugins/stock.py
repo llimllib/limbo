@@ -1,10 +1,11 @@
 """$<ticker symbol> for a quote on a stock price"""
 from __future__ import print_function
+import logging
 import re
-import requests
-from bs4 import BeautifulSoup
 from urllib import quote
-from logging import logging
+
+from bs4 import BeautifulSoup
+import requests
 
 logger = logging.getLogger(__name__)
 
