@@ -1,6 +1,6 @@
 """!gif <search term> return a random result from the  google gif search result for <search term>"""
 
-from urllib import quote
+from urllib import quote, unquote
 import re
 import requests
 from random import shuffle
@@ -19,7 +19,10 @@ def gif(searchterm, unsafe=False):
     gifs = re.findall(r'imgurl.*?(http.*?)\\', result)
     shuffle(gifs)
 
-    return gifs[0] if gifs else ""
+    if gifs:
+        return unquote(gifs[0])
+    else:
+        return ""
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -28,4 +31,4 @@ def on_message(msg, server):
         return
 
     searchterm = match[0]
-    return gif(searchterm)
+    return gif(searchterm.encode("utf8"))
