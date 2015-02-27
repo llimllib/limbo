@@ -41,4 +41,4 @@ def on_message(msg, server):
     if not match:
         return
 
-    return makemap(match[0])
+    return makemap(match[0].encode("utf8"))
