@@ -13,7 +13,11 @@ def stockprice(ticker):
     url = "https://www.google.com/finance?q={0}"
     soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text)
 
-    company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]
+    try:
+        company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]
+    except IndexError:
+        logging.info("Unable to find stock {0}".format(ticker))
+        return ""
     price = soup.select("#price-panel .pr span")[0].text
     change, pct = soup.select("#price-panel .nwp span")[0].text.split()
     pct.strip('()')
