@@ -23,6 +23,8 @@ import limbo
 DIR = os.path.dirname(os.path.realpath(__file__))
 PARENT = os.path.split(DIR)[0]
 
+os.environ["LIMBO_LOGFILE"] = "/tmp/deleteme"
+
 def test_plugin_success():
     hooks = limbo.init_plugins("test/plugins")
     eq_(len(hooks), 2)
