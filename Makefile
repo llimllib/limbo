@@ -1,5 +1,6 @@
 .PHONY: test
-test: install
+test:
+	pip install -r requirements.txt
 	nosetests -s --nologcapture
 
 .PHONY: clean
