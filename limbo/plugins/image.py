@@ -1,6 +1,6 @@
 """!image <search term> return a random result from the google image search result for <search term>"""
 
-from urllib import quote
+from urllib import quote, unquote
 import re
 import requests
 from random import shuffle
@@ -17,9 +17,13 @@ def image(searchterm, unsafe=False):
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
     images = re.findall(r'imgurl.*?(http.*?)\\', result)
+    print [unquote(u) for u in images]
     shuffle(images)
 
-    return images[0] if images else ""
+    if images:
+        return unquote(images[0])
+    else:
+        return ""
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -28,4 +32,4 @@ def on_message(msg, server):
         return
 
     searchterm = match[0]
-    return image(searchterm)
+    return image(searchterm.encode("utf8"))

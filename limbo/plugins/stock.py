@@ -1,10 +1,11 @@
 """$<ticker symbol> for a quote on a stock price"""
 from __future__ import print_function
+import logging
 import re
-import requests
-from bs4 import BeautifulSoup
 from urllib import quote
-from logging import logging
+
+from bs4 import BeautifulSoup
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,11 @@ def stockprice(ticker):
     url = "https://www.google.com/finance?q={0}"
     soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text)
 
-    company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]
+    try:
+        company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]
+    except IndexError:
+        logging.info("Unable to find stock {0}".format(ticker))
+        return ""
     price = soup.select("#price-panel .pr span")[0].text
     change, pct = soup.select("#price-panel .nwp span")[0].text.split()
     pct.strip('()')
@@ -28,5 +33,5 @@ def on_message(msg, server):
     if not match:
         return
 
-    prices = [stockprice(ticker[1:]) for ticker in match]
+    prices = [stockprice(ticker[1:].encode("utf8")) for ticker in match]
     return "\n".join(p for p in prices if p)

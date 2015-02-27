@@ -1,9 +1,10 @@
 language: python
 python:
-  - "2.6"
-  - "2.7"
-
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+- '2.6'
+- '2.7'
+install: pip install -r requirements.txt
 script: make test
+notifications:
+  slack:
+    secure: qTTpPJZRjkFNlWUQd4M4odA+/QnuEqoD3ole8tQA+oFo2hzA7toQbAorgKd20mJ0VMLbrTxUDeCHwuLH6EYs0k9gnaDx7J8gaohW3ePHU6vncGfSh/9r8jCLHOdD/23ySm6D4TKR5SV7izNS+4WyqLqeLugdk5rFCwW4JJS118U=
+  email: false
