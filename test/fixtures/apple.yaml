@@ -1,0 +1,760 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.5.2 CPython/2.7.6 Darwin/14.1.0]
+    method: GET
+    uri: https://www.google.com:443/finance?q=aapl
+  response:
+    body: {string: "<!DOCTYPE html><html><head><script>(function(){(function(){function
+        e(a){this.t={};this.tick=function(a,c,b){var d=void 0!=b?b:(new Date).getTime();this.t[a]=[d,c];if(void
+        0==b)try{window.console.timeStamp(\"CSI/\"+a)}catch(e){}};this.tick(\"start\",null,a)}var
+        a;window.performance&&(a=window.performance.timing);var f=a?new e(a.responseStart):new
+        e;window.jstiming={Timer:e,load:f};if(a){var c=a.navigationStart,d=a.responseStart;0<c&&d>=c&&(window.jstiming.srt=d-c)}if(a){var
+        b=window.jstiming.load;0<c&&d>=c&&(b.tick(\"_wtsrt\",void 0,c),b.tick(\"wtsrt_\",\n\"_wtsrt\",d),b.tick(\"tbsd_\",\"wtsrt_\"))}try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),b&&0<c&&(b.tick(\"_tbnd\",void
+        0,window.chrome.csi().startE),b.tick(\"tbnd_\",\"_tbnd\",c))),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT,b&&0<c&&(b.tick(\"_tbnd\",void
+        0,window.external.startE),b.tick(\"tbnd_\",\"_tbnd\",c))),a&&(window.jstiming.pt=a)}catch(g){}})();})();\n</script><title>Apple
+        Inc.: NASDAQ:AAPL quotes & news - Google Finance</title><meta name=\"Description\"
+        content=\"Get detailed financial information on Apple Inc. (NASDAQ:AAPL) including
+        real-time stock quotes, historical charts & financial news, all for free!\"><meta
+        http-equiv=\"X-UA-Compatible\" content=\"IE=10\"><link rel=\"canonical\" href=\"http://www.google.com/finance?cid=22144\"><link
+        rel=\"stylesheet\" type=\"text/css\" href=\"/finance/f/finance_us-3578168175.css\"><link
+        rel=\"stylesheet\" type=\"text/css\" href=\"/finance/_/ss/a/ver=1q92easqloa2i/am=!KRcP96gTuVV0rbxY/bf=/r=O\"><link
+        rel=\"icon\" type=\"image/vnd.microsoft.icon\" href=\"/finance/favicon.ico\"><style>#gbar,#guser{font-size:13px;padding-right:8px;padding-top:4px
+        !important;}#gbar{padding-left:8px;height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px
+        solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media
+        all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline
+        !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf
+        .gb4{color:#900 !important}</style><script></script><script>\n      function
+        _rpt() {}\n      function _tck() {}\n    </script><script>\n    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n
+        \   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n
+        \   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n
+        \   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n
+        \   ga('create', 'UA-40765809-1', {\n      'allowLinker': true,\n      'cookiePath':
+        '/finance'\n    });\n    ga('send', 'pageview');\n    </script></head><body><div
+        class=fjfe-bodywrapper><div id=fjfe-real-body class=g-doc><input type=\"text\"
+        name=\"hist_state\" id=\"hist_state\" style=\"display:none;\"><iframe id=\"hist_frame\"
+        name=\"hist_frame\" class=invfr tabindex=\"-1\"></iframe><iframe src=\"/finance/_/js/a/b/rt=h/ver=_dYx35LbwAo.en_US./am=!KRcP96gTuVV0rbxY/d=0\"
+        class=invfr tabindex=\"-1\"></iframe><div id=gbar><nobr><a class=gb1 href=\"https://www.google.com/webhp?tab=ew\">Search</a>
+        <a class=gb1 href=\"http://www.google.com/imghp?hl=en&tab=ei\">Images</a>
+        <a class=gb1 href=\"https://maps.google.com/maps?hl=en&tab=el\">Maps</a> <a
+        class=gb1 href=\"https://play.google.com/?hl=en&tab=e8\">Play</a> <a class=gb1
+        href=\"https://www.youtube.com/?tab=e1\">YouTube</a> <a class=gb1 href=\"https://news.google.com/nwshp?hl=en&tab=en\">News</a>
+        <a class=gb1 href=\"https://mail.google.com/mail/?tab=em\">Gmail</a> <a class=gb1
+        href=\"https://drive.google.com/?tab=eo\">Drive</a> <a class=gb1 style=\"text-decoration:none\"
+        href=\"http://www.google.com/intl/en/options/\"><u>More</u> &raquo;</a></nobr></div><div
+        id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span
+        id=gbe></span><a  href=\"http://www.google.com/support/finance?hl=en\" class=gb4>Help</a>
+        | <a target=_top id=gb_70 href=\"https://accounts.google.com/ServiceLogin?service=finance&passive=1209600&continue=https://www.google.com/finance?q%3Daapl&followup=https://www.google.com/finance?q%3Daapl\"
+        class=gb4>Sign in</a></nobr></div><div class=gbh style=left:0></div><div class=gbh
+        style=right:0></div><div id=fjfe-click-wrapper><script>\n(function() {\n  var
+        l = window.location;\n  var q = l.search ? l.search.substr(1) : '';\n  var
+        h = l.hash ? l.hash.substr(1) : '';\n  var p = '/finance';\n  var ss = 'stockscreener';\n
+        \ var conn = window.history && window.history.pushState ? '/' : '#';\n  if
+        (l.pathname == p + '/' + ss) {\n    if (h) l.href = p + conn + ss + '?' +
+        q + '&' + h;\n  } else if (l.pathname != p && h) {\n    l.href = p + l.hash;\n
+        \ }\n  if (h) {\ndocument.getElementById('fjfe-click-wrapper').style.display
+        = 'none';\n  }\n})();\n</script><div id=gf-head class=\"g-section g-tpl-75-25
+        g-split\"><div class=\"g-unit g-first\"><div class=fjfe-logo><a href=\"/finance/?ei=Bs7vVOFd6rKwB7rUgLgI\"><img
+        src=\"/finance/f/logo_us-115376669.gif\" alt=\"Google Finance\"></a></div><div
+        id=gf-search class=fjfe-search><form method=\"get\" action=\"/finance\" autocomplete=\"off\"><input
+        class=fjfe-searchbox-input name=q type=text tabindex=1 value=\"NASDAQ:AAPL\"></input><span
+        class=fjfe-searchbox-button-wrapper><span class=fjfe-searchbox-button-wrapper2><input
+        class=fjfe-searchbox-button type=submit tabindex=2 value=\"Get quotes\"></input></span></span><input
+        type=hidden name=\"ei\" value=\"Bs7vVOFd6rKwB7rUgLgI\"></input></form></div></div><div
+        class=\"g-unit fjfe-promo\"><div id=\"ad2-target\" class=\"id-ad2-target\"></div></div></div><div
+        class=elastic><div id=app class=\"g-section g-tpl-left-11p4em\"><div class=\"g-unit
+        g-first\"><div id=gf-nav><div class=fjfe-nav-nav><ul class=fjfe-nav id=navmenu><li
+        class=\"fjfe-nav-expanded fjfe-nav-selected\">Company<li class=fjfe-nav-sub><div>Summary</div><li
+        class=fjfe-nav-sub><a href=\"/finance/company_news?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\">News</a><li
+        class=fjfe-nav-sub><a href=\"/finance/option_chain?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\">Option
+        chain</a><li class=fjfe-nav-sub><a href=\"/finance/related?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\">Related
+        companies</a><li class=fjfe-nav-sub><a href=\"/finance/historical?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\">Historical
+        prices</a><li class=fjfe-nav-sub><a href=\"/finance?q=NASDAQ:AAPL&amp;fstype=ii&amp;ei=Bs7vVOFd6rKwB7rUgLgI\">Financials</a><li
+        class=fjfe-nav-item><a href=\"/finance?ei=Bs7vVOFd6rKwB7rUgLgI\"><div>Markets</div></a><li
+        class=fjfe-nav-item><a href=\"/finance/market_news?ei=Bs7vVOFd6rKwB7rUgLgI\"><div>News</div></a><li
+        class=fjfe-nav-item><a href=\"/finance/portfolio?action=view&amp;ei=Bs7vVOFd6rKwB7rUgLgI\"><div>Portfolios</div></a><li
+        class=fjfe-nav-item><a href=\"/finance/stockscreener?ei=Bs7vVOFd6rKwB7rUgLgI\"><div>Stock
+        screener</div></a><li class=fjfe-nav-item><a href=\"/finance/domestic_trends?ei=Bs7vVOFd6rKwB7rUgLgI\"><div>Google
+        Domestic Trends</div></a></ul></div><div class=\"fjfe-recentquotes fjfe-recentquotes-noquote\"><h4>Recent
+        Quotes <span class=\"fjfe-recentquotes-duration\">(<a href=\"//www.google.com/history/optout?hl=en\">30
+        days</a>)</span></h4><div class=fjfe-recentquotes-noquote-notification>You
+        have no recent quotes</div><div class=fjfe-recentquotes-quotes><div class=\"fjfe-toggle
+        fjfe-toggle-button\"><span class=fjfe-chg-toggle>chg</span> | <span class=fjfe-perc-toggle>%</span></div><div
+        class=fjfe-table-div><table class=fjfe-recentquotes-table id=rq width=100%></table></div></div></div></div><script>var
+        _cleardot = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';\n
+        \   var google = google || {};\n    google.finance = google.finance || {};\n
+        \   google.finance.gce =false;</script><script src=\"/finance/f/sfe-opt-3505992447.js\"></script><script>\n
+        \     _regOnLoad = function(f) {\n        if (document.readyState == 'complete')
+        {\n          f && f();\n        } else {\n          // Window.attachEvent()
+        for IE8 and below compatability.\n          var addEventFunction = window.attachEvent
+        ||\n              window.addEventListener || function(ignored, f) { f(); };\n
+        \         var event = window.attachEvent ? 'onload' : 'load';\n          f
+        && addEventFunction(event, f);\n        }\n      };\n    \n      google.finance.renderRecentQuotes
+        = function() {};\n    </script></div><div class=g-unit id=gf-viewc><div class=fjfe-content>\n<script>\n(function()
+        {\nif (window['_finance_chart']) {\nvar el = document.getElementById('chart_anchor');\nif
+        (el) {\nel.innerHTML = '';\n}\nsetFinanceChart(null);\n}\n})();\nvar _ticker
+        = 'NASDAQ:AAPL';\nvar _slHeight = 221;\nvar _companyName = 'Apple Inc.';\nvar
+        _companyPageNewsTab = '0';\nvar _displayVolume = true;\nsetCompanyId(22144);\n_s_Store._numToDisplay
+        = 6;\n_comparison_charts_Store._numToDisplay = 8;\n_comparison_charts_Store._allowMultiTimezoneCompare
+        = true;\nfunction onCompanyLoad() {\n_external_target = \"\";\n_emitFlashChartOnLoad(\n\"/finance/s/Hf6-ggL7wbs/chart9.swf?hl=en&gl=us\",\n_ticker,
+        \"chart_anchor\", \"market-data-div\",\n_chartConfigObject);\ngoogle.finance.onCompanyLoad();\n_initAutoFocus();\nif
+        (google.finance.initTechnicals) {\ngoogle.finance.initTechnicals(true);\n}\n}\n</script>\n<div
+        class=g-wrap>\n<div class=\"g-section sfe-break-bottom-8\">\n<div class=\"g-tpl-67-33
+        g-split hdg top appbar-hide\" id=companyheader>\n<div class=\"g-unit g-first\"><h3>Apple
+        Inc.&nbsp;&nbsp;</h3>(Public, NASDAQ:AAPL)&nbsp;&nbsp;\n<a href=\"/finance/portfolio?action=add&amp;addticker=NASDAQ%3AAAPL&ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=norm>Watch this stock</a>\n&nbsp;\n</div><div class=\"g-unit norm\">Find
+        more results for<b>\n<a href=\"?noIL=1&q=aapl&ei=Bs7vVOFd6rKwB7rUgLgI\" id=searchmore>aapl</a></b>\n</div>\n</div>\n</div>\n\n<script>\n_ac_register(function
+        (input, event) {\nif (input.id == 'add_comparison_symbol') {\n_comparison_charts_Store.baseTicker
+        = \"NASDAQ:AAPL\";\nreturn _comparison_charts_Store;\n}\n});\nvar _prefs=_prefs||{};_prefs.hash=\"\";\n_prefs.feeds=_prefs.feeds||{};\n_prefs.ch=_prefs.ch||{};\n_prefs.ch_compare=_prefs.ch_compare||{};\nvar
+        _chartConfigObject;\nvar _cleardot;\nvar _companyName;\nvar _eventid = 'Bs7vVOFd6rKwB7rUgLgI';\nvar
+        _expid;\nvar _external_target;\nvar _localDomain = 'www.google.com';\nvar
+        _minZoomDays;\nvar _minZoomDaysNoIntraDay;\nvar _prefs;\nvar _ticker;\nvar
+        _urlSuffix;\nvar google = google || {};\ngoogle.finance = google.finance ||
+        {};\ngoogle.finance.data = {common:{rq:{ct:\"\"},up:\"chg\",down:\"chr\",linktargetInternal:\"\",hash:\"\",dfp:\"ad-g.doubleclick.net/adi/com.gf.company/technology;fe=nasdaq;ft=aapl;fm=large;ssl=1;dcopt=ist;myd=ad;sz=300x250;tile=1\",streaming:[{cid:\"22144\",s:\"AAPL\",e:\"NASDAQ\"},{cid:\"658723\",s:\"SNDK\",e:\"NASDAQ\"},{cid:\"358464\",s:\"MSFT\",e:\"NASDAQ\"},{cid:\"180086490123759\",s:\"SSNNF\",e:\"OTCMKTS\"},{cid:\"17154\",s:\"HPQ\",e:\"NYSE\"},{cid:\"18241\",s:\"IBM\",e:\"NYSE\"},{cid:\"664887\",s:\"VZ\",e:\"NYSE\"},{cid:\"7583206\",s:\"HTCKF\",e:\"OTCMKTS\"},{cid:\"5494267\",s:\"NIPNF\",e:\"OTCMKTS\"},{cid:\"663276\",s:\"BBRY\",e:\"NASDAQ\"},{cid:\"33095\",s:\"SNE\",e:\"NYSE\"}],dfp_companion:\"ad-g.doubleclick.net/adi/com.gf.company/technology;fe=nasdaq;ft=aapl;fm=large;ssl=1;dcopt=ist;myd=ad2;sz=33x33;tile=2\"},company:{news:{clusters:[{nrel:4,idx:0,id:\"52778750899944\",lead_story_url:\"http://www.valuewalk.com/2015/02/apple-inc-stock-will-plummet-to-60-berenberg/\",a:[{t:\"Apple
+        Inc. Stock Will Plummet to $60: Berenberg\",u:\"http://www.valuewalk.com/2015/02/apple-inc-stock-will-plummet-to-60-berenberg/\",s:\"ValueWalk\",sp:\"Apple
+        Inc. (NASDAQ:AAPL) usually draws out the bull in analysts, but one firm is
+        predicting destruction for the company. In fact, the $60 per share price target
+        set by the German investment bank is so low that some of you are probably
+        wondering if that ...\",d:\"6 hours ago\",tt:\"1424977821\",usg:\"AFQjCNEaaG-HyIj_KbIy3OY53EJnlMl43g\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.valuewalk.com/2015/02/apple-inc-stock-will-plummet-to-60-berenberg/\\u0026cid=52778750899944\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEhhdIsKaK7FlMaSZQxdW0Vd_uCyg\"}],lead_story_doc_id:\"2505280844240985591\"},{nrel:98,idx:1,id:\"52778749650041\",lead_story_url:\"http://www.fool.com/investing/general/2015/02/26/heres-how-apple-inc-stock-could-get-to-150.aspx\",a:[{t:\"Here\\u0026#39;s
+        How Apple Inc. Stock Could Get to $150\",u:\"http://www.fool.com/investing/general/2015/02/26/heres-how-apple-inc-stock-could-get-to-150.aspx\",s:\"Motley
+        Fool\",sp:\"What: Shares of technology behemoth Apple (NASDAQ: AAPL ) had
+        their worst day in four weeks on Wednesday, shedding $3.38, or 2.6%, to close
+        at $128.79 in spite of the fact that research firm Stifel Nicolaus substantially
+        increased its price target,\\u0026nbsp;...\",d:\"11 hours ago\",tt:\"1424960363\",usg:\"AFQjCNF2t7o3UJsx-IvUz9UacUNbsEWwzw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.fool.com/investing/general/2015/02/26/heres-how-apple-inc-stock-could-get-to-150.aspx\\u0026cid=52778749650041\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHFjmpjyqxrh7P4BK22P-LbxtbjOA\"},{t:\"Apple
+        Inc. (AAPL): What All The Stock Price Predictions Are Missing\",u:\"http://etfdailynews.com/2015/02/26/apple-inc-aapl-what-all-the-stock-price-predictions-are-missing/\",s:\"ETF
+        Daily News\",sp:\"David Zeiler: Even with recent upward revisions, most analysts
+        are still aiming too low with their Apple stock price predictions. One big
+        factor restraining the forecasts is how fast the AAPL share price has soared.\",d:\"8
+        hours ago\",tt:\"1424970225\",usg:\"AFQjCNHzUXiOu-fKHLh8TSm2YNWC-M3LeQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://etfdailynews.com/2015/02/26/apple-inc-aapl-what-all-the-stock-price-predictions-are-missing/\\u0026cid=52778749650041\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGF2aRC7nflB286asxmRSai9zsJPw\"},{t:\"Why
+        Apple Inc. (AAPL) Short-Term Dip Is Irrelevant And Carl Icahn\\u0026#39;s
+        Bullish ...\",u:\"http://www.bidnessetc.com/35710-why-apple-inc-shortterm-dip-is-irrelevant-and-carl-icahns-bullish-position/\",s:\"Bidness
+        ETC\",sp:\"Apple Inc. (NASDAQ:AAPL) has had an amazing ride so far, going
+        as vertically as a stock with its valuation is allowed to go.\",d:\"9 hours
+        ago\",tt:\"1424968816\",usg:\"AFQjCNGxoL86h6iRJlVpRvIyjFD_kzu6ZA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35710-why-apple-inc-shortterm-dip-is-irrelevant-and-carl-icahns-bullish-position/\\u0026cid=52778749650041\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGSxM3JBYSv9srCgsyXUo9YVMVuzA\"}],lead_story_doc_id:\"52746925274019189\"},{nrel:799,idx:2,id:\"52778749128861\",lead_story_url:\"http://fortune.com/2015/02/25/apple-pay-patent-infringement/\",a:[{t:\"Apple
+        Inc has been ordered to pay $532.9 million for patent infringement.\",u:\"http://fortune.com/2015/02/25/apple-pay-patent-infringement/\",s:\"Fortune\",sp:\"Apple
+        Inc has been ordered to pay $532.9 million after a federal jury in Texas found
+        that its iTunes software infringed three patents owned by patent licensing
+        firm Smartflash LLC.\",d:\"Feb 25, 2015\",tt:\"1424853450\",usg:\"AFQjCNFxOtcYc9y_Rl5VyoJ8wGDOho5-Kg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://fortune.com/2015/02/25/apple-pay-patent-infringement/\\u0026cid=52778749128861\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHVfG23rRb5m-Mberk8k3BIgsiaOg\"},{t:\"Apple
+        ordered to pay $533 million for patent infringement\",u:\"http://www.reuters.com/article/2015/02/25/us-ip-apple-verdict-idUSKBN0LT0E720150225\",s:\"Reuters\",sp:\"It
+        was also in Tyler federal court that a jury in 2012 ordered Apple to pay $368
+        million to VirnetX Inc for patent infringement.\",d:\"Feb 25, 2015\",tt:\"1424845591\",usg:\"AFQjCNGqEW3_MPoaoZNtMYLVaCZDJ0DZWA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.reuters.com/article/2015/02/25/us-ip-apple-verdict-idUSKBN0LT0E720150225\\u0026cid=52778749128861\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNG8UbrjyUlJ2mSFezQsWjT6XQTcMA\"},{t:\"Apple
+        Told by Jury to Pay $532.9 Million in Patent Trial\",u:\"http://www.bloomberg.com/news/articles/2015-02-25/apple-told-by-jury-to-pay-532-9-million-in-gaming-patent-trial\",s:\"Bloomberg\",sp:\"(Bloomberg)
+        -- Apple Inc. was told to pay $532.9 million after a federal jury said the
+        company\\u0026#39;s iTunes software used a Texas company\\u0026#39;s patented
+        inventions without permission.\",d:\"Feb 25, 2015\",tt:\"1424834203\",usg:\"AFQjCNFpEn5Oco8uDDpo0nF4vqDotkjTYA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bloomberg.com/news/articles/2015-02-25/apple-told-by-jury-to-pay-532-9-million-in-gaming-patent-trial\\u0026cid=52778749128861\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGyNDQ28LWJvIpa63pw7_KvVF72lQ\"}],lead_story_doc_id:\"355314963109900032\"},{nrel:537,idx:3,id:\"52778748629139\",lead_story_url:\"http://business.financialpost.com/2015/02/26/apple-inc-to-hold-march-9-event-ahead-of-apple-watch-release-in-april/\",a:[{t:\"Apple
+        Inc to hold March 9 event ahead of Apple Watch release in April\",u:\"http://business.financialpost.com/2015/02/26/apple-inc-to-hold-march-9-event-ahead-of-apple-watch-release-in-april/\",s:\"Financial
+        Post\",sp:\"The connected, fitness-tracking wristwatch is the first entirely
+        new gadget line to debut since he took the helm at Cupertino, California-based
+        Apple. The company hasn\\u0026#39;t given much information about the gadget\\u0026#39;s
+        battery life or how much models will ...\",d:\"8 hours ago\",tt:\"1424972059\",usg:\"AFQjCNGFOpUEPdoHhlXyDVkhYEgh6bdVtA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://business.financialpost.com/2015/02/26/apple-inc-to-hold-march-9-event-ahead-of-apple-watch-release-in-april/\\u0026cid=52778748629139\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHBg3R_4__ooE111JgfGaq09BqYVw\"},{t:\"Apple
+        Inc. All But Confirms Watch Event On March 9\",u:\"http://www.bidnessetc.com/35722-apple-inc-aapl-all-but-confirms-watch-event-on-march-9/\",s:\"Bidness
+        ETC\",sp:\"Apple Inc. (NASDAQ:AAPL) has sent out to invites to an event that
+        is said to take place on March 9 in San Francisco. Many are speculating that
+        this event will showcase the Apple Watch that is said to make its debut in
+        April this year.\",d:\"7 hours ago\",tt:\"1424976502\",usg:\"AFQjCNF8LH_sjHjf7QjKf43PlDeQoeEzEA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35722-apple-inc-aapl-all-but-confirms-watch-event-on-march-9/\\u0026cid=52778748629139\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFLXHC_qr0GNF3p8RTHrKtQEhkZGw\"},{t:\"Apple
+        sends out invites for March 9 event (AAPL)\",u:\"http://seekingalpha.com/news/2330156-apple-sends-out-invites-for-march-9-event\",s:\"Seeking
+        Alpha (registration)\",sp:\"Many expect the event to revolve around Apple
+        Watch, which is set to begin shipping in April, and for which full pricing
+        details haven\\u0026#39;t yet been announced.\",d:\"8 hours ago\",tt:\"1424971220\",usg:\"AFQjCNH2eSm-s8rTrlpKV7RIUjg_8VBDUw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://seekingalpha.com/news/2330156-apple-sends-out-invites-for-march-9-event\\u0026cid=52778748629139\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNE2c-UD0xxeYCUswN7bQXS9u5uSWQ\"}],lead_story_doc_id:\"9888850772019614942\"},{nrel:130,idx:4,id:\"52778749371325\",lead_story_url:\"http://www.valuewalk.com/2015/02/apple-chinas-approved-purchase-list/\",a:[{t:\"Apple
+        Inc. Removed From China\\u0026#39;s Approved Purchase List\",u:\"http://www.valuewalk.com/2015/02/apple-chinas-approved-purchase-list/\",s:\"ValueWalk\",sp:\"China
+        recently blocked Apple Inc. (NASDAQ:AAPL) and other tech companies from approved
+        government purchase list. Other companies on the blocked list include Cisco
+        Systems, Inc. (NASDAQ:CSCO), Intel Corporation (NASDAQ:INTC), Citrix Systems,
+        Inc.\",d:\"6 hours ago\",tt:\"1424979000\",usg:\"AFQjCNG312juLs4oKtUS5iNWIF8ejUx5Ig\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.valuewalk.com/2015/02/apple-chinas-approved-purchase-list/\\u0026cid=52778749371325\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGKw7no-CyktHkg2JE_StZcWNR5RA\"},{t:\"China
+        Bans Cisco Systems, Inc. And Apple Hardware From State Purchase Lists\",u:\"http://www.bidnessetc.com/35726-china-bans-cisco-systems-inc-and-apple-hardware-from-state-purchase-lists/\",s:\"Bidness
+        ETC\",sp:\"Chinese officials have chosen to boycott hardware from leading
+        western technology companies like Apple Inc. (NASDAQ:AAPL) and Cisco Systems,
+        Inc. (NASDAQ:CSCO), and Intel Corp\\u0026#39;s (NASDAQ:INTC) security software
+        McAfee, from the state approved\\u0026nbsp;...\",d:\"6 hours ago\",tt:\"1424977650\",usg:\"AFQjCNGUDLldyO_mORfsZxnztdxY9wDa3A\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35726-china-bans-cisco-systems-inc-and-apple-hardware-from-state-purchase-lists/\\u0026cid=52778749371325\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNE0steppX8QeVRSpNtxQsWhj_UNNg\"},{t:\"Apple
+        Inc. (NASDAQ:AAPL), Cisco and Others Axed From China\\u0026#39;s State ...\",u:\"http://www.opptrends.com/2015/02/apple-inc-aapl-and-other-u-s-tech-firms-axed-from-state-purchases-list-by-china/\",s:\"Opptrends\",sp:\"China
+        dropped some of the world\\u0026#39;s leading technology brands including
+        Apple Inc. (NASDAQ:AAPL) from its approved state purchase lists, replacing
+        them with the thousands of locally made products, according to Reuters.\",d:\"14
+        hours ago\",tt:\"1424950650\",usg:\"AFQjCNExpr4NyxvNNvYRACr8ENXJudTDgg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.opptrends.com/2015/02/apple-inc-aapl-and-other-u-s-tech-firms-axed-from-state-purchases-list-by-china/\\u0026cid=52778749371325\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFP_481o-LmqRWcF3a93xwl3mfHXw\"}],lead_story_doc_id:\"12445184138559114241\"},{nrel:318,idx:5,id:\"52778746276612\",lead_story_url:\"http://www.fool.com/investing/general/2015/02/24/apple-car-coming-soon-what-this-means-for-investor.aspx\",a:[{t:\"Apple
+        Car Coming Soon? What It Means for Investors in Apple Inc. Stock\",u:\"http://www.fool.com/investing/general/2015/02/24/apple-car-coming-soon-what-this-means-for-investor.aspx\",s:\"Motley
+        Fool\",sp:\"The Wall Street Journal recently reported that Apple (NASDAQ:
+        AAPL ) is working on an electric car, and other media outlets are pointing
+        in the same direction.\",d:\"Feb 24, 2015\",tt:\"1424808042\",usg:\"AFQjCNHBgkb0DtKGFqF3R7AMxvisixl_xg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.fool.com/investing/general/2015/02/24/apple-car-coming-soon-what-this-means-for-investor.aspx\\u0026cid=52778746276612\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNH8L91Ich_ToXr8NuS5DcXMfcen6A\"},{t:\"Apple
+        Inc.(NASDAQ:AAPL) Should Build This Kind Of Electric Car\",u:\"http://etfdailynews.com/2015/02/24/apple-inc-nasdaqaapl-should-build-this-kind-of-electric-car/\",s:\"ETF
+        Daily News\",sp:\"The car business is a low-margin heavy industry, for instance,
+        whereas Apple Inc. (NASDAQ:AAPL) is a high-margin consumer-product company.\",d:\"Feb
+        24, 2015\",tt:\"1424799450\",usg:\"AFQjCNGJZZB5RVfHuFHCnHmKzShGZA1tOg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://etfdailynews.com/2015/02/24/apple-inc-nasdaqaapl-should-build-this-kind-of-electric-car/\\u0026cid=52778746276612\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGWO6oh9ZJAd214sVMSjuZmdbgfeg\"},{t:\"4
+        Reasons The Car Is Crucial To Apple\",u:\"http://www.benzinga.com/analyst-ratings/analyst-color/15/02/5268755/4-reasons-the-car-is-crucial-to-apple\",s:\"Benzinga\",sp:\"Apple
+        Inc. (NASDAQ: AAPL) has been mum on its plans to get into the auto business
+        amid accusations that the company is poaching employees from Tesla Motors
+        Inc (NASDAQ: TSLA), A123, Mercedes Benz and other electric car manufacturers.\",d:\"Feb
+        24, 2015\",tt:\"1424792025\",usg:\"AFQjCNG_Bg1jo25QRus85QBZOZc_znBRTg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benzinga.com/analyst-ratings/analyst-color/15/02/5268755/4-reasons-the-car-is-crucial-to-apple\\u0026cid=52778746276612\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNExakyq3WLfAklOjcV9J5o6ZY4uiA\"}],lead_story_doc_id:\"1416768759025638402\"},{nrel:100,idx:6,id:\"52778750426444\",lead_story_url:\"http://www.reuters.com/article/2015/02/26/us-ip-apple-lawsuit-idUSKBN0LU27X20150226\",a:[{t:\"Apple
+        faces second suit from victorious patent firm\",u:\"http://www.reuters.com/article/2015/02/26/us-ip-apple-lawsuit-idUSKBN0LU27X20150226\",s:\"Reuters\",sp:\"(Reuters)
+        - Fresh off a $532.9 million jury win against Apple Inc, a Texas company is
+        again suing the tech giant, this time over the same patents\\u0026#39; use
+        in devices introduced after the original case was underway.\",d:\"7 hours
+        ago\",tt:\"1424975625\",usg:\"AFQjCNHzkkpD_G8-rIW2Y7bMrx-u5S9UBQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.reuters.com/article/2015/02/26/us-ip-apple-lawsuit-idUSKBN0LU27X20150226\\u0026cid=52778750426444\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNG8J47k_5tfv2qj5612vfvsrz4Qzg\"},{t:\"Apple,
+        hit with $532.9 million patent verdict, considers options\",u:\"http://www.bizjournals.com/albany/news/2015/02/26/apple-considers-options.html\",s:\"Albany
+        Business Review\",sp:\"Apple Inc. was ordered to pay Smartflash $532.9 million
+        after a federal jury decided iTunes software used patented inventions without
+        permission, raising new questions about how Silicon Valley tech firms can
+        navigate the perilous world of intellectual\\u0026nbsp;...\",d:\"Feb 25, 2015\",tt:\"1424897325\",usg:\"AFQjCNGf1Q2wAWZH0T9dbt33NsAi6rV4PA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bizjournals.com/albany/news/2015/02/26/apple-considers-options.html\\u0026cid=52778750426444\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGFL8rcg2RKoXGmOYuwU0qReGsp9g\"}],lead_story_doc_id:\"12922777904931415887\"},{nrel:3,idx:7,id:\"52778748587127\",lead_story_url:\"http://www.fool.com/investing/general/2015/02/24/apple-incs-project-titan-could-be-a-win-and-loss-f.aspx\",a:[{t:\"Apple
+        Inc.\\u0026#39;s Project \\u0026quot;Titan\\u0026quot; Could Be a Win and
+        Loss for Shareholders\",u:\"http://www.fool.com/investing/general/2015/02/24/apple-incs-project-titan-could-be-a-win-and-loss-f.aspx\",s:\"Motley
+        Fool\",sp:\"If you\\u0026#39;re a technology enthusiast, you likely didn\\u0026#39;t
+        hear it here first that tech giant Apple (NASDAQ: AAPL ) is secretly developing
+        its own automobile.\",d:\"Feb 24, 2015\",tt:\"1424785550\",usg:\"AFQjCNEgK9vTPc6-CHZhdm53H41GhRCugA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.fool.com/investing/general/2015/02/24/apple-incs-project-titan-could-be-a-win-and-loss-f.aspx\\u0026cid=52778748587127\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNF_FCxdeavFROTpk5_0DKs6FWtEtA\"}],lead_story_doc_id:\"10755736494900393405\"},{nrel:646,idx:8,id:\"52778749542386\",lead_story_url:\"http://www.wsj.com/articles/apple-throws-a-wrench-into-nasdaqs-gearbox-1424909513\",a:[{t:\"Apple
+        Throws a Wrench Into Nasdaq\\u0026#39;s Gearbox\",u:\"http://www.wsj.com/articles/apple-throws-a-wrench-into-nasdaqs-gearbox-1424909513\",s:\"Wall
+        Street Journal\",sp:\"The Nasdaq Composite Index\\u0026#39;s longest winning
+        streak in more than five years ended with a whimper at the hands of a surprising
+        culprit: a pullback in the world\\u0026#39;s most valuable company, Apple
+        Inc. Shares of Apple slumped 2.6% after Google Inc. on\\u0026nbsp;...\",d:\"Feb
+        26, 2015\",tt:\"1424909540\",usg:\"AFQjCNFmnDBUBFUakA3iW_J8GZipmsWJIA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.wsj.com/articles/apple-throws-a-wrench-into-nasdaqs-gearbox-1424909513\\u0026cid=52778749542386\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGCBXQ9pZUHQ4emjBgDxPWb4S6Flg\"},{t:\"Apple
+        Inc iPhone Commands 89% Of Smartphone Profits While Android Took A ...\",u:\"http://www.technewstoday.com/21719-apple-inc-iphone-commands-89-of-smartphone-profits-while-android-took-a-nos/\",s:\"Tech
+        News Today (blog)\",sp:\"Strategy Analytics have conducted a research to find
+        out the global smartphone operating profits and according to its estimates
+        in Q4 of 2014, the profit reached US $21 billion.\",d:\"9 hours ago\",tt:\"1424966850\",usg:\"AFQjCNFpxTHcbvihaMCxFcvUIkhi0f4s4g\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.technewstoday.com/21719-apple-inc-iphone-commands-89-of-smartphone-profits-while-android-took-a-nos/\\u0026cid=52778749542386\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHf_zzYbZXW52BDFSxykvIl6qMQjA\"},{t:\"2
+        Billion People Own Smartphones\",u:\"http://247wallst.com/consumer-electronics/2015/02/26/2-billion-people-own-smartphones/\",s:\"24/7
+        Wall St.\",sp:\"As next year unfolds, perennial leaders Apple Inc. (NASDAQ:
+        AAPL) and Samsung will have to contend with several rapidly growing rivals.\",d:\"13
+        hours ago\",tt:\"1424952000\",usg:\"AFQjCNHWPx6lGdp6bV1X5O6cpst1F2XbvA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://247wallst.com/consumer-electronics/2015/02/26/2-billion-people-own-smartphones/\\u0026cid=52778749542386\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFZpsv-lNT8lquXCpA3E7S0wf1YGw\"}],lead_story_doc_id:\"10494660427147403914\"},{nrel:777,idx:9,id:\"52778743956412\",lead_story_url:\"http://business.financialpost.com/2015/02/24/apple-inc-ios-8-3-to-include-emojis-with-different-skin-colour-options/\",a:[{t:\"Apple
+        Inc iOS 8.3 to include emojis with different skin colour options\",u:\"http://business.financialpost.com/2015/02/24/apple-inc-ios-8-3-to-include-emojis-with-different-skin-colour-options/\",s:\"Financial
+        Post\",sp:\"AP Photo/Apple Inc.This combination made from images provided
+        by Apple Inc. shows new emoji, the cute graphics that punctuate online writing
+        and texts, that will be available with the next iOS update.\",d:\"Feb 24,
+        2015\",tt:\"1424802631\",usg:\"AFQjCNHt9HxtJ7YeIrVf6XoAqzB2McNfXw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://business.financialpost.com/2015/02/24/apple-inc-ios-8-3-to-include-emojis-with-different-skin-colour-options/\\u0026cid=52778743956412\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFEqSXju3N78nsNeBNffDsvQ0Girg\"},{t:\"Emojis
+        Get Diverse in Apple\\u0026#39;s Latest Update\",u:\"http://www.inc.com/associated-press/apple-latest-update-diverse-emojis.html\",s:\"Inc.com\",sp:\"Lovers
+        of emojis, the cute graphics that punctuate online writing and texts, will
+        soon be able to pick from different skin tones and depictions of families
+        with two moms or two dads on Apple devices.\",d:\"Feb 25, 2015\",tt:\"1424879775\",usg:\"AFQjCNFSpL9fo3__azeNQZW-nMwbty94pQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.inc.com/associated-press/apple-latest-update-diverse-emojis.html\\u0026cid=52778743956412\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNF2TSviatXnmmIimgbvieCs-P07Lg\"},{t:\"Emojis
+        Diversify In Apple\\u0026#39;s Newest Update\",u:\"http://wric.com/2015/02/25/emojis-diversify-in-apples-newest-update/\",s:\"WRIC\",sp:\"This
+        combination made from images provided by Apple Inc. shows new emoji, the cute
+        graphics that punctuate online writing and texts, that will be available with
+        the next iOS update.\",d:\"Feb 24, 2015\",tt:\"1424802825\",usg:\"AFQjCNF61PVHS0pUThuQU8sBmcFPRHxTfw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://wric.com/2015/02/25/emojis-diversify-in-apples-newest-update/\\u0026cid=52778743956412\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFDuF7M9lC0o7xaiC36bbiNW2kJfg\"}],lead_story_doc_id:\"5318217515919920296\"},{idx:10,id:\"0\",lead_story_url:\"http://economictimes.indiatimes.com/tech/hardware/apple-inc-focusing-on-e-commerce-to-sell-2-million-units-earn-rs-8000-crore-in-fy15/articleshow/46375502.cms\",a:[{t:\"Apple
+        to double iPhone sales, eyes Rs 8000 crore in FY15\",u:\"http://economictimes.indiatimes.com/tech/hardware/apple-inc-focusing-on-e-commerce-to-sell-2-million-units-earn-rs-8000-crore-in-fy15/articleshow/46375502.cms\",s:\"Economic
+        Times\",sp:\"Apple Inc focusing on e-commerce to sell 2 million units \\u0026amp;
+        earn Rs 8,000 \\u0026quot;E-commerce was never a focus area for Apple India
+        till now but the growth of the channel has made it sit up to focus on such
+        sales,\\u0026quot; the executive said.\",d:\"Feb 25, 2015\",tt:\"1424896697\",usg:\"AFQjCNHqIOXoyyiZAonsoyacs8oRMWUcNA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://economictimes.indiatimes.com/tech/hardware/apple-inc-focusing-on-e-commerce-to-sell-2-million-units-earn-rs-8000-crore-in-fy15/articleshow/46375502.cms\\u0026cid=0\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGcReHcKwcK4KZbAjK9m8czRXwKBg\"}],lead_story_doc_id:\"6568228938930690610\"},{nrel:102,idx:11,id:\"52778749164486\",lead_story_url:\"http://www.bidnessetc.com/35727-tesla-motors-inc-tsla-stock-jumps-on-rumored-apple-inc-collaboration/\",a:[{t:\"Tesla
+        Motors Inc (TSLA) Stock Jumps On Rumored Apple Inc Collaboration\",u:\"http://www.bidnessetc.com/35727-tesla-motors-inc-tsla-stock-jumps-on-rumored-apple-inc-collaboration/\",s:\"Bidness
+        ETC\",sp:\"Meanwhile, various sources familiar to the matter cited by The
+        Wall Street Journal have disclosed that Apple Inc. (NASDAQ:AAPL) is already
+        working on a top-secret project, codenamed \uFFFDTitan,\uFFFD to make an electric
+        car, an area dominated by Tesla ...\",d:\"6 hours ago\",tt:\"1424978325\",usg:\"AFQjCNEMOlBfHZjAwzwdRr19SSV1WANVLQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35727-tesla-motors-inc-tsla-stock-jumps-on-rumored-apple-inc-collaboration/\\u0026cid=52778749164486\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFcUu0RC851QdZo3pcbKxFgIRhfgg\"},{t:\"Apple
+        Inc. (NASDAQ:AAPL) Automobile Project: A Big Risk for Investors\",u:\"https://www.wallstreet.org/2015/02/apple-inc-nasdaqaapl-automobile-project-a-big-risk-for-investors/149806.html\",s:\"WallStreet.org\",sp:\"Apple
+        Inc. (NASDAQ:AAPL) stepping into the automobile industry can be really crucial
+        for the investors of the company. There are two ways to go about it.\",d:\"Feb
+        25, 2015\",tt:\"1424881491\",usg:\"AFQjCNEGGKgQcK675xrgbAGa4rumZklfDg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=https://www.wallstreet.org/2015/02/apple-inc-nasdaqaapl-automobile-project-a-big-risk-for-investors/149806.html\\u0026cid=52778749164486\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNG_EG0PkMwkm9B0CEunGYmLea_yaw\"},{t:\"A
+        Breath Taking Apple Inc. (AAPL) Luxurious \\u0026amp; Affordable Automobile
+        Will ...\",u:\"http://www.benchmarkmonitor.com/a-breath-taking-apples-luxurious-affordable-automobile-on-battery/184375/\",s:\"Benchmark
+        Monitor\",sp:\"An upcoming rumor form apple is heard that is likely be a thrill
+        for luxury automobile enthusiasts that includes the company\\u0026#39;s head
+        of design, Jony Ive as well, who also is a true car lover that Apple Inc (NASDAQ:AAPL)
+        is working on the project of car ...\",d:\"Feb 25, 2015\",tt:\"1424881125\",usg:\"AFQjCNFY9LpKMq2trq2TpdcKbX4aESzZqQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benchmarkmonitor.com/a-breath-taking-apples-luxurious-affordable-automobile-on-battery/184375/\\u0026cid=52778749164486\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGlj-eAXO7x8C1gRhu_rX5jCb1Wyw\"}],lead_story_doc_id:\"16607032362963885056\"},{nrel:9,idx:12,id:\"52778749933788\",lead_story_url:\"http://www.bidnessetc.com/35654-jpmorgan-chase-co-announces-1-million-plus-apple-inc-pay-users/\",a:[{t:\"JPMorgan
+        Chase \\u0026amp; Co. Announces 1 Million Plus Apple Inc. Pay Users\",u:\"http://www.bidnessetc.com/35654-jpmorgan-chase-co-announces-1-million-plus-apple-inc-pay-users/\",s:\"Bidness
+        ETC\",sp:\"During the investors call, Chase Card Services CEO, Eileen Serra,
+        confirmed with statistical evidence that more than a million customers are
+        using Apple Inc.\\u0026#39;s (NASDAQ:AAPL) mobile payment system. She said:
+        \uFFFDWe were an early participant of Apple Pay.\",d:\"14 hours ago\",tt:\"1424951114\",usg:\"AFQjCNHQBR8-ut61quaykgp3DM9O9Hn-ig\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35654-jpmorgan-chase-co-announces-1-million-plus-apple-inc-pay-users/\\u0026cid=52778749933788\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFF4saRw9cbfvJr-4jvusvqTfF8Uw\"}],lead_story_doc_id:\"8568571070499899227\"},{nrel:23,idx:13,id:\"52778750756480\",lead_story_url:\"http://www.bidnessetc.com/35632-the-fall-of-apple-inc-ipad-and-why-it-matters/\",a:[{t:\"The
+        Fall Of Apple Inc. iPad And Why It Matters\",u:\"http://www.bidnessetc.com/35632-the-fall-of-apple-inc-ipad-and-why-it-matters/\",s:\"Bidness
+        ETC\",sp:\"In its latest 1QFY15 quarterly earnings, Apple Inc. (NASDAQ:AAPL)
+        reported what everyone in the industry has known for a while: the iPhone is
+        making the company big money.\",d:\"Feb 25, 2015\",tt:\"1424895670\",usg:\"AFQjCNG5ryxSX8JnAIm_g2fRemObmKlhSw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35632-the-fall-of-apple-inc-ipad-and-why-it-matters/\\u0026cid=52778750756480\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNG3By3OkscdyzQ6GN30el0fXCnZ6Q\"},{t:\"Apple
+        Inc. (AAPL): The Other Side Of The Debate\",u:\"http://www.insidermonkey.com/blog/apple-inc-aapl-the-other-side-of-the-debate-339571/\",s:\"Insider
+        Monkey (blog)\",sp:\"You have to be aware that Apple\\u0026#39;s profits come
+        materially from iPhones: 70% of revenue, or even more, but the dynamics of
+        the industry are changing and that\\u0026#39;s undeniable.\",d:\"Feb 25, 2015\",tt:\"1424907450\",usg:\"AFQjCNGX6FzAowGa8OUsl74uqVzuhpQ1dg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.insidermonkey.com/blog/apple-inc-aapl-the-other-side-of-the-debate-339571/\\u0026cid=52778750756480\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNGaSkao_1iYGjVvH_tLpkiDKzL2Bw\"}],lead_story_doc_id:\"13653956850909173136\"},{nrel:3,idx:14,id:\"52778750798595\",lead_story_url:\"http://www.benzinga.com/media/cnbc/15/02/5279377/a-technicians-perspective-on-apples-record-valuation\",a:[{t:\"A
+        Technician\\u0026#39;s Perspective On Apple\\u0026#39;s Record Valuation\",u:\"http://www.benzinga.com/media/cnbc/15/02/5279377/a-technicians-perspective-on-apples-record-valuation\",s:\"Benzinga\",sp:\"Apple
+        Inc. (NASDAQ: AAPL) crossed the $750 billion market cap mark recently. Although
+        there are other companies with market caps in three digits, none at this point
+        come close to Apple.\",d:\"6 hours ago\",tt:\"1424979000\",usg:\"AFQjCNGNx6hiODWHHmMji0j6G94vjMlJOQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benzinga.com/media/cnbc/15/02/5279377/a-technicians-perspective-on-apples-record-valuation\\u0026cid=52778750798595\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHM46IHE6iPksxi9CgNfHFHh6nl1w\"}],lead_story_doc_id:\"1610918377294764217\"},{idx:15,id:\"0\",lead_story_url:\"http://www.ibtimes.com/future-apple-inc-iphones-may-photograph-thieves-even-when-turned-1827756\",a:[{t:\"Future
+        Apple Inc. iPhones May Photograph Thieves, Even When Turned Off\",u:\"http://www.ibtimes.com/future-apple-inc-iphones-may-photograph-thieves-even-when-turned-1827756\",s:\"International
+        Business Times\",sp:\"Apple wants to track your iPhone, even when it is supposedly
+        shut off, according to a patent application published in January.\",d:\"Feb
+        25, 2015\",tt:\"1424884718\",usg:\"AFQjCNFK5VGgLWQ6hAklVi2dUtOtfjUJQg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.ibtimes.com/future-apple-inc-iphones-may-photograph-thieves-even-when-turned-1827756\\u0026cid=0\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEVgqxdJtCvEBkcHNG_wjAXyp7SsA\"}],lead_story_doc_id:\"10622949781311586008\"},{nrel:158,idx:16,id:\"52778747840356\",lead_story_url:\"http://www.bidnessetc.com/35675-apple-inc-ceo-meets-german-chancellor-to-talked-about-privacy-security-and/\",a:[{t:\"Apple
+        Inc CEO Meets German Chancellor To Talk About Privacy, Security And ...\",u:\"http://www.bidnessetc.com/35675-apple-inc-ceo-meets-german-chancellor-to-talked-about-privacy-security-and/\",s:\"Bidness
+        ETC\",sp:\"On his recent trip to Berlin scheduled to visit a German newspaper
+        company, Bild, Apple Inc.(NASDAQ:AAPL) CEO Tim Cook also met the German Chancellor,
+        Angela Merkel, where the two discussed matters pertaining to security, education,
+        net-neutrality,\\u0026nbsp;...\",d:\"12 hours ago\",tt:\"1424957400\",usg:\"AFQjCNF8MpPZCq5neoFBYjD-cu_79YzdeQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.bidnessetc.com/35675-apple-inc-ceo-meets-german-chancellor-to-talked-about-privacy-security-and/\\u0026cid=52778747840356\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNElM4htQlOe9p5xYLO1QyirofgVMA\"},{t:\"\\u0026#39;Love
+        What You Do\\u0026#39;: Apple CEO Honors Steve Jobs\\u0026#39; Birthday\",u:\"http://www.nbcnews.com/tech/apple/love-what-you-do-apple-ceo-honors-steve-jobs-birthday-n311726\",s:\"NBCNews.com\",sp:\"Apple
+        CEO Tim Cook honored Steve Jobs via a tweet on Tuesday, which would have been
+        the late Apple co-founders\\u0026#39;s 60th birthday.\",d:\"Feb 24, 2015\",tt:\"1424779200\",usg:\"AFQjCNEZKCw1H1QFs05JuV3vDEuprHiadA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.nbcnews.com/tech/apple/love-what-you-do-apple-ceo-honors-steve-jobs-birthday-n311726\\u0026cid=52778747840356\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHlruREI6pfY1nmJktGpzbmbZSycA\"},{t:\"Apple
+        Inc CEO Tim Cook To Give Commencement Speech At George ...\",u:\"http://www.technewstoday.com/21711-apple-inc-ceo-tim-cook-to-give-commencement-speech-at-george-washington-uni/\",s:\"Tech
+        News Today (blog)\",sp:\"George Washington University (GWU) announced today
+        that Apple Inc (NASDAQ:AAPL) CEO Tim Cook would deliver the keynote address
+        to students at the university\\u0026#39;s graduation ceremony in May.\",d:\"12
+        hours ago\",tt:\"1424957400\",usg:\"AFQjCNGzR535BkyNls_S0jirqZm8_VV-oA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.technewstoday.com/21711-apple-inc-ceo-tim-cook-to-give-commencement-speech-at-george-washington-uni/\\u0026cid=52778747840356\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNG7xLVvevaDJIQhSbZm-s3_R4ZGyg\"}],lead_story_doc_id:\"2075287844770759350\"},{nrel:4,idx:17,id:\"52778750855252\",lead_story_url:\"http://www.livetradingnews.com/apple-inc-nasdaqaapl-trading-outlook-13-97330.htm\",a:[{t:\"Apple
+        Inc. (NASDAQ:AAPL) Trading Outlook\",u:\"http://www.livetradingnews.com/apple-inc-nasdaqaapl-trading-outlook-13-97330.htm\",s:\"Live
+        Trading News\",sp:\"APPLE INC is currently 24.2% above its 200-period moving
+        average and is in an upward trend. Volatility is high as compared to the average
+        volatility over the last 10 periods.\",d:\"11 hours ago\",tt:\"1424960100\",usg:\"AFQjCNFQRhh4uAPwmTsz6DJtx65lzymLfA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.livetradingnews.com/apple-inc-nasdaqaapl-trading-outlook-13-97330.htm\\u0026cid=52778750855252\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEkPQI3ZrUkSSO1qEWeua00Wyv4dg\"},{t:\"Stock
+        Update (NASDAQ:AAPL): How the Apple Watch changes everything\",u:\"http://jutiagroup.com/20150226-stock-update-nasdaqaapl-how-the-apple-watch-changes-everything/\",s:\"Jutia
+        Group\",sp:\"Summary (NASDAQ:AAPL): Apple Inc. designs, manufactures, and
+        markets mobile communication and media devices, personal computers, and portable
+        digital music players worldwide.\",d:\"5 hours ago\",tt:\"1424981700\",usg:\"AFQjCNFSuTAbazHMt8B3iuJ3H6FIdfOJ6g\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://jutiagroup.com/20150226-stock-update-nasdaqaapl-how-the-apple-watch-changes-everything/\\u0026cid=52778750855252\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNH3eHg4zn2ET7stWyNNOFDYJZuQKg\"}],lead_story_doc_id:\"12595816610600763679\"},{idx:18,id:\"0\",lead_story_url:\"http://www.insidermonkey.com/blog/apple-inc-aapl-baidu-inc-adr-bidu-rob-citrone-of-discovery-capital-loves-tech-stocks-339615/\",a:[{t:\"Apple
+        Inc. (AAPL), Baidu Inc (ADR) (BIDU): Rob Citrone of Discovery Capital ...\",u:\"http://www.insidermonkey.com/blog/apple-inc-aapl-baidu-inc-adr-bidu-rob-citrone-of-discovery-capital-loves-tech-stocks-339615/\",s:\"Insider
+        Monkey (blog)\",sp:\"In this article we will look into Mr. Citrone\\u0026#39;s
+        largest tech bets, which include Alibaba Group Holding Ltd (NYSE:BABA), Apple
+        Inc. (NASDAQ:AAPL), Baidu Inc (ADR) (NASDAQ:BIDU), SanDisk Corporation (NASDAQ:SNDK),
+        and Micron Technology, Inc.\",d:\"4 hours ago\",tt:\"1424985075\",usg:\"AFQjCNHvFkEwxFHDaY733JO4ygNDYaNVLw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.insidermonkey.com/blog/apple-inc-aapl-baidu-inc-adr-bidu-rob-citrone-of-discovery-capital-loves-tech-stocks-339615/\\u0026cid=0\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHIb3NlXVqEFTPm-ne-_UfVAMkH3w\"}],lead_story_doc_id:\"2425847941434764727\"},{nrel:5,idx:19,id:\"52778750943434\",lead_story_url:\"http://www.benchmarkmonitor.com/apple-inc-nasdaqaapl-keen-interest-in-chip-design/184407/\",a:[{t:\"Apple
+        Inc. (NASDAQ:AAPL) Keen Interest in Chip Design\",u:\"http://www.benchmarkmonitor.com/apple-inc-nasdaqaapl-keen-interest-in-chip-design/184407/\",s:\"Benchmark
+        Monitor\",sp:\"Now a days the CEO of Apple Inc. (NASDAQ:AAPL) is very much
+        seen in the news because of taking tours in different countries as recently
+        he has visited Germany to meet the German Chancellor Angela Merkel where he
+        told Apple store employees about the\\u0026nbsp;...\",d:\"11 hours ago\",tt:\"1424961450\",usg:\"AFQjCNF6dR2wNRL9YTRkkpNdPr0VnBqeLw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benchmarkmonitor.com/apple-inc-nasdaqaapl-keen-interest-in-chip-design/184407/\\u0026cid=52778750943434\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHSApJi-k4oBnA0IQKVImdcOPL7CA\"}],lead_story_doc_id:\"14080309884765964281\"},{nrel:2,idx:20,id:\"52778750797349\",lead_story_url:\"http://seekingalpha.com/article/2949776-apples-dirty-little-rare-earth-secret-follow-up-points?source=cnbc\",a:[{t:\"Apple\\u0026#39;s
+        Dirty Little Rare Earth Secret: Follow-Up Points\",u:\"http://seekingalpha.com/article/2949776-apples-dirty-little-rare-earth-secret-follow-up-points?source=cnbc\",s:\"Seeking
+        Alpha (registration)\",sp:\"I believe that (1) the company needs to be held
+        to a higher standard and needs to be able to withstand greater criticism than
+        its peers, and (2) the issue of China\\u0026#39;s dominance in the REE space
+        is one that is not widely known, and by exposing Apple\\u0026#39;s\\u0026nbsp;...\",d:\"7
+        hours ago\",tt:\"1424976300\",usg:\"AFQjCNHEUE-RKMxuZX-0DqbGku2DzENHSg\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://seekingalpha.com/article/2949776-apples-dirty-little-rare-earth-secret-follow-up-points%3Fsource%3Dcnbc\\u0026cid=52778750797349\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEeUIG3daW-PXVWaoPcOqWC6_afwQ\"}],lead_story_doc_id:\"12054841111026454924\"},{nrel:6,idx:21,id:\"52778750630486\",lead_story_url:\"http://www.hrc.org/blog/entry/apple-inc.-opposes-anti-lgbt-arkansas-conscience-protection-act\",a:[{t:\"Apple
+        Inc. Opposes Anti-LGBT \uFFFDConscience Protection Act\uFFFD in Arkansas\",u:\"http://www.hrc.org/blog/entry/apple-inc.-opposes-anti-lgbt-arkansas-conscience-protection-act\",s:\"Human
+        Rights Campaign (blog)\",sp:\"\\u0026quot;At Apple inclusion inspires innovation.
+        Our employees in Little Rock have a right to equal treatment under the law,
+        as do their coworkers in Cupertino and around the world.\",d:\"9 hours ago\",tt:\"1424966208\",usg:\"AFQjCNFPlhxHE4n6tGxsj85V5O1LrPYNIQ\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.hrc.org/blog/entry/apple-inc.-opposes-anti-lgbt-arkansas-conscience-protection-act\\u0026cid=52778750630486\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEmhGw_K83zcnhQEzPeeQ6mW79p4g\"}],lead_story_doc_id:\"12053551984256282312\"},{nrel:39,idx:22,id:\"52778748614263\",lead_story_url:\"http://www.insidermonkey.com/blog/three-must-buy-tech-stocks-apple-inc-aapl-blackberry-ltd-bbry-and-yahoo-inc-yhoo-fast-money-crew-339583/\",a:[{t:\"Three
+        Must Buy Tech Stocks Apple Inc. (AAPL), BlackBerry Ltd (BBRY) And ...\",u:\"http://www.insidermonkey.com/blog/three-must-buy-tech-stocks-apple-inc-aapl-blackberry-ltd-bbry-and-yahoo-inc-yhoo-fast-money-crew-339583/\",s:\"Insider
+        Monkey (blog)\",sp:\"BlackBerry Ltd (NASDAQ:BBRY) popped up in the market
+        after the Canadian handset maker announced it had entered into a partnership
+        with Google Inc (NASDAQ:GOOGL) to allow its BES12 software run Android for
+        work. CNBC\\u0026#39;s, Brian Kelly, believes\\u0026nbsp;...\",d:\"16 hours
+        ago\",tt:\"1424941875\",usg:\"AFQjCNEglIfpLGr9HjctqOqH34aVv1vaJA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.insidermonkey.com/blog/three-must-buy-tech-stocks-apple-inc-aapl-blackberry-ltd-bbry-and-yahoo-inc-yhoo-fast-money-crew-339583/\\u0026cid=52778748614263\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHYBphHTrFQwU0N0cx7jKZ6IWoBhg\"}],lead_story_doc_id:\"4301156714337304189\"},{nrel:53,idx:23,id:\"52778749250555\",lead_story_url:\"http://investcorrectly.com/20150226/apple-inc-nasdaqaapls-ipad-share-continues-fall/\",a:[{t:\"Apple
+        Inc. (NASDAQ:AAPL)\\u0026#39;s iPad Share Continues to Fall\",u:\"http://investcorrectly.com/20150226/apple-inc-nasdaqaapls-ipad-share-continues-fall/\",s:\"InvestCorrectly\",sp:\"A
+        new Strategy Analytics report revealed that Apple Inc. (NASDAQ:AAPL)\\u0026#39;s
+        tablet market share dropped by 20% to 26.1% in 2014 from 32.6% in 2013.\",d:\"12
+        hours ago\",tt:\"1424956725\",usg:\"AFQjCNGWe_i5y8Xq-nosN0USgrouDhC8WA\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://investcorrectly.com/20150226/apple-inc-nasdaqaapls-ipad-share-continues-fall/\\u0026cid=52778749250555\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEoNjCKVF_qaL6vocST3sdB5FTmLA\"},{t:\"X
+        Brand Beats Out the Top Vendors; Apple Inc. (NASDAQ:AAPL) \\u0026amp; Samsung\",u:\"http://www.benchmarkmonitor.com/x-brand-beats-out-the-top-vendors-apple-inc-nasdaqaapl-samsung/184405/\",s:\"Benchmark
+        Monitor\",sp:\"A recent report by Strategy Analytics shows that in the market
+        Apple Inc. (NASDAQ:AAPL)\\u0026#39;s iPad has proven to be less likely in
+        front of a common tablet which turned out as an amazing shock.\",d:\"12 hours
+        ago\",tt:\"1424958075\",usg:\"AFQjCNEtifLO5UTXBX3dDKY6I5_28jOn0w\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benchmarkmonitor.com/x-brand-beats-out-the-top-vendors-apple-inc-nasdaqaapl-samsung/184405/\\u0026cid=52778749250555\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFp1X2u5UZSjaGad2gta0CjKXuhyg\"}],lead_story_doc_id:\"14116627976475373380\"},{nrel:13,idx:24,id:\"52778749155074\",lead_story_url:\"http://www.benchmarkmonitor.com/jpmorgan-chase-said-69-of-their-chase-card-payments-are-apple-inc-nasdaqaapl-pay-transactions/184373/\",a:[{t:\"Apple
+        Inc. (AAPL)\\u0026#39;s Mobile Payment Service Apple Pay Have Customers ...\",u:\"http://www.benchmarkmonitor.com/jpmorgan-chase-said-69-of-their-chase-card-payments-are-apple-inc-nasdaqaapl-pay-transactions/184373/\",s:\"Benchmark
+        Monitor\",sp:\"(NYSE:JPM)\\u0026#39;s 2015 Investor Day, it announced via
+        AppleInsider that more than 1 million customers have provisioned their credit/debit
+        cards for integration with Apple Inc. (NASDAQ:AAPL)\\u0026#39;s mobile payments
+        service Apple Pay. Additionally, the bank went\\u0026nbsp;...\",d:\"Feb 25,
+        2015\",tt:\"1424871316\",usg:\"AFQjCNFm4HcqPK6bYzah89XNeKz-5HC2Xw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benchmarkmonitor.com/jpmorgan-chase-said-69-of-their-chase-card-payments-are-apple-inc-nasdaqaapl-pay-transactions/184373/\\u0026cid=52778749155074\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNEqOFaC6VzT5zAj876NLOpwrj_7JA\"},{t:\"JPMorgan
+        Chase \\u0026amp; Co. (JPM) reveals over 1M customers provisioned Apple Inc
+        ...\",u:\"http://investcorrectly.com/20150224/jpmorgan-chase-co-jpm-reveals-over-1m-customers-provisioned-apple-inc-aapl-apple-pay-wallets/\",s:\"InvestCorrectly\",sp:\"At
+        JPMorgan Chase \\u0026amp; Co. (NYSE:JPM)\\u0026#39;s Investor Day, the bank
+        revealed that over one million customers have provisioned their credit and
+        debit cards for use with Apple Inc. (NASDAQ:AAPL)\\u0026#39;s Apple Pay. The
+        company also shared some interesting statistics\\u0026nbsp;...\",d:\"Feb 25,
+        2015\",tt:\"1424833718\",usg:\"AFQjCNHY9AwvqiUwnK3ll1oQuwvf98LGUw\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://investcorrectly.com/20150224/jpmorgan-chase-co-jpm-reveals-over-1m-customers-provisioned-apple-inc-aapl-apple-pay-wallets/\\u0026cid=52778749155074\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNFNG9WiEPVm9jGqGrQVG_axPdKsXA\"}],lead_story_doc_id:\"7416492679362864070\"},{nrel:2,idx:25,id:\"52778749168693\",lead_story_url:\"http://www.benzinga.com/analyst-ratings/analyst-color/15/02/5272501/why-pacific-crest-remains-negative-on-apple\",a:[{t:\"Why
+        Pacific Crest Remains Negative On Apple\",u:\"http://www.benzinga.com/analyst-ratings/analyst-color/15/02/5272501/why-pacific-crest-remains-negative-on-apple\",s:\"Benzinga\",sp:\"Pacific
+        Crest analyst Andy Hargreaves, who famously downgraded Apple Inc. (NASDAQ:
+        AAPL) last year when the stock was trading at $105 levels, continues to be
+        bearish on the stock.\",d:\"Feb 25, 2015\",tt:\"1424868975\",usg:\"AFQjCNEAzwn1j14mEjj1LvihzqSV4nJf2A\",sru:\"http://news.google.com/news/url?sa=T\\u0026ct2=us\\u0026fd=S\\u0026url=http://www.benzinga.com/analyst-ratings/analyst-color/15/02/5272501/why-pacific-crest-remains-negative-on-apple\\u0026cid=52778749168693\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\\u0026usg=AFQjCNHoamyUUETQC2KZkXNmilDshpOwpQ\"}],lead_story_doc_id:\"7402313509736104387\"},{idx:26,id:\"-1\"}],results_per_page:10,result_start_num:1,result_end_num:0,result_total_articles:81},related:{cols:[0,1,4,30,34,31,32,5,2,33,3],rows:[{id:\"22144\",values:[\"AAPL\",\"Apple
+        Inc.\",\"130.41\",\"+1.62\",\"chg\",\"1.26\",\"\",\"759.63B\",\"NASDAQ\",\"22144\",\"AAPL\"]},{id:\"658723\",values:[\"SNDK\",\"SanDisk
+        Corporation\",\"78.05\",\"-0.69\",\"chr\",\"-0.88\",\"\",\"16.65B\",\"NASDAQ\",\"658723\",\"SNDK\"]},{id:\"358464\",values:[\"MSFT\",\"Microsoft
+        Corporation\",\"44.06\",\"+0.06\",\"chg\",\"0.15\",\"\",\"361.42B\",\"NASDAQ\",\"358464\",\"MSFT\"]},{id:\"180086490123759\",values:[\"SSNNF\",\"SAMSUNG
+        ELEC CO PFD\",\"0.00000\",\"\",\"\",\"\",\"\",\"\",\"OTCMKTS\",\"180086490123759\",\"SSNNF\"]},{id:\"17154\",values:[\"HPQ\",\"Hewlett-Packard
+        Company\",\"34.01\",\"-0.66\",\"chr\",\"-1.90\",\"\",\"62.15B\",\"NYSE\",\"17154\",\"HPQ\"]},{id:\"18241\",values:[\"IBM\",\"Intl.
+        Business Machines Corp.\",\"160.87\",\"-1.94\",\"chr\",\"-1.19\",\"\",\"161.19B\",\"NYSE\",\"18241\",\"IBM\"]},{id:\"664887\",values:[\"VZ\",\"Verizon
+        Communications Inc.\",\"49.37\",\"+0.17\",\"chg\",\"0.35\",\"\",\"200.64B\",\"NYSE\",\"664887\",\"VZ\"]},{id:\"7583206\",values:[\"HTCKF\",\"HTC
+        CORP SP GDR REGS\",\"13.25\",\"0.00\",\"chb\",\"0.00\",\"\",\"2.77B\",\"OTCMKTS\",\"7583206\",\"HTCKF\"]},{id:\"5494267\",values:[\"NIPNF\",\"NEC
+        CORP\",\"3.00\",\"0.00\",\"chb\",\"0.00\",\"\",\"7.81B\",\"OTCMKTS\",\"5494267\",\"NIPNF\"]},{id:\"663276\",values:[\"BBRY\",\"BlackBerry
+        Ltd\",\"10.76\",\"+0.25\",\"chg\",\"2.38\",\"\",\"5.52B\",\"NASDAQ\",\"663276\",\"BBRY\"]},{id:\"33095\",values:[\"SNE\",\"Sony
+        Corp (ADR)\",\"28.13\",\"+0.44\",\"chg\",\"1.59\",\"\",\"32.79B\",\"NYSE\",\"33095\",\"SNE\"]}],visible_cols:[0,1,4,30,34,31,32,5]},related_str:\"22144,658723,358464,180086490123759,17154,18241,664887,7583206,5494267,663276,33095\",perf:[{u:\"/finance?q=INDEXDJX:.DJI\",name:\"Dow
+        Jones\",cp:\"-0.06\",p:\"18,214.42\",cid:\"983582\"},{u:\"/finance?q=INDEXNASDAQ:.IXIC\",name:\"Nasdaq\",cp:\"0.42\",p:\"4,987.89\",cid:\"13756934\"},{u:\"/finance?catid=us-TRBC:57\",name:\"Technology\",cp:\"0.49\",cid:\"0\"},{u:\"/finance?q=NASDAQ:AAPL\",name:\"AAPL\",cp:\"1.26\",p:\"130.41\",cid:\"22144\"}],t:\"NASDAQ:AAPL:
+        {LAST} {CHANGE} ({CHANGE_PCT}%) - Apple Inc.\",ticker:\"NASDAQ:AAPL\",cid:\"22144\"},stickyUrlArgs:\"\\u0026ei=Bs7vVOFd6rKwB7rUgLgI\",chart:{_5d:\"EXCHANGE%3DNASDAQ\\nMARKET_OPEN_MINUTE=570\\nMARKET_CLOSE_MINUTE=960\\nINTERVAL=120\\nCOLUMNS=DATE,CLOSE,VOLUME\\nDATA=\\nTIMEZONE_OFFSET=-300\\na1424442600,128.65,2436665\\n1,128.64,458172\\n2,128.71,532319\\n3,128.73,416764\\n4,128.59,358759\\n5,128.5362,498312\\n6,128.45,443690\\n7,128.59,317047\\n8,128.51,311169\\n9,128.42,314827\\n10,128.33,406083\\n11,128.201,664755\\n12,128.4138,456150\\n13,128.43,285332\\n14,128.35,220607\\n15,128.41,274828\\n16,128.35,339975\\n17,128.3999,276982\\n18,128.505,390472\\n19,128.46,195350\\n20,128.45,170899\\n21,128.4999,169667\\n22,128.505,212349\\n23,128.49,149891\\n24,128.505,133201\\n25,128.56,433198\\n26,128.65,266774\\n27,128.74,375688\\n28,128.75,344950\\n29,128.68,181071\\n30,128.61,247161\\n31,128.625,267293\\n32,128.64,168247\\n33,128.7,197478\\n34,128.69,186463\\n35,128.79,456040\\n36,128.7195,252645\\n37,128.71,155440\\n38,128.79,225968\\n39,128.75,314261\\n40,128.7301,134638\\n41,128.7638,160289\\n42,128.74,135788\\n43,128.78,176025\\n44,128.74,168097\\n45,128.77,148272\\n46,128.85,328737\\n47,128.811,215257\\n48,128.849,230369\\n49,128.77,235482\\n50,128.78,176812\\n51,128.765,162644\\n52,128.69,128828\\n53,128.6339,173372\\n54,128.63,104592\\n55,128.61,89817\\n56,128.61,152955\\n57,128.68,122016\\n58,128.7118,139948\\n59,128.7063,90354\\n60,128.68,161462\\n61,128.6434,111628\\n62,128.6501,92887\\n63,128.65,122835\\n64,128.61,171326\\n65,128.5901,77221\\n66,128.59,167499\\n67,128.65,71810\\n68,128.6099,85825\\n69,128.6401,74856\\n70,128.68,109580\\n71,128.67,83626\\n72,128.5901,139718\\n73,128.58,68107\\n74,128.62,109953\\n75,128.64,85974\\n76,128.6,98241\\n77,128.65,104356\\n78,128.615,81021\\n79,128.62,135932\\n80,128.6,74533\\n81,128.6199,94863\\n82,128.6001,68062\\n83,128.5938,92247\\n84,128.5964,96315\\n85,128.58,56444\\n86,128.56,88758\\n87,128.575,50315\\n88,128.58,74141\\n89,128.58,77400\\n90,128.5,206934\\n91,128.43,155454\\n92,128.4301,102827\\n93,128.5866,359632\\n94,128.33,322677\\n95,128.399,204855\\n96,128.42,180617\\n97,128.43,266695\\n98,128.48,162618\\n99,128.53,123404\\n100,128.5164,75578\\n101,128.54,80447\\n102,128.53,106319\\n103,128.5335,67637\\n104,128.55,102800\\n105,128.56,76294\\n106,128.6,195856\\n107,128.615,144408\\n108,128.57,128776\\n109,128.555,121866\\n110,128.55,75075\\n111,128.575,180501\\n112,128.6,117290\\n113,128.6161,80232\\n114,128.635,104586\\n115,128.644,158368\\n116,128.67,116557\\n117,128.6261,133051\\n118,128.66,100801\\n119,128.67,92394\\n120,128.6863,107385\\n121,128.7,223150\\n122,128.69,84857\\n123,128.6734,78065\\n124,128.7,67777\\n125,128.71,179812\\n126,128.74,143178\\n127,128.74,125219\\n128,128.7401,97787\\n129,128.79,257794\\n130,128.8,114320\\n131,128.78,173309\\n132,128.79,158448\\n133,128.77,84773\\n134,128.8,105069\\n135,128.825,120529\\n136,128.869,156412\\n137,128.871,175245\\n138,128.908,440630\\n139,128.95,293765\\n140,128.97,174727\\n141,128.99,149557\\n142,128.9642,184294\\n143,128.96,240521\\n144,128.95,128631\\n145,128.9249,131111\\n146,128.81,219799\\n147,128.84,135847\\n148,128.841,114570\\n149,128.86,78886\\n150,128.9299,117548\\n151,128.94,109074\\n152,128.929,94339\\n153,128.9637,157211\\n154,128.98,100250\\n155,128.9601,93381\\n156,128.9104,121536\\n157,128.93,114502\\n158,128.96,133150\\n159,129.02,497290\\n160,129.1101,280636\\n161,129.2163,320791\\n162,129.2799,303013\\n163,129.2562,324497\\n164,129.19,343224\\n165,129.2,176429\\n166,129.255,232029\\n167,129.32,301967\\n168,129.3443,330658\\n169,129.4,178140\\n170,129.451,334650\\n171,129.385,445268\\n172,129.4099,163454\\n173,129.3656,262183\\n174,129.0599,589350\\n175,129.21,334884\\n176,129.23,203153\\n177,129.2,198918\\n178,129.28,159079\\n179,129.33,199767\\n180,129.38,177642\\n181,129.34,225920\\n182,129.41,256948\\n183,129.399,189004\\n184,129.35,199463\\n185,129.365,199446\\n186,129.42,185904\\n187,129.4103,248942\\n188,129.3699,226375\\n189,129.31,283985\\n190,129.36,537494\\n191,129.3199,379392\\n192,129.29,287696\\n193,129.33,317051\\n194,129.26,503059\\n195,129.4899,3229495\\na1424701800,129.86,715378\\n1,129.78,738651\\n2,129.87,517718\\n3,129.89,908635\\n4,129.85,516118\\n5,130.01,493283\\n6,130.27,899992\\n7,130.34,725328\\n8,130.18,617302\\n9,130.17,344152\\n10,130.16,609433\\n11,130.33,406751\\n12,130.379,402697\\n13,130.3354,531796\\n14,130.37,336682\\n15,130.48,303527\\n16,130.48,306571\\n17,130.7449,724931\\n18,130.6351,487086\\n19,130.79,509959\\n20,130.6301,506747\\n21,130.494,418973\\n22,130.59,274179\\n23,130.54,316104\\n24,130.465,394204\\n25,130.565,247343\\n26,130.5,193194\\n27,130.6733,271962\\n28,130.74,413463\\n29,130.7,256195\\n30,130.769,247601\\n31,130.78,271544\\n32,130.84,379624\\n33,130.9,321733\\n34,130.969,410551\\n35,131.0333,535612\\n36,131.03,474241\\n37,131.13,292751\\n38,131.2,464311\\n39,131.18,406623\\n40,131.24,405666\\n41,131.18,369196\\n42,131.21,270305\\n43,131.1855,367664\\n44,131.185,257723\\n45,131.31,551714\\n46,131.429,415509\\n47,131.425,308218\\n48,131.4766,326997\\n49,131.3732,545578\\n50,131.49,393797\\n51,131.406,267118\\n52,131.466,305734\\n53,131.5101,266554\\n54,131.5465,389948\\n55,131.7,387141\\n56,131.7037,355964\\n57,131.77,283796\\n58,131.655,366538\\n59,131.73,214071\\n60,131.88,502660\\n61,131.81,354463\\n62,131.81,245634\\n63,131.81,239745\\n64,131.796,233661\\n65,131.81,395277\\n66,131.63,428532\\n67,131.565,309776\\n68,131.53,280551\\n69,131.655,381764\\n70,131.77,328731\\n71,131.8,228757\\n72,131.821,239534\\n73,131.739,229235\\n74,131.72,212011\\n75,131.72,175981\\n76,131.8199,270419\\n77,131.8,190610\\n78,131.7661,136580\\n79,131.7923,131233\\n80,131.7401,148972\\n81,131.66,179942\\n82,131.665,185175\\n83,131.6175,206963\\n84,131.65,129097\\n85,131.551,222927\\n86,131.59,221130\\n87,131.699,182031\\n88,131.709,107339\\n89,131.8,225057\\n90,131.775,130210\\n91,131.79,129927\\n92,131.88,450889\\n93,131.931,292342\\n94,131.9801,189549\\n95,131.89,817955\\n96,131.846,300026\\n97,131.8999,173932\\n98,131.77,284982\\n99,131.8,218475\\n100,131.94,217670\\n101,131.98,127080\\n102,132.0769,311285\\n103,132.095,204750\\n104,132.09,164456\\n105,132.13,159434\\n106,132.045,201132\\n107,131.96,269925\\n108,132.04,193184\\n109,131.9489,184683\\n110,131.96,140231\\n111,132.03,191488\\n112,132.1101,168112\\n113,132.17,202156\\n114,132.1699,149089\\n115,132.17,161848\\n116,132.181,142175\\n117,132.18,113330\\n118,132.1599,154742\\n119,132.133,140182\\n120,132.03,182542\\n121,132.061,188793\\n122,132.065,168434\\n123,132.02,154948\\n124,131.9266,229678\\n125,131.98,195264\\n126,131.945,186037\\n127,131.9663,122185\\n128,131.955,159505\\n129,131.9701,81841\\n130,131.92,137066\\n131,131.92,105354\\n132,131.935,182229\\n133,131.97,141316\\n134,132.03,192860\\n135,132.0799,193462\\n136,132.13,188486\\n137,132.1099,98880\\n138,132.11,105481\\n139,132.095,93668\\n140,132.12,106356\\n141,132.18,171449\\n142,132.31,390284\\n143,132.244,176330\\n144,132.24,136525\\n145,132.265,144457\\n146,132.3001,129825\\n147,132.34,229821\\n148,132.3489,280673\\n149,132.4,209189\\n150,132.45,230265\\n151,132.5999,574579\\n152,132.5368,488075\\n153,132.5134,265388\\n154,132.499,185644\\n155,132.49,190247\\n156,132.44,377869\\n157,132.4956,217289\\n158,132.501,284868\\n159,132.5,146557\\n160,132.5,198413\\n161,132.49,115068\\n162,132.437,271108\\n163,132.485,317914\\n164,132.3999,193276\\n165,132.39,145142\\n166,132.3301,383022\\n167,132.3599,145279\\n168,132.235,237930\\n169,132.14,312988\\n170,132.12,282081\\n171,132.151,375868\\n172,132.162,297275\\n173,132.29,228808\\n174,132.34,181412\\n175,132.4,237895\\n176,132.3628,162167\\n177,132.308,277983\\n178,132.26,291262\\n179,132.39,240330\\n180,132.5101,416549\\n181,132.56,246815\\n182,132.5739,457984\\n183,132.63,169010\\n184,132.58,290182\\n185,132.57,165185\\n186,132.64,214022\\n187,132.7,250360\\n188,132.6828,351195\\n189,132.7,256743\\n190,132.795,483487\\n191,132.77,527586\\n192,132.85,337100\\n193,132.8563,335810\\n194,132.92,678691\\n195,133,3659359\\n720,132.59,948219\\n721,132.63,1075141\\n722,132.08,1138922\\n723,131.895,1459876\\n724,131.2719,1780728\\n725,131.441,1163557\\n726,131.78,969540\\n727,131.7,577830\\n728,131.85,555560\\n729,131.92,430670\\n730,131.94,766310\\n731,132.16,638358\\n732,132.02,500290\\n733,131.93,311040\\n734,131.79,433954\\n735,131.71,339372\\n736,131.91,530314\\n737,132.0399,496269\\n738,131.95,301744\\n739,131.94,274081\\n740,132.07,464432\\n741,132.06,530602\\n742,132.07,235016\\n743,132.079,259592\\n744,132.1201,416904\\n745,132.211,362856\\n746,132.32,423897\\n747,132.4349,549617\\n748,132.435,394144\\n749,132.7,579439\\n750,132.6,455264\\n751,132.52,350805\\n752,132.59,283021\\n753,132.7699,445539\\n754,132.8799,583534\\n755,132.8134,579337\\n756,132.8499,265057\\n757,132.7973,277656\\n758,132.97,593751\\n759,133.2034,817121\\n760,133.2,659093\\n761,133.2,378021\\n762,133.23,373414\\n763,133.29,454049\\n764,133.193,297435\\n765,133.19,223827\\n766,132.93,724719\\n767,133.1,404405\\n768,133.1501,250771\\n769,133.17,229140\\n770,133.38,452887\\n771,133.48,424267\\n772,133.5766,519763\\n773,133.46,415340\\n774,133.46,178729\\n775,133.45,249712\\n776,133.4882,297191\\n777,133.38,265745\\n778,133.5101,238443\\n779,133.38,277840\\n780,133.4801,179682\\n781,133.337,303565\\n782,133.34,274204\\n783,133.24,230552\\n784,133.18,322142\\n785,132.985,611110\\n786,133.1065,319767\\n787,133.1763,282617\\n788,133.15,190483\\n789,133.2166,140362\\n790,133.1166,267435\\n791,133.06,234961\\n792,133.14,170898\\n793,132.955,202977\\n794,133.109,191447\\n795,132.851,287434\\n796,132.721,383055\\n797,132.78,295553\\n798,132.91,215414\\n799,132.961,180261\\n800,132.91,134248\\n801,132.98,165867\\n802,132.96,104121\\n803,132.86,223816\\n804,132.595,424691\\n805,132.68,366962\\n806,132.7999,206318\\n807,132.76,135315\\n808,132.679,128751\\n809,132.66,157421\\n810,132.5949,171205\\n811,132.42,340651\\n812,132.42,256705\\n813,132.26,329054\\n814,132.3,351860\\n815,132.13,394639\\n816,132,800154\\n817,132.115,419166\\n818,132.17,354889\\n819,132.05,219501\\n820,131.95,348423\\n821,131.6966,609642\\n822,131.82,333494\\n823,132.044,280299\\n824,132.1272,270093\\n825,132.07,179889\\n826,132.31,352637\\n827,132.35,298150\\n828,132.32,299306\\n829,132.36,262473\\n830,132.38,119845\\n831,132.426,270753\\n832,132.3599,178304\\n833,132.37,206297\\n834,132.4,97282\\n835,132.39,171331\\n836,132.4,131092\\n837,132.269,136986\\n838,132.27,140630\\n839,132.39,119057\\n840,132.3244,107453\\n841,132.33,109004\\n842,132.3869,131874\\n843,132.6,239247\\n844,132.63,150760\\n845,132.6199,258171\\n846,132.62,129179\\n847,132.6901,84001\\n848,132.7699,170629\\n849,132.66,166720\\n850,132.6137,146493\\n851,132.53,194294\\n852,132.62,103694\\n853,132.57,95627\\n854,132.5745,61578\\n855,132.4949,195239\\n856,132.4601,99784\\n857,132.5,81095\\n858,132.54,140160\\n859,132.461,138472\\n860,132.4901,89174\\n861,132.58,63326\\n862,132.77,183773\\n863,132.72,208615\\n864,132.85,124657\\n865,132.7901,236200\\n866,132.66,184984\\n867,132.69,141046\\n868,132.7376,126743\\n869,132.61,116299\\n870,132.6,220884\\n871,132.63,95810\\n872,132.74,134579\\n873,132.64,215098\\n874,132.63,96636\\n875,132.5041,172049\\n876,132.419,228314\\n877,132.49,266724\\n878,132.5899,192192\\n879,132.68,192962\\n880,132.64,105078\\n881,132.74,90507\\n882,132.86,263396\\n883,132.7801,149308\\n884,132.87,111861\\n885,132.6992,232573\\n886,132.77,159228\\n887,132.809,154477\\n888,132.7,125700\\n889,132.755,197860\\n890,132.8001,85173\\n891,132.75,146624\\n892,132.7101,135851\\n893,132.76,82610\\n894,132.8,164583\\n895,132.847,217450\\n896,132.9201,289093\\n897,132.9372,243437\\n898,132.89,173211\\n899,132.92,119801\\n900,132.8966,206786\\n901,132.88,156383\\n902,132.8799,191839\\n903,132.7837,128711\\n904,132.83,140023\\n905,132.715,213822\\n906,132.8,215334\\n907,132.78,155324\\n908,132.75,242053\\n909,132.54,436950\\n910,132.31,526499\\n911,132.19,624897\\n912,132.06,576301\\n913,132.0901,749824\\n914,132.14,721825\\n915,132.17,1549500\\na1424874600,131.51,488722\\n1,130.94,1845453\\n2,130.81,1162682\\n3,131.08,866862\\n4,131.31,861476\\n5,131.265,521139\\n6,131.11,561292\\n7,131.28,400974\\n8,131.245,485873\\n9,131.3801,289769\\n10,131.19,336748\\n11,131.2,256959\\n12,131.08,511095\\n13,131.27,327181\\n14,131.295,340937\\n15,131.03,266654\\n16,131.24,314133\\n17,131.16,279250\\n18,130.94,382527\\n19,131.1463,273604\\n20,131.3,238908\\n21,131.18,176437\\n22,131.18,199241\\n23,131.219,194248\\n24,131.16,358633\\n25,131.0399,524916\\n26,131.05,236986\\n27,130.8734,428262\\n28,130.78,454141\\n29,130.7401,534470\\n30,130.28,1040299\\n31,130.664,744492\\n32,130.56,328634\\n33,130.55,378507\\n34,130.4551,343877\\n35,130.56,211746\\n36,130.55,271385\\n37,130.74,352222\\n38,130.74,183241\\n39,130.65,269385\\n40,130.6999,123245\\n41,130.73,198989\\n42,130.78,200014\\n43,130.91,446277\\n44,130.9899,289966\\n45,130.88,266682\\n46,130.86,169366\\n47,130.87,118957\\n48,130.925,139742\\n49,130.761,218418\\n50,130.7,185156\\n51,130.84,169991\\n52,130.8762,280588\\n53,130.945,175144\\n54,130.96,164314\\n55,130.9699,293326\\n56,130.99,153607\\n57,130.98,215028\\n58,131.0466,197257\\n59,131.145,229463\\n60,131.23,225865\\n61,131.2132,194649\\n62,131.0751,161353\\n63,131.09,145338\\n64,131.1701,164780\\n65,131.2,100658\\n66,131.13,100942\\n67,131.14,130386\\n68,131.1,89408\\n69,131.19,86503\\n70,131.1699,134911\\n71,131.107,163215\\n72,130.976,252830\\n73,130.9631,147184\\n74,130.895,214428\\n75,130.859,113083\\n76,130.925,204654\\n77,130.98,101342\\n78,130.93,118153\\n79,130.8899,112778\\n80,130.88,103718\\n81,130.97,129224\\n82,131.0199,102894\\n83,131,77119\\n84,130.97,61289\\n85,130.9201,86023\\n86,130.9799,66420\\n87,130.93,61113\\n88,130.92,55046\\n89,130.93,94537\\n90,130.86,133946\\n91,130.7368,194919\\n92,130.77,131027\\n93,130.818,115149\\n94,130.8686,115012\\n95,130.92,88055\\n96,130.9666,104371\\n97,130.971,144258\\n98,130.9763,106262\\n99,131.081,148852\\n100,131.07,97239\\n101,131.12,140490\\n102,131.0568,124696\\n103,130.997,110792\\n104,131.015,87855\\n105,130.98,75156\\n106,130.99,79544\\n107,130.974,51570\\n108,130.97,78190\\n109,130.985,71692\\n110,130.921,118634\\n111,130.98,66827\\n112,131.01,77254\\n113,130.97,73850\\n114,130.96,65177\\n115,130.98,52434\\n116,130.9999,83229\\n117,130.965,62092\\n118,130.9,94537\\n119,130.8937,129371\\n120,130.87,97358\\n121,130.82,234746\\n122,130.89,137023\\n123,130.881,174121\\n124,130.851,110708\\n125,130.8963,118152\\n126,130.8842,106012\\n127,130.8701,132299\\n128,130.85,78739\\n129,130.78,134329\\n130,130.73,158521\\n131,130.621,220783\\n132,130.43,573439\\n133,130.3799,502809\\n134,130.39,349713\\n135,130.27,271484\\n136,130.141,911119\\n137,129.95,1781656\\n138,129.92,595424\\n139,129.98,323759\\n140,129.7,497503\\n141,129.88,435566\\n142,130.04,745910\\n143,130.04,335780\\n144,130.2,218171\\n145,130.14,260788\\n146,130.091,238382\\n147,130.0599,343506\\n148,130.105,189782\\n149,130.12,222677\\n150,130.11,134500\\n151,129.92,292892\\n152,129.86,418453\\n153,129.67,556062\\n154,129.59,1152807\\n155,128.82,1413022\\n156,128.53,1763170\\n157,128.83,1157873\\n158,128.84,892307\\n159,128.98,656002\\n160,128.905,595452\\n161,128.9,836778\\n162,129.02,507888\\n163,129.14,444244\\n164,129.2,646469\\n165,129.15,537745\\n166,129.05,380291\\n167,128.921,397250\\n168,128.86,506865\\n169,128.825,389414\\n170,128.78,331794\\n171,128.969,374785\\n172,129.1134,395957\\n173,129.2556,534636\\n174,129.205,370178\\n175,129.01,427164\\n176,129,289771\\n177,128.9,277724\\n178,128.8362,307994\\n179,128.54,553478\\n180,128.379,798445\\n181,128.679,626449\\n182,128.445,528820\\n183,128.44,699527\\n184,128.45,530189\\n185,128.4499,739906\\n186,128.27,775114\\n187,128.54,598924\\n188,128.69,439705\\n189,128.76,444735\\n190,128.77,487286\\n191,128.74,555520\\n192,128.76,432708\\n193,128.87,624542\\n194,128.71,588523\\n195,128.74,2439486\\n720,128.81,599332\\n721,128.8532,2288969\\n722,128.3,736562\\n723,127.7,2484148\\n724,127.8199,1130253\\n725,128.19,853091\\n726,128.55,784853\\n727,128.2933,468131\\n728,128,570034\\n729,127.925,496605\\n730,127.8135,593240\\n731,127.95,514414\\n732,127.6299,802207\\n733,127.37,532286\\n734,127.41,576493\\n735,126.865,1810828\\n736,126.89,841238\\n737,126.81,834378\\n738,127.009,826151\\n739,126.84,669176\\n740,126.8351,524750\\n741,127.05,597847\\n742,126.86,400925\\n743,126.98,392608\\n744,127.3801,746692\\n745,127.24,523422\\n746,127.41,319131\\n747,127.13,402026\\n748,127.17,355797\\n749,127.54,392138\\n750,127.47,328871\\n751,127.457,403079\\n752,127.56,320566\\n753,127.5701,587252\\n754,127.666,361509\\n755,127.67,327215\\n756,127.61,285874\\n757,127.4963,367821\\n758,127.75,293821\\n759,127.77,306298\\n760,127.57,269676\\n761,127.65,191250\\n762,127.751,255478\\n763,127.7799,234877\\n764,127.7401,248272\\n765,127.68,210495\\n766,127.8895,394946\\n767,127.81,313482\\n768,127.88,218596\\n769,128.07,594338\\n770,128.05,419455\\n771,128.034,319745\\n772,128.2398,317837\\n773,128.2,334220\\n774,128.17,389818\\n775,128.171,249722\\n776,128.1499,177196\\n777,128.09,133393\\n778,128.085,231721\\n779,128.045,134816\\n780,128.1599,202701\\n781,128.31,262530\\n782,128.45,418793\\n783,128.62,366241\\n784,128.66,318644\\n785,128.72,402875\\n786,128.7899,281536\\n787,128.7645,382850\\n788,128.8201,303868\\n789,128.88,286067\\n790,129.02,503236\\n791,129.13,412227\\n792,129.3,444679\\n793,129.2601,598370\\n794,129.24,396639\\n795,129.3001,312131\\n796,129.09,444357\\n797,129.1,462157\\n798,129.03,567023\\n799,128.98,586547\\n800,128.93,397501\\n801,128.97,262183\\n802,129,273662\\n803,129.1636,380643\\n804,129.23,327471\\n805,128.99,366563\\n806,129.12,228065\\n807,129.22,294706\\n808,129.45,413595\\n809,129.6701,782694\\n810,129.68,486155\\n811,129.9,599020\\n812,129.84,625484\\n813,129.74,432484\\n814,129.7728,427239\\n815,129.799,357841\\n816,129.7499,192306\\n817,129.78,441111\\n818,129.79,253398\\n819,129.995,578870\\n820,130.0266,762903\\n821,129.914,440841\\n822,129.91,238301\\n823,129.9,327883\\n824,129.8545,180727\\n825,129.89,184125\\n826,129.942,181081\\n827,130.0802,485039\\n828,130.24,509437\\n829,130.3,470622\\n830,130.32,468704\\n831,130.3851,370758\\n832,130.62,694738\\n833,130.62,601798\\n834,130.47,406118\\n835,130.436,361328\\n836,130.23,627169\\n837,130.15,330878\\n838,130.175,237855\\n839,130.24,280786\\n840,130.34,235340\\n841,130.39,233780\\n842,130.45,190473\\n843,130.52,350141\\n844,130.635,340387\\n845,130.7656,497111\\n846,130.62,463540\\n847,130.69,197326\\n848,130.62,383643\\n849,130.6699,328874\\n850,130.6453,439241\\n851,130.6936,210733\\n852,130.77,219539\\n853,130.634,302775\\n854,130.44,377218\\n855,130.34,321311\\n856,130.36,334655\\n857,130.08,600435\\n858,130.265,360408\\n859,130.2137,231389\\n860,130.2599,220665\\n861,130.19,228367\\n862,130.268,316951\\n863,129.93,830971\\n864,129.7399,550425\\n865,129.77,375056\\n866,129.77,240577\\n867,129.59,699951\\n868,129.63,224699\\n869,129.5466,260102\\n870,129.35,679434\\n871,129.3201,385301\\n872,129.2589,335852\\n873,129.1,635163\\n874,129.28,277792\\n875,129.32,289280\\n876,129.34,241102\\n877,129.47,367749\\n878,129.4299,152829\\n879,129.57,182823\\n880,129.6,192534\\n881,129.6464,195381\\n882,129.658,342131\\n883,129.45,275158\\n884,129.59,175976\\n885,129.64,132715\\n886,129.395,255735\\n887,129.2699,219888\\n888,129.35,205086\\n889,129.51,218801\\n890,129.7042,302443\\n891,129.75,216827\\n892,129.9799,450338\\n893,130,391912\\n894,130.041,290780\\n895,130.06,301623\\n896,130.1076,312865\\n897,130.1261,285497\\n898,130.05,202695\\n899,130.0601,156853\\n900,130.194,220819\\n901,130.13,363838\\n902,130.25,212597\\n903,130.25,216479\\n904,130.148,197651\\n905,130.19,149918\\n906,130.285,417519\\n907,130.29,190379\\n908,130.13,276391\\n909,130.101,331440\\n910,130.2,308422\\n911,130.0801,301379\\n912,130.23,265168\\n913,130.345,542285\\n914,130.369,584790\\n915,130.415,2300511\\n\",_5Y:\"EXCHANGE%3DNASDAQ\\nMARKET_OPEN_MINUTE=570\\nMARKET_CLOSE_MINUTE=960\\nINTERVAL=604800\\nCOLUMNS=DATE,CLOSE,VOLUME,CDAYS\\nDATA=\\nTIMEZONE_OFFSET=-300\\na1267822800,31.28,224904603,5\\n1,32.37,692096300,5\\nTIMEZONE_OFFSET=-240\\na1269028800,31.75,573228985,5\\n1,32.99,710316852,5\\n3,34.541,666797803,5\\n4,35.34,542706801,5\\n5,38.69,969503437,5\\n6,37.3,762027826,5\\n7,33.69,1255784831,5\\n8,36.26,962026275,5\\n9,34.62,1269514106,5\\n10,36.7,1033707416,5\\n11,36.566,743404662,4\\n12,36.22,1016123549,5\\n13,39.153,907450943,5\\n14,38.1,881819267,5\\n15,35.28,1043923965,5\\n16,37.09,610379686,4\\n17,35.7,1107680903,5\\n18,37.13,1115955400,5\\n19,36.75,654391528,5\\n20,37.156,500167248,5\\n21,35.59,566220298,5\\n22,35.66,472926426,5\\n23,34.52,657143627,5\\n24,36.97,609330666,5\\n25,37.63,423927343,4\\n26,39.34,628217926,5\\n27,41.76,837496163,5\\n28,40.36,777394828,5\\n29,42.01,668733023,5\\n30,44.96,743467354,5\\n31,43.92,995768431,5\\n32,43,541479071,5\\n33,45.3,592476780,5\\nTIMEZONE_OFFSET=-300\\na1289595600,44,551700380,5\\n1,43.82,605333939,5\\na1290794400,45,391134149,4\\na1291410000,45.35,553846069,5\\n1,45.79,429647862,5\\n2,45.8,479466575,5\\na1293138000,46.23,282901283,5\\na1293829200,46.08,235080986,5\\n1,48.0171,405585439,5\\n2,49.78,450549715,5\\n3,46.67,1133945904,4\\n4,48.01,626374084,5\\n5,49.5,444617075,5\\n6,50.98,661231214,5\\n7,50.08,605590993,5\\n8,49.74,606077500,4\\n9,51.429,603961078,5\\n10,50.28,583700208,5\\nTIMEZONE_OFFSET=-240\\na1300478400,47.2386,931721231,5\\n1,50.22,490624736,5\\n2,49.22,421171037,5\\n3,47.87,524140869,5\\n4,46.78,481979309,5\\na1303416000,50.099,620932130,5\\na1304107200,50.02,581972874,5\\n1,49.52,440507361,5\\n2,48.64,367516352,5\\n3,47.889,459264316,5\\n4,48.2,356289948,5\\n5,49.063,406186613,4\\n6,46.56,508819913,5\\n7,45.75,547427881,5\\n8,46.621,631070790,5\\n9,49.04,436379510,5\\n10,51.39,422371817,4\\n11,52.13,550274676,5\\n12,56.19,844086600,5\\n13,55.78,738078572,5\\n14,53.37,1106294315,5\\n15,53.86,1093993719,5\\n16,50.86,757201368,5\\n17,54.8,832795530,5\\n18,53.44,532204526,5\\n19,53.93,460376791,4\\n20,57.214,639900065,5\\n21,57.7571,930136571,5\\n22,54.47,768706785,5\\n23,52.83,1009354472,5\\n24,60.29,667507239,5\\n25,56.12,960601691,5\\n26,57.85,551737291,5\\n27,57.18,497354914,5\\nTIMEZONE_OFFSET=-300\\na1321045200,54.95,657037857,5\\n1,53.5629,516361244,5\\na1322244000,51.94,385225176,4\\na1322859600,55.6714,473798542,5\\n1,56.2314,404917905,5\\n2,54.43,431345775,5\\n3,57.62,326960396,5\\n4,57.86,222505591,4\\n5,60.34,288039024,4\\n6,59.9729,326606273,5\\n7,60.043,298848515,4\\n8,63.9,609019936,5\\n9,65.67,378736176,5\\n10,70.489,622323716,5\\n11,71.73,991397253,5\\n12,74.63,518046424,4\\n13,77.88,803732937,5\\n14,77.881,838304838,5\\nTIMEZONE_OFFSET=-240\\na1331928000,83.653,1125532072,5\\n1,85.15,854140910,5\\n2,85.65,799400056,5\\na1333656000,90.53,661788771,5\\na1334347200,86.46,914452497,5\\n1,81.85,1224122172,5\\n2,86.14,972865761,5\\n3,80.75,616325045,5\\n4,80.96,542765944,5\\n5,75.77,709833831,5\\n6,80.33,683859967,5\\n7,80.14,480704252,4\\n8,82.903,518528801,5\\n9,82.02,500427550,5\\n10,83.16,443055935,5\\n11,83.43,372161503,5\\n12,86.55,386303218,4\\n13,86.42,525070609,5\\n14,86.33,420536284,5\\n15,83.59,685307028,5\\n16,87.96,475782195,5\\n17,88.81,313601211,5\\n18,92.59,393510663,5\\n19,94.746,712216267,5\\n20,95.03,384526408,5\\n21,97.21,356324913,4\\n22,98.75,725746182,5\\n23,100.014,501637178,5\\n24,95.301,716101659,5\\n25,93.23,640153199,5\\n26,89.959,748256446,5\\n27,87.12,648071949,5\\n28,86.29,871787588,5\\n29,82.4,367705457,4\\nTIMEZONE_OFFSET=-300\\na1352494800,78.151,920975286,5\\n1,75.3826,895745214,5\\na1353693600,81.6429,527994159,4\\na1354309200,83.61,647737377,5\\n1,76.18,982954427,5\\n2,72.828,836198734,5\\n3,74.19,728044821,5\\n4,72.7985,321894930,4\\n5,75.29,541820461,5\\n6,74.33,575588923,5\\n7,71.43,807137219,5\\n8,62.84,997968482,5\\n9,64.803,658135569,5\\n10,67.85,745475360,5\\n11,65.74,587280127,5\\n12,64.4,422477923,5\\n13,61.5,584095995,5\\n14,61.67,635370519,5\\nTIMEZONE_OFFSET=-240\\na1363377600,63.38,573448554,5\\n1,65.99,554997079,5\\na1364500800,63.24,392454741,5\\na1365192000,60.457,506267566,5\\n1,61.4,387769977,5\\n2,55.79,710978289,5\\n3,59.601,803274927,5\\n4,64.28,655642141,5\\n5,64.71,546647234,5\\n6,61.89,634345642,5\\n7,63.5929,495234957,5\\n8,64.248,363735547,5\\n9,63.116,444370843,5\\n10,61.436,387573025,5\\n11,59.0714,401080582,5\\n12,56.65,519767255,5\\n13,59.63,344067542,5\\n14,60.93,384630904,5\\n15,60.71,286397069,5\\n16,63,399849212,5\\n17,66.08,340462864,5\\n18,64.92,369061147,5\\n19,71.76,713835500,5\\n20,71.57,418004426,5\\n21,69.602,393704339,5\\n22,71.17,318256176,5\\n23,66.41,670218052,5\\n24,66.77,627157776,5\\n25,68.96,477166347,5\\n26,69.004,371211848,5\\n27,70.402,362818757,5\\n28,72.7,344302063,5\\n29,75.137,492113048,5\\n30,74.29,522749024,5\\nTIMEZONE_OFFSET=-300\\na1383944400,74.366,318853899,5\\n1,74.999,307367732,5\\n2,74.26,283454822,5\\n3,79.44,328088187,5\\n4,80.0029,523313952,5\\n5,79.2,388398437,5\\n6,78.4314,458932712,5\\n7,80.01,274688918,5\\n8,77.28,276322921,4\\n9,76.13,393704465,5\\n10,77.24,442965852,5\\n11,78.01,386837661,4\\n12,71.51,823094762,5\\n13,74.24,435352295,5\\n14,77.7129,379678530,5\\n15,75.04,290147018,4\\n16,75.18,368375560,5\\n17,75.78,276573199,5\\nTIMEZONE_OFFSET=-240\\na1394827200,74.96,288820840,5\\n1,76.1243,304198601,5\\n2,76.69,340089190,5\\n3,75.97,246922340,5\\n4,74.23,312864965,5\\na1397764800,74.99,242907469,5\\na1398456000,81.71,482615539,5\\n1,84.65,474868226,5\\n2,83.6489,366597980,5\\n3,85.36,261663682,5\\n4,87.7329,295669360,5\\n5,90.43,401262260,4\\n6,92.22,413012096,5\\n7,91.28,293147031,5\\n8,90.91,235227477,5\\n9,91.98,216257181,5\\na1404406800,94.03,139169331,5\\na1405108800,95.22,231829837,5\\n1,94.43,249294582,5\\n2,97.671,276391278,5\\n3,96.13,236824718,5\\n4,94.74,223025521,5\\n5,97.98,179363532,5\\n6,101.32,247332907,5\\n7,102.5,238846216,5\\n8,98.97,323160039,4\\n9,101.66,463569230,5\\n10,100.96,297352988,5\\n11,100.75,338824941,5\\n12,99.62,247749150,5\\n13,100.73,280258156,5\\n14,97.67,358539741,5\\n15,105.22,358532919,5\\n16,108,220230607,5\\nTIMEZONE_OFFSET=-300\\na1415394000,109.01,199952812,5\\n1,114.18,205166680,5\\n2,116.47,233414685,5\\na1417197600,118.93,181937552,4\\na1417813200,115,266701088,5\\n1,109.73,259937920,5\\n2,111.78,328856576,5\\n3,113.99,119396530,4\\n4,109.33,152088374,4\\n5,112.01,283252615,5\\n6,105.99,304226647,5\\n7,112.98,198737041,4\\n8,117.16,465842684,5\\n9,118.93,270757404,5\\n10,127.08,303206785,5\\n11,129.495,194354942,4\\n\",corp_actions:\"[{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"split\\\",\\\"_date\\\":\\\"550848600\\\",\\\"_old_shares\\\":\\\"1\\\",\\\"_new_shares\\\":\\\"2\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"split\\\",\\\"_date\\\":\\\"961594200\\\",\\\"_old_shares\\\":\\\"1\\\",\\\"_new_shares\\\":\\\"2\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"split\\\",\\\"_date\\\":\\\"1109601000\\\",\\\"_old_shares\\\":\\\"1\\\",\\\"_new_shares\\\":\\\"2\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"split\\\",\\\"_date\\\":\\\"1402320600\\\",\\\"_old_shares\\\":\\\"1\\\",\\\"_new_shares\\\":\\\"7\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"547738200\\\",\\\"_amount\\\":\\\"0.002143\\\",\\\"_payable_date\\\":\\\"550762200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"555600600\\\",\\\"_amount\\\":\\\"0.002143\\\",\\\"_payable_date\\\":\\\"558711000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"564157800\\\",\\\"_amount\\\":\\\"0.002857\\\",\\\"_payable_date\\\":\\\"566577000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"571674600\\\",\\\"_amount\\\":\\\"0.002857\\\",\\\"_payable_date\\\":\\\"574439400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"579792600\\\",\\\"_amount\\\":\\\"0.002857\\\",\\\"_payable_date\\\":\\\"582384600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"587655000\\\",\\\"_amount\\\":\\\"0.002857\\\",\\\"_payable_date\\\":\\\"590333400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"596125800\\\",\\\"_amount\\\":\\\"0.003571\\\",\\\"_payable_date\\\":\\\"598199400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"603729000\\\",\\\"_amount\\\":\\\"0.003571\\\",\\\"_payable_date\\\":\\\"605975400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"611847000\\\",\\\"_amount\\\":\\\"0.003571\\\",\\\"_payable_date\\\":\\\"613920600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"619709400\\\",\\\"_amount\\\":\\\"0.003571\\\",\\\"_payable_date\\\":\\\"621869400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"627316200\\\",\\\"_amount\\\":\\\"0.003929\\\",\\\"_payable_date\\\":\\\"629735400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"635178600\\\",\\\"_amount\\\":\\\"0.003929\\\",\\\"_payable_date\\\":\\\"637511400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"643296600\\\",\\\"_amount\\\":\\\"0.003929\\\",\\\"_payable_date\\\":\\\"645456600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"651159000\\\",\\\"_amount\\\":\\\"0.003929\\\",\\\"_payable_date\\\":\\\"653319000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"658765800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"661185000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"666628200\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"669047400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"674746200\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"676906200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"682608600\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"684768600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"690474600\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"692634600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"698077800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"700497000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"707405400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"708960600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"714058200\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"716218200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"723133800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"724689000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"729527400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"731946600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"738595800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"741015000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"745507800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"747667800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"753719400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"756138600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"760631400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"762791400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"770045400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"772464600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"776957400\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"779117400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"785169000\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"787588200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"792685800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"794845800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"801495000\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"803914200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"808579800\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"810567000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"816964200\\\",\\\"_amount\\\":\\\"0.004286\\\",\\\"_payable_date\\\":\\\"819037800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1344519000\\\",\\\"_amount\\\":\\\"0.3786\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1345123800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1352298600\\\",\\\"_amount\\\":\\\"0.3786\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1352989800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1360247400\\\",\\\"_amount\\\":\\\"0.3786\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1360852200\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1368106200\\\",\\\"_amount\\\":\\\"0.4357\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1368711000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1375968600\\\",\\\"_amount\\\":\\\"0.4357\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1376573400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1383748200\\\",\\\"_amount\\\":\\\"0.4357\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1384439400\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1391697000\\\",\\\"_amount\\\":\\\"0.4357\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1392301800\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1399555800\\\",\\\"_amount\\\":\\\"0.4700\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1400160600\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1407418200\\\",\\\"_amount\\\":\\\"0.4700\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1408023000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1415284200\\\",\\\"_amount\\\":\\\"0.4700\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1415889000\\\"},{\\\"_quote\\\":\\\"NASD:AAPL\\\",\\\"_type\\\":\\\"dividend\\\",\\\"_date\\\":\\\"1423146600\\\",\\\"_amount\\\":\\\"0.4700\\\",\\\"_amount_currency\\\":\\\"USD\\\",\\\"_payable_date\\\":\\\"1423751400\\\"}]\",related_items:[{ticker:\"INDEXDJX:.DJI\",name:\"Dow
+        Jones\",timezone_offset:-18000,is_index:true,different_market_session:false},{ticker:\"INDEXNASDAQ:.IXIC\",name:\"Nasdaq\",timezone_offset:-18000,is_index:true,different_market_session:false},{ticker:\"NASDAQ:SNDK\",name:\"SNDK\",timezone_offset:-18000,is_index:false},{ticker:\"NASDAQ:MSFT\",name:\"MSFT\",timezone_offset:-18000,is_index:false},{ticker:\"OTCMKTS:SSNNF\",name:\"SSNNF\",timezone_offset:-18000,is_index:false},{ticker:\"NYSE:HPQ\",name:\"HPQ\",timezone_offset:-18000,is_index:false},{ticker:\"NYSE:IBM\",name:\"IBM\",timezone_offset:-18000,is_index:false},{ticker:\"NYSE:VZ\",name:\"VZ\",timezone_offset:-18000,is_index:false},{ticker:\"OTCMKTS:HTCKF\",name:\"HTCKF\",timezone_offset:-18000,is_index:false}]}};\ngoogle.finance.data.numberFormat
+        = [{'threshold':1000000, 'symbol':'M'}, {'threshold':1000000000,'symbol':'B'},
+        {'threshold':1000000000000,'symbol':'T'}] ;\n_setStickyUrlParams(\"ei=Bs7vVOFd6rKwB7rUgLgI\");\nif
+        (_s_Store) {\n_s_Store._allowMatchAdvancedSearch = true;\nvar _fieldToDisplayNameMap
+        = {GrossMargin:\"Gross margin&nbsp;(%)\",Return1Week:\"1w return\",Return156Week:\"156w
+        return\",NextYearEPS:\"Next year EPS\",LTDebtToAssetsYear:\"LT debt/assets
+        (Recent&nbsp;yr)&nbsp;(%)\",RevenueGrowthRate5Years:\"5y revenue growth rate\",EarningsAfterTaxes:\"Earnings
+        after taxes\",DividendPerShare:\"Div per share\",MarketCap:\"Market cap\",NetProfitMarginPercent:\"Net
+        profit margin&nbsp;(%)\",Float:\"Float\",EarningsBeforeTaxes:\"Earnings before
+        taxes\",QuotePercChange:\"Quote change&nbsp;(%)\",TotalDebtToEquityYear:\"Total
+        debt/equity (Recent&nbsp;yr)&nbsp;(%)\",TotalDebtToCapitalQuarter:\"Total
+        debt/capital (Recent&nbsp;qtr)&nbsp;(%)\",LTDebtToCapitalQuarter:\"LT debt/capital
+        (Recent&nbsp;qtr)&nbsp;(%)\",EPSGrowthRate10Years:\"10y EPS growth rate\",Beta:\"Beta\",ReturnOnAssetsPTM:\"Return
+        on assets (PTM)&nbsp;(%)\",CapitalGain:\"Capital gain\",BetaDown:\"Beta down
+        from RAS\",IncomeDividend:\"Income dividend\",RevenueGrowthRate10Years:\"10y
+        revenue growth rate\",MarketCapShareBasis:\"Market cap share basis\",IAD:\"Div
+        rate indicated annual\",Return4Week:\"4w return\",Price150DayAverage:\"150d
+        avg price\",EPSGrowthRate5Years:\"5y EPS growth rate\",ReturnOnAssetsTTM:\"Return
+        on assets (TTM)&nbsp;(%)\",TotalDebtToAssetsYear:\"Total debt/assets (Recent&nbsp;yr)&nbsp;(%)\",Volume:\"Volume\",DividendRecentQuarter:\"Div
+        recent quarter\",CurrentRatioYear:\"Current ratio\",Low52Week:\"52w low\",ExpenseRatio:\"Expense
+        ratio\",Price13WeekPercChange:\"13w&nbsp;price change&nbsp;(%)\",Price1DayPercChange:\"1d&nbsp;price
+        change&nbsp;(%)\",ReturnOnEquity5Years:\"Return on equity (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",TotalDebtToCapitalYear:\"Total
+        debt/capital (Recent&nbsp;yr)&nbsp;(%)\",TotalDebtToAssetsQuarter:\"Total
+        debt/assets (Recent&nbsp;qtr)&nbsp;(%)\",NavChange:\"Nav change\",OperatingMargin:\"Operating
+        margin&nbsp;(%)\",DPSRecentYear:\"Div per share (Recent&nbsp;yr)\",ANI:\"Earnings
+        after taxes (Recent&nbsp;yr)\",AverageVolume:\"Average volume\",High52Week:\"52w
+        high\",Return13Week:\"13w return\",PriceToCashFlowPerShare:\"Price to cash
+        flow per share\",ATAXRATE:\"Tax rate (Recent&nbsp;yr)\",Price26WeekPercChange:\"26w&nbsp;price
+        change&nbsp;(%)\",QuoteChange:\"Quote change\",NetIncomeChangePerc:\"Net income
+        change&nbsp;(%)\",ReturnOnInvestment5Years:\"Return on investment (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",PE:\"P/E
+        ratio\",ReturnOnInvestmentYear:\"Return on investment (Recent&nbsp;yr)&nbsp;(%)\",Price200DayAverage:\"200d
+        avg price\",DividendNextQuarter:\"Div next quarter\",EBITD:\"EBITDA\",PriceYTDPercChange:\"YTD&nbsp;price
+        change&nbsp;(%)\",ReturnOnInvestmentTTM:\"Return on investment (TTM)&nbsp;(%)\",NavChangePercent:\"Nav
+        change&nbsp;(%)\",EBITDMargin:\"EBITDA margin&nbsp;(%)\",LTDebtToEquityQuarter:\"LT
+        debt/equity (Recent&nbsp;qtr)&nbsp;(%)\",BetaRAS:\"Beta from RAS\",PriceSales:\"Price
+        to sales\",NetAssets:\"Net assets\",ReturnOnEquityTTM:\"Return on equity (TTM)&nbsp;(%)\",CashPerShareYear:\"Cash/share\",ReturnOnAssets5Years:\"Return
+        on assets (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",ReturnDay:\"1d return\",Return52Week:\"52w
+        return\",ForwardPE1Year:\"1y fwd P/E\",NetIncomeGrowthRate5Years:\"5y net
+        income growth rate\",DividendYield:\"Div yield&nbsp;(%)\",Dividend:\"Div from
+        cash flow\",BetaUp:\"Beta up from RAS\",LTDebtToCapitalYear:\"LT debt/capital
+        (Recent&nbsp;yr)&nbsp;(%)\",nprice:\"Price from RAS\",Return260Week:\"260w
+        return\",ReturnOnEquityQuarter:\"Return on equity (Recent&nbsp;qtr)&nbsp;(%)\",ACOGS:\"Cost
+        of goods sold\",LTDebtToAssetsQuarter:\"LT debt/assets (Recent&nbsp;qtr)&nbsp;(%)\",PriceToBook:\"Price
+        to book\",LTDebtToEquityYear:\"LT debt/equity (Recent&nbsp;yr)&nbsp;(%)\",ReturnYTD:\"Return
+        YTD\",ReturnOnEquityYear:\"Return on equity (Recent&nbsp;yr)&nbsp;(%)\",ReturnOnAssetsQuarter:\"Return
+        on assets (Recent&nbsp;qtr)&nbsp;(%)\",TotalDebtToEquityQuarter:\"Total debt/equity
+        (Recent&nbsp;qtr)&nbsp;(%)\",NavPrior:\"Nav prior\",AINTCOV:\"Interest coverage\",EPS:\"EPS\",ReturnOnInvestmentQuarter:\"Return
+        on investment (Recent&nbsp;qtr)&nbsp;(%)\",QuoteLast:\"Last price\",Price50DayAverage:\"50d
+        avg price\",Price4WeekPercChange:\"4w&nbsp;price change&nbsp;(%)\",ReturnOnAssetsYear:\"Return
+        on assets (Recent&nbsp;yr)&nbsp;(%)\",MarketCapRAS:\"Mkt cap from RAS\",Price52WeekPercChange:\"52w&nbsp;price
+        change&nbsp;(%)\",ShortInterestRatioPercent:\"Short interest ratio&nbsp;(%)\",InstitutionalPercentHeld:\"Institutional
+        percent held\",BookValuePerShareYear:\"Book value/share\",ReturnOnEquityPTM:\"Return
+        on equity (PTM)&nbsp;(%)\"};\n_s_Store._asStore._addStrings(_fieldToDisplayNameMap);\n}\nif
+        (_s_Store) {\n_s_Store._allowMultipleInBox = true;\n}\ngoogle.finance.renderRecentQuotes();\n</script>\n<div
+        class=\"g-section g-tpl-right-1\">\n<div class=\"g-unit g-first\">\n<div class=g-c>\n<div
+        id=r-perf class=\"g-section g-tpl-67-33 g-split nwp\">\n<div id=r-perf-quotes
+        class=\"id-r-perf-quotes g-unit g-first\"></div>\n<div id=r-perf-charts class=\"id-r-perf-charts
+        g-unit\"></div>\n</div>\n<script>google.finance.renderRelativePerformance();</script>\n</div>\n</div>\n<div
+        class=g-unit>\n<div id=market-data-div class=\"id-market-data-div nwp g-floatfix\">\n<div
+        id=price-panel class=\"id-price-panel goog-inline-block\">\n<div>\n<span class=\"pr\">\n<span
+        id=\"ref_22144_l\">130.41</span>\n</span>\n<div class=\"id-price-change nwp\">\n<span
+        class=\"ch bld\"><span class=\"chg\" id=\"ref_22144_c\">+1.62</span>\n<span
+        class=\"chg\" id=\"ref_22144_cp\">(1.26%)</span>\n</span>\n</div>\n</div>\n<div>After
+        Hours:&nbsp;<span class=bld id=\"ref_22144_el\">130.23</span>\n<span id=\"ref_22144_ec\"
+        class=\"chr\">-0.18</span>\n<span id=\"ref_22144_ecp\" class=\"chr\">(-0.14%)</span>\n<div
+        id=\"ref_22144_elt\">Feb 26, 7:59PM EST&nbsp;&nbsp;<div class=mdata-dis>\n<span
+        class=dis-large><nobr>NASDAQ\nreal-time data -\n<a href=\"//www.google.com/help/stock_disclaimer.html#realtime\"
+        \ class=dis-large>Disclaimer</a>\n</nobr></span>\n<div>Currency in USD</div>\n</div>\n</div>\n</div>\n</div>\n<div
+        class=\"snap-panel-and-plusone\">\n<div class=\"snap-panel\">\n<table class=\"snap-data\">\n<tr>\n<td
+        class=\"key\"\n          data-snapfield=\"range\">Range\n</td>\n<td class=\"val\">126.61
+        - 130.87\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"range_52week\">52
+        week\n</td>\n<td class=\"val\">73.05 - 133.60\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n
+        \         data-snapfield=\"open\">Open\n</td>\n<td class=\"val\">128.79\n</td>\n</tr>\n<tr>\n<td
+        class=\"key\"\n          data-snapfield=\"vol_and_avg\">Vol / Avg.\n</td>\n<td
+        class=\"val\">91.29M/63.41M\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"market_cap\">Mkt
+        cap\n</td>\n<td class=\"val\">759.63B\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n
+        \         data-snapfield=\"pe_ratio\">P/E\n</td>\n<td class=\"val\">17.57\n</td>\n</tr></table><table
+        class=\"snap-data\">\n<tr>\n<td class=\"key\"\n          data-snapfield=\"latest_dividend-dividend_yield\">Div/yield\n</td>\n<td
+        class=\"val\">0.47/1.44\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"eps\">EPS\n</td>\n<td
+        class=\"val\">7.42\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"shares\">Shares\n</td>\n<td
+        class=\"val\">5.82B\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"beta\">Beta\n</td>\n<td
+        class=\"val\">0.86\n</td>\n</tr>\n<tr>\n<td class=\"key\"\n          data-snapfield=\"inst_own\">Inst.
+        own\n</td>\n<td class=\"val\">61%\n</td>\n</tr>\n</table>\n</div>\n<div class=\"plusone-box\"
+        id=\"plusone-box\">\n<g:plusone size=\"standard\" source=\"google:FINANCE\"></g:plusone></div>\n</div>\n</div>\n<script>google.finance.renderMarketData();</script>\n<div
+        id=\"sharebox-data\"\n     itemscope=\"itemscope\"\n     itemtype=\"http://schema.org/Intangible/FinancialQuote\">\n<meta
+        itemprop=\"name\"\n        content=\"Apple Inc.\" />\n<meta itemprop=\"url\"\n
+        \       content=\"https://www.google.com/finance?cid=22144\" />\n<meta itemprop=\"imageUrl\"\n
+        \       content=\"https://www.google.com/finance/chart?cht=g&q=NASDAQ:AAPL&tkr=1&p=1d&enddatetime=2015-02-26T16:01:23Z\"
+        />\n<meta itemprop=\"tickerSymbol\"\n        content=\"AAPL\" />\n<meta itemprop=\"exchange\"\n
+        \       content=\"NASDAQ\" />\n<meta itemprop=\"exchangeTimezone\"\n        content=\"America/New_York\"
+        />\n<meta itemprop=\"price\"\n        content=\"130.41\" />\n<meta itemprop=\"priceChange\"\n
+        \       content=\"+1.62\" />\n<meta itemprop=\"priceChangePercent\"\n        content=\"1.26\"
+        />\n<meta itemprop=\"isAfterHours\"\n        content=\"true\">\n<meta itemprop=\"afterHoursPrice\"\n
+        \       content=\"130.23\">\n<meta itemprop=\"afterHoursPriceChange\"\n        content=\"-0.18\">\n<meta
+        itemprop=\"afterHoursPriceChangePercent\"\n        content=\"-0.14\">\n<meta
+        itemprop=\"afterHoursQuoteTime\"\n        content=\"2015-02-27T00:59:59Z\">\n<meta
+        itemprop=\"quoteTime\"\n        content=\"2015-02-26T16:01:23Z\" />\n<meta
+        itemprop=\"dataSource\"\n        content=\"NASDAQ real-time data\" />\n<meta
+        itemprop=\"dataSourceDisclaimerUrl\"\n        content=\"//www.google.com/help/stock_disclaimer.html#realtime\"
+        />\n<meta itemprop=\"priceCurrency\"\n        content=\"USD\" />\n</div>\n</div>\n</div>\n<div
+        class=\"g-section g-tpl-right-1 sfe-break-top-5\">\n<div class=\"g-unit g-first\">\n<div
+        class=g-c><div>\n<div id=newstabsgroup>\n<div class=\"g-section g-tpl-25-75
+        g-split hdg\">\n<div class=\"g-unit g-first\">\n<h3>News</h3>\n</div>\n<div
+        class=g-unit>\n<div id=news-panel-tabs class=\"id-news-tabs\" style=\"display:none;\">\n<div
+        class=\"goog-tab goog-tab-selected\">\n<a id=news_tab_title class=t>\n<b class=t><b
+        class=t>Relevance</b></b></a>\n</div>\n<div class=goog-tab>\n<a id=news_by_date_tab_title
+        class=t>\n<b class=t><b class=t>Date</b></b></a>\n</div>\n</div>\n</div>\n</div>\n<div
+        id=tabs-clear class=\"id-tabs-clear goog-tab-bar-clear hide\"></div>\n<div
+        id=news_div_cont class=id-news_div_cont style=\"display:none;\"></div>\n<div
+        id=news_by_date_div_cont class=id-news_by_date_div_cont style=\"display:none;\"></div>\n</div>\n<div
+        class=\"sfe-section clf\" id=news-footer>\n<div id=news-sidebar-footer class=\"g-section
+        g-tpl-67-33 g-split\">\n<div class=\"g-unit g-first\">\n<a href=\"/finance/company_news?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\"
+        >All news for Apple Inc. &raquo;</a>\n</div><div class=g-unit>\n<a href=\"/finance/company_news?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI&output=rss\">Subscribe</a>\n<a
+        href=\"/finance/company_news?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI&output=rss\"><img
+        class=SP_subscribe src=\"/finance/s/m4C5KaofCbA/images/cleardot.gif\" alt=\"Subscribe.\"
+        id=rss\n        width=15 height=15 /></a>\n</div>\n</div>\n</div>\n</div>\n<div
+        id=ad class=\"sfe-break-top sfe-break-bottom-16\">\n<div id=ad-label\n                       class=\"id-ad-label
+        invisible\">Advertisement</div>\n<div id=ad-target class=\"id-ad-target ads-300-250\"></div>\n</div>\n<div
+        class=\"g-section g-tpl-25-75 g-split hdg\">\n<div class=\"g-unit g-first\">\n<h3>Events</h3>\n</div>\n<div
+        class=\"g-unit\">\n<div class=sfe-break-right-em>\n<img src=\"/finance/s/m4C5KaofCbA/images/cleardot.gif\"\n
+        \              width=16 height=16 class=SP_calendar id=calendar alt=\"\">\n<a
+        onclick=\"_GF_click('', 'add_ical', 'AAPL', '')\" href=\"//www.google.com/calendar/render?ei=Bs7vVOFd6rKwB7rUgLgI&hl=en&cid=http://www.google.com:80%2Ffinance%2Fevents%3Fq%3DNASDAQ%3AAAPL%26output%3Dical\"
+        >Add AAPL to my calendars</a>\n</div>\n</div>\n</div>\n<div class=\"events
+        sfe-section\">\n<div class=event>\n<div class=\"bld date\">Apr 21, 2015</div>\n<div>Q2
+        2015 Apple Inc Earnings Release (Estimated)\n- <span class=time>4:00PM EDT</span>
+        -\n<a onclick=\"_GF_click('', 'add_cal_evnt', 'AAPL', '')\" href= \"\n  //www.google.com/calendar/event?ei=Bs7vVOFd6rKwB7rUgLgI&hl=en&action=TEMPLATE&text=Q2+2015+Apple+Inc+Earnings+Release+(Estimated)&dates=20150421T200000Z/20150421T210000Z&sprop=finance\"
+        \ class=time>\n<img alt=\"Add to calendar\" src=\"/finance/s/m4C5KaofCbA/images/cleardot.gif\"\n
+        \               width=16 height=16 class=SP_calendar id=calendar>\n</a>\n</div>\n</div>\n<div
+        class=event>\n<div class=\"bld date\">Mar 10, 2015</div>\n<div>Apple Inc Annual
+        Shareholders Meeting\n- <span class=time>12:00PM EDT</span> -\n<a onclick=\"_GF_click('',
+        'add_cal_evnt', 'AAPL', '')\" href= \"\n  //www.google.com/calendar/event?ei=Bs7vVOFd6rKwB7rUgLgI&hl=en&action=TEMPLATE&text=Apple+Inc+Annual+Shareholders+Meeting&dates=20150310T160039Z/20150310T170039Z&sprop=finance\"
+        \ class=time>\n<img alt=\"Add to calendar\" src=\"/finance/s/m4C5KaofCbA/images/cleardot.gif\"\n
+        \               width=16 height=16 class=SP_calendar id=calendar>\n</a>\n</div>\n</div>\n<div
+        class=event>\n<div class=\"bld date\">Feb 17, 2015</div>\n<div>Apple Inc at
+        Mitsubishi UFJ Tech Tour-Silicon Valley\n</div>\n</div>\n<div class=event>\n<div
+        class=\"bld date\">Feb 10, 2015</div>\n<div>Apple Inc at Goldman Sachs Technology
+        &amp; Internet Conference\uFFFD\n</div>\n</div>\n<div class=event>\n<div class=\"bld
+        date\">Jan 27, 2015</div>\n<div>Q1 2015 Apple Inc Earnings Call\n</div>\n</div>\n<div
+        class=event>\n<div class=\"bld date\">Jan 27, 2015</div>\n<div>Q1 2015 Apple
+        Inc Earnings Release\n</div>\n</div>\n<table><tr>\n<td>\n<a href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.dailyfinance.com%2Fevent%2FAAPL%2Fusa&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNFR5a_FsVU691UMJZaxPXjLuQqyTQ\"
+        >\nMore events from DailyFinance &raquo;</a>&nbsp;\n&nbsp;&nbsp;<nobr>\n</td>\n</tr></table>\n</div>\n<div
+        class=hdg><h3>Key stats and ratios</h3></div>\n<div class=sfe-section>\n<table
+        class=\"quotes rgt nwp\" width=\"100%\">\n<thead><tr>\n<td width=50%>\n<td
+        class=colHeader>Q4 (Dec &#39;14)\n<td class=colHeader>2014\n</tr></thead>\n<tr>\n<td
+        class=\"lft name\">Net profit margin\n<td class=period>24.16%\n<td class=period>21.61%\n<tr>\n<td
+        class=\"lft name\">Operating margin\n<td class=period>32.50%\n<td class=period>28.72%\n<tr>\n<td
+        class=\"lft name\">EBITD margin\n<td class=period>-\n<td class=period>33.10%\n<tr>\n<td
+        class=\"lft name\">Return on average assets\n<td class=period>29.28%\n<td
+        class=period>18.01%\n<tr>\n<td class=\"lft name\">Return on average equity\n<td
+        class=period>61.56%\n<td class=period>33.61%\n<tr>\n<td class=\"lft name\">Employees\n<td
+        class=period>92,600\n<td class=period>-\n<tr>\n<td class=\"lft name\">CDP
+        Score\n<td class=period>-\n<td class=period>\n<a id=m-cdi href=//www.google.com/url?source=finance&q=https%3A%2F%2Fwww.cdp.net%2Fen-US%2FResults%2FPages%2FCompany-Responses.aspx%3Fcompany%3D865&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNEDlBqxo0ashnNXoaEN2-i-Zcm-MQ>99
+        A</a>\n</table>\n<div class=sfe-break-top>\n<a id=\"similar\" href=\"/finance/similar?q=NASDAQ:AAPL&amp;ei=Bs7vVOFd6rKwB7rUgLgI\"
+        >Screen stocks with similar metrics &raquo;</a></div>\n</div>\n<div class=hdg><h3>Address</h3></div>\n<div
+        class=sfe-section>1 Infinite Loop<br/>CUPERTINO, CA 95014-2083<br/>United
+        States\n- <a href=\"http://maps.google.com/maps?ei=Bs7vVOFd6rKwB7rUgLgI&q=1+Infinite+Loop+CUPERTINO+95014-2083+United+States%20(Apple+Inc.)\"
+        >Map</a><br/>+1-408-9961010 (Phone)<br>\n</div>\n<div class=hdg><h3>Website
+        links</h3></div>\n<div class=sfe-section><div class=item>\n<a id=fs-chome
+        href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.apple.com&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNG1DZYpE91z4JuJ4aBrARA-6KCZaw\"
+        >\nhttp://www.apple.com\n</a>\n</div>\n</div>\n<div class=hdg><h3>External
+        links</h3></div>\n<div class=sfe-section>\n<div class=item><a id=m-analyst\n
+        \                href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.marketwatch.com%2Ftools%2Fquotes%2Fsnapshot.asp%3Fsymb%3DAAPL%26pg%3Danalyst&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNFnHVrGI6jWLPPVGqU3m0d9baQ1Eg
+        >Analyst Estimates</a> - <font color=\"#6F6F6F\">MarketWatch</font></div>\n<div
+        class=item><a id=m-sec\n                 href=//www.google.com/url?source=finance&q=http%3A%2F%2Fgoogle.brand.edgar-online.com%3Fsym%3DAAPL&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNGvk4SfgqFmHSGu5hGqd6DyMS8p5Q
+        >SEC Filings</a> - <font color=\"#6F6F6F\">EDGAR Online</font></div>\n<div
+        class=item><a id=m-hold\n                 href=//www.google.com/url?source=finance&q=http%3A%2F%2Finvesting.money.msn.com%2Finvestments%2Finstitutional-ownership%3Fsymbol%3DAAPL&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHV54PG7NuZpZO33pvwXG-hGYVMSw
+        >Major Holders</a> - <font color=\"#6F6F6F\">MSN Money</font></div>\n<div
+        class=item><a id=m-research\n                 href=//www.google.com/url?source=finance&q=https%3A%2F%2Fcommerce.us.reuters.com%2Fpurchase%2FadvancedSearch.do%3Fsymbol%3DAAPL.O%26rpc%3D68&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNH8P3FoLruLON4fnQlbWS2CrEKZ2Q
+        >Research Reports</a> - <font color=\"#6F6F6F\">Reuters</font></div>\n<div
+        class=item><a id=m-transcripts\n                 href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.seekingalpha.com%2Ftranscripts%2Ffor%2FAAPL&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHvbPWfc2UoaDzSQkUd_M55eGughA
+        >Transcripts</a> - <font color=\"#6F6F6F\">SeekingAlpha</font></div>\n<div
+        class=item><a id=m-wiki\n                 href=//www.google.com/url?source=finance&q=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FApple_Computer&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHxUIdBgFLMPHEqo1cc8K8B2FfL_A
+        >About Company</a> - <font color=\"#6F6F6F\">Wikipedia</font></div>\n</div>\n</div>\n</div>\n<div
+        class=g-unit>\n<div id=top-section class=\"g-c sfe-break-right\">\n<div id=chart-section>\n<div>\n<div
+        id=compare-bar-wrapper class=id-compare-bar-wrapper>\n<div id=compare-bar
+        class=\"id-compare-bar g-section\">\n</div>\n</div>\n<div id=chart_anchor
+        class=id-chart_anchor></div>\n<div class=id-chart-footer>\n<div class=\"g-section
+        g-tpl-67-33 g-split sfe-break-bottom-8 overflow-floatfix\">\n<div class=\"g-unit
+        g-first\"><div class=\"id-chart-footer-links hide\">\n<span class=settings-link>Settings</span>
+        |\n<span class=technicals-link>Technicals</span> |\n<span style=\"white-space:nowrap;\">\n<img
+        width=\"16\" hight=\"9\" alt=\"Link to chart icon.\"\n            class=\"linktochart-img
+        SP_link\"\n            src=\"/finance/s/m4C5KaofCbA/images/cleardot.gif\"
+        />\n<span class=linktochart-link>\nLink to this view</span>\n</span>\n</div></div>\n<div
+        class=\"g-unit\">\n<span class=\"chart-dis\">Volume delayed by 15 mins.\n</span>\n</div>\n</div>\n</div>\n<script>\nvar
+        _minZoomDays = 1;\nvar _minZoomDaysNoIntraDay = _minZoomDays;\nvar _timeZoneOffset
+        = '-18000';\n_chartConfigObject = {};\n_chartConfigObject.hasVolume = _displayVolume;\n_chartConfigObject.hasNews
+        = true;\n_chartConfigObject.hasExtendedHours = true;\n_chartConfigObject.hasDefaultZoomSetting
+        = true;\n_chartConfigObject.hasVerticalScaleSetting = true;\n_chartConfigObject.displayVolume
+        = 'true';\n_chartConfigObject.displayNewsPins = 'true';\n_chartConfigObject.displayDividends
+        = 'true';\n_chartConfigObject.displaySplits = 'true';\n_chartConfigObject.displayExtendedHours
+        = 'false';\n_chartConfigObject.enableCustomDateEntry = true\n_chartConfigObject.defaultZoomDays
+        = '3';\n_chartConfigObject.snapping = false;\n_chartConfigObject.verticalScaling
+        = 'maximized';\n_chartConfigObject.sparklineType = 'dynamic';\n// set _minZoomDays
+        and _minZoomDaysNoIntraDay in each page before emit the\n// chart to passing
+        the value to chart, otherwise default value will be use.\n_chartConfigObject.minZoomDaysNormal
+        = _minZoomDays;\n_chartConfigObject.minZoomDaysNoIntraDay = _minZoomDaysNoIntraDay;\n_chartConfigObject.enableIndicator
+        = true;\n_chartConfigObject.companyId = '22144';\n_chartConfigObject.enableRealtimeChart
+        = true;\n_chartConfigObject.isMarketOpenState = 0;\n_chartConfigObject.stateRemainingMinutes
+        = 757;\n_chartConfigObject.delayedMinutes = 0;\n_chartConfigObject.delayedMinutes
+        = Math.max(\n_chartConfigObject.delayedMinutes,\n15);\n_chartConfigObject.enableChartTypeSetting
+        = true;\n_chartConfigObject.lineStyle = 'IntervalBasedLine';\n_chartConfigObject.defaultInterval
+        = '86400';\n_chartConfigObject.enableIndicatorSetting = true;\n_chartConfigObject.biasSetting
+        = '';\n_chartConfigObject.emaSetting = '';\n_chartConfigObject.kdjSetting
+        = '';\n_chartConfigObject.macdSetting = '';\n_chartConfigObject.rsiSetting
+        = '';\n_chartConfigObject.smaSetting = '';\n_chartConfigObject.vmaSetting
+        = '';\n_chartConfigObject.cciSetting = '';\n_chartConfigObject.williamsPercentRSetting
+        = '';\n_chartConfigObject.bollingerBandsSetting = '';\n_chartConfigObject.fastStochasticSetting
+        = '';\n_chartConfigObject.slowStochasticSetting = '';\n_chartConfigObject.expandButtonEnabled
+        = true;\n_chartConfigObject.companyCurrency = 'USD';\n_chartConfigObject.displayDividendsUnits
+        = 'true';\nvar configStringFromCookie = '{}';\nvar configString = unescape(configStringFromCookie);\nvar
+        obj = eval('(' + configString + ')');\nfor (var attribute in obj) {\n_chartConfigObject[attribute]
+        = obj[attribute];\n}\n_external_target = \"\";\n_emitFlashChart(\n\"/finance/s/Hf6-ggL7wbs/chart9.swf?hl=en&gl=us\",\n_ticker,
+        _chartConfigObject,\"http:\\x2F\\x2Fwww.google.com:80\");\n</script>\n<noscript>\n<div
+        id=image_chart style=\"display:block;\">\n<table>\n<tr><td class=itxt align=left>\n</td></tr>\n<tr><td>\n<img
+        alt=\"Chart.\" src=\"/finance/getchart?q=AAPL&x=NASD&p=3d&i=240&ei=Bs7vVOFd6rKwB7rUgLgI\"
+        width=\"500\" height=\"322\">\n</td></tr>\n</table>\n</div>\n</noscript>\n<div
+        style=\"height:1em;\"></div>\n</div>\n</div>\n<div id=ad2>\n<div id=ad2-label
+        class=invisible>Advertisement</div>\n<div id=ad2-target class=id-ad2-target></div>\n</div>\n</div>\n<div
+        class=\"g-c sfe-break-right\">\n<div id=related class=\"id-related hide\">\n<div
+        class=hdg>\n<div class=float>\n<h3>Related companies</h3>\n</div>\n</div>\n<div>\n<div
+        class=\"g-section g-tpl-50-50 g-split gf-control\">\n<div class=\"g-unit g-first\">\nShow:\n<select
+        id=related-select class=id-related-select>\n<option value=mrq >\nMost Recent
+        Quarter\n</option>\n<option value=mra selected>\nMost Recent Annual\n</option>\n</select>\n</div>\n<div
+        class=g-unit>\n<span class=\"id-related-edit-col linkbtn\">Add or remove columns</span>\n<button
+        class=id-related-save style=\"display:none\">Save changes</button>\n<button
+        class=id-related-cancel style=\"display:none\">Cancel</button>\n</div>\n</div>\n</div>\n<div
+        class=\"id-related-table gf-table-scroll-x jfk-scrollbar\"\n       style=\"padding-bottom:15px;\">\n</div>\n<div
+        class=sfe-section>\n<div class=\"g-section g-tpl-50-50 g-split\">\n<div class=\"g-unit
+        g-first\">Sector: <a id=sector href=\"?catid=us-TRBC:57&amp;ei=Bs7vVOFd6rKwB7rUgLgI\"
+        >Technology</a> &gt; Industry: <a href=\"?catid=us-TRBC:5710601010&amp;ei=Bs7vVOFd6rKwB7rUgLgI\"
+        >Computer Hardware - NEC</a>\n</div><div class=g-unit>\n<a href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.factset.com%2Fdata%2Ffactset_data%2Findustry-and-sector&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHju4RWntVqI6EtBw_T9Xx1u4NAcg\"
+        >More from FactSet &raquo;</a>\n</div>\n</div>\n</div>\n</div>\n<div id=reorder
+        class=id-reorder><div class=mid-reorder>\n<div id=blogs-section\n>\n</div>\n<div
+        id=summary-section\n>\n<div id=summary>\n<div class=hdg><div class=float>\n<h3>Description</h3></div>\n<div
+        class=\"gf-reorder-btn SP_menu_button\"></div>\n</div>\n<div class=sfe-section>\n<div
+        class=companySummary>\nApple Inc. (Apple) designs, manufactures and markets
+        mobile communication and media devices, personal computers, and portable digital
+        music players, and a variety of related software, services, peripherals, networking
+        solutions, and third-party digital content and applications. The Company's
+        products and services include iPhone, iPad, Mac, iPod, Apple TV, a portfolio
+        of consumer and professional software applications, the iOS and OS X operating
+        systems, iCloud, and a variety of accessory, service and support offerings.
+        The Company also delivers digital content and applications through the iTunes
+        Store, App StoreSM, iBookstoreSM, and Mac App Store. The Company distributes
+        its products worldwide through its retail stores, online stores, and direct
+        sales force, as well as through third-party cellular network carriers, wholesalers,
+        retailers, and value-added resellers. In February 2012, the Company acquired
+        app-search engine Chomp.\n<div class=sfe-break-top>\n<a id=m-rprofile href=//www.google.com/url?source=finance&q=http%3A%2F%2Fstocks.us.reuters.com%2Fstocks%2FfullDescription.asp%3Frpc%3D66%26symbol%3DAAPL.O&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHnPuMhgkhgDpDdroQE5DF2VIleWw
+        >\nMore from Reuters &raquo;\n</a></div>\n</div>\n</div>\n</div>\n</div><script>_tck('aft');</script>\n<div
+        id=mgmt-section\n>\n<div id=management style=\"margin-bottom:1.5em;\">\n<div
+        class=hdg><div class=float>\n<h3>Officers and directors</h3></div>\n<div class=\"gf-reorder-btn
+        SP_menu_button\"></div>\n</div>\n<div class=sfe-section>\n<table class=id-mgmt-table
+        width=100%><tbody>\n<tr >\n<td class=\"p linkbtn\">Arthur D. Levinson Ph.D.\n<td
+        class=i>\n<td class=t>Independent Chairman of the Board\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 64<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D156560&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNF0VmFfDu0XJbuPAourc79HL1O5Tw
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Timothy D. Cook\n<td class=i>\n<td
+        class=t>Chief Executive Officer, Director\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 54<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D88090&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNGOOxEaPrsR2UTHHgQTK76kQlhoDg
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<a
+        class=e-t href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fbiz.yahoo.com%2Ft%2F15%2F6289.html&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNF5DkTxou8PCoHBIynCfadHMJmojQ\"
+        >Trading&nbsp;Activity</a>&nbsp;-&nbsp;<font color=\"#606060\">Yahoo&nbsp;Finance</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Luca Maestri\n<td class=i>\n<td class=t>Chief
+        Financial Officer, Senior Vice President, Principal Accounting Officer\n</tr>\n<tr
+        style=\"display:none;\">\n<td><img width=1 height=1 border=0 align=right>\n<td
+        class=i>\n<td class=t>\nAge: 51<br>\n<a class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D2486890&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNGfu8mqeff3T60xhrTRHoilhx8WNA
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">D. Bruce Sewell\n<td class=i>\n<td
+        class=t>Senior Vice President, General Counsel, Secretary\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 56<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D1396053&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNE8VOGiJskMwwV6vFm2rsONrkYEeg
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Philip W. Schiller\n<td class=i>\n<td
+        class=t>Senior Vice President - Worldwide Marketing\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 54<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D346990&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHgU_4LA2NJRlUcmIw-j7v1uvdYYw
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<a
+        class=e-t href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fbiz.yahoo.com%2Ft%2F10%2F6289.html&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHIpZE09Owv1QsByv1AJoVGNi9fvw\"
+        >Trading&nbsp;Activity</a>&nbsp;-&nbsp;<font color=\"#606060\">Yahoo&nbsp;Finance</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Angela J. Ahrendts\n<td class=i>\n<td
+        class=t>Senior Vice President - Retail and Online Stores\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 54<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D2581904&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNHcr2TIrsMSxmaBpLiC1512mlOkmg
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Eduardo H. Cue\n<td class=i>\n<td
+        class=t>Senior Vice President - Internet Software and Services\n</tr>\n<tr
+        style=\"display:none;\">\n<td><img width=1 height=1 border=0 align=right>\n<td
+        class=i>\n<td class=t>\nAge: 50<br>\n<a class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D1677766&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNFDHRg8pYoOukT-wvMWeKd7MWWTFQ
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Craig Federighi\n<td class=i>\n<td
+        class=t>Senior Vice President - Software Engineering\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 45<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D1768087&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNFiyBa7Czuxa7T24yZ1Jl_SyQtZ0g
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Daniel Riccio\n<td class=i>\n<td
+        class=t>Senior Vice President - Hardware Engineering\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 52<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D1747873&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNECI9LtXUbh9K6i2_KbUrKLHImCXw
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n<tr
+        class=grey-top>\n<td class=\"p linkbtn\">Jeffrey E. Williams\n<td class=i>\n<td
+        class=t>Senior Vice President - Operations\n</tr>\n<tr style=\"display:none;\">\n<td><img
+        width=1 height=1 border=0 align=right>\n<td class=i>\n<td class=t>\nAge: 51<br>\n<a
+        class=e-p href=//www.google.com/url?source=finance&q=http%3A%2F%2Fwww.reuters.com%2Ffinance%2Fstocks%2FofficerProfile%3Fsymbol%3DAAPL.O%26officerId%3D1541701&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNF4ctqNczb6WeQpT6jnDTpC1DllBQ
+        >\nBio&nbsp;&amp;&nbsp;Compensation\n</a>&nbsp;-&nbsp;<font color=\"#606060\">Reuters</font><br>\n</table>\n<div
+        class=gb>\n<a href=\"//www.google.com/url?source=finance&q=http%3A%2F%2Fstocks.us.reuters.com%2Fstocks%2FofficersDirectors.asp%3Fsymbol%3DAAPL.O%26WTmodLOC%3DC4-Officers-5&ei=Bs7vVOFd6rKwB7rUgLgI&usg=AFQjCNH_0QgF-P3v8aaZgKgVGGZZR_dm2A\"
+        >\nFull list on Reuters &raquo;</a></div>\n</div>\n</div>\n</div>\n</div></div>\n</div>\n</div>\n</div>\n</div>\n</div></div></div></div></div><div
+        id=gf-foot><div id=fjfe-edition-links class=fjfe-footer-links>Google Finance
+        Beta available in: <a href=\"http://www.google.com.hk/finance?ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-edition-link\">Hong Kong</a> - <a href=\"http://www.google.ca/finance?ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-edition-link\">Canada</a> - <a href=\"http://www.google.com/finance?ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-edition-link\">U.S.</a> - <a href=\"http://www.google.com.hk/finance?hl=zh-CN&ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-edition-link\">China</a> - <a href=\"http://www.google.co.uk/finance?ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-edition-link\">U.K.</a></div><p class=fjfe-footer-disclaimer>Information
+        is provided \"as is\" and solely for informational purposes, not for trading
+        purposes or advice, and may be delayed.<br>To see all exchange delays, please
+        <a href=\"http://www.google.com/intl/en/googlefinance/disclaimer/?ei=Bs7vVOFd6rKwB7rUgLgI\"
+        class=\"fjfe-secondary-link fjfe-no-sticky-params\"> see disclaimer</a>.</p><div
+        class=fjfe-footer-links>&copy;2015 Google - <a href=\"http://www.google.com?hl=en&ei=Bs7vVOFd6rKwB7rUgLgI\">Google
+        Home</a> - <a href=\"http://googlefinanceblog.blogspot.com?ei=Bs7vVOFd6rKwB7rUgLgI\">Blog</a>
+        - <a href=\"http://support.google.com/finance?hl=en&ei=Bs7vVOFd6rKwB7rUgLgI\">Help</a>
+        - <a href=\"http://support.google.com/finance?ctx=report&hl=en&ei=Bs7vVOFd6rKwB7rUgLgI&exch=NASDAQ&sym=AAPL\">Report
+        a Problem</a> - <a href=\"http://www.google.com/intl/en/policies/privacy/?ei=Bs7vVOFd6rKwB7rUgLgI\">Privacy
+        Policy</a> - <a href=\"http://www.google.com/intl/en/policies/terms/?ei=Bs7vVOFd6rKwB7rUgLgI\">Terms
+        of Service</a></div></div>\n<script>\nvar _chartConfigObject;\nvar _cleardot;\nvar
+        _companyName;\nvar _eventid = 'Bs7vVOFd6rKwB7rUgLgI';\nvar _expid;\nvar _external_target;\nvar
+        _localDomain = 'www.google.com';\nvar _minZoomDays;\nvar _minZoomDaysNoIntraDay;\nvar
+        _prefs;\nvar _ticker;\nvar _urlSuffix;\n_setStickyUrlParams(\"ei=Bs7vVOFd6rKwB7rUgLgI\");\nif
+        (_s_Store) {\n_s_Store._allowMatchAdvancedSearch = true;\nvar _fieldToDisplayNameMap
+        = {GrossMargin:\"Gross margin&nbsp;(%)\",Return1Week:\"1w return\",Return156Week:\"156w
+        return\",NextYearEPS:\"Next year EPS\",LTDebtToAssetsYear:\"LT debt/assets
+        (Recent&nbsp;yr)&nbsp;(%)\",RevenueGrowthRate5Years:\"5y revenue growth rate\",EarningsAfterTaxes:\"Earnings
+        after taxes\",DividendPerShare:\"Div per share\",MarketCap:\"Market cap\",NetProfitMarginPercent:\"Net
+        profit margin&nbsp;(%)\",Float:\"Float\",EarningsBeforeTaxes:\"Earnings before
+        taxes\",QuotePercChange:\"Quote change&nbsp;(%)\",TotalDebtToEquityYear:\"Total
+        debt/equity (Recent&nbsp;yr)&nbsp;(%)\",TotalDebtToCapitalQuarter:\"Total
+        debt/capital (Recent&nbsp;qtr)&nbsp;(%)\",LTDebtToCapitalQuarter:\"LT debt/capital
+        (Recent&nbsp;qtr)&nbsp;(%)\",EPSGrowthRate10Years:\"10y EPS growth rate\",Beta:\"Beta\",ReturnOnAssetsPTM:\"Return
+        on assets (PTM)&nbsp;(%)\",CapitalGain:\"Capital gain\",BetaDown:\"Beta down
+        from RAS\",IncomeDividend:\"Income dividend\",RevenueGrowthRate10Years:\"10y
+        revenue growth rate\",MarketCapShareBasis:\"Market cap share basis\",IAD:\"Div
+        rate indicated annual\",Return4Week:\"4w return\",Price150DayAverage:\"150d
+        avg price\",EPSGrowthRate5Years:\"5y EPS growth rate\",ReturnOnAssetsTTM:\"Return
+        on assets (TTM)&nbsp;(%)\",TotalDebtToAssetsYear:\"Total debt/assets (Recent&nbsp;yr)&nbsp;(%)\",Volume:\"Volume\",DividendRecentQuarter:\"Div
+        recent quarter\",CurrentRatioYear:\"Current ratio\",Low52Week:\"52w low\",ExpenseRatio:\"Expense
+        ratio\",Price13WeekPercChange:\"13w&nbsp;price change&nbsp;(%)\",Price1DayPercChange:\"1d&nbsp;price
+        change&nbsp;(%)\",ReturnOnEquity5Years:\"Return on equity (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",TotalDebtToCapitalYear:\"Total
+        debt/capital (Recent&nbsp;yr)&nbsp;(%)\",TotalDebtToAssetsQuarter:\"Total
+        debt/assets (Recent&nbsp;qtr)&nbsp;(%)\",NavChange:\"Nav change\",OperatingMargin:\"Operating
+        margin&nbsp;(%)\",DPSRecentYear:\"Div per share (Recent&nbsp;yr)\",ANI:\"Earnings
+        after taxes (Recent&nbsp;yr)\",AverageVolume:\"Average volume\",High52Week:\"52w
+        high\",Return13Week:\"13w return\",PriceToCashFlowPerShare:\"Price to cash
+        flow per share\",ATAXRATE:\"Tax rate (Recent&nbsp;yr)\",Price26WeekPercChange:\"26w&nbsp;price
+        change&nbsp;(%)\",QuoteChange:\"Quote change\",NetIncomeChangePerc:\"Net income
+        change&nbsp;(%)\",ReturnOnInvestment5Years:\"Return on investment (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",PE:\"P/E
+        ratio\",ReturnOnInvestmentYear:\"Return on investment (Recent&nbsp;yr)&nbsp;(%)\",Price200DayAverage:\"200d
+        avg price\",DividendNextQuarter:\"Div next quarter\",EBITD:\"EBITDA\",PriceYTDPercChange:\"YTD&nbsp;price
+        change&nbsp;(%)\",ReturnOnInvestmentTTM:\"Return on investment (TTM)&nbsp;(%)\",NavChangePercent:\"Nav
+        change&nbsp;(%)\",EBITDMargin:\"EBITDA margin&nbsp;(%)\",LTDebtToEquityQuarter:\"LT
+        debt/equity (Recent&nbsp;qtr)&nbsp;(%)\",BetaRAS:\"Beta from RAS\",PriceSales:\"Price
+        to sales\",NetAssets:\"Net assets\",ReturnOnEquityTTM:\"Return on equity (TTM)&nbsp;(%)\",CashPerShareYear:\"Cash/share\",ReturnOnAssets5Years:\"Return
+        on assets (5&nbsp;yr&nbsp;avg)&nbsp;(%)\",ReturnDay:\"1d return\",Return52Week:\"52w
+        return\",ForwardPE1Year:\"1y fwd P/E\",NetIncomeGrowthRate5Years:\"5y net
+        income growth rate\",DividendYield:\"Div yield&nbsp;(%)\",Dividend:\"Div from
+        cash flow\",BetaUp:\"Beta up from RAS\",LTDebtToCapitalYear:\"LT debt/capital
+        (Recent&nbsp;yr)&nbsp;(%)\",nprice:\"Price from RAS\",Return260Week:\"260w
+        return\",ReturnOnEquityQuarter:\"Return on equity (Recent&nbsp;qtr)&nbsp;(%)\",ACOGS:\"Cost
+        of goods sold\",LTDebtToAssetsQuarter:\"LT debt/assets (Recent&nbsp;qtr)&nbsp;(%)\",PriceToBook:\"Price
+        to book\",LTDebtToEquityYear:\"LT debt/equity (Recent&nbsp;yr)&nbsp;(%)\",ReturnYTD:\"Return
+        YTD\",ReturnOnEquityYear:\"Return on equity (Recent&nbsp;yr)&nbsp;(%)\",ReturnOnAssetsQuarter:\"Return
+        on assets (Recent&nbsp;qtr)&nbsp;(%)\",TotalDebtToEquityQuarter:\"Total debt/equity
+        (Recent&nbsp;qtr)&nbsp;(%)\",NavPrior:\"Nav prior\",AINTCOV:\"Interest coverage\",EPS:\"EPS\",ReturnOnInvestmentQuarter:\"Return
+        on investment (Recent&nbsp;qtr)&nbsp;(%)\",QuoteLast:\"Last price\",Price50DayAverage:\"50d
+        avg price\",Price4WeekPercChange:\"4w&nbsp;price change&nbsp;(%)\",ReturnOnAssetsYear:\"Return
+        on assets (Recent&nbsp;yr)&nbsp;(%)\",MarketCapRAS:\"Mkt cap from RAS\",Price52WeekPercChange:\"52w&nbsp;price
+        change&nbsp;(%)\",ShortInterestRatioPercent:\"Short interest ratio&nbsp;(%)\",InstitutionalPercentHeld:\"Institutional
+        percent held\",BookValuePerShareYear:\"Book value/share\",ReturnOnEquityPTM:\"Return
+        on equity (PTM)&nbsp;(%)\"};\n_s_Store._asStore._addStrings(_fieldToDisplayNameMap);\n}\nif
+        (_s_Store) {\n_s_Store._allowMultipleInBox = true;\n}\n_regOnLoad(onCompanyLoad);\n</script>\n</div></div><script>var
+        googlefinance = {i: [\"f.b.id\",\"\",null,0,\"\",0,null,[\"f.b.cf\",\"_dYx35LbwAo.en_US.\",0],[],0,[],\"Bs7vVOFd6rKwB7rUgLgI\",\"www.google.com\",\"a49P3G1bNcCl7C54AAoF7HVRm98:1425001990236\",1]};
+        GF_domReady = 1;</script></body></html>"}
+    headers:
+      accept-ranges: [none]
+      alternate-protocol: ['443:quic,p=0.08']
+      cache-control: ['private, max-age=0']
+      content-type: [text/html; charset=utf-8]
+      date: ['Fri, 27 Feb 2015 01:53:10 GMT']
+      expires: ['Fri, 27 Feb 2015 01:53:10 GMT']
+      p3p: ['CP="This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&answer=151657
+          for more info."']
+      server: [GSE]
+      set-cookie: ['NID=67=khfkeSEZgjLG8y6G8TEGY623HvfZP2eKAKhLSvsvwA2D2KKR6kUARKlm1E6-zy_9JVGxAcaMsEU3h9g3tFSFbHdL2rBptjURp3SmVjZWY70Z5JaTibvwk15Wy3kzg74U;Domain=.google.com;Path=/;Expires=Sat,
+          29-Aug-2015 01:53:10 GMT;HttpOnly']
+      transfer-encoding: [chunked]
+      vary: [Accept-Encoding]
+      x-content-type-options: [nosniff]
+      x-frame-options: [SAMEORIGIN]
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
