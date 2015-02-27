@@ -33,5 +33,5 @@ def on_message(msg, server):
     if not match:
         return
 
-    prices = [stockprice(ticker[1:]) for ticker in match]
+    prices = [stockprice(ticker[1:].encode("utf8")) for ticker in match]
     return "\n".join(p for p in prices if p)
