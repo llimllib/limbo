@@ -17,7 +17,6 @@ def image(searchterm, unsafe=False):
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
     images = re.findall(r'imgurl.*?(http.*?)\\', result)
-    print [unquote(u) for u in images]
     shuffle(images)
 
     if images:
