@@ -39,4 +39,4 @@ def on_message(msg, server):
         return
 
     searchterm = match[0]
-    return wiki(searchterm)
+    return wiki(searchterm.encode("utf8"))
