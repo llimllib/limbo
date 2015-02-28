@@ -28,4 +28,4 @@ def on_message(msg, server):
         return
 
     searchterm = match[0]
-    return youtube(searchterm)
+    return youtube(searchterm.encode("utf8"))
