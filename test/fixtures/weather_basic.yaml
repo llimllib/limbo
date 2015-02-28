@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.5.2 CPython/2.7.6 Darwin/14.1.0]
+    method: GET
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Oahu%2C%20HI&cnt=5&mode=json&units=imperial
+  response:
+    body: {string: !!python/unicode '{"cod":"200","message":0.1824,"city":{"id":"5847411","name":"Kahului","coord":{"lon":-156.468,"lat":20.8781},"country":"United
+        States of America","population":0},"cnt":5,"list":[{"dt":1425074400,"temp":{"day":75.38,"min":71.98,"max":75.38,"night":71.98,"eve":74.23,"morn":75.38},"pressure":1015.76,"humidity":89,"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04n"}],"speed":3.11,"deg":9,"clouds":88},{"dt":1425160800,"temp":{"day":69.64,"min":69.51,"max":71.01,"night":69.51,"eve":71.01,"morn":70.65},"pressure":1018.02,"humidity":100,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":7.47,"deg":357,"clouds":92,"rain":4.5},{"dt":1425247200,"temp":{"day":70.41,"min":67.48,"max":72.3,"night":70.12,"eve":71.87,"morn":68.52},"pressure":1019.37,"humidity":100,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":10.63,"deg":67,"clouds":88,"rain":5},{"dt":1425333600,"temp":{"day":71.91,"min":69.24,"max":73.26,"night":69.96,"eve":71.74,"morn":69.24},"pressure":1018.91,"humidity":100,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":11.38,"deg":85,"clouds":88,"rain":3.5},{"dt":1425420000,"temp":{"day":75.69,"min":72.75,"max":75.69,"night":72.75,"eve":73.4,"morn":73.72},"pressure":1021.04,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":15.94,"deg":77,"clouds":61,"rain":3.4}]}
+
+'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-methods: ['GET, POST']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-type: [application/json; charset=utf-8]
+      date: ['Sat, 28 Feb 2015 02:37:16 GMT']
+      server: [nginx]
+      transfer-encoding: [chunked]
+      x-source: [back]
+    status: {code: 200, message: OK}
+version: 1

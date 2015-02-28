@@ -1,0 +1,32 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.5.2 CPython/2.7.6 Darwin/14.1.0]
+    method: GET
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Proven%C3%A7al&cnt=5&mode=json&units=imperial
+  response:
+    body: {string: !!python/unicode '{"cod":"200","message":0.7589,"city":{"id":0,"name":"Robeline","coord":{"lon":-93.20179,"lat":31.65279},"country":"United
+        States of America","population":0},"cnt":5,"list":[{"dt":1425060000,"temp":{"day":31.95,"min":29.14,"max":31.95,"night":29.14,"eve":31.95,"morn":31.95},"pressure":1036.84,"humidity":53,"weather":[{"id":600,"main":"Snow","description":"light
+        snow","icon":"13d"}],"speed":6.78,"deg":50,"clouds":92,"snow":0.1},{"dt":1425146400,"temp":{"day":42.31,"min":26.8,"max":49.59,"night":39.4,"eve":47.07,"morn":26.8},"pressure":1037.3,"humidity":46,"weather":[{"id":800,"main":"Clear","description":"sky
+        is clear","icon":"01d"}],"speed":5.75,"deg":74,"clouds":0,"snow":0.03},{"dt":1425232800,"temp":{"day":42.42,"min":37.51,"max":48.9,"night":47.66,"eve":48.9,"morn":37.51},"pressure":1032.5,"humidity":99,"weather":[{"id":502,"main":"Rain","description":"heavy
+        intensity rain","icon":"10d"}],"speed":4.58,"deg":61,"clouds":92,"rain":24.5},{"dt":1425319200,"temp":{"day":55.87,"min":47.52,"max":66,"night":66,"eve":58.98,"morn":47.52},"pressure":1027.7,"humidity":100,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":3.8,"deg":76,"clouds":92,"rain":6},{"dt":1425405600,"temp":{"day":73.13,"min":67.15,"max":74.01,"night":71.51,"eve":74.01,"morn":67.15},"pressure":1015.89,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":10.48,"deg":196,"clouds":78,"rain":1.71}]}
+
+'}
+    headers:
+      access-control-allow-credentials: ['true']
+      access-control-allow-methods: ['GET, POST']
+      access-control-allow-origin: ['*']
+      connection: [keep-alive]
+      content-type: [application/json; charset=utf-8]
+      date: ['Sat, 28 Feb 2015 02:37:17 GMT']
+      server: [nginx]
+      transfer-encoding: [chunked]
+      x-source: [back]
+    status: {code: 200, message: OK}
+version: 1
