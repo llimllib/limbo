@@ -42,4 +42,4 @@ def on_message(msg, server):
         return
 
     searchterm = match[0]
-    return weather(searchterm)
+    return weather(searchterm.encode("utf8"))
