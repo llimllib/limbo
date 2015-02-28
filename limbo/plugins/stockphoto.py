@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def stock(searchterm):
+    searchterm = quote(searchterm)
     url = "http://www.shutterstock.com/cat.mhtml?searchterm={0}&search_group=&lang=en&language=en&search_source=search_form&version=llv1".format(searchterm)
     r = requests.get(url)
     soup = BeautifulSoup(r.text)
@@ -22,5 +23,4 @@ def on_message(msg, server):
     if not match:
         return
 
-    searchterm = quote(match[0])
-    return stock(searchterm)
+    return stock(match[0].encode("utf8"))
