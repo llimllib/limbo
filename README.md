@@ -6,11 +6,10 @@
 ## Installation
 
 1. Clone the repo
-2. `pip install -r requirements.txt`
-3. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
-4. export SLACK_TOKEN="your-api-token"
-5. make run (or make repl for local testing)
-6. Invite Limbo into any channels you want it in, or just message it in #general. Try typing `!gif dubstep cat` to test it out
+2. [Create a bot user](https://my.slack.com/services/new/bot) if you don't have one yet, and copy the API Token
+3. export SLACK_TOKEN="your-api-token"
+4. make run (or make repl for local testing)
+5. Invite Limbo into any channels you want it in, or just message it in #general. Try typing `!gif dubstep cat` to test it out
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
