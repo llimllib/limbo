@@ -10,7 +10,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-required = ['requests>=2.5', 'websocket-client==0.22.0', 'importlib>=1.0.3', 'beautifulsoup4==4.3.2']
+required = ['requests>=2.5', 'websocket-client==0.25.0', 'importlib>=1.0.3', 'beautifulsoup4==4.3.2']
 packages = ['limbo', 'limbo.slackclient', 'limbo.plugins']
 
 try:
