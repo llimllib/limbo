@@ -21,95 +21,19 @@ You can use the `!help` command to print out all available commands and a brief 
 
 These are the current default plugins:
 
-* [calc](https://github.com/llimllib/limbo#calc)
-* [emoji](https://github.com/llimllib/limbo#emoji)
-* [flip](https://github.com/llimllib/limbo#flip)
-* [gif](https://github.com/llimllib/limbo#gif)
-* [google](https://github.com/llimllib/limbo#google-or-search)
-* [help](https://github.com/llimllib/limbo#help)
-* [image](https://github.com/llimllib/limbo#image)
-* [map](https://github.com/llimllib/limbo#map)
-* [stock](https://github.com/llimllib/limbo#stock)
-* [stockphoto](https://github.com/llimllib/limbo#stockphoto)
-* [weather](https://github.com/llimllib/limbo#weather)
-* [wiki](https://github.com/llimllib/limbo#wiki)
-* [youtube](https://github.com/llimllib/limbo#youtube)
-
-### calc
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/calc.png)
-
----
-
-### emoji
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/emoji.png)
-
----
-
-### flip
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/flip.png)
-
----
-
-### gif
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/gif.png)
-
----
-
-### google (or search)
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/google.png)
-
----
-
-### help
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/help.png)
-
----
-
-### image
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/image.png)
-
----
-
-### map
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/map.png)
-
----
-
-### stock
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/stock.png)
-
----
-
-### stockphoto
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/stockphoto.png)
-
----
-
-### weather
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/weather.png)
-
----
-
-### wiki
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/wiki.png)
-
----
-
-### youtube
-
-![](https://raw.githubusercontent.com/llimllib/limbo/master/docs/youtube.png)
+* [calc](https://github.com/llimllib/limbo/wiki/Calc-Plugin)
+* [emoji](https://github.com/llimllib/limbo/wiki/Emoji-Plugin)
+* [flip](https://github.com/llimllib/limbo/wiki/Flip-Plugin)
+* [gif](https://github.com/llimllib/limbo/wiki/Gif-Plugin)
+* [google](https://github.com/llimllib/limbo/wiki/Google-Plugin)
+* [help](https://github.com/llimllib/limbo/wiki/Help-Plugin)
+* [image](https://github.com/llimllib/limbo/wiki/Image-Plugin)
+* [map](https://github.com/llimllib/limbo/wiki/Map-Plugin)
+* [stock](https://github.com/llimllib/limbo/wiki/Stock-Plugin)
+* [stockphoto](https://github.com/llimllib/limbo/wiki/Stock-Photo-Plugin)
+* [weather](https://github.com/llimllib/limbo/wiki/Weather-Plugin)
+* [wiki](https://github.com/llimllib/limbo/wiki/Wiki-Plugin)
+* [youtube](https://github.com/llimllib/limbo/wiki/Youtube-Plugin)
 
 ---
 
