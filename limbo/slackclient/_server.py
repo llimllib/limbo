@@ -4,7 +4,7 @@ from _channel import Channel
 from _util import SearchList
 from websocket import create_connection
 import json
-
+from ssl import SSLError
 
 class Server(object):
     def __init__(self, token, connect=True):
@@ -84,7 +84,10 @@ class Server(object):
         while True:
             try:
                 data += "{0}\n".format(self.websocket.recv())
-            except:
+            # The loop terminates with an SSLError. When there is a broken
+            # pipe, the loop terminates in exactly the same way,
+            # unfortunately.
+            except SSLError as e:
                 return data.rstrip()
 
     def attach_channel(self, name, id, members=[]):
