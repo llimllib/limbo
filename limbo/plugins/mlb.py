@@ -41,6 +41,10 @@ schedules = {
     'washington nationals': 'http://espn.go.com/mlb/team/schedule/_/name/wsh/washington-nationals'
 }
 
+def fmtdatetime(dt):
+    hour = datetime.strftime(dt, "%I").lstrip('0')
+    return datetime.strftime(dt, "%m/%d {0}%p".format(hour))
+
 def schedule(query):
     url = None
     query = query.lower()
@@ -61,20 +65,24 @@ def schedule(query):
         if "OPPONENT" in row.text: continue
 
         dt, opp, time = [t.text for t in row.findAll("td")][0:3]
+        yr = datetime.strftime(datetime.now(), "%Y")
         try:
-            dt = datetime.strptime("{0} {1}".format(dt, time), "%a, %b %d %I:%M %p")
+            dt = datetime.strptime("{0} {1} {2}".format(dt, yr, time), "%a, %b %d %Y %I:%M %p")
         except ValueError:
             # some games are TBA
             dt = datetime.strptime(dt, "%a, %b %d")
-        hour = datetime.strftime(dt, "%I").lstrip('0')
-        dt = datetime.strftime(dt, "%m/%d {0}%p".format(hour))
         # away games come as @, which is fine. Home games should have the
         # leading "vs" stripped
         opp = opp.lstrip("vs")
         games.append((dt, opp))
 
-    next5 = ["{0} {1}".format(dt, opp) for dt, opp in games[0:3]]
-    return "{0}: ".format(team.title()) + " :baseball: ".join(next5)
+    next3 = [
+        "{0} {1}".format(fmtdatetime(dt), opp)
+        for dt, opp
+        in games
+        if dt > datetime.now()
+    ][:3]
+    return "{0}: ".format(team.title()) + " :baseball: ".join(next3)
 
 def on_message(msg, server):
     text = msg.get("text", "")
