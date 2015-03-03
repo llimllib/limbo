@@ -126,14 +126,22 @@ def init_config():
     return config
 
 def loop(server):
-    while True:
-        events = server.slack.rtm_read()
-        for event in events:
-            logger.debug("got {0}".format(event.get("type", event)))
-            response = handle_event(event, server)
-            if response:
-                server.slack.rtm_send_message(event["channel"], response)
-        time.sleep(1)
+    try:
+        while True:
+            # This will cause a broken pipe to reveal itself
+            server.slack.server.ping()
+
+            events = server.slack.rtm_read()
+            for event in events:
+                logger.debug("got {0}".format(event.get("type", event)))
+                response = handle_event(event, server)
+                if response:
+                    server.slack.rtm_send_message(event["channel"], response)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        if os.environ.get("LIMBO_DEBUG"):
+            import ipdb; ipdb.set_trace()
+        raise
 
 def relevant_environ():
     return dict((key, val)
