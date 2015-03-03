@@ -178,6 +178,8 @@ def main(args):
         init_log(config)
         return repl(FakeServer(), args)
     elif args.command is not None:
+        config = init_config()
+        init_log(config)
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
