@@ -26,9 +26,14 @@ def test_nonexistent():
 def test_unicode():
     with vcr.use_cassette('test/fixtures/stock_unicode.yaml'):
         ret = on_message({"text": u"$äapl"}, None)
-        eq_(ret, '')
+        eq_(ret, None)
 
 def test_multiple():
     with vcr.use_cassette('test/fixtures/stock_multiple.yaml'):
         ret = on_message({"text": u"$goog $aapl"}, None)
         assert 'Google Inc' in ret
+
+def test_price():
+    with vcr.use_cassette('test/fixtures/stock_none'):
+        ret = on_message({"text": u"the price is $12.43"}, None)
+        eq_(ret, None)

@@ -29,9 +29,9 @@ def stockprice(ticker):
 
 def on_message(msg, server):
     text = msg.get("text", "")
-    match = re.findall(r"\$\w{0,4}", text)
-    if not match:
+    matches = re.findall(r"\$[a-zA-Z]\w{0,3}", text)
+    if not matches:
         return
 
-    prices = [stockprice(ticker[1:].encode("utf8")) for ticker in match]
+    prices = [stockprice(ticker[1:].encode("utf8")) for ticker in matches]
     return "\n".join(p for p in prices if p)
