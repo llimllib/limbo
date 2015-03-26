@@ -1,7 +1,7 @@
 .PHONY: test
 test:
 	pip install -r requirements.txt
-	nosetests -s --nologcapture
+	NOSE_COVER_PACKAGE=limbo nosetests -s --nologcapture --with-coverage
 
 .PHONY: clean
 clean:

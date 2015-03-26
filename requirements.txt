@@ -18,3 +18,4 @@ vcrpy==1.2.0
 websocket-client==0.22.0
 wrapt==1.10.2
 wsgiref==0.1.2
+coverage==3.7.1
