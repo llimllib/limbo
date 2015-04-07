@@ -34,7 +34,7 @@ def init_log(config):
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
-def init_plugins(plugindir, allowed=[]):
+def init_plugins(plugindir, supplemental_data={}):
     if not plugindir:
         plugindir = DIR("plugins")
 
@@ -47,8 +47,13 @@ def init_plugins(plugindir, allowed=[]):
 
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
-    allowed += glob(os.path.join(plugindir, "[!_]*.py"))
+
+    #Add immediate plugins to list of allowed plugins, for meta-handlers
+    supplemental_data["allowed"] = glob(os.path.join(plugindir, "[!_]*.py"))
+
     meta_plugins = glob(os.path.join(os.path.join(plugindir, "meta"), "[!_]*.py"))
+
+    #meta_plugins are added to below so they can appear in output of !help, etc
     for plugin in (meta_plugins + glob(os.path.join(plugindir, "[!_]*.py"))):
         logger.debug("plugin: {0}".format(plugin))
         try:
@@ -145,7 +150,7 @@ def init_config():
     getif(config, "logformat", "LIMBO_LOGFORMAT")
     return config
 
-def loop(server, allowed=[]):
+def loop(server, supplemental_data={}):
     try:
         while True:
             # This will cause a broken pipe to reveal itself
@@ -177,12 +182,12 @@ def relevant_environ():
 
 def init_server(arguments, Server=LimboServer, Client=SlackClient):
     args = arguments[0]
-    allowed = arguments[1]
+    supplemental_data = arguments[1]
     config = init_config()
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
-    hooks = init_plugins(args.pluginpath, allowed)
+    hooks = init_plugins(args.pluginpath, supplemental_data)
     try:
         slack = Client(config["token"])
     except KeyError:
@@ -212,14 +217,14 @@ def main(args):
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
-    allowed = []
-    server = init_server([args, allowed])
+    supplemental_data = {} #dictionary of (str, list of strs) pairs to supplement future handlers 
+    server = init_server([args, supplemental_data])
 
     if server.slack.rtm_connect():
         # run init hook. This hook doesn't send messages to the server (ought it?)
         run_hook(server.hooks, "init", server)
 
-        loop(server, allowed)
+        loop(server, supplemental_data)
     else:
         logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
