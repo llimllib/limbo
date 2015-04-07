@@ -34,7 +34,7 @@ def init_log(config):
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
-def init_plugins(plugindir, supplemental_data={}):
+def init_plugins(plugindir, allowed=[]):
     if not plugindir:
         plugindir = DIR("plugins")
 
@@ -47,13 +47,8 @@ def init_plugins(plugindir, supplemental_data={}):
 
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
-
-    #Add immediate plugins to list of allowed plugins, for meta-handlers
-    supplemental_data["allowed"] = glob(os.path.join(plugindir, "[!_]*.py"))
-
+    allowed += glob(os.path.join(plugindir, "[!_]*.py"))
     meta_plugins = glob(os.path.join(os.path.join(plugindir, "meta"), "[!_]*.py"))
-
-    #meta_plugins are added to below so they can appear in output of !help, etc
     for plugin in (meta_plugins + glob(os.path.join(plugindir, "[!_]*.py"))):
         logger.debug("plugin: {0}".format(plugin))
         try:
@@ -150,7 +145,7 @@ def init_config():
     getif(config, "logformat", "LIMBO_LOGFORMAT")
     return config
 
-def loop(server, supplemental_data={}):
+def loop(server, allowed=[]):
     try:
         while True:
             # This will cause a broken pipe to reveal itself
@@ -217,14 +212,14 @@ def main(args):
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
-    supplemental_data = {} #dictionary of (str, list of strs) pairs to supplement future handlers 
-    server = init_server([args, supplemental_data])
+    allowed = []
+    server = init_server([args, allowed])
 
     if server.slack.rtm_connect():
         # run init hook. This hook doesn't send messages to the server (ought it?)
         run_hook(server.hooks, "init", server)
 
-        loop(server, supplemental_data)
+        loop(server, allowed)
     else:
         logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
