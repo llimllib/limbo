@@ -2,7 +2,6 @@
 #mostly a proxy object to abstract how some of this works
 
 import json
-
 from _server import Server
 
 class SlackClient(object):
@@ -22,12 +21,14 @@ class SlackClient(object):
 
     def rtm_read(self):
         #in the future, this should handle some events internally i.e. channel creation
+
         if self.server:
-            json_data = self.server.websocket_safe_read()
+            json_data = self.server.websocket_safe_read() 
             data = []
-            if json_data != '':
-                for d in json_data.split('\n'):
-                    data.append(json.loads(d))
+            if json_data != []:
+                for d in json_data:
+                    interpreted_data = json.loads(d)
+                    data.append(interpreted_data)
             return data
         else:
             raise SlackNotConnected
