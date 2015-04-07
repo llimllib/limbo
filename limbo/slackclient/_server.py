@@ -5,6 +5,14 @@ from _util import SearchList
 from websocket import create_connection
 import json
 from ssl import SSLError
+from glob import glob
+import functools
+import os
+
+
+CURDIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+DIR = functools.partial(os.path.join, CURDIR)
+
 
 class Server(object):
     def __init__(self, token, connect=True):
@@ -80,15 +88,17 @@ class Server(object):
 
     def websocket_safe_read(self):
         """Returns data if available, otherwise ''. Newlines indicate multiple messages """
-        data = ""
+
+        data = []
         while True:
             try:
-                data += "{0}\n".format(self.websocket.recv())
+                command = self.websocket.recv()
+                data.append(command)
             # The loop terminates with an SSLError. When there is a broken
             # pipe, the loop terminates in exactly the same way,
             # unfortunately.
             except SSLError as e:
-                return data.rstrip()
+                return data
 
     def attach_channel(self, name, id, members=[]):
         self.channels.append(Channel(self, name, id, members))

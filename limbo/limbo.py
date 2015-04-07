@@ -3,7 +3,6 @@ from __future__ import print_function
 import copy
 import functools
 from glob import glob
-import importlib
 import logging
 import os
 import re
@@ -11,6 +10,7 @@ import sqlite3
 import sys
 import time
 import traceback
+import imp
 
 from slackclient import SlackClient
 from server import LimboServer
@@ -20,6 +20,7 @@ CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
 logger = logging.getLogger(__name__)
+
 
 class InvalidPluginDir(Exception):
     def __init__(self, plugindir):
@@ -33,7 +34,7 @@ def init_log(config):
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
-def init_plugins(plugindir):
+def init_plugins(plugindir, supplemental_data={}):
     if not plugindir:
         plugindir = DIR("plugins")
 
@@ -47,10 +48,16 @@ def init_plugins(plugindir):
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
 
-    for plugin in glob(os.path.join(plugindir, "[!_]*.py")):
+    #Add immediate plugins to list of allowed plugins, for meta-handlers
+    supplemental_data["allowed"] = glob(os.path.join(plugindir, "[!_]*.py"))
+
+    meta_plugins = glob(os.path.join(os.path.join(plugindir, "meta"), "[!_]*.py"))
+
+    #meta_plugins are added to below so they can appear in output of !help, etc
+    for plugin in (meta_plugins + glob(os.path.join(plugindir, "[!_]*.py"))):
         logger.debug("plugin: {0}".format(plugin))
         try:
-            mod = importlib.import_module(os.path.basename(plugin)[:-3])
+            mod = imp.load_source(os.path.basename(plugin)[:-3], plugin)
             modname = mod.__name__
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
@@ -86,6 +93,23 @@ def run_hook(hooks, hook, *args):
 
     return responses
 
+def handle_meta(event, server):
+        subtype = event.get("subtype", "")
+        if subtype == "bot_message" or subtype == "message_changed":
+            return
+
+        botname = server.slack.server.login_data["self"]["name"]
+        try:
+            msguser = server.slack.server.users.get(event["user"])
+        except KeyError:
+            logger.debug("event {0} has no user".format(event))
+            return
+
+        if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
+            return
+
+        return "\n".join(run_hook(server.hooks, "meta", event, server))
+
 def handle_message(event, server):
     # ignore bot messages and edits
     subtype = event.get("subtype", "")
@@ -105,7 +129,8 @@ def handle_message(event, server):
     return "\n".join(run_hook(server.hooks, "message", event, server))
 
 event_handlers = {
-    "message": handle_message
+    "message": handle_message,
+    "meta": handle_meta
 }
 
 def handle_event(event, server):
@@ -125,7 +150,7 @@ def init_config():
     getif(config, "logformat", "LIMBO_LOGFORMAT")
     return config
 
-def loop(server):
+def loop(server, supplemental_data={}):
     try:
         while True:
             # This will cause a broken pipe to reveal itself
@@ -134,7 +159,14 @@ def loop(server):
             events = server.slack.rtm_read()
             for event in events:
                 logger.debug("got {0}".format(event.get("type", event)))
-                response = handle_event(event, server)
+                modified_event = event
+                meta_plugindir = os.path.join(DIR("plugins"), "meta")
+                meta_plugins =  map(os.path.split, glob(os.path.join(meta_plugindir, "[!_]*.py")))
+                meta_plugins = map(lambda x: os.path.splitext(x[-1])[0], meta_plugins)
+                if(event.get("type", event) == "message" and event.get("text", event)[1:] in meta_plugins):
+                    event["type"] = "meta"
+                    modified_event = event
+                response = handle_event(modified_event, server)
                 if response:
                     server.slack.rtm_send_message(event["channel"], response)
             time.sleep(1)
@@ -148,12 +180,14 @@ def relevant_environ():
                 for key, val in os.environ.iteritems()
                 if key.startswith("SLACK") or key.startswith("LIMBO"))
 
-def init_server(args, Server=LimboServer, Client=SlackClient):
+def init_server(arguments, Server=LimboServer, Client=SlackClient):
+    args = arguments[0]
+    supplemental_data = arguments[1]
     config = init_config()
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
-    hooks = init_plugins(args.pluginpath)
+    hooks = init_plugins(args.pluginpath, supplemental_data)
     try:
         slack = Client(config["token"])
     except KeyError:
@@ -183,13 +217,14 @@ def main(args):
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
-    server = init_server(args)
+    supplemental_data = {} #dictionary of (str, list of strs) pairs to supplement future handlers 
+    server = init_server([args, supplemental_data])
 
     if server.slack.rtm_connect():
         # run init hook. This hook doesn't send messages to the server (ought it?)
         run_hook(server.hooks, "init", server)
 
-        loop(server)
+        loop(server, supplemental_data)
     else:
         logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 

@@ -11,8 +11,9 @@ except ImportError:
     from distutils.core import setup
 
 required = ['requests>=2.5', 'websocket-client==0.25.0', 'importlib>=1.0.3', 'beautifulsoup4==4.3.2']
-packages = ['limbo', 'limbo.slackclient', 'limbo.plugins']
+packages = ['limbo', 'limbo.slackclient', 'limbo.plugins', 'limbo.plugins.meta']
 
+#To add a message type, add appropriate entry to packages and for package_data
 try:
     longdesc = open("README.rs").read()
 except:
@@ -28,7 +29,7 @@ setup(
     url='https://github.com/llimllib/limbo',
     packages=packages,
     scripts = ['bin/limbo'],
-    package_data={'': ['LICENSE',], '': ['limbo/plugins/*.py']},
+    package_data={'': ['LICENSE',], '': ['limbo/plugins/*.py', 'limbo/plugins/meta/*.py']},
     include_package_data=True,
     install_requires=required,
     license='MIT',
