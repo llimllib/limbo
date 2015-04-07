@@ -89,10 +89,6 @@ class Server(object):
     def websocket_safe_read(self):
         """Returns data if available, otherwise ''. Newlines indicate multiple messages """
 
-        meta_plugindir = os.path.abspath(DIR(os.path.join("plugins", "meta")))
-        meta_plugins = glob(os.path.join(meta_plugindir, "[!_]*.py"))
-        #print(glob(os.path.join(plugindir, "[!_]*.py")))
-
         data = []
         while True:
             try:
