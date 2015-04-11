@@ -1,7 +1,6 @@
 """!genesis returns a random sega genesis screenshot"""
 
 from bs4 import BeautifulSoup
-from urllib import quote
 import re
 import requests
 from random import shuffle, randint

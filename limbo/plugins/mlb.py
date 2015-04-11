@@ -2,7 +2,6 @@
 """!mlb <team> will return that team's upcoming games"""
 
 from datetime import datetime
-from urllib import quote
 import re
 
 import requests
@@ -62,18 +61,19 @@ def schedule(query):
     games = []
     for row in sched.findAll("tr")[2:]:
         # month name rows have OPPONENT in them
-        if "OPPONENT" in row.text: continue
+        if "OPPONENT" in row.text:
+            continue
 
-        dt, opp, time = [t.text for t in row.findAll("td")][0:3]
+        rawdt, rawopp, time = [t.text for t in row.findAll("td")][0:3]
         yr = datetime.strftime(datetime.now(), "%Y")
         try:
-            dt = datetime.strptime("{0} {1} {2}".format(dt, yr, time), "%a, %b %d %Y %I:%M %p")
+            dt = datetime.strptime("{0} {1} {2}".format(rawdt, yr, time), "%a, %b %d %Y %I:%M %p")
         except ValueError:
             # some games are TBA
             dt = datetime.strptime(dt, "%a, %b %d")
         # away games come as @, which is fine. Home games should have the
         # leading "vs" stripped
-        opp = opp.lstrip("vs")
+        opp = rawopp.lstrip("vs")
         games.append((dt, opp))
 
     next3 = [

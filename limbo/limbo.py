@@ -105,7 +105,7 @@ def handle_message(event, server):
     return "\n".join(run_hook(server.hooks, "message", event, server))
 
 event_handlers = {
-    "message": handle_message
+    "message": handle_message,
 }
 
 def handle_event(event, server):
@@ -137,6 +137,7 @@ def loop(server):
                 response = handle_event(event, server)
                 if response:
                     server.slack.rtm_send_message(event["channel"], response)
+
             time.sleep(1)
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
