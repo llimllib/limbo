@@ -6,20 +6,16 @@ from urllib import quote
 import requests
 
 def youtube(searchterm):
-    searchterm = quote(searchterm)
-    url = "https://gdata.youtube.com/feeds/api/videos?q={0}&orderBy=relevance&alt=json"
-    url = url.format(searchterm)
+    url = "https://www.youtube.com/results?search_query={0}"
+    url = url.format(quote(searchterm))
 
-    j = requests.get(url).json()
+    r = requests.get(url)
+    results = re.findall('a href="(/watch[^&]*?)"', r.text)
 
-    results = j["feed"]
-    if "entry" not in results:
+    if not results:
         return "sorry, no videos found"
 
-    video = results["entry"][0]["link"][0]["href"]
-    video = re.sub("&feature=youtube_gdata", "", video)
-
-    return video
+    return "https://www.youtube.com{0}".format(results[0])
 
 def on_message(msg, server):
     text = msg.get("text", "")
