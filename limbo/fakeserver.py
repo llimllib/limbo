@@ -10,19 +10,22 @@ class FakeServer(object):
         return None
 
 class FakeSlack(object):
-    def __init__(self, server=None):
-        self.server = server or FakeSlackServer()
+    def __init__(self, server=None, users=None):
+        self.server = server or FakeSlackServer(users=users)
 
 class FakeSlackServer(object):
-    def __init__(self, botname="limbo_test"):
+    def __init__(self, botname="limbo_test", users=None):
         self.login_data = {
             "self": {
                 "name": botname,
             }
         }
 
-        self.users = {
-            "limbo_test": {"name": "limbo_test"},
-            "msguser": {"name": "msguser"},
-            "slackbot": {"name": "slackbot"},
-        }
+        if  users:
+            self.users = users
+        else:
+            self.users = {
+                "limbo_test": {"name": "limbo_test"},
+                "msguser": {"name": "msguser"},
+                "slackbot": {"name": "slackbot"},
+            }

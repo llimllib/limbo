@@ -95,6 +95,13 @@ def handle_message(event, server):
     botname = server.slack.server.login_data["self"]["name"]
     try:
         msguser = server.slack.server.users.get(event["user"])
+
+        # Under unclear circumstances, slack can return None here. Verify that
+        # we can use the object the slack API returns.
+        #
+        # https://github.com/llimllib/limbo/issues/40
+        if not msguser or not msguser.__getitem__:
+            raise KeyError
     except KeyError:
         logger.debug("event {0} has no user".format(event))
         return

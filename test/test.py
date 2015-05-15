@@ -82,6 +82,21 @@ def test_handle_message_basic():
 
     eq_(limbo.handle_message(event, server), msg)
 
+# Under unclear circumstances, slack can return a None user.
+# https://github.com/llimllib/limbo/issues/40
+def test_handle_message_slack_user_nil():
+    msg = u"!echo Iñtërnâtiônàlizætiøn"
+    event = {"user": "msguser", "text": msg}
+    users = {
+        "msguser": None,
+    }
+
+    hooks = limbo.init_plugins("test/plugins")
+    slack = limbo.FakeSlack(users=users)
+    server = limbo.FakeServer(slack=slack, hooks=hooks)
+
+    eq_(limbo.handle_message(event, server), None)
+
 def test_init_db():
     tf = tempfile.NamedTemporaryFile()
     db = limbo.init_db(tf.name)
