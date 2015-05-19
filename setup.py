@@ -10,7 +10,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-required = ['requests>=2.5', 'websocket-client==0.25.0', 'importlib>=1.0.3', 'beautifulsoup4==4.3.2']
+required = ['requests>=2.5', 'websocket-client==0.25.0', 'importlib>=1.0.3', 'beautifulsoup4==4.3.2', 'pyfiglet==0.7.3']
 packages = ['limbo', 'limbo.slackclient', 'limbo.plugins']
 
 try:
@@ -20,7 +20,7 @@ except:
 
 setup(
     name='limbo',
-    version='3.0.2',
+    version='3.0.4',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
