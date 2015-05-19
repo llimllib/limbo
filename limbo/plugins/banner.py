@@ -23,7 +23,10 @@ def make_banner(query):
         return "Unable to find font {0}".format(font)
 
     banner = pyfiglet.figlet_format(" ".join(ns.bannertext), font=font).rstrip()
-    return "```\n{0}\n```".format(banner)
+    if not banner:
+        return
+
+    return "```{0}```".format(banner)
 
 def on_message(msg, server):
     text = msg.get("text", "")
