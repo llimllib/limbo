@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+"""!banner <text> [--font <font>] [-l] return a banner displaying <text>. Use the -l option to list available fonts"""
+
 import argparse
 import re
 import pyfiglet
