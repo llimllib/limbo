@@ -12,9 +12,9 @@ import sys
 import time
 import traceback
 
-from slackclient import SlackClient
-from server import LimboServer
-from fakeserver import FakeServer
+from .slackclient import SlackClient
+from .server import LimboServer
+from .fakeserver import FakeServer
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)

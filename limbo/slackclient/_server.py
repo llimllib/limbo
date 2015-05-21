@@ -1,7 +1,7 @@
-from _slackrequest import SlackRequest
-from _channel import Channel
-from _user import User
-from _util import SearchList
+from ._slackrequest import SlackRequest
+from ._channel import Channel
+from ._user import User
+from ._util import SearchList
 
 from websocket import create_connection
 import json
