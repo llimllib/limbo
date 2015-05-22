@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import logging
 from mock_handler import MockHandler
-from SearchList import SearchList
+from SearchList import SearchList, User
 import os
 import sqlite3
 import tempfile
@@ -88,7 +88,7 @@ def test_handle_message_basic():
 def test_handle_message_slack_user_nil():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "msguser", "text": msg}
-    users = SearchList()
+    users = SearchList([User(None, "nobody", 0, "", 0)])
 
     hooks = limbo.init_plugins("test/plugins")
     slack = limbo.FakeSlack(users=users)
