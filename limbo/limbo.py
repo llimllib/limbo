@@ -156,8 +156,7 @@ def relevant_environ():
                 for key, val in os.environ.iteritems()
                 if key.startswith("SLACK") or key.startswith("LIMBO"))
 
-def init_server(args, Server=LimboServer, Client=SlackClient):
-    config = init_config()
+def init_server(args, config, Server=LimboServer, Client=SlackClient):
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
@@ -181,17 +180,16 @@ export SLACK_TOKEN=<your-slack-bot-token>
     return server
 
 def main(args):
+    config = init_config()
     if args.test:
-        config = init_config()
         init_log(config)
         return repl(FakeServer(), args)
     elif args.command is not None:
-        config = init_config()
         init_log(config)
         print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
         return
 
-    server = init_server(args)
+    server = init_server(args, config)
 
     if server.slack.rtm_connect():
         # run init hook. This hook doesn't send messages to the server (ought it?)
