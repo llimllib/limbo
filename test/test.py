@@ -9,9 +9,6 @@ from nose.tools import eq_
 
 import limbo
 
-# TODO: kill logging output into stderr.
-# TODO: test logging to STDERR
-
 # test plugin hooks
 #
 # TODO: test init_plugins with unicode plugins
@@ -19,7 +16,6 @@ import limbo
 # TODO: test init_plugins with plugin without on_
 # TODO: test init_plugins __doc__ handling
 # TODO: test plugin that throws exception (on import, init and message)
-# TODO: test command line interface
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 PARENT = os.path.split(DIR)[0]
