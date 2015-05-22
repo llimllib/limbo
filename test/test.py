@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import logging
-from mock_handler import MockHandler
-from SearchList import SearchList, User
+from .mock_handler import MockHandler
+from .SearchList import SearchList, User
 import os
 import sqlite3
 import tempfile
