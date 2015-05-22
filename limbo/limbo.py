@@ -93,16 +93,12 @@ def handle_message(event, server):
         return
 
     botname = server.slack.server.login_data["self"]["name"]
-    try:
-        msguser = server.slack.server.users.find(event["user"])
+    msguser = server.slack.server.users.find(event["user"])
 
-        # Under unclear circumstances, slack can return None here. Verify that
-        # we can use the object the slack API returns.
-        #
-        # https://github.com/llimllib/limbo/issues/40
-        if not msguser:
-            logger.debug("event {0} has no user".format(event))
-            return
+    # slack returns None if it can't find the user because it thinks it's ruby
+    if not msguser:
+        logger.debug("event {0} has no user".format(event))
+        return
 
     # don't respond to ourself or slackbot
     if msguser.name == botname or msguser.name.lower() == "slackbot":
