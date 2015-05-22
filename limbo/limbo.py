@@ -94,7 +94,7 @@ def handle_message(event, server):
 
     botname = server.slack.server.login_data["self"]["name"]
     try:
-        msguser = server.slack.server.users.get(event["user"])
+        msguser = server.slack.server.users.find(event["user"])
 
         # Under unclear circumstances, slack can return None here. Verify that
         # we can use the object the slack API returns.
