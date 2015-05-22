@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 import os
-import subprocess
 import shlex
+import subprocess
+import sys
 
 from nose.tools import eq_
 
@@ -10,6 +11,11 @@ TESTPLUGINS = os.path.join(DIR, "plugins")
 
 # http://stackoverflow.com/a/13160748/42559
 def sh(cmd):
+    # slex.split can only handle unicode strings in python3, and only byte
+    # strings in python2
+    if sys.version_info.major > 2:
+        cmd = cmd.decode("utf8")
+
     proc = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
     output = proc.communicate()[0].decode("utf8")
     ret = proc.returncode
