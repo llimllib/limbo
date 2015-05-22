@@ -5,7 +5,10 @@
 # !map united states zoom=4
 # !map united states zoom=4 maptype=satellite
 
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 import re
 
 def makemap(query):

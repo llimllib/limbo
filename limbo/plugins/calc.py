@@ -1,7 +1,10 @@
 """!calc <equation> will return the google calculator result for <equation>"""
 from bs4 import BeautifulSoup
 import re
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 import requests
 
 def calc(eq):

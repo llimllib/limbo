@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """!weather <zip or place name> return the 5-day forecast"""
 
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 import re
 import requests
 import time
