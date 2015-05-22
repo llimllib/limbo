@@ -100,13 +100,12 @@ def handle_message(event, server):
         # we can use the object the slack API returns.
         #
         # https://github.com/llimllib/limbo/issues/40
-        if not msguser or not msguser.__getitem__:
-            raise KeyError
-    except KeyError:
-        logger.debug("event {0} has no user".format(event))
-        return
+        if not msguser:
+            logger.debug("event {0} has no user".format(event))
+            return
 
-    if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
+    # don't respond to ourself or slackbot
+    if msguser.name == botname or msguser.name.lower() == "slackbot":
         return
 
     return "\n".join(run_hook(server.hooks, "message", event, server))
