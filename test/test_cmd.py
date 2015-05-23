@@ -13,7 +13,7 @@ TESTPLUGINS = os.path.join(DIR, "plugins")
 def sh(cmd):
     # slex.split can only handle unicode strings in python3, and only byte
     # strings in python2
-    if sys.version_info.major > 2:
+    if sys.version_info[0] > 2:
         cmd = cmd.decode("utf8")
 
     proc = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
