@@ -15,8 +15,15 @@ run: install
 repl: install
 	bin/limbo -t
 
+# non-empty if we're on python 2.6
+PYTHON2_6 = $(shell python --version 2>&1 | grep 2.6)
+
 .PHONY: install
 install:
+	pip install -r requirements.txt
+ifneq ($(PYTHON2_6), )
+	pip install -r requirements-2.6.txt
+endif
 	python setup.py install
 	make clean
 

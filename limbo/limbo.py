@@ -201,10 +201,16 @@ def run_cmd(cmd, server, hook, pluginpath):
     event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
     return handle_event(event, server)
 
+# raw_input in 2.6 is input in python 3. Set `input` to the correct function
+try:
+    input = raw_input
+except NameError:
+    pass
+
 def repl(server, args):
     try:
         while 1:
-            cmd = raw_input("limbo> ").decode("utf8")
+            cmd = input("limbo> ").decode("utf8")
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
