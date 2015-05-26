@@ -19,6 +19,8 @@ from .fakeserver import FakeServer
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
+PYTHON3 = sys.version_info[0] > 2
+
 logger = logging.getLogger(__name__)
 
 class InvalidPluginDir(Exception):
@@ -174,6 +176,20 @@ export SLACK_TOKEN=<your-slack-bot-token>
     server = Server(slack, config, hooks, db)
     return server
 
+# decode a string. if str is a python 3 string, do nothing.
+def decode(str_, codec='utf8'):
+    if PYTHON3:
+        return str_
+    else:
+        return str_.decode(codec)
+
+# encode a string. if str is a python 3 string, do nothing.
+def encode(str_, codec='utf8'):
+    if PYTHON3:
+        return str_
+    else:
+        return str_.encode(codec)
+
 def main(args):
     config = init_config()
     if args.test:
@@ -181,7 +197,8 @@ def main(args):
         return repl(FakeServer(), args)
     elif args.command is not None:
         init_log(config)
-        print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
+        cmd = decode(args.command)
+        print(run_cmd(cmd, FakeServer(), args.hook, args.pluginpath))
         return
 
     server = init_server(args, config)
@@ -194,12 +211,12 @@ def main(args):
     else:
         logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
+# run a command. cmd should be a unicode string (str in python3, unicode in python2).
+# returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
-    if type(cmd) == str:
-        cmd = cmd.decode("utf8")
     event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
-    return handle_event(event, server)
+    return encode(handle_event(event, server))
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
 try:
@@ -210,11 +227,11 @@ except NameError:
 def repl(server, args):
     try:
         while 1:
-            cmd = input("limbo> ").decode("utf8")
+            cmd = decode(input("limbo> "))
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath).encode("utf8"))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath))
     except (EOFError, KeyboardInterrupt):
         print()
         pass
