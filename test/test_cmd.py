@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 import os
-import subprocess
 import shlex
+import subprocess
+import sys
 
 from nose.tools import eq_
 
@@ -10,6 +11,11 @@ TESTPLUGINS = os.path.join(DIR, "plugins")
 
 # http://stackoverflow.com/a/13160748/42559
 def sh(cmd):
+    # slex.split can only handle unicode strings in python3, and only byte
+    # strings in python2
+    if sys.version_info[0] > 2:
+        cmd = cmd.decode("utf8")
+
     proc = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE)
     output = proc.communicate()[0].decode("utf8")
     ret = proc.returncode
@@ -17,14 +23,14 @@ def sh(cmd):
 
 def test_cmd():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
-    out, ret = sh(u"limbo -c '{0}' --pluginpath {1}".format(msg, TESTPLUGINS).encode("utf8"))
+    out, ret = sh(u"bin/limbo -c '{0}' --pluginpath {1}".format(msg, TESTPLUGINS).encode("utf8"))
     out = out.strip()
     eq_(out, msg)
     eq_(ret, 0)
 
 def test_repl():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
-    proc = subprocess.Popen(["limbo", "-t", "--pluginpath", TESTPLUGINS], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = subprocess.Popen(["bin/limbo", "-t", "--pluginpath", TESTPLUGINS], stdout=subprocess.PIPE, stdin=subprocess.PIPE)
     out = proc.communicate(msg.encode("utf8"))[0]
     out = out.strip().decode("utf8")
     eq_(out, u"limbo> {0}\nlimbo>".format(msg))

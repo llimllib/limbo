@@ -1,3 +1,6 @@
+from .slackclient._util import SearchList
+from .slackclient._user import User
+
 class FakeServer(object):
     def __init__(self, slack=None, config=None, hooks=None, db=None):
         self.slack = slack or FakeSlack()
@@ -24,8 +27,8 @@ class FakeSlackServer(object):
         if  users:
             self.users = users
         else:
-            self.users = {
-                "limbo_test": {"name": "limbo_test"},
-                "msguser": {"name": "msguser"},
-                "slackbot": {"name": "slackbot"},
-            }
+            self.users = SearchList([
+                User(self, "limbo_test", 1, "", 0),
+                User(self, "msguser", 2, "", 0),
+                User(self, "slackbot", 3, "", 0),
+            ])

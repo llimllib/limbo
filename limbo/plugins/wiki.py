@@ -1,6 +1,9 @@
 """!wiki <topic> returns a wiki link for <topic>"""
 import re
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 
 import requests
 from bs4 import BeautifulSoup

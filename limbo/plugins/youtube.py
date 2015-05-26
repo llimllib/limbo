@@ -1,7 +1,10 @@
 """!youtube <search term> return the first youtube search result for <search term>"""
 
 import re
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 
 import requests
 

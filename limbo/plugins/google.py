@@ -1,7 +1,10 @@
 """!search <query> will return the top google result for that query (!google is an alias)"""
 from bs4 import BeautifulSoup
 import re
-from urllib import quote, unquote
+try:
+    from urllib import quote, unquote
+except ImportError:
+    from urllib.request import quote, unquote
 import requests
 
 def google(q):

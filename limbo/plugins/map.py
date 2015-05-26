@@ -5,7 +5,10 @@
 # !map united states zoom=4
 # !map united states zoom=4 maptype=satellite
 
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 import re
 
 def makemap(query):
@@ -20,7 +23,7 @@ def makemap(query):
         else:
             querywords.append(word)
 
-    query = quote(" ".join(querywords))
+    query = quote(" ".join(querywords).encode("utf8"))
 
     # Slack seems to ignore the size param
     #
@@ -41,4 +44,4 @@ def on_message(msg, server):
     if not match:
         return
 
-    return makemap(match[0].encode("utf8"))
+    return makemap(match[0])

@@ -1,15 +1,13 @@
 # -*- coding: UTF-8 -*-
 import logging
-from mock_handler import MockHandler
+from .mock_handler import MockHandler
+from .SearchList import SearchList, User
 import os
 import sqlite3
 import tempfile
 from nose.tools import eq_
 
 import limbo
-
-# TODO: kill logging output into stderr.
-# TODO: test logging to STDERR
 
 # test plugin hooks
 #
@@ -18,7 +16,6 @@ import limbo
 # TODO: test init_plugins with plugin without on_
 # TODO: test init_plugins __doc__ handling
 # TODO: test plugin that throws exception (on import, init and message)
-# TODO: test command line interface
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 PARENT = os.path.split(DIR)[0]
@@ -87,9 +84,7 @@ def test_handle_message_basic():
 def test_handle_message_slack_user_nil():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "msguser", "text": msg}
-    users = {
-        "msguser": None,
-    }
+    users = SearchList([User(None, "nobody", 0, "", 0)])
 
     hooks = limbo.init_plugins("test/plugins")
     slack = limbo.FakeSlack(users=users)

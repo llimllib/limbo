@@ -12,12 +12,14 @@ import sys
 import time
 import traceback
 
-from slackclient import SlackClient
-from server import LimboServer
-from fakeserver import FakeServer
+from .slackclient import SlackClient
+from .server import LimboServer
+from .fakeserver import FakeServer
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
+
+PYTHON3 = sys.version_info[0] > 2
 
 logger = logging.getLogger(__name__)
 
@@ -93,20 +95,15 @@ def handle_message(event, server):
         return
 
     botname = server.slack.server.login_data["self"]["name"]
-    try:
-        msguser = server.slack.server.users.get(event["user"])
+    msguser = server.slack.server.users.find(event["user"])
 
-        # Under unclear circumstances, slack can return None here. Verify that
-        # we can use the object the slack API returns.
-        #
-        # https://github.com/llimllib/limbo/issues/40
-        if not msguser or not msguser.__getitem__:
-            raise KeyError
-    except KeyError:
+    # slack returns None if it can't find the user because it thinks it's ruby
+    if not msguser:
         logger.debug("event {0} has no user".format(event))
         return
 
-    if msguser["name"] == botname or msguser["name"].lower() == "slackbot":
+    # don't respond to ourself or slackbot
+    if msguser.name == botname or msguser.name.lower() == "slackbot":
         return
 
     return "\n".join(run_hook(server.hooks, "message", event, server))
@@ -156,8 +153,7 @@ def relevant_environ():
                 for key, val in os.environ.iteritems()
                 if key.startswith("SLACK") or key.startswith("LIMBO"))
 
-def init_server(args, Server=LimboServer, Client=SlackClient):
-    config = init_config()
+def init_server(args, config, Server=LimboServer, Client=SlackClient):
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
@@ -180,18 +176,32 @@ export SLACK_TOKEN=<your-slack-bot-token>
     server = Server(slack, config, hooks, db)
     return server
 
+# decode a string. if str is a python 3 string, do nothing.
+def decode(str_, codec='utf8'):
+    if PYTHON3:
+        return str_
+    else:
+        return str_.decode(codec)
+
+# encode a string. if str is a python 3 string, do nothing.
+def encode(str_, codec='utf8'):
+    if PYTHON3:
+        return str_
+    else:
+        return str_.encode(codec)
+
 def main(args):
+    config = init_config()
     if args.test:
-        config = init_config()
         init_log(config)
         return repl(FakeServer(), args)
     elif args.command is not None:
-        config = init_config()
         init_log(config)
-        print(run_cmd(args.command, FakeServer(), args.hook, args.pluginpath).encode("utf8"))
+        cmd = decode(args.command)
+        print(run_cmd(cmd, FakeServer(), args.hook, args.pluginpath))
         return
 
-    server = init_server(args)
+    server = init_server(args, config)
 
     if server.slack.rtm_connect():
         # run init hook. This hook doesn't send messages to the server (ought it?)
@@ -201,21 +211,27 @@ def main(args):
     else:
         logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
 
+# run a command. cmd should be a unicode string (str in python3, unicode in python2).
+# returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
-    if type(cmd) == str:
-        cmd = cmd.decode("utf8")
     event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
-    return handle_event(event, server)
+    return encode(handle_event(event, server))
+
+# raw_input in 2.6 is input in python 3. Set `input` to the correct function
+try:
+    input = raw_input
+except NameError:
+    pass
 
 def repl(server, args):
     try:
         while 1:
-            cmd = raw_input("limbo> ").decode("utf8")
+            cmd = decode(input("limbo> "))
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath).encode("utf8"))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath))
     except (EOFError, KeyboardInterrupt):
         print()
         pass

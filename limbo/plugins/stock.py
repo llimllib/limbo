@@ -2,7 +2,10 @@
 from __future__ import print_function
 import logging
 import re
-from urllib import quote
+try:
+    from urllib import quote
+except ImportError:
+    from urllib.request import quote
 
 from bs4 import BeautifulSoup
 import requests
