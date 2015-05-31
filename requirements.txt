@@ -4,7 +4,6 @@ backports.ssl-match-hostname==3.4.0.2
 beautifulsoup4==4.3.2
 contextlib2==0.4.0
 flake8==2.3.0
-gnureadline==6.3.3
 mccabe==0.3
 mock==1.0.1
 nose==1.3.4
@@ -16,4 +15,4 @@ vcrpy==1.2.0
 websocket-client==0.25.0
 wrapt==1.10.2
 coverage==3.7.1
-pyfiglet==0.7.3
+pyfiglet==0.7.4

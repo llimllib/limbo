@@ -12,3 +12,4 @@ dist/
 slask.egg-info/
 .DS_Store
 .coverage
+.tox
