@@ -1,6 +1,6 @@
 .PHONY: test
 test: install
-	NOSE_COVER_PACKAGE=limbo nosetests -s --nologcapture --with-coverage
+	LANG=en_US.UTF-8 NOSE_COVER_PACKAGE=limbo nosetests -s --nologcapture --with-coverage
 
 .PHONY: clean
 clean:
