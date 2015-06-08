@@ -12,7 +12,7 @@ import sys
 import time
 import traceback
 
-from .slackclient import SlackClient
+from slackrtm import SlackClient
 from .server import LimboServer
 from .fakeserver import FakeServer
 
@@ -95,10 +95,9 @@ def handle_message(event, server):
         return
 
     botname = server.slack.server.login_data["self"]["name"]
-    msguser = server.slack.server.users.find(event["user"])
-
-    # slack returns None if it can't find the user because it thinks it's ruby
-    if not msguser:
+    try:
+        msguser = server.slack.server.users[event["user"]]
+    except KeyError:
         logger.debug("event {0} has no user".format(event))
         return
 
@@ -215,7 +214,7 @@ def main(args):
 # returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
-    event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
+    event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': None}
     return encode(handle_event(event, server))
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
