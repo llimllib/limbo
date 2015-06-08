@@ -16,7 +16,7 @@ required = ['requests>=2.5', 'websocket-client==0.25.0', 'beautifulsoup4==4.3.2'
 if not PYTHON3:
     required += ['importlib>=1.0.3']
 
-packages = ['limbo', 'limbo.slackclient', 'limbo.plugins']
+packages = ['limbo', 'limbo.plugins']
 
 try:
     longdesc = open("README.rs").read()
