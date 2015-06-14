@@ -13,3 +13,5 @@ slask.egg-info/
 .DS_Store
 .coverage
 .tox
+.idea/**
+.gitignore
