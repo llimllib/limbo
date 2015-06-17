@@ -88,21 +88,28 @@ def run_hook(hooks, hook, *args):
 
     return responses
 
-def handle_message(event, server):
-    # ignore bot messages and edits
-    subtype = event.get("subtype", "")
-    if subtype == "bot_message" or subtype == "message_changed":
+def handle_bot_message(event, server):
+    try:
+        bot = server.slack.server.bots[event["bot_id"]]
+    except KeyError:
+        logger.debug("bot_message event {0} has no bot".format(event))
         return
+
+    return "\n".join(run_hook(server.hooks, "bot_message", event, server))
+
+def handle_message(event, server):
+    subtype = event.get("subtype", "")
+    if subtype == "message_changed":
+        return
+
+    if subtype == "bot_message":
+        return handle_bot_message(event, server)
 
     botname = server.slack.server.login_data["self"]["name"]
     try:
         msguser = server.slack.server.users[event["user"]]
     except KeyError:
         logger.debug("event {0} has no user".format(event))
-        return
-
-    # don't respond to ourself or slackbot
-    if msguser.name == botname or msguser.name.lower() == "slackbot":
         return
 
     return "\n".join(run_hook(server.hooks, "message", event, server))
