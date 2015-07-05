@@ -9,7 +9,7 @@ def gif(searchterm, rating="pg-13"):
     gif = g.random(tag=searchterm, rating=rating)
     try:
         return str(gif['data']['image_url'])
-    except IndexError:
+    except TypeError:
         return "Oops, No gifs found for that tag. Try again!"
     except Exception:
         return "Oops, something went wrong. Contact your admin if this happens again!" # Better than crashing the entire script
