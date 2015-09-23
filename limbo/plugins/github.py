@@ -15,7 +15,6 @@ class Github(object):
         self.auth = username, password
 
     def _get(self, url_fragment, **params):
-        return requests.get( HUB_URL.format(url_fragment), auth=self.auth, params=params).json()
         return requests.get(
                  HUB_URL.format(url_fragment),
                  auth=self.auth,
