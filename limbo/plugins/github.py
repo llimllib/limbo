@@ -30,16 +30,27 @@ def github(cmd, *args):
     if cmd == "issues":
         issues = HUB.issues(args[0])
 
-        return [
-            {
+        l = len(issues)
+        if l > 5:
+            text = "{} open issues, showing the 5 most recent".format(l)
+        else:
+            text = "{} open issues".format(l)
+
+        attachments = json.dumps([{
+                "author_icon": i["user"]["avatar_url"],
+                "author_name": i["user"]["login"],
+                "author_link": i["user"]["html_url"],
                 "fallback": i["body"],
                 "title": "[{}] {}".format(i["number"], i["title"]),
                 "title_link": i["url"],
-                "text": i["body"],
                 "color": "good"
             }
-            for i in issues
-        ]
+            for i in issues[:5]])
+
+        return {
+            "attachments": attachments,
+            "text": text,
+        }
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -50,7 +61,9 @@ def on_message(msg, server):
     cmdargs = match[0].encode("utf8").split(' ')
     cmd = cmdargs[0]
     args = cmdargs[1:]
-    attachments = github(cmd, *args)
-    # msg: {u'text': u'!hub issues llimllib/limbo', u'ts': u'1443022795.000033', u'user': u'U02L9JD0Y', u'team': u'T02L9JD0W', u'type': u'message', u'channel': u'C02L9JD16'}
-    import ipdb; ipdb.set_trace()
-    server.slack.post_message(msg['channel'], '', attachments=json.dumps(attachments), as_user=server.slack.server.username)
+    kwargs = github(cmd, *args)
+    server.slack.post_message(
+            msg['channel'],
+            '',
+            as_user=server.slack.server.username,
+            **kwargs)
