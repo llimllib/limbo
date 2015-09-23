@@ -1,5 +1,4 @@
-from .slackclient._util import SearchList
-from .slackclient._user import User
+from slackrtm.server import User, Bot
 
 class FakeServer(object):
     def __init__(self, slack=None, config=None, hooks=None, db=None):
@@ -17,7 +16,7 @@ class FakeSlack(object):
         self.server = server or FakeSlackServer(users=users)
 
 class FakeSlackServer(object):
-    def __init__(self, botname="limbo_test", users=None):
+    def __init__(self, botname="limbo_test", users=None, bots=None):
         self.login_data = {
             "self": {
                 "name": botname,
@@ -27,8 +26,15 @@ class FakeSlackServer(object):
         if  users:
             self.users = users
         else:
-            self.users = SearchList([
-                User(self, "limbo_test", 1, "", 0),
-                User(self, "msguser", 2, "", 0),
-                User(self, "slackbot", 3, "", 0),
-            ])
+            self.users = {
+                "1": User(self, "limbo_test", 1, "", 0),
+                "2": User(self, "msguser", 2, "", 0),
+                "3": User(self, "slackbot", 3, "", 0),
+            }
+
+        if bots:
+            self.bots = bots
+        else:
+            self.bots = {
+                "1": Bot("1", "otherbot", [], False)
+            }

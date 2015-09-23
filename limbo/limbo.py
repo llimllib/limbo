@@ -12,7 +12,7 @@ import sys
 import time
 import traceback
 
-from .slackclient import SlackClient
+from slackrtm import SlackClient
 from .server import LimboServer
 from .fakeserver import FakeServer
 
@@ -88,22 +88,27 @@ def run_hook(hooks, hook, *args):
 
     return responses
 
+def handle_bot_message(event, server):
+    try:
+        bot = server.slack.server.bots[event["bot_id"]]
+    except KeyError:
+        logger.debug("bot_message event {0} has no bot".format(event))
+        return
+
+    return "\n".join(run_hook(server.hooks, "bot_message", event, server))
+
 def handle_message(event, server):
-    # ignore bot messages and edits
     subtype = event.get("subtype", "")
-    if subtype == "bot_message" or subtype == "message_changed":
+    if subtype == "message_changed":
         return
 
-    botname = server.slack.server.login_data["self"]["name"]
-    msguser = server.slack.server.users.find(event["user"])
+    if subtype == "bot_message":
+        return handle_bot_message(event, server)
 
-    # slack returns None if it can't find the user because it thinks it's ruby
-    if not msguser:
+    try:
+        msguser = server.slack.server.users[event["user"]]
+    except KeyError:
         logger.debug("event {0} has no user".format(event))
-        return
-
-    # don't respond to ourself or slackbot
-    if msguser.name == botname or msguser.name.lower() == "slackbot":
         return
 
     return "\n".join(run_hook(server.hooks, "message", event, server))
@@ -215,7 +220,7 @@ def main(args):
 # returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
-    event = {'type': hook, 'text': cmd, "user": "msguser", 'ts': time.time(), 'team': None, 'channel': None}
+    event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': None}
     return encode(handle_event(event, server))
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
