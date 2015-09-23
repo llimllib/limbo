@@ -13,6 +13,7 @@ import time
 import traceback
 
 from slackrtm import SlackClient
+from slackrtm.server import SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
@@ -225,13 +226,18 @@ def main(args):
 
     server = init_server(args, config)
 
-    if server.slack.rtm_connect():
+    try:
+        server.slack.rtm_connect()
         # run init hook. This hook doesn't send messages to the server (ought it?)
         run_hook(server.hooks, "init", server)
 
         loop(server)
-    else:
-        logger.warn("Connection Failed, invalid token <{0}>?".format(config["token"]))
+    except SlackConnectionError:
+        logger.warn("Unable to connect to Slack. Bad network?")
+        raise
+    except SlackLoginError:
+        logger.warn("Login Failed, invalid token <{0}>?".format(config["token"]))
+        raise
 
 # run a command. cmd should be a unicode string (str in python3, unicode in python2).
 # returns a string appropriate for printing (str in py2 and py3)
