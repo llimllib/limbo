@@ -1,6 +1,23 @@
-"""!github <command> <arguments> is a command line interface to github
+"""!hub [-r <repository>] <command> <arguments> is a command line interface to github
 
-like, document the commands and arguments here or something"""
+For all commands, hub will assume that you are using the channel's default
+repository unless you specify it explicitly with -r.
+
+To set a channel's default repository, use `!hub setdefault <repo>`
+
+To view a channel's default repository, use `!hub getdefault`
+
+Commands:
+
+* `issues`: display the 5 most recent issues in the repository
+    ex: `!hub issues`
+* `create`: create an issue with the title given by <arguments>
+
+    ex: `!hub create Title of a bug I found`
+* search: search the issues for a repository
+
+    ex: `!hub search bot` will return the first 5 issues containing "bot" in
+        the default repository"""
 
 import argparse
 import json
@@ -154,6 +171,7 @@ def github(server, room, cmd, body, repo):
         return "Default repo for this room is `{}`. " \
                "To change it, run `!hub setdefault <repo_name>`".format(repo)
 
+# Only run create_database on this module's first execution
 FIRST=True
 def create_database(server):
     server.query('''
@@ -171,17 +189,18 @@ def on_message(msg, server):
         create_database(server)
 
     text = msg.get("text", "")
-    match = re.findall(r"!hub (.*)", text)
+    match = re.findall(r"!hub\s*(.*)?", text)
     if not match:
         return
 
     ns = ARGPARSE.parse_args(match[0].encode("utf8").split(' '))
+    command = ns.command[0]
 
     # if the user calls !hub with no arguments, print help
-    if not len(ns.command):
-        return "TODO: Help message"
+    if not len(command):
+        return __doc__
 
-    kwargs = github(server, msg["channel"], ns.command[0], ns.body, ns.repo)
+    kwargs = github(server, msg["channel"], command, ns.body, ns.repo)
 
     # if github() didn't return anything, or returned any non-dict arg,
     # just return it
