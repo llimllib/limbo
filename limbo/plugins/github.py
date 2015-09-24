@@ -53,17 +53,23 @@ class Github(object):
 
     def issues(self, repo):
         # defaults to only open issues
-        return self._get('repos/{}/issues'.format(repo)).json()
+        res = self._get('repos/{}/issues'.format(repo))
+        if res.status_code == 200:
+            return res.json()
 
     def issue(self, repo, n):
-        return self._get('repos/{}/issues/{}'.format(repo, n)).json()
+        res = self._get('repos/{}/issues/{}'.format(repo, n))
+        if res.status_code == 200:
+            return res.json()
 
     def create_issue(self, repo, title, body=''):
-        return self._post(
+        res = self._post(
                 'repos/{}/issues'.format(repo),
                 data=json.dumps({
                     "title": title,
-                    "body": body})).json()
+                    "body": body}))
+        if res.status_code == 200:
+            return res.json()
 
     def search_issue_in_repo(self, repo, query):
         return self._get(
@@ -91,8 +97,8 @@ HUB = Github(os.environ.get("GITHUB_USER"), os.environ.get("GITHUB_PASS"))
 # need to be refreshed; but for now just assume this is good enough.
 # ALL_REPOS = HUB.get_all_repos()
 
-def format_issue(issue_json):
-    return {
+def format_issue(issue_json, verbose=False):
+    d = {
         "author_icon": issue_json["user"]["avatar_url"],
         "author_name": issue_json["user"]["login"],
         "author_link": issue_json["user"]["html_url"],
@@ -101,6 +107,11 @@ def format_issue(issue_json):
         "title_link": issue_json["html_url"],
         "color": "good"
     }
+
+    if verbose:
+        d["text"] = issue_json["body"]
+
+    return d
 
 def get_default_repo(server, room):
     rows = server.query('''
@@ -132,7 +143,7 @@ def github(server, room, cmd, body, repo):
 
     if cmd == "issues":
         issues = HUB.issues(repo)
-        if not isinstance(issues, list):
+        if not issues:
             return "Unable to find repository {}".format(repo)
 
         l = len(issues)
@@ -152,22 +163,26 @@ def github(server, room, cmd, body, repo):
     if cmd == "issue":
         n = body[0]
         issue = HUB.issue(repo, n)
-        attachment = json.dumps([format_issue(issue)])
+        if not issue:
+            return "Unable to find issue #{} in repo {}".format(n, repo)
 
         return {
-            "attachments": attachment,
+            "attachments": json.dumps([format_issue(issue, verbose=True)]),
             "text": "",
         }
-    if cmd in ["create", "new"]:
+    if cmd == "create":
         title = ' '.join(body)
         issue = HUB.create_issue(repo, title)
+        if not issue:
+            return "Unable to create issue in repo {}".format(repo)
+
         attachment = json.dumps([format_issue(issue)])
 
         return {
             "attachments": attachment,
             "text": "",
         }
-    if cmd in ["search"]:
+    if cmd == "search":
         query = ' '.join(body)
         response = HUB.search_issue_in_repo(repo, query)
 
