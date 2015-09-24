@@ -243,7 +243,7 @@ def main(args):
 # returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath):
     server.hooks = init_plugins(pluginpath)
-    event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': None}
+    event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': 'repl_channel'}
     return encode(handle_event(event, server))
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
