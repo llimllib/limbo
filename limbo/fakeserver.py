@@ -15,6 +15,10 @@ class FakeSlack(object):
     def __init__(self, server=None, users=None):
         self.server = server or FakeSlackServer(users=users)
 
+    def post_message(self, channel, message, **kwargs):
+        print("message {} posted to channel {} with kwargs {}"\
+                .format(message, channel, kwargs))
+
 class FakeSlackServer(object):
     def __init__(self, botname="limbo_test", users=None, bots=None):
         self.login_data = {
@@ -22,6 +26,7 @@ class FakeSlackServer(object):
                 "name": botname,
             }
         }
+        self.username = "replbot"
 
         if  users:
             self.users = users
