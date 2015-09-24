@@ -10,7 +10,11 @@ To view a channel's default repository, use `!hub getdefault`
 Commands:
 
 * `issues`: display the 5 most recent issues in the repository
+
     ex: `!hub issues`
+* `issue`: display a particular issue
+
+    ex: `!hub issue 6`
 * `create`: create an issue with the title given by <arguments>
 
     ex: `!hub create Title of a bug I found`
@@ -50,6 +54,9 @@ class Github(object):
     def issues(self, repo):
         # defaults to only open issues
         return self._get('repos/{}/issues'.format(repo)).json()
+
+    def issue(self, repo, n):
+        return self._get('repos/{}/issues/{}'.format(repo, n)).json()
 
     def create_issue(self, repo, title, body=''):
         return self._post(
@@ -142,13 +149,22 @@ def github(server, room, cmd, body, repo):
             "attachments": attachments,
             "text": text,
         }
+    if cmd == "issue":
+        n = body[0]
+        issue = HUB.issue(repo, n)
+        attachment = json.dumps([format_issue(issue)])
+
+        return {
+            "attachments": attachment,
+            "text": "",
+        }
     if cmd in ["create", "new"]:
         title = ' '.join(body)
         issue = HUB.create_issue(repo, title)
-        attachments = json.dumps([format_issue(issue)])
+        attachment = json.dumps([format_issue(issue)])
 
         return {
-            "attachments": attachments,
+            "attachments": attachment,
             "text": "",
         }
     if cmd in ["search"]:
