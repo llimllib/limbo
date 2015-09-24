@@ -25,7 +25,8 @@ logger = logging.getLogger(__name__)
 
 class InvalidPluginDir(Exception):
     def __init__(self, plugindir):
-        self.message = "Unable to find plugin dir {0}".format(plugindir)
+        message = "Unable to find plugin dir {0}".format(plugindir)
+        super(InvalidPluginDir, self).__init__(message)
 
 def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
@@ -35,13 +36,29 @@ def init_log(config):
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
+def strip_extension(lst):
+    return (os.path.splitext(l)[0] for l in lst)
+
 def init_plugins(plugindir):
     if not plugindir:
         plugindir = DIR("plugins")
 
     logger.debug("plugindir: {0}".format(plugindir))
 
-    if not os.path.isdir(plugindir):
+    if os.path.isdir(plugindir):
+        pluginfiles = glob(os.path.join(plugindir, "[!_]*.py"))
+        plugins = strip_extension(os.path.basename(p) for p in pluginfiles)
+    else:
+        # we might be in an egg; try to get the files that way
+        logger.debug("trying pkg_resources")
+        import pkg_resources
+        try:
+            plugins = strip_extension(
+                    pkg_resources.resource_listdir(__name__, "plugins"))
+        except OSError:
+            raise InvalidPluginDir(plugindir)
+
+    if not plugins:
         raise InvalidPluginDir(plugindir)
 
     hooks = {}
@@ -49,10 +66,10 @@ def init_plugins(plugindir):
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
 
-    for plugin in glob(os.path.join(plugindir, "[!_]*.py")):
+    for plugin in plugins:
         logger.debug("plugin: {0}".format(plugin))
         try:
-            mod = importlib.import_module(os.path.basename(plugin)[:-3])
+            mod = importlib.import_module(plugin)
             modname = mod.__name__
             for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
