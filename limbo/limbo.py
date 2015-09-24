@@ -40,6 +40,9 @@ def strip_extension(lst):
     return (os.path.splitext(l)[0] for l in lst)
 
 def init_plugins(plugindir):
+    if plugindir and not os.path.isdir(plugindir):
+        raise InvalidPluginDir(plugindir)
+
     if not plugindir:
         plugindir = DIR("plugins")
 
@@ -57,9 +60,6 @@ def init_plugins(plugindir):
                     pkg_resources.resource_listdir(__name__, "plugins"))
         except OSError:
             raise InvalidPluginDir(plugindir)
-
-    if not plugins:
-        raise InvalidPluginDir(plugindir)
 
     hooks = {}
 
