@@ -14,7 +14,7 @@ Commands:
 * `create`: create an issue with the title given by <arguments>
 
     ex: `!hub create Title of a bug I found`
-* search: search the issues for a repository
+* `search`: search the issues for a repository
 
     ex: `!hub search bot` will return the first 5 issues containing "bot" in
         the default repository"""
@@ -193,7 +193,11 @@ def on_message(msg, server):
     if not match:
         return
 
-    ns = ARGPARSE.parse_args(match[0].encode("utf8").split(' '))
+    # If given -h or -v, argparse will try to quit. Don't let it.
+    try:
+        ns = ARGPARSE.parse_args(match[0].encode("utf8").split(' '))
+    except SystemExit:
+        return __doc__
     command = ns.command[0]
 
     # if the user calls !hub with no arguments, print help
