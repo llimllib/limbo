@@ -2,6 +2,7 @@
 
 like, document the commands and arguments here or something"""
 
+import argparse
 import json
 import os
 import re
@@ -64,7 +65,7 @@ HUB = Github(os.environ.get("GITHUB_USER"), os.environ.get("GITHUB_PASS"))
 
 # Gather all repo names available to the authed user. Eventually this will
 # need to be refreshed; but for now just assume this is good enough.
-ALL_REPOS = HUB.get_all_repos()
+# ALL_REPOS = HUB.get_all_repos()
 
 def format_issue(issue_json):
     return {
@@ -90,22 +91,30 @@ def set_default_repo(server, room, repo):
         INSERT INTO github_room_repo_defaults(room, repo)
         VALUES (?, ?)''', room, repo)
 
-def github(server, room, cmd, *args):
-    repo = get_default_repo(server, room)
+def github(server, room, cmd, body, repo):
+    # If repo wasn't passed in explicitly, grab it from the database
+    if not repo:
+        repo = get_default_repo(server, room)
 
+    # If we still couldn't find one in the database, either it's a command to
+    # set it or we can instrcut the user how to do so
     if not repo:
         if cmd == "setdefault":
-            set_default_repo(server, room, args[0])
-            return "Default repo for this room set to `{}`".format(args[0])
+            set_default_repo(server, room, body[0])
+            return "Default repo for this room set to `{}`".format(body[0])
         else:
             return "Unable to find default repo for this channel. "\
                    "Run `!hub setdefault <repo_name>`"
 
     if cmd == "issues":
         issues = HUB.issues(repo)
+        if not isinstance(issues, list):
+            return "Unable to find repository {}".format(repo)
 
         l = len(issues)
-        if l > 5:
+        if l == 0:
+            return "0 open issues on repository {}".format(repo)
+        elif l > 5:
             text = "{} open issues, showing the 5 most recent".format(l)
         else:
             text = "{} open issues".format(l)
@@ -117,7 +126,7 @@ def github(server, room, cmd, *args):
             "text": text,
         }
     if cmd in ["create", "new"]:
-        title = ' '.join(args)
+        title = ' '.join(body)
         issue = HUB.create_issue(repo, title)
         attachments = json.dumps([format_issue(issue)])
 
@@ -126,7 +135,7 @@ def github(server, room, cmd, *args):
             "text": "",
         }
     if cmd in ["search"]:
-        query = ' '.join(args)
+        query = ' '.join(body)
         response = HUB.search_issue_in_repo(repo, query)
 
         if response["total_count"] == 0:
@@ -152,6 +161,11 @@ def create_database(server):
             (room text, repo text)''')
     FIRST=False
 
+ARGPARSE = argparse.ArgumentParser()
+ARGPARSE.add_argument('-r', dest="repo")
+ARGPARSE.add_argument('command', nargs=1)
+ARGPARSE.add_argument('body', nargs='*')
+
 def on_message(msg, server):
     if FIRST:
         create_database(server)
@@ -161,10 +175,13 @@ def on_message(msg, server):
     if not match:
         return
 
-    cmdargs = match[0].encode("utf8").split(' ')
-    cmd = cmdargs[0]
-    args = cmdargs[1:]
-    kwargs = github(server, msg["channel"], cmd, *args)
+    ns = ARGPARSE.parse_args(match[0].encode("utf8").split(' '))
+
+    # if the user calls !hub with no arguments, print help
+    if not len(ns.command):
+        return "TODO: Help message"
+
+    kwargs = github(server, msg["channel"], ns.command[0], ns.body, ns.repo)
 
     # if github() didn't return anything, or returned any non-dict arg,
     # just return it
