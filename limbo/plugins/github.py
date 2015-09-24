@@ -19,7 +19,7 @@ class Github(object):
                  HUB_URL.format(url_fragment),
                  auth=self.auth,
                  params=params
-               ).json()
+               )
 
     def _post(self, url_fragment, data={}, **params):
         return requests.post(
@@ -27,25 +27,44 @@ class Github(object):
                  auth=self.auth,
                  data=data,
                  params=params
-               ).json()
+               )
 
     def issues(self, repo):
         # defaults to only open issues
-        return self._get('repos/{}/issues'.format(repo))
+        return self._get('repos/{}/issues'.format(repo)).json()
 
     def create_issue(self, repo, title, body=''):
         return self._post(
                 'repos/{}/issues'.format(repo),
                 data=json.dumps({
                     "title": title,
-                    "body": body}))
+                    "body": body})).json()
 
     def search_issue_in_repo(self, repo, query):
         return self._get(
                 'search/issues',
-                q="{} repo:{}".format(query, repo))
+                q="{} repo:{}".format(query, repo)).json()
 
+    def get_all_repos(self):
+        repos = self._get('user/repos', per_page=100)
+        repo_names = [repo["full_name"] for repo in repos.json()]
+        last = re.findall(r'rel="last"', repos.headers['link'])
+
+        page = 2
+        while last:
+            repos = self._get('user/repos', per_page=100, page=page)
+            repo_names += [repo["full_name"] for repo in repos.json()]
+            last = re.findall(r'rel="last"', repos.headers['link'])
+            page += 1
+
+        return repo_names
+
+# create an authed github object
 HUB = Github(os.environ.get("GITHUB_USER"), os.environ.get("GITHUB_PASS"))
+
+# Gather all repo names available to the authed user. Eventually this will
+# need to be refreshed; but for now just assume this is good enough.
+ALL_REPOS = HUB.get_all_repos()
 
 def format_issue(issue_json):
     return {
@@ -58,9 +77,32 @@ def format_issue(issue_json):
         "color": "good"
     }
 
-def github(cmd, *args):
+def get_default_repo(server, room):
+    rows = server.query('''
+        SELECT repo FROM github_room_repo_defaults WHERE room=?''', room)
+
+    if rows:
+        return rows[0][0]
+    return None
+
+def set_default_repo(server, room, repo):
+    server.query('''
+        INSERT INTO github_room_repo_defaults(room, repo)
+        VALUES (?, ?)''', room, repo)
+
+def github(server, room, cmd, *args):
+    repo = get_default_repo(server, room)
+
+    if not repo:
+        if cmd == "setdefault":
+            set_default_repo(server, room, args[0])
+            return "Default repo for this room set to `{}`".format(args[0])
+        else:
+            return "Unable to find default repo for this channel. "\
+                   "Run `!hub setdefault <repo_name>`"
+
     if cmd == "issues":
-        issues = HUB.issues(args[0])
+        issues = HUB.issues(repo)
 
         l = len(issues)
         if l > 5:
@@ -75,8 +117,7 @@ def github(cmd, *args):
             "text": text,
         }
     if cmd in ["create", "new"]:
-        repo = args[0]
-        title = ' '.join(args[1:])
+        title = ' '.join(args)
         issue = HUB.create_issue(repo, title)
         attachments = json.dumps([format_issue(issue)])
 
@@ -85,8 +126,7 @@ def github(cmd, *args):
             "text": "",
         }
     if cmd in ["search"]:
-        repo = args[0]
-        query = ' '.join(args[1:])
+        query = ' '.join(args)
         response = HUB.search_issue_in_repo(repo, query)
 
         if response["total_count"] == 0:
@@ -101,8 +141,21 @@ def github(cmd, *args):
             "attachments": attachments,
             "text": text
         }
+    if cmd == "getdefault":
+        return "Default repo for this room is `{}`. " \
+               "To change it, run `!hub setdefault <repo_name>`".format(repo)
+
+FIRST=True
+def create_database(server):
+    server.query('''
+        CREATE TABLE IF NOT EXISTS github_room_repo_defaults
+            (room text, repo text)''')
+    FIRST=False
 
 def on_message(msg, server):
+    if FIRST:
+        create_database(server)
+
     text = msg.get("text", "")
     match = re.findall(r"!hub (.*)", text)
     if not match:
@@ -111,7 +164,15 @@ def on_message(msg, server):
     cmdargs = match[0].encode("utf8").split(' ')
     cmd = cmdargs[0]
     args = cmdargs[1:]
-    kwargs = github(cmd, *args)
+    kwargs = github(server, msg["channel"], cmd, *args)
+
+    # if github() didn't return anything, or returned any non-dict arg,
+    # just return it
+    if not kwargs or not isinstance(kwargs, dict):
+        return kwargs
+
+    # otherwise, post the message via the slack API; this lets us use fancy
+    # formatting rather than the plain formatting the RTM API allows
     server.slack.post_message(
             msg['channel'],
             '',
