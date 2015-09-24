@@ -8,16 +8,23 @@ class FakeServer(object):
         self.db = db
 
     def query(self, sql, *params):
-        # XXX: what to do with this?
-        return None
+        if not self.db:
+            return None
+
+        c = self.db.cursor()
+        c.execute(sql, params)
+        rows = c.fetchall()
+        c.close()
+        self.db.commit()
+        return rows
 
 class FakeSlack(object):
     def __init__(self, server=None, users=None):
         self.server = server or FakeSlackServer(users=users)
+        self.posted_message = None
 
     def post_message(self, channel, message, **kwargs):
-        print("message {} posted to channel {} with kwargs {}"\
-                .format(message, channel, kwargs))
+        self.posted_message = (message, kwargs)
 
 class FakeSlackServer(object):
     def __init__(self, botname="limbo_test", users=None, bots=None):
