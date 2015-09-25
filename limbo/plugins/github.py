@@ -226,7 +226,7 @@ def on_message(msg, server):
 
     # If given -h or -v, argparse will try to quit. Don't let it.
     try:
-        ns = ARGPARSE.parse_args(match[0].encode("utf8").split(' '))
+        ns = ARGPARSE.parse_args(match[0].split(' '))
     except SystemExit:
         return __doc__
     command = ns.command[0]
