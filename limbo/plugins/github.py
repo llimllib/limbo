@@ -143,7 +143,7 @@ def github(server, room, cmd, body, repo):
 
     if cmd == "issues":
         issues = HUB.issues(repo)
-        if not issues:
+        if issues is None:
             return "Unable to find repository {0}".format(repo)
 
         l = len(issues)
