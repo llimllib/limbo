@@ -169,7 +169,7 @@ def loop(server):
 
             end = time.time()
             runtime = start - end
-            time.sleep(max(1-(runtime), 0))
+            time.sleep(max(1-runtime, 0))
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
             import ipdb; ipdb.set_trace()
