@@ -220,7 +220,7 @@ def on_message(msg, server):
         create_database(server)
 
     text = msg.get("text", "")
-    match = re.findall(r"!hub\s*(.*)?", text)
+    match = re.findall(r"!hub\s*(.*)", text)
     if not match:
         return
 
