@@ -30,7 +30,7 @@ import re
 
 import requests
 
-HUB_URL = 'https://api.github.com/{}'
+HUB_URL = 'https://api.github.com/{0}'
 
 class Github(object):
     def __init__(self, username, password):
@@ -53,18 +53,18 @@ class Github(object):
 
     def issues(self, repo):
         # defaults to only open issues
-        res = self._get('repos/{}/issues'.format(repo))
+        res = self._get('repos/{0}/issues'.format(repo))
         if res.status_code == 200:
             return res.json()
 
     def issue(self, repo, n):
-        res = self._get('repos/{}/issues/{}'.format(repo, n))
+        res = self._get('repos/{0}/issues/{1}'.format(repo, n))
         if res.status_code == 200:
             return res.json()
 
     def create_issue(self, repo, title, body=''):
         res = self._post(
-                'repos/{}/issues'.format(repo),
+                'repos/{0}/issues'.format(repo),
                 data=json.dumps({
                     "title": title,
                     "body": body}))
@@ -74,7 +74,7 @@ class Github(object):
     def search_issue_in_repo(self, repo, query):
         return self._get(
                 'search/issues',
-                q="{} repo:{}".format(query, repo)).json()
+                q="{0} repo:{1}".format(query, repo)).json()
 
     def get_all_repos(self):
         repos = self._get('user/repos', per_page=100)
@@ -103,7 +103,7 @@ def format_issue(issue_json, verbose=False):
         "author_name": issue_json["user"]["login"],
         "author_link": issue_json["user"]["html_url"],
         "fallback": issue_json["title"],
-        "title": "[{}] {}".format(issue_json["number"], issue_json["title"]),
+        "title": "[{0}] {1}".format(issue_json["number"], issue_json["title"]),
         "title_link": issue_json["html_url"],
         "color": "good"
     }
@@ -136,7 +136,7 @@ def github(server, room, cmd, body, repo):
     if not repo:
         if cmd == "setdefault":
             set_default_repo(server, room, body[0])
-            return "Default repo for this room set to `{}`".format(body[0])
+            return "Default repo for this room set to `{0}`".format(body[0])
         else:
             return "Unable to find default repo for this channel. "\
                    "Run `!hub setdefault <repo_name>`"
@@ -144,15 +144,15 @@ def github(server, room, cmd, body, repo):
     if cmd == "issues":
         issues = HUB.issues(repo)
         if not issues:
-            return "Unable to find repository {}".format(repo)
+            return "Unable to find repository {0}".format(repo)
 
         l = len(issues)
         if l == 0:
-            return "0 open issues on repository {}".format(repo)
+            return "0 open issues on repository {0}".format(repo)
         elif l > 5:
-            text = "{} open issues, showing the 5 most recent".format(l)
+            text = "{0} open issues, showing the 5 most recent".format(l)
         else:
-            text = "{} open issues".format(l)
+            text = "{0} open issues".format(l)
 
         attachments = json.dumps([format_issue(i) for i in issues[:5]])
 
@@ -164,7 +164,7 @@ def github(server, room, cmd, body, repo):
         n = body[0]
         issue = HUB.issue(repo, n)
         if not issue:
-            return "Unable to find issue #{} in repo {}".format(n, repo)
+            return "Unable to find issue #{0} in repo {1}".format(n, repo)
 
         return {
             "attachments": json.dumps([format_issue(issue, verbose=True)]),
@@ -174,7 +174,7 @@ def github(server, room, cmd, body, repo):
         title = ' '.join(body)
         issue = HUB.create_issue(repo, title)
         if not issue:
-            return "Unable to create issue in repo {}".format(repo)
+            return "Unable to create issue in repo {0}".format(repo)
 
         attachment = json.dumps([format_issue(issue)])
 
@@ -193,13 +193,13 @@ def github(server, room, cmd, body, repo):
 
         issues = response["items"]
         attachments = json.dumps([format_issue(i) for i in issues[:5]])
-        text = "Found {} items".format(response["total_count"])
+        text = "Found {0} items".format(response["total_count"])
         return {
             "attachments": attachments,
             "text": text
         }
     if cmd == "getdefault":
-        return "Default repo for this room is `{}`. " \
+        return "Default repo for this room is `{0}`. " \
                "To change it, run `!hub setdefault <repo_name>`".format(repo)
 
 # Only run create_database on this module's first execution
