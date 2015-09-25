@@ -68,7 +68,7 @@ class Github(object):
                 data=json.dumps({
                     "title": title,
                     "body": body}))
-        if res.status_code == 200:
+        if res.status_code == 201:
             return res.json()
 
     def search_issue_in_repo(self, repo, query):
