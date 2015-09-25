@@ -155,6 +155,8 @@ def init_config():
 def loop(server):
     try:
         while True:
+            start = time.time()
+
             # This will cause a broken pipe to reveal itself
             server.slack.server.ping()
 
@@ -165,7 +167,9 @@ def loop(server):
                 if response:
                     server.slack.rtm_send_message(event["channel"], response)
 
-            time.sleep(1)
+            end = time.time()
+            runtime = start - end
+            time.sleep(max(1-(runtime), 0))
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
             import ipdb; ipdb.set_trace()
