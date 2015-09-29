@@ -12,7 +12,7 @@ except ImportError:
 
 PYTHON3 = sys.version_info[0] > 2
 
-required = ['requests>=2.5', 'websocket-client==0.25.0', 'beautifulsoup4==4.3.2', 'pyfiglet==0.7.4', 'slackrtm==0.1.1']
+required = ['requests>=2.5', 'websocket-client==0.32.0', 'beautifulsoup4==4.3.2', 'pyfiglet==0.7.4', 'slackrtm==0.2.1']
 if not PYTHON3:
     required += ['importlib>=1.0.3']
 
@@ -25,7 +25,7 @@ except:
 
 setup(
     name='limbo',
-    version='3.3.1',
+    version='3.4.0',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
