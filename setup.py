@@ -25,7 +25,7 @@ except:
 
 setup(
     name='limbo',
-    version='3.4.1',
+    version='3.4.2',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
