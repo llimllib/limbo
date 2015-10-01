@@ -189,11 +189,11 @@ def pulls(repo, _):
 
     l = len(pulls)
     if l == 0:
-        return "0 open pulls on repository {0}".format(repo)
+        return "0 open pull requests on repository {0}".format(repo)
     elif l > 5:
-        text = "{0} open pulls, showing the 5 most recent".format(l)
+        text = "{0} open pull requests, showing the 5 most recent".format(l)
     else:
-        text = "{0} open pulls".format(l)
+        text = "{0} open pull requests".format(l)
 
     attachments = json.dumps([format_issue(p) for p in pulls[:5]])
 
