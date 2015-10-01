@@ -9,7 +9,7 @@ To view a channel's default repository, use `!hub getdefault`
 
 Commands:
 
-* `issues`: display the 5 most recent issues in the repository
+* `issues`: display the 5 most recent open issues in the repository
 
     ex: `!hub issues`
 * `issue`: display a particular issue
@@ -21,7 +21,14 @@ Commands:
 * `search`: search the issues for a repository
 
     ex: `!hub search bot` will return the first 5 issues containing "bot" in
-        the default repository"""
+        the default repository
+* `pulls`: display the 5 most recent open pull requests
+
+    ex: `!hub pulls`
+* `pull`: display a particular pull request
+
+    ex: `!hub pull 55`
+    """
 
 import argparse
 import json
@@ -78,6 +85,13 @@ class Github(object):
 
     def pull_requests(self, repo):
         res = self._get('repos/{0}/pulls'.format(repo))
+        if res.status_code == 200:
+            return res.json()
+
+    def pull(self, repo, n):
+        res = self._get('repos/{0}/pulls/{1}'.format(repo, n))
+        if res.status_code == 200:
+            return res.json()
 
     def get_all_repos(self):
         repos = self._get('user/repos', per_page=100)
@@ -116,6 +130,25 @@ def format_issue(issue_json, verbose=False):
 
     return d
 
+def format_pull(pull_json):
+    pull_json["s"] = "s" if pull_json["commits"] > 1 else ""
+    text = "{body}\n>  _*{commits}* commit{s} *{additions}* ++ " \
+           "*{deletions}* -- *{changed_files}* changed_".format(
+                **pull_json)
+    d = {
+        "author_icon": pull_json["user"]["avatar_url"],
+        "author_name": pull_json["user"]["login"],
+        "author_link": pull_json["user"]["html_url"],
+        "fallback": pull_json["title"],
+        "title": "[{0}] {1}".format(pull_json["number"], pull_json["title"]),
+        "title_link": pull_json["html_url"],
+        "color": "good",
+        "mrkdwn_in": ["text"],
+        "text": text,
+    }
+
+    return d
+
 def get_default_repo(server, room):
     rows = server.query('''
         SELECT repo FROM github_room_repo_defaults WHERE room=?''', room)
@@ -149,6 +182,26 @@ def issues(repo, _):
         "text": text,
     }
 
+def pulls(repo, _):
+    pulls = HUB.pull_requests(repo)
+    if pulls is None:
+        return "Unable to find repository {0}".format(repo)
+
+    l = len(pulls)
+    if l == 0:
+        return "0 open pulls on repository {0}".format(repo)
+    elif l > 5:
+        text = "{0} open pulls, showing the 5 most recent".format(l)
+    else:
+        text = "{0} open pulls".format(l)
+
+    attachments = json.dumps([format_issue(p) for p in pulls[:5]])
+
+    return {
+        "attachments": attachments,
+        "text": text,
+    }
+
 def issue(repo, body):
     n = body[0]
     issue = HUB.issue(repo, n)
@@ -157,6 +210,17 @@ def issue(repo, body):
 
     return {
         "attachments": json.dumps([format_issue(issue, verbose=True)]),
+        "text": "",
+    }
+
+def pull_request(repo, body):
+    n = body[0]
+    pull = HUB.pull(repo, n)
+    if not issue:
+        return "Unable to find pull request #{0} in repo {1}".format(n, repo)
+
+    return {
+        "attachments": json.dumps([format_pull(pull)]),
         "text": "",
     }
 
@@ -196,7 +260,9 @@ def getdefault(repo, _):
 
 COMMANDS = {
     "issues": issues,
+    "pulls": pulls,
     "issue": issue,
+    "pull": pull_request,
     "create": create_issue,
     "search": search,
     "getdefault": getdefault
