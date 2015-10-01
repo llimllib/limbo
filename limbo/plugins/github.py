@@ -76,6 +76,9 @@ class Github(object):
                 'search/issues',
                 q="{0} repo:{1}".format(query, repo)).json()
 
+    def pull_requests(self, repo):
+        res = self._get('repos/{0}/pulls'.format(repo))
+
     def get_all_repos(self):
         repos = self._get('user/repos', per_page=100)
         repo_names = [repo["full_name"] for repo in repos.json()]
@@ -126,6 +129,79 @@ def set_default_repo(server, room, repo):
         INSERT INTO github_room_repo_defaults(room, repo)
         VALUES (?, ?)''', room, repo)
 
+def issues(repo, _):
+    issues = HUB.issues(repo)
+    if issues is None:
+        return "Unable to find repository {0}".format(repo)
+
+    l = len(issues)
+    if l == 0:
+        return "0 open issues on repository {0}".format(repo)
+    elif l > 5:
+        text = "{0} open issues, showing the 5 most recent".format(l)
+    else:
+        text = "{0} open issues".format(l)
+
+    attachments = json.dumps([format_issue(i) for i in issues[:5]])
+
+    return {
+        "attachments": attachments,
+        "text": text,
+    }
+
+def issue(repo, body):
+    n = body[0]
+    issue = HUB.issue(repo, n)
+    if not issue:
+        return "Unable to find issue #{0} in repo {1}".format(n, repo)
+
+    return {
+        "attachments": json.dumps([format_issue(issue, verbose=True)]),
+        "text": "",
+    }
+
+def create_issue(repo, body):
+    title = ' '.join(body)
+    issue = HUB.create_issue(repo, title)
+    if not issue:
+        return "Unable to create issue in repo {0}".format(repo)
+
+    attachment = json.dumps([format_issue(issue)])
+
+    return {
+        "attachments": attachment,
+        "text": "",
+    }
+
+def search(repo, body):
+    query = ' '.join(body)
+    response = HUB.search_issue_in_repo(repo, query)
+
+    if response["total_count"] == 0:
+        return {
+            "text": "sorry, no issues found"
+        }
+
+    issues = response["items"]
+    attachments = json.dumps([format_issue(i) for i in issues[:5]])
+    text = "Found {0} items".format(response["total_count"])
+    return {
+        "attachments": attachments,
+        "text": text
+    }
+
+def getdefault(repo, _):
+    return "Default repo for this room is `{0}`. " \
+           "To change it, run `!hub setdefault <repo_name>`".format(repo)
+
+COMMANDS = {
+    "issues": issues,
+    "issue": issue,
+    "create": create_issue,
+    "search": search,
+    "getdefault": getdefault
+}
+
 def github(server, room, cmd, body, repo):
     # If repo wasn't passed in explicitly, grab it from the database
     if not repo:
@@ -141,66 +217,11 @@ def github(server, room, cmd, body, repo):
             return "Unable to find default repo for this channel. "\
                    "Run `!hub setdefault <repo_name>`"
 
-    if cmd == "issues":
-        issues = HUB.issues(repo)
-        if issues is None:
-            return "Unable to find repository {0}".format(repo)
-
-        l = len(issues)
-        if l == 0:
-            return "0 open issues on repository {0}".format(repo)
-        elif l > 5:
-            text = "{0} open issues, showing the 5 most recent".format(l)
-        else:
-            text = "{0} open issues".format(l)
-
-        attachments = json.dumps([format_issue(i) for i in issues[:5]])
-
-        return {
-            "attachments": attachments,
-            "text": text,
-        }
-    if cmd == "issue":
-        n = body[0]
-        issue = HUB.issue(repo, n)
-        if not issue:
-            return "Unable to find issue #{0} in repo {1}".format(n, repo)
-
-        return {
-            "attachments": json.dumps([format_issue(issue, verbose=True)]),
-            "text": "",
-        }
-    if cmd == "create":
-        title = ' '.join(body)
-        issue = HUB.create_issue(repo, title)
-        if not issue:
-            return "Unable to create issue in repo {0}".format(repo)
-
-        attachment = json.dumps([format_issue(issue)])
-
-        return {
-            "attachments": attachment,
-            "text": "",
-        }
-    if cmd == "search":
-        query = ' '.join(body)
-        response = HUB.search_issue_in_repo(repo, query)
-
-        if response["total_count"] == 0:
-            return {
-                "text": "sorry, no issues found"
-            }
-
-        issues = response["items"]
-        attachments = json.dumps([format_issue(i) for i in issues[:5]])
-        text = "Found {0} items".format(response["total_count"])
-        return {
-            "attachments": attachments,
-            "text": text
-        }
-    if cmd == "getdefault":
-        return "Default repo for this room is `{0}`. " \
-               "To change it, run `!hub setdefault <repo_name>`".format(repo)
+    try:
+        command_func = COMMANDS[cmd]
+        return command_func(repo, body)
+    except KeyError:
+        return
 
 # Only run create_database on this module's first execution
 FIRST=True
