@@ -10,6 +10,6 @@ def on_message(msg, server):
 
     helptopic = match[0].strip()
     if helptopic:
-        return server.hooks["help"].get(helptopic, "No help found for {0}".format(helptopic))
+        return server.hooks["extendedhelp"].get(helptopic, "No help found for {0}".format(helptopic))
     else:
         return "\n".join(sorted(val for _, val in server.hooks["help"].iteritems()))
