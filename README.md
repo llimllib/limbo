@@ -47,3 +47,4 @@ These are the current default plugins:
 * [@MathyV](https://github.com/MathyV)
 * [@stopspazzing](https://github.com/stopspazzing)
 * [@noise](https://github.com/noise)
+* [@drewp](https://github.com/drewp)
