@@ -157,27 +157,28 @@ def loop(server):
         loops_without_activity = 0
         while True:
             start = time.time()
+            loops_without_activity += 1
+
+            events = server.slack.rtm_read()
+            for event in events:
+                loops_without_activity = 0
+                logger.debug("got {0}".format(event.get("type", event)))
+                response = handle_event(event, server)
+                if response:
+                    server.slack.rtm_send_message(event["channel"], response)
 
             # The Slack RTM API docs say:
             #
             # > When there is no other activity clients should send a ping
             # > every few seconds
             #
-            # So, if we've gone 5 seconds without any activity, send a ping. If
-            # the connection has broken, this will reveal it so slack can quit
+            # So, if we've gone >5 seconds without any activity, send a ping.
+            # If the connection has broken, this will reveal it so slack can
+            # quit
             if loops_without_activity > 5:
                 server.slack.server.ping()
-                loops_without_activity = -1
+                loops_without_activity = 0
 
-            events = server.slack.rtm_read()
-            for event in events:
-                loops_without_activity = -1
-                logger.debug("got {0}".format(event.get("type", event)))
-                response = handle_event(event, server)
-                if response:
-                    server.slack.rtm_send_message(event["channel"], response)
-
-            loops_without_activity += 1
             end = time.time()
             runtime = start - end
             time.sleep(max(1-runtime, 0))
