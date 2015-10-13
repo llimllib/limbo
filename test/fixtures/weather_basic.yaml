@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.5.2 CPython/2.7.6 Darwin/14.1.0]
     method: GET
-    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Oahu%2C%20HI&cnt=5&mode=json&units=imperial
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Oahu%2C%20HI&cnt=5&mode=json&units=imperial&APPID=abcdef
   response:
     body: {string: !!python/unicode '{"cod":"200","message":0.1824,"city":{"id":"5847411","name":"Kahului","coord":{"lon":-156.468,"lat":20.8781},"country":"United
         States of America","population":0},"cnt":5,"list":[{"dt":1425074400,"temp":{"day":75.38,"min":71.98,"max":75.38,"night":71.98,"eve":74.23,"morn":75.38},"pressure":1015.76,"humidity":89,"weather":[{"id":804,"main":"Clouds","description":"overcast

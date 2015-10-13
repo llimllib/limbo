@@ -23,10 +23,9 @@ iconmap = {
     "50": ":umbrella:",    # mist?
 }
 
-WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY")
-
 def weather(searchterm):
-    if not WEATHER_API_KEY:
+    weather_api_key = os.environ.get("WEATHER_API_KEY")
+    if not weather_api_key:
         return "Please set as the WEATHER_API_KEY environment variable to a " \
                "valid (free) OpenWeatherMap API key: " \
                "http://openweathermap.org/appid#get"
@@ -34,7 +33,7 @@ def weather(searchterm):
     searchterm = quote(searchterm)
     url = 'http://api.openweathermap.org/data/2.5/forecast/daily?'\
           'q={0}&cnt=5&mode=json&units=imperial&&APPID={1}'.format(
-                  searchterm, WEATHER_API_KEY)
+                  searchterm, weather_api_key)
 
     dat = requests.get(url).json()
 

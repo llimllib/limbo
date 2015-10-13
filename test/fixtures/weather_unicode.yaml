@@ -7,7 +7,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.5.2 CPython/2.7.6 Darwin/14.1.0]
     method: GET
-    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Proven%C3%A7al&cnt=5&mode=json&units=imperial
+    uri: http://api.openweathermap.org/data/2.5/forecast/daily?q=Proven%C3%A7al&cnt=5&mode=json&units=imperial&APPID=abcdef
   response:
     body: {string: !!python/unicode '{"cod":"200","message":0.7589,"city":{"id":0,"name":"Robeline","coord":{"lon":-93.20179,"lat":31.65279},"country":"United
         States of America","population":0},"cnt":5,"list":[{"dt":1425060000,"temp":{"day":31.95,"min":29.14,"max":31.95,"night":29.14,"eve":31.95,"morn":31.95},"pressure":1036.84,"humidity":53,"weather":[{"id":600,"main":"Snow","description":"light
