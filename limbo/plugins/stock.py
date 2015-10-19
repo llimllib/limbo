@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 def stockprice(ticker):
     url = "https://www.google.com/finance?q={0}"
-    soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text)
+    soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text, "html5lib")
 
     try:
         company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]

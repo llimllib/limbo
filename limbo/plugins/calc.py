@@ -10,7 +10,7 @@ import requests
 def calc(eq):
     query = quote(eq)
     url = "https://encrypted.google.com/search?hl=en&q={0}".format(query)
-    soup = BeautifulSoup(requests.get(url).text)
+    soup = BeautifulSoup(requests.get(url).text, "html5lib")
 
     answer = soup.findAll("h2", attrs={"class": "r"})
     if not answer:

@@ -9,7 +9,7 @@ def genesis():
     # http://ascii.textfiles.com/archives/4365
     page = randint(1, 8)
     r = requests.get("https://secure.flickr.com/photos/textfiles/sets/72157646180733361/page%s/" % page)
-    soup = BeautifulSoup(r.text)
+    soup = BeautifulSoup(r.text, "html5lib")
     images = soup.findAll("img", attrs={"data-defer-src": True})
     images = [i.attrs["data-defer-src"] for i in images]
 

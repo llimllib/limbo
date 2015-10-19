@@ -29,7 +29,7 @@ def wiki(searchterm):
     link = "http://en.wikipedia.org/wiki/{0}".format(page)
 
     r = requests.get("http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".format(page)).json()
-    soup = BeautifulSoup(r["parse"]["text"]["*"])
+    soup = BeautifulSoup(r["parse"]["text"]["*"], "html5lib")
     p = soup.find('p').get_text()
     p = p[:8000]
 

@@ -56,7 +56,7 @@ def schedule(query):
         return "Unable to find {0}".format(query)
 
     r = requests.get(url)
-    soup = Soup(r.text)
+    soup = Soup(r.text, "html5lib")
     sched = soup.find("table", attrs={"class": "tablehead"})
     games = []
     for row in sched.findAll("tr")[2:]:
