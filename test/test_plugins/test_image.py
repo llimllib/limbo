@@ -16,7 +16,7 @@ bananas_images = [u'http://cdn1.medicalnewstoday.com/content/images/articles/271
 def test_image():
     with vcr.use_cassette('test/fixtures/image_bananas.yaml'):
         ret = on_message({"text": u"!image bananas"}, None)
-        assert ret in bananas_images
+        assert ret in bananas_images, "{0} not in {1}".format(ret, bananas_images)
 
 def test_unicode():
     with vcr.use_cassette('test/fixtures/image_unicode.yaml'):
