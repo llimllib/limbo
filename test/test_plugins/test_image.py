@@ -8,10 +8,10 @@ import vcr
 DIR = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(DIR, '../../limbo/plugins'))
 
-from image import on_message
+from image import on_message, unescape
 
 # The set of valid images given the bananas fixture
-bananas_images = [u'http://foodmatters.tv/images/bananas.jpg', u'http://minionslovebananas.com/images/gallery/preview/Chiquita-DM2-minion-dave-bananas.jpg?w=420&h=356', u'http://upload.wikimedia.org/wikipedia/commons/9/99/Bananas.JPG', u'http://www.medicalnewstoday.com/images/articles/271157-bananas.jpg', u'http://upload.wikimedia.org/wikipedia/commons/4/4c/Bananas.jpg', u'http://guardianlv.com/wp-content/uploads/2013/12/Banana-Bioplastic.jpg', u'http://i2.cdn.turner.com/cnnnext/dam/assets/120604032828-fresh-ripe-bananas-story-top.jpg', u'http://parade.com/wp-content/uploads/2014/08/bananas-ftr.jpg', u'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana21.jpg', u'http://bed56888308e93972c04-0dfc23b7b97881dee012a129d9518bae.r34.cf1.rackcdn.com/sites/default/files/imagecache/310_square/bananas_1.jpg', u'http://higherperspective.com/wp-content/uploads/2014/11/525916-07167048-7f61-11e3-8cdb-58f79d3137a3.jpg', u'https://commoditychainsthatbind.files.wordpress.com/2013/03/bananas-925216.jpeg', u'http://homestead-and-survival.com/wp-content/uploads/2013/03/Grow-Bananas.jpg', u'http://i.huffpost.com/gen/1517660/thumbs/o-BANANAS-facebook.jpg', u'http://www.creativeinyourheart.com/wp-content/uploads/2014/02/Bananas.jpg', u'http://www.undergroundhealth.com/wp-content/uploads/bananastages.jpg', u'http://nutr.ehhs.kent.edu/info/wp-content/uploads/2013/02/file3751250745449.jpg', u'http://mdwincorp.com/wp-content/uploads/2014/11/benefits-of-bananas.jpg', u'http://media.npr.org/assets/img/2011/08/19/istock_000017061174small_wide-69bb958273302dc0a2ecaf5050d94a2beeee3376.jpg?s=6', u'http://angrytrainerfitness.com/wp-content/uploads/2012/08/bananas.jpg']
+bananas_images = [u'http://cdn1.medicalnewstoday.com/content/images/articles/271157-bananas.jpg', u'http://runhaven.com/wp-content/uploads/minion-bananas.jpg', u'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana21.jpg', u'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Bananas.jpg/1024px-Bananas.jpg', u'http://dreamatico.com/data_images/banana/banana-3.jpg', u'http://www.esbtrib.com/wp-content/uploads/2015/09/bananas1.jpeg', u'http://weknowyourdreams.com/images/banana/banana-07.jpg', u'http://saltmarshrunning.com/wp-content/uploads/2014/09/bananasf.jpg', u'https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg', u'http://bed56888308e93972c04-0dfc23b7b97881dee012a129d9518bae.r34.cf1.rackcdn.com/sites/default/files/imagecache/310_square/bananas_1.jpg', u'http://www.fitnessworksmb.com/wp-content/uploads/banana.jpg', u'https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAARXAAAAJGU2NGE1NzUzLTgxNzYtNDZiZC05YWY1LWQ4ZWE0OTk0NDY2Mw.jpg', u'https://charinacabswords.files.wordpress.com/2015/07/health-benefits-of-bananas.jpg', u'http://www.unitedfreshservices.com/content/01-services_bananen_rijperij/banana_ripening.jpg', u'http://parentinghealthybabies.com/wp-content/uploads/2013/03/bananas.jpg', u'http://foodmatters.tv/images/bananas.jpg', u'http://a3145z3.americdn.com/wp-content/uploads/2014/03/10-amazing-facts-bananas.jpg', u'http://www.popsci.com/sites/popsci.com/files/styles/large_1x_/public/import/2014/bananas-flickr-ian-ransley-design-dog-ccby20.jpg?itok%754G6KHch5', u'http://nobacks.com/wp-content/uploads/2014/11/Banana-21.png', u'http://i.telegraph.co.uk/multimedia/archive/01423/banana_1423728c.jpg']
 
 def test_image():
     with vcr.use_cassette('test/fixtures/image_bananas.yaml'):
@@ -22,3 +22,13 @@ def test_unicode():
     with vcr.use_cassette('test/fixtures/image_unicode.yaml'):
         ret = on_message({"text": u"!image Mötörhead"}, None)
         # not blowing up == success, for our purposes
+
+def test_unescape():
+    # google's octal escapes should get hex encoded and url escaped
+    assert unescape('https://example.com/E\\75MC2') == 'https://example.com/E%3dMC2'
+
+    # multiple escapes should be unescaped
+    assert unescape('https://example.com/\\50test\\75test\\51') == 'https://example.com/%28test%3dtest%29'
+
+    # anything else should be untouched
+    assert unescape('https://example.com/something_else') == 'https://example.com/something_else'
