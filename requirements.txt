@@ -1,7 +1,7 @@
-html5lib==1.0b3
+html5lib==0.9999999
 PyYAML==3.11
 backports.ssl-match-hostname==3.4.0.2
-beautifulsoup4==4.3.2
+beautifulsoup4==4.4.1
 contextlib2==0.4.0
 flake8==2.3.0
 mccabe==0.3
@@ -12,9 +12,9 @@ pyflakes==0.8.1
 requests==2.5.2
 six==1.9.0
 vcrpy==1.2.0
-websocket-client==0.25.0
+websocket-client==0.32.0
 wrapt==1.10.2
 coverage==3.7.1
 pyfiglet==0.7.4
 tox==2.0.1
-slackrtm==0.1.1
+slackrtm==0.2.1
