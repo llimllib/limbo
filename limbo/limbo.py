@@ -188,8 +188,8 @@ def loop(server):
         raise
 
 def relevant_environ():
-    return dict((key, val)
-                for key, val in os.environ.iteritems()
+    return dict((key, os.environ[key])
+                for key in os.environ
                 if key.startswith("SLACK") or key.startswith("LIMBO"))
 
 def init_server(args, config, Server=LimboServer, Client=SlackClient):
