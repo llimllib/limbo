@@ -8,6 +8,20 @@ import re
 import requests
 from random import shuffle
 
+def octal_to_html_escape(re_match):
+    # an octal escape of the form '\75' (which ought to become '%3d', the
+    # url-escaped form of "=". Strip the leading \
+    s = re_match.group(0)[1:]
+
+    # convert octal to hex and strip the leading '0x'
+    h = hex(int(s, 8))[2:]
+
+    return "%{0}".format(h)
+
+def unescape(url):
+    # google uses octal escapes for god knows what reason
+    return re.sub(r"\\..", octal_to_html_escape, url)
+
 def gif(searchterm, unsafe=False):
     searchterm = quote(searchterm)
 
@@ -19,7 +33,7 @@ def gif(searchterm, unsafe=False):
 
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
-    gifs = re.findall(r'imgurl.*?(http.*?)\\', result)
+    gifs = map(unescape, re.findall(r"var u='(.*?)'", result))
     shuffle(gifs)
 
     if gifs:
