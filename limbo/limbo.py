@@ -152,10 +152,15 @@ def init_config():
     getif(config, "logformat", "LIMBO_LOGFORMAT")
     return config
 
-def loop(server):
+def loop(server, test_loop=None):
+    """Run the main loop
+
+    server is a limbo Server object
+    test_loop, if present, is a number of times to run the loop
+    """
     try:
         loops_without_activity = 0
-        while True:
+        while test_loop is None or test_loop > 0:
             start = time.time()
             loops_without_activity += 1
 
@@ -166,6 +171,11 @@ def loop(server):
                 response = handle_event(event, server)
                 if response:
                     server.slack.rtm_send_message(event["channel"], response)
+
+            # Run the loop hook. This doesn't send messages it receives,
+            # because it doesn't know where to send them. Use
+            # server.slack.post_message to send messages from a loop hook
+            run_hook(server.hooks, "loop", server)
 
             # The Slack RTM API docs say:
             #
@@ -182,6 +192,9 @@ def loop(server):
             end = time.time()
             runtime = start - end
             time.sleep(max(1-runtime, 0))
+
+            if test_loop:
+                test_loop -= 1
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
             import ipdb; ipdb.set_trace()

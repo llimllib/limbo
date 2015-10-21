@@ -1,9 +1,9 @@
 """!gif <search term> return a random result from the  google gif search result for <search term>"""
 
 try:
-    from urllib import quote, unquote
+    from urllib import quote
 except ImportError:
-    from urllib.request import quote, unquote
+    from urllib.request import quote
 import re
 import requests
 from random import shuffle
@@ -37,7 +37,7 @@ def gif(searchterm, unsafe=False):
     shuffle(gifs)
 
     if gifs:
-        return unquote(gifs[0])
+        return gifs[0]
     else:
         return ""
 

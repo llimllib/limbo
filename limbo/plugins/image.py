@@ -1,9 +1,9 @@
 """!image <search term> return a random result from the google image search result for <search term>"""
 
 try:
-    from urllib import quote, unquote
+    from urllib import quote
 except ImportError:
-    from urllib.request import quote, unquote
+    from urllib.request import quote
 import re
 import requests
 from random import shuffle
@@ -37,7 +37,7 @@ def image(searchterm, unsafe=False):
     shuffle(images)
 
     if images:
-        return unquote(images[0])
+        return images[0]
     else:
         return ""
 

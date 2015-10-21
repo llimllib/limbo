@@ -27,7 +27,7 @@ os.environ["LIMBO_LOGFILE"] = "/tmp/deleteme"
 
 def test_plugin_success():
     hooks = limbo.init_plugins("test/plugins")
-    eq_(len(hooks), 3)
+    eq_(len(hooks), 4)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -117,3 +117,11 @@ class FakeSlackClient(object):
 
     def rtm_connect(self):
         return self.connect
+
+def test_loop_hook():
+    hooks = limbo.init_plugins("test/plugins")
+    server = limbo.FakeServer(hooks=hooks)
+    slack = limbo.FakeSlack()
+    limbo.loop(server, test_loop=1)
+
+    eq_(server._loop_plugin_ran, True)

@@ -19,15 +19,19 @@ class FakeServer(object):
         return rows
 
 class FakeSlack(object):
-    def __init__(self, server=None, users=None):
+    def __init__(self, server=None, users=None, events=None):
         self.server = server or FakeSlackServer(users=users)
         self.posted_message = None
+        self.events = events if events else []
 
     def post_message(self, channel, message, **kwargs):
         self.posted_message = (message, kwargs)
 
+    def rtm_read(self):
+        return self.events.pop() if self.events else []
+
 class FakeSlackServer(object):
-    def __init__(self, botname="limbo_test", users=None, bots=None):
+    def __init__(self, botname="limbo_test", users=None, bots=None, events=None):
         self.login_data = {
             "self": {
                 "name": botname,
@@ -35,18 +39,13 @@ class FakeSlackServer(object):
         }
         self.username = "replbot"
 
-        if  users:
-            self.users = users
-        else:
-            self.users = {
-                "1": User(self, "limbo_test", 1, "", 0),
-                "2": User(self, "msguser", 2, "", 0),
-                "3": User(self, "slackbot", 3, "", 0),
-            }
+        self.users = users if users else {
+            "1": User(self, "limbo_test", 1, "", 0),
+            "2": User(self, "msguser", 2, "", 0),
+            "3": User(self, "slackbot", 3, "", 0),
+        }
 
-        if bots:
-            self.bots = bots
-        else:
-            self.bots = {
-                "1": Bot("1", "otherbot", [], False)
-            }
+        self.bots = bots if bots else {
+            "1": Bot("1", "otherbot", [], False)
+        }
+
