@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.5.2 CPython/2.6.9 Darwin/15.0.0]
+    method: GET
+    uri: http://whatthecommit.com/index.txt
+  response:
+    body: {string: !!python/unicode 'stuff
+
+        '}
+    headers:
+      connection: [keep-alive]
+      content-length: ['6']
+      content-type: [text/plain]
+      date: ['Fri, 23 Oct 2015 23:27:27 GMT']
+      etag: ['"003d0450f6f7e6db635a04d23245b68e13365463"']
+      server: [TornadoServer/4.2]
+      via: [1.1 vegur]
+    status: {code: 200, message: OK}
+version: 1
