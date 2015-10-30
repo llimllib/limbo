@@ -10,6 +10,9 @@ def on_message(msg, server):
 
     helptopic = match[0].strip()
     if helptopic:
-        return server.hooks["extendedhelp"].get(helptopic, "No help found for {0}".format(helptopic))
+        return server.hooks["extendedhelp"].get(helptopic,
+                "No help found for {0}".format(helptopic))
     else:
-        return "\n".join(sorted(val for _, val in server.hooks["help"].iteritems()))
+        # if no plugin has a docstring, there's no help key
+        helpdict = server.hooks.get("help", {})
+        return "\n".join(sorted(helpdict[key] for key in helpdict))
