@@ -32,7 +32,7 @@ def weather(searchterm):
 
     searchterm = quote(searchterm)
     url = 'http://api.openweathermap.org/data/2.5/forecast/daily?'\
-          'q={0}&cnt=5&mode=json&units=imperial&&APPID={1}'.format(
+          'q={0}&cnt=5&mode=json&units=imperial&APPID={1}'.format(
                   searchterm, weather_api_key)
 
     dat = requests.get(url).json()
