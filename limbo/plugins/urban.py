@@ -5,7 +5,7 @@ import json
 
 def urban(term):
     baseurl = "http://api.urbandictionary.com/v0/define?term={0}"
-    data = requests.get(baseurl.format(term.decode("utf-8"))).json()
+    data = requests.get(baseurl.format(term.decode("utf8"))).json()
     try:
         result = data['list'][0]
         string = "*{word}*: {definition}.\n*Example:*\n>_{example}_".format(**result)
@@ -19,4 +19,4 @@ def on_message(msg, server):
     if not match:
         return
     searchterm = match[0]
-    return urban(searchterm.encode("utf-8"))
+    return urban(searchterm.encode("utf8"))
