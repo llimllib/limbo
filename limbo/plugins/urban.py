@@ -11,7 +11,7 @@ def urban(term):
         string = "*{word}*: {definition}.\n*Example:*\n>_{example}_".format(**result)
         return string
     except IndexError:
-        return ":cry: No results found for {}, please try again".format(term)
+        return ":cry: No results found for {0}, please try again".format(term)
 
 def on_message(msg, server):
     text = msg.get("text", "")
