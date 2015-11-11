@@ -1,11 +1,14 @@
 """!urban <term> returns the urban dictionary definition and example of a term"""
 import requests
 import re
-import json
+import sys
 
 def urban(term):
     baseurl = "http://api.urbandictionary.com/v0/define?term={0}"
-    data = requests.get(baseurl.format(term.decode("utf8"))).json()
+    if sys.version[0] == '3':
+        data = requests.get(baseurl.format(term.decode("utf8"))).json()
+    else:
+        data = requests.get(baseurl.format(term)).json()
     try:
         result = data['list'][0]
         string = "*{word}*: {definition}.\n*Example:*\n>_{example}_".format(**result)
