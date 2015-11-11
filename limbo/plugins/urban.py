@@ -5,7 +5,7 @@ import json
 
 def urban(term):
     baseurl = "http://api.urbandictionary.com/v0/define?term={0}"
-    data = requests.get(baseurl.format(term.decode("utf-8")).json()
+    data = requests.get(baseurl.format(term.decode("utf-8"))).json()
     try:
         result = data['list'][0]
         string = "*{word}*: {definition}.\n*Example:*\n>_{example}_".format(**result)
