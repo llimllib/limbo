@@ -16,4 +16,4 @@ def test_unicode():
 
 def test_message():
     ret = on_message({"text": u"!urban Test"}, None)
-    assert "Test" in ret and "Example" in ret
+    assert "Example" in ret
