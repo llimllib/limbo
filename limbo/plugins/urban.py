@@ -19,4 +19,4 @@ def on_message(msg, server):
     if not match:
         return
     searchterm = match[0]
-    return urban(searchterm.encode("utf8"))
+    return urban(searchterm)
