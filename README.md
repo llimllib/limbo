@@ -51,3 +51,4 @@ These are the current default plugins:
 * [@drewp](https://github.com/drewp)
 * [@TetraEtc](https://github.com/TetraEtc)
 * [@LivingInSyn](https://github.com/LivingInSyn)
+* [@reversegremlin](https://github.com/reversegremlin)
