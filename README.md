@@ -49,3 +49,4 @@ These are the current default plugins:
 * [@noise](https://github.com/noise)
 * [@drewp](https://github.com/drewp)
 * [@TetraEtc](https://github.com/TetraEtc)
+* [@LivingInSyn](https://github.com/LivingInSyn)
