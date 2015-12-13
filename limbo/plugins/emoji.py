@@ -4,7 +4,7 @@ import random
 from emojicodedict import emojiCodeDict
 
 def randomelt(dic):
-    keys = dic.keys()
+    keys = list(dic.keys())
     i = random.randint(0, len(keys) - 1)
     return dic[keys[i]]
 
