@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 """!urban <term> returns the urban dictionary definition and example of a term"""
 import requests
 import re
@@ -15,7 +16,7 @@ def reply_quote(string):
 def urban(term):
     # slack likes to replace the quote character with a smart quote.
     # Undo that.
-    term = term.replace(u'’', "'")
+    term = term.replace(u'’', "'").encode("utf8")
 
     baseurl = u"http://api.urbandictionary.com/v0/define?term={0}"
     data = requests.get(baseurl.format(quote(term))).json()
