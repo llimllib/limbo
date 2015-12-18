@@ -18,3 +18,4 @@ coverage==3.7.1
 pyfiglet==0.7.4
 tox==2.0.1
 slackrtm==0.2.1
+safygiphy
