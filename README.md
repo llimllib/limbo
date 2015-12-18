@@ -25,6 +25,7 @@ These are the current default plugins:
 * [emoji](https://github.com/llimllib/limbo/wiki/Emoji-Plugin)
 * [flip](https://github.com/llimllib/limbo/wiki/Flip-Plugin)
 * [gif](https://github.com/llimllib/limbo/wiki/Gif-Plugin)
+* [giphy](https://github.com/llimllib/limbo/wiki/Giphy-Plugin)
 * [google](https://github.com/llimllib/limbo/wiki/Google-Plugin)
 * [help](https://github.com/llimllib/limbo/wiki/Help-Plugin)
 * [image](https://github.com/llimllib/limbo/wiki/Image-Plugin)
