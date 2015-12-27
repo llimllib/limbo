@@ -33,6 +33,30 @@ def test_plugin_success():
     assert isinstance(hooks["message"], list)
     eq_(len(hooks["message"]), 2)
 
+def test_config_plugin_none_success():
+    hooks = limbo.init_plugins("test/plugins", None)
+    eq_(len(hooks), 4)
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    eq_(len(hooks["message"]), 2)
+
+def test_config_plugin_empty_string_success():
+    hooks = limbo.init_plugins("test/plugins", "")
+    eq_(len(hooks), 4)
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    eq_(len(hooks["message"]), 2)
+
+def test_config_plugin_success():
+    hooks = limbo.init_plugins("test/plugins", "echo,loop")
+    eq_(len(hooks), 2)
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    eq_(len(hooks["message"]), 1)
+
 def test_plugin_invalid_dir():
     try:
         limbo.init_plugins("invalid/package")
@@ -119,7 +143,7 @@ class FakeSlackClient(object):
         return self.connect
 
 def test_loop_hook():
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins("test/plugins", None)
     server = limbo.FakeServer(hooks=hooks)
     slack = limbo.FakeSlack()
     limbo.loop(server, test_loop=1)

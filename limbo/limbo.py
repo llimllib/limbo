@@ -40,7 +40,7 @@ def init_log(config):
 def strip_extension(lst):
     return (os.path.splitext(l)[0] for l in lst)
 
-def init_plugins(plugindir):
+def init_plugins(plugindir, plugins_to_load=None):
     if plugindir and not os.path.isdir(plugindir):
         raise InvalidPluginDir(plugindir)
 
@@ -67,7 +67,13 @@ def init_plugins(plugindir):
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
 
+    plugins_to_load_split = plugins_to_load.split(',') if plugins_to_load else []
+
     for plugin in plugins:
+        if plugins_to_load_split and plugin not in plugins_to_load_split:
+            logger.debug("plugin not loaded: {0}".format(plugin))
+            continue
+
         logger.debug("plugin: {0}".format(plugin))
         try:
             mod = importlib.import_module(plugin)
@@ -150,6 +156,7 @@ def init_config():
     getif(config, "loglevel", "LIMBO_LOGLEVEL")
     getif(config, "logfile", "LIMBO_LOGFILE")
     getif(config, "logformat", "LIMBO_LOGFORMAT")
+    getif(config, "plugins", "LIMBO_PLUGINS")
     return config
 
 def loop(server, test_loop=None):
@@ -209,7 +216,7 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
-    hooks = init_plugins(args.pluginpath)
+    hooks = init_plugins(args.pluginpath, config.get("plugins"))
     try:
         slack = Client(config["token"])
     except KeyError:
@@ -250,7 +257,7 @@ def main(args):
     elif args.command is not None:
         init_log(config)
         cmd = decode(args.command)
-        print(run_cmd(cmd, FakeServer(), args.hook, args.pluginpath))
+        print(run_cmd(cmd, FakeServer(), args.hook, args.pluginpath, config.get("plugins")))
         return
 
     server = init_server(args, config)
@@ -270,8 +277,8 @@ def main(args):
 
 # run a command. cmd should be a unicode string (str in python3, unicode in python2).
 # returns a string appropriate for printing (str in py2 and py3)
-def run_cmd(cmd, server, hook, pluginpath):
-    server.hooks = init_plugins(pluginpath)
+def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
+    server.hooks = init_plugins(pluginpath, plugins_to_load)
     event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': 'repl_channel'}
     return encode(handle_event(event, server))
 
@@ -288,7 +295,7 @@ def repl(server, args):
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath, None))
     except (EOFError, KeyboardInterrupt):
         print()
         pass
