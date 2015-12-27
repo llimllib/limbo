@@ -143,7 +143,7 @@ class FakeSlackClient(object):
         return self.connect
 
 def test_loop_hook():
-    hooks = limbo.init_plugins("test/plugins", None)
+    hooks = limbo.init_plugins("test/plugins")
     server = limbo.FakeServer(hooks=hooks)
     slack = limbo.FakeSlack()
     limbo.loop(server, test_loop=1)
