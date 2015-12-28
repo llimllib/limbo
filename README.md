@@ -13,6 +13,14 @@
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
+## Command Arguments
+
+* --test, -t: Enter command line mode to enter a limbo repl.
+* --hook: Specify the hook to test. (Defaults to "message").
+* -c: Run a single command.
+* --database, -d: Where to store the limbo tinydb database. Defaults to log.json.
+* --pluginpath, -pp: The path where limbo should look to find its plugins (defaults to /plugins).
+
 ## Environment Variables
 
 * SLACK_TOKEN: Slack API token. Required.
