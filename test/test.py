@@ -57,6 +57,10 @@ def test_config_plugin_success():
     assert isinstance(hooks["message"], list)
     eq_(len(hooks["message"]), 1)
 
+def test_config_plugin_doesnt_exist():
+    hooks = limbo.init_plugins("test/plugins", "doesnotexist")
+    eq_(len(hooks), 0)
+
 def test_plugin_invalid_dir():
     try:
         limbo.init_plugins("invalid/package")
