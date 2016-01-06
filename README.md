@@ -60,3 +60,4 @@ These are the current default plugins:
 * [@TetraEtc](https://github.com/TetraEtc)
 * [@LivingInSyn](https://github.com/LivingInSyn)
 * [@reversegremlin](https://github.com/reversegremlin)
+* [@adamghill](https://github.com/adamghill)
