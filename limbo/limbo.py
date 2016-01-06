@@ -67,11 +67,9 @@ def init_plugins(plugindir, plugins_to_load=None):
     oldpath = copy.deepcopy(sys.path)
     sys.path.insert(0, plugindir)
 
-    plugins_to_load_split = plugins_to_load.split(',') if plugins_to_load else []
-
     for plugin in plugins:
-        if plugins_to_load_split and plugin not in plugins_to_load_split:
-            logger.debug("plugin not loaded: {0}".format(plugin))
+        if plugins_to_load and plugin not in plugins_to_load:
+            logger.debug("skipping plugin {0}, not in plugins_to_load {1}".format(plugin, plugins_to_load))
             continue
 
         logger.debug("plugin: {0}".format(plugin))
@@ -157,6 +155,7 @@ def init_config():
     getif(config, "logfile", "LIMBO_LOGFILE")
     getif(config, "logformat", "LIMBO_LOGFORMAT")
     getif(config, "plugins", "LIMBO_PLUGINS")
+
     return config
 
 def loop(server, test_loop=None):
@@ -216,7 +215,11 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
     init_log(config)
     logger.debug("config: {0}".format(config))
     db = init_db(args.database_name)
-    hooks = init_plugins(args.pluginpath, config.get("plugins"))
+
+    config_plugins = config.get("plugins")
+    plugins_to_load = config_plugins.split(",") if config_plugins else []
+
+    hooks = init_plugins(args.pluginpath, plugins_to_load)
     try:
         slack = Client(config["token"])
     except KeyError:
