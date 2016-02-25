@@ -1,0 +1,4 @@
+limbo:
+  image: skiftcreative/supervisor:3.4
+  envorinment:
+    - SLACK_TOKEN="xoxb..."
