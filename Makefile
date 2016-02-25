@@ -52,7 +52,7 @@ docker_build:
 
 .PHONY: docker_run
 docker_run:
-	docker run --name=${APP} --detach=true -p 5000:5000 ${NAMESPACE}/${APP}
+	docker run --name=${APP} --detach=true -e SLACK_TOKEN=${SLACK_TOKEN} ${NAMESPACE}/${APP}
 
 .PHONY: docker_clean
 docker_clean:
