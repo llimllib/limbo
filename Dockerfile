@@ -5,9 +5,10 @@ ENV SLACK_TOKEN "xoxb..."
 
 COPY . /deploy/app
 
-RUN pip3 install -U pip
+RUN pip3 install -U pip setuptools
 
 RUN pip3 install -r /deploy/app/requirements.txt \
-    && python setup.py install
+    && cd /deploy/app \
+    && python3 /deploy/app/setup.py install
 
-COPY docker/supervisord.conf /etc/supervisord.conf
+COPY .docker/supervisord.conf /etc/supervisord.conf
