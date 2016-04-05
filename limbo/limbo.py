@@ -76,7 +76,7 @@ def init_plugins(plugindir, plugins_to_load=None):
         try:
             mod = importlib.import_module(plugin)
             modname = mod.__name__
-            for hook in re.findall("on_(\w+)", " ".join(dir(mod))):
+            for hook in re.findall("\ on_(\w+)", " ".join(dir(mod))):
                 hookfun = getattr(mod, "on_" + hook)
                 logger.debug("plugin: attaching %s hook for %s", hook, modname)
                 hooks.setdefault(hook, []).append(hookfun)
