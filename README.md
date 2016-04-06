@@ -53,6 +53,11 @@ These are the current default plugins:
 * [youtube](https://github.com/llimllib/limbo/wiki/Youtube-Plugin)
 
 ---
+## FAQ
+  * When I start the docker container, I see an error about unable to source limbo.env.  Is this a problem?
+    - No.  The limbo.env file only exists when using Kubernetes with the included opaque secret recipe for storing your environment variables.
+
+---
 
 ## Contributors
 
