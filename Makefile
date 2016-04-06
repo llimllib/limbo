@@ -1,3 +1,6 @@
+NAMESPACE=llimllib
+APP=limbo
+
 .PHONY: testall
 testall: requirements
 	tox
@@ -42,3 +45,23 @@ publish:
 .PHONY: flake8
 flake8:
 	flake8 limbo test
+
+.PHONY: docker_build
+docker_build:
+	docker build -t ${NAMESPACE}/${APP} .
+
+.PHONY: docker_run
+docker_run:
+	docker run --name=${APP} --detach=true -e SLACK_TOKEN=${SLACK_TOKEN} ${NAMESPACE}/${APP}
+
+.PHONY: docker_clean
+docker_clean:
+	docker stop ${APP} && docker rm ${APP}
+
+.PHONY: docker_reset
+docker_reset: docker_clean
+	docker rmi ${NAMESPACE}/${APP}
+
+.PHONY: docker_push
+docker_push:
+	docker push ${NAMESPACE}/${APP}
