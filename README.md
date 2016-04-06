@@ -54,8 +54,12 @@ These are the current default plugins:
 
 ---
 ## FAQ
+  * How do I try out Limbo via docker?
+    - @PeterGrace maintains a public build of limbo, available from the docker registry.  Executing `docker run -d -e SLACK_TOKEN=<your_token> petergrace/limbo` will start the default bot.
   * When I start the docker container, I see an error about unable to source limbo.env.  Is this a problem?
     - No.  The limbo.env file only exists when using Kubernetes with the included opaque secret recipe for storing your environment variables.
+  * I'd like to develop plugins for Limbo, but would still like to use Docker to run the bot.  Is there a quick way to add plugins to the bot?
+    - Yes!  Use the included Dockerfile.dev as a template, and simply build via `docker build -f Dockerfile.dev -t <new_image_name> .`  You'll then need to start the bot with your new_image_name, for example `docker run -d -e SLACK_TOKEN=<your_token> new_image_name`
 
 ---
 
