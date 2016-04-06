@@ -7,6 +7,7 @@ except ImportError:
     from urllib.request import quote, unquote
 import requests
 
+
 def google(q):
     query = quote(q)
     url = "https://encrypted.google.com/search?q={0}".format(query)
@@ -15,8 +16,10 @@ def google(q):
     answer = soup.findAll("h3", attrs={"class": "r"})
     if not answer:
         return ":crying_cat_face: Sorry, google doesn't have an answer for you :crying_cat_face:"
-
-    return unquote(re.findall(r"q=(.*?)&", str(answer[0]))[0])
+    try:
+        return unquote(re.findall(r"q=(.*?)&", str(answer[0]))[0])
+    except IndexError:
+        return unquote(re.findall(r"q=(.*?)&", str(answer[1]))[0])
 
 def on_message(msg, server):
     text = msg.get("text", "")
