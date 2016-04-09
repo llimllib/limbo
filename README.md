@@ -70,3 +70,4 @@ These are the current default plugins:
 * [@reversegremlin](https://github.com/reversegremlin)
 * [@adamghill](https://github.com/adamghill)
 * [@PeterGrace](https://github.com/PeterGrace)
+* [@SkiftCreative](https://github.com/SkiftCreative)
