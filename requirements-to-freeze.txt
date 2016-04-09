@@ -1,0 +1,26 @@
+# This file defines the high-level requirements we need
+# for limbo. Once they're installed in a clean virtualenv,
+# I pip freeze them and save *that* file as requirements.txt
+# for a rationale on this procedure, see:
+# http://www.kennethreitz.org/essays/a-better-pip-workflow
+
+# Custom slack rtm fork
+slackrtm==0.2.1
+
+# Installs some python infra to avoid problems in openssl installs
+# http://stackoverflow.com/a/31812342/42559
+requests[security]
+certifi
+
+# bs4 and a parsing lib for it
+beautifulsoup4
+html5lib
+
+# testing utilities
+flake8
+nose
+vcrpy
+tox
+
+# banner plugin
+pyfiglet
