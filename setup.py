@@ -12,9 +12,9 @@ except ImportError:
 
 PYTHON3 = sys.version_info[0] > 2
 
-required = ['requests>=2.5', 'websocket-client==0.32.0',
+required = ['requests>=2.9', 'websocket-client==0.35.0',
         'beautifulsoup4==4.4.1', 'html5lib==0.9999999', 'pyfiglet==0.7.4',
-        'slackrtm==0.2.1']
+        'slackrtm==0.2.1', 'certifi==2015.04.28']
 if not PYTHON3:
     required += ['importlib>=1.0.3']
 
