@@ -60,7 +60,3 @@ docker_run:
 .PHONY: docker_stop
 docker_clean:
 	docker stop $(docker ps -a -q  --filter ancestor=petergrace/limbo --format="{{.ID}}")
-
-.PHONY: docker_build
-docker_build:
-	docker build -t ${NAMESPACE}/${APP} .
