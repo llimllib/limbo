@@ -22,13 +22,3 @@ def test_unicode():
     with vcr.use_cassette('test/fixtures/image_unicode.yaml'):
         ret = on_message({"text": u"!image Mötörhead"}, None)
         # not blowing up == success, for our purposes
-
-def test_unescape():
-    # google's octal escapes should get hex encoded and url escaped
-    assert unescape('https://example.com/E\\75MC2') == 'https://example.com/E%3dMC2'
-
-    # multiple escapes should be unescaped
-    assert unescape('https://example.com/\\50test\\75test\\51') == 'https://example.com/%28test%3dtest%29'
-
-    # anything else should be untouched
-    assert unescape('https://example.com/something_else') == 'https://example.com/something_else'
