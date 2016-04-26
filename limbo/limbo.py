@@ -175,8 +175,19 @@ def loop(server, test_loop=None):
                 loops_without_activity = 0
                 logger.debug("got {0}".format(event.get("type", event)))
                 response = handle_event(event, server)
-                if response:
-                    server.slack.rtm_send_message(event["channel"], response)
+                while response:
+                    # The Slack API documentation says:
+                    #
+                    # Clients should limit messages sent to channels to 4000
+                    # characters, which will always be under 16k bytes even
+                    # with a message comprised solely of non-BMP Unicode
+                    # characters at 4 bytes each.
+                    #
+                    # but empirical testing shows that I'm getting disconnected
+                    # at 4000 characters and even quite a bit lower. Use 1000
+                    # to be safe
+                    server.slack.rtm_send_message(event["channel"], response[:1000])
+                    response = response[1000:]
 
             # Run the loop hook. This doesn't send messages it receives,
             # because it doesn't know where to send them. Use
