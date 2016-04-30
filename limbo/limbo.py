@@ -127,9 +127,7 @@ def handle_message(event, server):
     if subtype == "bot_message":
         return handle_bot_message(event, server)
 
-    try:
-        msguser = server.slack.server.users[event["user"]]
-    except KeyError:
+    if "user" not in event
         logger.debug("event {0} has no user".format(event))
         return
 
