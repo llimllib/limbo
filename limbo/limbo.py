@@ -15,7 +15,7 @@ import traceback
 
 
 from slackrtm import SlackClient
-from slackrtm.server import SlackConnectionError, SlackLoginError, User
+from slackrtm.server import SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
