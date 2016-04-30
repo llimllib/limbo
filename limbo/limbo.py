@@ -4,6 +4,7 @@ import copy
 import functools
 from glob import glob
 import importlib
+import json
 import logging
 import os
 import re
@@ -11,6 +12,7 @@ import sqlite3
 import sys
 import time
 import traceback
+
 
 from slackrtm import SlackClient
 from slackrtm.server import SlackConnectionError, SlackLoginError
@@ -128,7 +130,11 @@ def handle_message(event, server):
         return handle_bot_message(event, server)
 
     try:
-        msguser = server.slack.server.users[event["user"]]
+        msguser = event["user"]
+        if msguser not in server.slack.server.users:
+            user = json.loads(server.slack.server.api_call("users.info", post_data={"msguser": msguser}))["user"]
+            server.slack.server.parse_user_data([user])
+
     except KeyError:
         logger.debug("event {0} has no user".format(event))
         return
@@ -186,8 +192,17 @@ def loop(server, test_loop=None):
                     # but empirical testing shows that I'm getting disconnected
                     # at 4000 characters and even quite a bit lower. Use 1000
                     # to be safe
-                    server.slack.rtm_send_message(event["channel"], response[:1000])
-                    response = response[1000:]
+                    try:
+                        server.slack.rtm_send_message(event["channel"], response[:1000])
+                        response = response[1000:]
+                    except KeyError:
+                        """
+                        This only happens when the bot is added to a private group it wasn't in before
+                        """
+                        group = json.loads(server.slack.server.api_call("groups.info", post_data={"channel": event["channel"]}))["group"]
+                        server.slack.server.attach_channel(group["name"], event["channel"], group["members"])
+                        server.slack.rtm_send_message(event["channel"], response[:1000])
+                        response = response[1000:]
 
             # Run the loop hook. This doesn't send messages it receives,
             # because it doesn't know where to send them. Use
