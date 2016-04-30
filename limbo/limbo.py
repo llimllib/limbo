@@ -128,8 +128,8 @@ def handle_message(event, server):
         return handle_bot_message(event, server)
 
     try:
-        msguser = server.slack.server.users[event["user"]]
-    except KeyError:
+        msguser = event["user"]
+    except KeyError
         logger.debug("event {0} has no user".format(event))
         return
 
@@ -146,6 +146,7 @@ def handle_event(event, server):
 
 def getif(config, name, envvar):
     if envvar in os.environ:
+
         config[name] = os.environ.get(envvar)
 
 def init_config():
