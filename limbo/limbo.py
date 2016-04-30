@@ -127,7 +127,9 @@ def handle_message(event, server):
     if subtype == "bot_message":
         return handle_bot_message(event, server)
 
-    if "user" not in event:
+    try:
+        msguser = event["user"]
+    except KeyError
         logger.debug("event {0} has no user".format(event))
         return
 
@@ -144,6 +146,7 @@ def handle_event(event, server):
 
 def getif(config, name, envvar):
     if envvar in os.environ:
+
         config[name] = os.environ.get(envvar)
 
 def init_config():
