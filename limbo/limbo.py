@@ -12,8 +12,7 @@ import sys
 import time
 import traceback
 
-from slackrtm import SlackClient
-from slackrtm.server import SlackConnectionError, SlackLoginError
+from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
@@ -112,7 +111,7 @@ def run_hook(hooks, hook, *args):
 
 def handle_bot_message(event, server):
     try:
-        bot = server.slack.server.bots[event["bot_id"]]
+        bot = server.slack.bots[event["bot_id"]]
     except KeyError:
         logger.debug("bot_message event {0} has no bot".format(event))
         return
@@ -128,7 +127,7 @@ def handle_message(event, server):
         return handle_bot_message(event, server)
 
     try:
-        msguser = server.slack.server.users[event["user"]]
+        msguser = server.slack.users[event["user"]]
     except KeyError:
         logger.debug("event {0} has no user".format(event))
         return
@@ -203,7 +202,7 @@ def loop(server, test_loop=None):
             # If the connection has broken, this will reveal it so slack can
             # quit
             if loops_without_activity > 5:
-                server.slack.server.ping()
+                server.slack.ping()
                 loops_without_activity = 0
 
             end = time.time()
