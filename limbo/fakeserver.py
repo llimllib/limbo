@@ -1,4 +1,4 @@
-from slackrtm.server import User, Bot
+from .slack import User, Bot
 
 class FakeServer(object):
     def __init__(self, slack=None, config=None, hooks=None, db=None):
