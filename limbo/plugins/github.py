@@ -334,5 +334,5 @@ def on_message(msg, server):
     server.slack.post_message(
             msg['channel'],
             '',
-            as_user=server.slack.server.username,
+            as_user=server.slack.username,
             **kwargs)

@@ -19,19 +19,9 @@ class FakeServer(object):
         return rows
 
 class FakeSlack(object):
-    def __init__(self, server=None, users=None, events=None):
-        self.server = server or FakeSlackServer(users=users)
+    def __init__(self, server=None, users=None, events=None, bots=None, botname="test"):
         self.posted_message = None
         self.events = events if events else []
-
-    def post_message(self, channel, message, **kwargs):
-        self.posted_message = (message, kwargs)
-
-    def rtm_read(self):
-        return self.events.pop() if self.events else []
-
-class FakeSlackServer(object):
-    def __init__(self, botname="limbo_test", users=None, bots=None, events=None):
         self.login_data = {
             "self": {
                 "name": botname,
@@ -49,3 +39,9 @@ class FakeSlackServer(object):
             "1": Bot("1", "otherbot", [], False)
         }
 
+
+    def post_message(self, channel, message, **kwargs):
+        self.posted_message = (message, kwargs)
+
+    def rtm_read(self):
+        return self.events.pop() if self.events else []
