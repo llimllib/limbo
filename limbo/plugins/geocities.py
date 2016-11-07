@@ -8,7 +8,7 @@ import re
 import requests
 from random import shuffle
 
-def gif(searchterm, unsafe=False):
+def gif(searchterm):
     searchterm = quote(searchterm)
     searchurl = "https://wbgrp-svc060.us.archive.org/api/v1/gifsearch?q={0}&notrack=1".format(searchterm)
     results = requests.get(searchurl).json()
