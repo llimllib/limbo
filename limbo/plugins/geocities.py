@@ -10,7 +10,7 @@ from random import shuffle
 
 def gif(searchterm):
     searchterm = quote(searchterm)
-    searchurl = "https://wbgrp-svc060.us.archive.org/api/v1/gifsearch?q={0}&notrack=1".format(searchterm)
+    searchurl = "https://gifcities.archive.org/api/v1/gifsearch?q={}".format(searchterm)
     results = requests.get(searchurl).json()
     gifs = list(map(lambda x: "https://web.archive.org/web/{0}".format(x['gif']), results))
     shuffle(gifs)
