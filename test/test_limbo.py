@@ -27,7 +27,7 @@ os.environ["LIMBO_LOGFILE"] = "/tmp/deleteme"
 
 def test_plugin_success():
     hooks = limbo.init_plugins("test/plugins")
-    eq_(len(hooks), 4)
+    eq_(len(hooks), 6)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -35,7 +35,7 @@ def test_plugin_success():
 
 def test_config_plugin_none_success():
     hooks = limbo.init_plugins("test/plugins", None)
-    eq_(len(hooks), 4)
+    eq_(len(hooks), 6)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -43,7 +43,7 @@ def test_config_plugin_none_success():
 
 def test_config_plugin_empty_string_success():
     hooks = limbo.init_plugins("test/plugins", "")
-    eq_(len(hooks), 4)
+    eq_(len(hooks), 6)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -51,7 +51,7 @@ def test_config_plugin_empty_string_success():
 
 def test_config_plugin_success():
     hooks = limbo.init_plugins("test/plugins", "echo,loop")
-    eq_(len(hooks), 2)
+    eq_(len(hooks), 4)
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -95,7 +95,7 @@ def test_handle_message_subtype():
 
 def test_handle_message_ignores_self():
     server = limbo.FakeServer()
-    event = {"user": "limbo_test"}
+    event = {"user": "limbo_test", "type": "message", "id": "1"}
     eq_(limbo.handle_message(event, server), None)
 
 def test_handle_message_ignores_slackbot():
@@ -123,7 +123,7 @@ def test_handle_message_slack_user_nil():
     slack = limbo.FakeSlack(users=users)
     server = limbo.FakeServer(slack=slack, hooks=hooks)
 
-    eq_(limbo.handle_message(event, server), None)
+    eq_(limbo.handle_message(event, server), "!echo Iñtërnâtiônàlizætiøn")
 
 def test_handle_bot_message():
     msg = u"!echo Iñtërnâtiônàlizætiøn bot"
@@ -133,6 +133,30 @@ def test_handle_bot_message():
     server = limbo.FakeServer(hooks=hooks)
 
     eq_(limbo.handle_message(event, server), msg)
+
+def test_handle_edit_message():
+    oldmsg = u"old message"
+    newmsg = u"!echo new message"
+    event = {"type": "message",
+            "subtype": "message_changed",
+            "previous_message": {"text": oldmsg},
+            "message": {"text": newmsg, "user": "msguser"}}
+
+    hooks = limbo.init_plugins("test/plugins")
+    server = limbo.FakeServer(hooks=hooks)
+
+    eq_(limbo.handle_message(event, server), "Changed: {}".format(newmsg))
+
+def test_handle_delete_message():
+    oldmsg = u"!echo old message"
+    event = {"type": "message",
+            "subtype": "message_deleted",
+            "previous_message": {"text": oldmsg, "user": "msguser"}}
+
+    hooks = limbo.init_plugins("test/plugins")
+    server = limbo.FakeServer(hooks=hooks)
+
+    eq_(limbo.handle_message(event, server), "Deleted: {}".format(oldmsg))
 
 def test_init_db():
     tf = tempfile.NamedTemporaryFile()
