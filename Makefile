@@ -7,7 +7,7 @@ testall: requirements
 
 .PHONY: test
 test: install
-	LANG=en_US.UTF-8 NOSE_COVER_PACKAGE=limbo nosetests -s --nologcapture --with-coverage
+	LANG=en_US.UTF-8 pytest
 
 .PHONY: clean
 clean:
