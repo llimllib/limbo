@@ -2,7 +2,6 @@
 import os
 import sys
 
-from nose.tools import eq_
 import vcr
 
 DIR = os.path.dirname(os.path.realpath(__file__))
