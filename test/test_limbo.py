@@ -123,7 +123,7 @@ def test_handle_message_slack_user_nil():
     slack = limbo.FakeSlack(users=users)
     server = limbo.FakeServer(slack=slack, hooks=hooks)
 
-    eq_(limbo.handle_message(event, server), "!echo Iñtërnâtiônàlizætiøn")
+    eq_(limbo.handle_message(event, server), u"!echo Iñtërnâtiônàlizætiøn")
 
 def test_handle_bot_message():
     msg = u"!echo Iñtërnâtiônàlizætiøn bot"
