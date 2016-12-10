@@ -58,6 +58,7 @@ class SlackClient(object):
     def __init__(self, token):
         self.token = token
         self.username = None
+        self.userid = None
         self.domain = None
         self.login_data = None
         self.websocket = None
@@ -124,6 +125,7 @@ class SlackClient(object):
         self.login_data = login_data
         self.domain = self.login_data["team"]["domain"]
         self.username = self.login_data["self"]["name"]
+        self.userid = self.login_data["self"]["id"]
         self.parse_channel_data(login_data["channels"])
         self.parse_channel_data(login_data["groups"])
         self.parse_channel_data(login_data["ims"])
