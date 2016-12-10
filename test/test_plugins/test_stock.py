@@ -2,7 +2,6 @@
 import os
 import sys
 
-from nose.tools import eq_
 import vcr
 
 DIR = os.path.dirname(os.path.realpath(__file__))
@@ -21,12 +20,12 @@ def test_apple():
 def test_nonexistent():
     with vcr.use_cassette('test/fixtures/stock_none'):
         ret = on_message({"text": u"bana"}, None)
-        eq_(ret, None)
+        assert ret == None
 
 def test_unicode():
     with vcr.use_cassette('test/fixtures/stock_unicode.yaml'):
         ret = on_message({"text": u"$äapl"}, None)
-        eq_(ret, None)
+        assert ret == None
 
 def test_multiple():
     with vcr.use_cassette('test/fixtures/stock_multiple.yaml'):
@@ -36,4 +35,4 @@ def test_multiple():
 def test_price():
     with vcr.use_cassette('test/fixtures/stock_none'):
         ret = on_message({"text": u"the price is $12.43"}, None)
-        eq_(ret, None)
+        assert ret == None

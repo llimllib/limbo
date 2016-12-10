@@ -4,7 +4,6 @@ import os
 import sys
 import sqlite3
 
-from nose.tools import eq_
 import vcr
 
 DIR = os.path.dirname(os.path.realpath(__file__))
@@ -17,7 +16,7 @@ from limbo.fakeserver import FakeServer
 SERVER = FakeServer(db=sqlite3.connect(":memory:"))
 
 def dicteq(a, b):
-    eq_(sorted(a.items()), sorted(b.items()))
+    assert sorted(a.items()) == sorted(b.items())
 
 def test_basic():
     with vcr.use_cassette('test/fixtures/github_issues.yaml'):
@@ -34,5 +33,5 @@ def test_basic():
             u'title_link': u'https://github.com/llimllib/limbo/issues/5'
         }
         actual = json.loads(SERVER.slack.posted_message[1]['attachments'])
-        eq_(len(actual), 1)
+        assert len(actual) == 1
         dicteq(expected, actual[0])

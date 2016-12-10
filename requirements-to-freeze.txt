@@ -15,7 +15,8 @@ html5lib
 
 # testing utilities
 flake8
-nose
+pytest
+pytest-cov
 vcrpy
 tox
 
