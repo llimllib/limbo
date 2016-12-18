@@ -12,11 +12,11 @@ except ImportError:
 
 PYTHON3 = sys.version_info[0] > 2
 
-required = ['requests>=2.9', 'websocket-client==0.35.0',
-        'beautifulsoup4==4.4.1', 'html5lib==0.9999999', 'pyfiglet==0.7.4',
-        'certifi==2015.04.28']
+required = ['requests>=2.12', 'websocket-client==0.40.0',
+        'beautifulsoup4==4.5.1', 'html5lib==0.999999999', 'pyfiglet==0.7.5',
+        'certifi==2016.9.26']
 if not PYTHON3:
-    required += ['importlib>=1.0.3']
+    required += ['importlib>=1.0.4']
 
 packages = ['limbo', 'limbo.plugins']
 
@@ -40,12 +40,15 @@ setup(
     install_requires=required,
     license='MIT',
     classifiers=(
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: Implementation :: PyPy',
     ),
+    keywords="slack chatbot chat limbo",
 )
