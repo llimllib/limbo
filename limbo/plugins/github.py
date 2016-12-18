@@ -42,6 +42,7 @@ HUB_URL = 'https://api.github.com/{0}'
 class Github(object):
     def __init__(self, username, password):
         self.auth = username, password
+        if not any(self.auth): self.auth = None
 
     def _get(self, url_fragment, **params):
         return requests.get(
