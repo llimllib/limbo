@@ -40,7 +40,7 @@ install: requirements
 publish:
 	pandoc -s -w rst README.md -o README.rst
 	python setup.py sdist upload
-	rm README.rs
+	rm README.rst
 
 .PHONY: flake8
 flake8:

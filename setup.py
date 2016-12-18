@@ -21,13 +21,13 @@ if not PYTHON3:
 packages = ['limbo', 'limbo.plugins']
 
 try:
-    longdesc = open("README.rs").read()
+    longdesc = open("README.rst").read()
 except:
     longdesc = ''
 
 setup(
     name='limbo',
-    version='5.0.2',
+    version='5.0.3',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
