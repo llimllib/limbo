@@ -38,7 +38,7 @@ install: requirements
 
 .PHONY: publish
 publish:
-	pandoc -s -w rst README.md -o README.rs
+	pandoc -s -w rst README.md -o README.rst
 	python setup.py sdist upload
 	rm README.rs
 
