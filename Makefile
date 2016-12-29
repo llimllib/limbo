@@ -7,7 +7,7 @@ testall: requirements
 
 .PHONY: test
 test: install
-	LANG=en_US.UTF-8 NOSE_COVER_PACKAGE=limbo nosetests -s --nologcapture --with-coverage
+	LANG=en_US.UTF-8 pytest --cov=limbo --cov-report term-missing
 
 .PHONY: clean
 clean:
@@ -38,9 +38,9 @@ install: requirements
 
 .PHONY: publish
 publish:
-	pandoc -s -w rst README.md -o README.rs
+	pandoc -s -w rst README.md -o README.rst
 	python setup.py sdist upload
-	rm README.rs
+	rm README.rst
 
 .PHONY: flake8
 flake8:

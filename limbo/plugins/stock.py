@@ -23,18 +23,25 @@ def stockprice(ticker):
         return ""
     price = soup.select("#price-panel .pr span")[0].text
     change, pct = soup.select("#price-panel .nwp span")[0].text.split()
+    time = " ".join(soup.select(".mdata-dis")[0].parent.text.split()[:4])
     pct.strip('()')
 
-    emoji = ":chart_with_upwards_trend:" if change.startswith("+") else ":chart_with_downwards_trend:"
+    emoji = ":chart_with_upwards_trend:" if change.startswith("+") \
+            else ":chart_with_downwards_trend:"
 
-    return "{0} {1} {2}: {3} {4} {5} {6}".format(emoji, company, ticker, price, change, pct, emoji)
+    return "{0} {1} {2}: {3} {4} {5} {6} {7}".format(
+            emoji, company, ticker, price, change, pct, time, emoji)
 
 
 def on_message(msg, server):
     text = msg.get("text", "")
-    matches = re.findall(r"\$[a-zA-Z]\w{0,3}", text)
+    basic_re = r"\B\$([a-zA-Z]\w{0,3}(?:\.\w{1,3})?)\b"
+    # slack linkifies some tickers, which results in: $<http://wbc.ax|wbc.ax>
+    link_re = r"\$<http://([a-zA-Z]\w{0,3}(?:\.\w{1,3})?)\|"
+    matches = re.findall(r"{}|{}".format(basic_re, link_re, text), text)
     if not matches:
         return
 
-    prices = [stockprice(ticker[1:].encode("utf8")) for ticker in matches]
+    tickers = (''.join(list(x)).encode("utf8") for x in matches)
+    prices = (stockprice(ticker) for ticker in tickers)
     return "\n".join(p for p in prices if p)

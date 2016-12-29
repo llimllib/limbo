@@ -4,9 +4,6 @@
 # for a rationale on this procedure, see:
 # http://www.kennethreitz.org/essays/a-better-pip-workflow
 
-# Custom slack rtm fork
-slackrtm==0.2.1
-
 # Installs some python infra to avoid problems in openssl installs
 # http://stackoverflow.com/a/31812342/42559
 requests[security]
@@ -18,7 +15,8 @@ html5lib
 
 # testing utilities
 flake8
-nose
+pytest
+pytest-cov
 vcrpy
 tox
 

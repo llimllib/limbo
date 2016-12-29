@@ -12,8 +12,7 @@ import sys
 import time
 import traceback
 
-from slackrtm import SlackClient
-from slackrtm.server import SlackConnectionError, SlackLoginError
+from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
@@ -58,7 +57,7 @@ def init_plugins(plugindir, plugins_to_load=None):
         import pkg_resources
         try:
             plugins = strip_extension(
-                    pkg_resources.resource_listdir(__name__, "plugins"))
+                pkg_resources.resource_listdir(__name__, "plugins"))
         except OSError:
             raise InvalidPluginDir(plugindir)
 
@@ -110,30 +109,30 @@ def run_hook(hooks, hook, *args):
 
     return responses
 
-def handle_bot_message(event, server):
+def get_user_id_from_message(msg, msgtype):
     try:
-        bot = server.slack.server.bots[event["bot_id"]]
+        if msgtype == "bot_message":
+            return msg["bot_id"]
+        if msgtype == "message_changed":
+            return msg["message"]["user"]
+        if msgtype == "message_deleted":
+            return msg["previous_message"]["user"]
+        if msgtype == "message":
+            return msg["user"]
     except KeyError:
-        logger.debug("bot_message event {0} has no bot".format(event))
-        return
-
-    return "\n".join(run_hook(server.hooks, "bot_message", event, server))
+            return None
 
 def handle_message(event, server):
-    subtype = event.get("subtype", "")
-    if subtype == "message_changed":
+    # plain mesages don't have a subtype; message_changed, bot_message,
+    # message_deleted et al do. use the subtype if available, otherwise
+    # just message
+    subtype = event.get("subtype", "message")
+    user = get_user_id_from_message(event, subtype)
+    if not user or user == server.slack.username or user == "slackbot":
+        logger.info("skipping message {} no user found or user is "
+            "self".format(event))
         return
-
-    if subtype == "bot_message":
-        return handle_bot_message(event, server)
-
-    try:
-        msguser = server.slack.server.users[event["user"]]
-    except KeyError:
-        logger.debug("event {0} has no user".format(event))
-        return
-
-    return "\n".join(run_hook(server.hooks, "message", event, server))
+    return "\n".join(run_hook(server.hooks, subtype, event, server))
 
 event_handlers = {
     "message": handle_message,
@@ -173,7 +172,7 @@ def loop(server, test_loop=None):
             events = server.slack.rtm_read()
             for event in events:
                 loops_without_activity = 0
-                logger.debug("got {0}".format(event.get("type", event)))
+                logger.debug("got {0}".format(event))
                 response = handle_event(event, server)
                 while response:
                     # The Slack API documentation says:
@@ -203,18 +202,19 @@ def loop(server, test_loop=None):
             # If the connection has broken, this will reveal it so slack can
             # quit
             if loops_without_activity > 5:
-                server.slack.server.ping()
+                server.slack.ping()
                 loops_without_activity = 0
 
             end = time.time()
             runtime = start - end
-            time.sleep(max(1-runtime, 0))
+            time.sleep(max(1 - runtime, 0))
 
             if test_loop:
                 test_loop -= 1
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
-            import ipdb; ipdb.set_trace()
+            import ipdb
+            ipdb.set_trace()
         raise
 
 def relevant_environ():

@@ -42,6 +42,7 @@ HUB_URL = 'https://api.github.com/{0}'
 class Github(object):
     def __init__(self, username, password):
         self.auth = username, password
+        if not any(self.auth): self.auth = None
 
     def _get(self, url_fragment, **params):
         return requests.get(
@@ -334,5 +335,5 @@ def on_message(msg, server):
     server.slack.post_message(
             msg['channel'],
             '',
-            as_user=server.slack.server.username,
+            as_user=server.slack.username,
             **kwargs)
