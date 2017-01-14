@@ -5,6 +5,8 @@ APP=limbo
 testall: requirements
 	tox
 
+# to run a single file, with debugger support:
+# pytest -s test/test_plugins/test_image.py
 .PHONY: test
 test: install
 	LANG=en_US.UTF-8 pytest --cov=limbo --cov-report term-missing
