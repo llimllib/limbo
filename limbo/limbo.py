@@ -117,8 +117,8 @@ def get_user_id_from_message(msg, msgtype):
             return msg["message"]["user"]
         if msgtype == "message_deleted":
             return msg["previous_message"]["user"]
-        if msgtype == "message":
-            return msg["user"]
+        if msgtype in ["message", "channel_join", "channel_leave"]:
+            return msg['user']
     except KeyError:
             return None
 
@@ -127,8 +127,10 @@ def handle_message(event, server):
     # message_deleted et al do. use the subtype if available, otherwise
     # just message
     subtype = event.get("subtype", "message")
-    user = get_user_id_from_message(event, subtype)
-    if not user or user == server.slack.username or user == "slackbot":
+    user_id = get_user_id_from_message(event, subtype)
+
+    # skip messages from ourselves and from slackbot to prevent message loops
+    if not user_id or user_id == server.slack.userid or user_id == "USLACKBOT":
         logger.info("skipping message {} no user found or user is "
             "self".format(event))
         return
