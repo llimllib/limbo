@@ -9,3 +9,6 @@ def on_message_changed(msg, server):
 def on_message(msg, server):
     if msg["text"].startswith("!echo"):
         return msg.get("text", "")
+
+def on_channel_join(msg, server):
+    return "saw user {} join".format(msg['user'])

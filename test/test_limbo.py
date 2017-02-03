@@ -26,7 +26,7 @@ os.environ["LIMBO_LOGFILE"] = "/tmp/deleteme"
 
 def test_plugin_success():
     hooks = limbo.init_plugins("test/plugins")
-    assert len(hooks) == 6
+    assert len(hooks) == 7
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -34,7 +34,7 @@ def test_plugin_success():
 
 def test_config_plugin_none_success():
     hooks = limbo.init_plugins("test/plugins", None)
-    assert len(hooks) == 6
+    assert len(hooks) == 7
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -42,7 +42,7 @@ def test_config_plugin_none_success():
 
 def test_config_plugin_empty_string_success():
     hooks = limbo.init_plugins("test/plugins", "")
-    assert len(hooks) == 6
+    assert len(hooks) == 7
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -50,7 +50,7 @@ def test_config_plugin_empty_string_success():
 
 def test_config_plugin_success():
     hooks = limbo.init_plugins("test/plugins", "echo,loop")
-    assert len(hooks) == 4
+    assert len(hooks) == 5
     assert "message" in hooks
     assert isinstance(hooks, dict)
     assert isinstance(hooks["message"], list)
@@ -94,12 +94,12 @@ def test_handle_message_subtype():
 
 def test_handle_message_ignores_self():
     server = limbo.FakeServer()
-    event = {"user": "limbo_test", "type": "message", "id": "1"}
+    event = {"user": "1", "type": "message", "id": "1"}
     assert limbo.handle_message(event, server) == None
 
 def test_handle_message_ignores_slackbot():
     server = limbo.FakeServer()
-    event = {"user": "slackbot"}
+    event = {"user": "USLACKBOT"}
     assert limbo.handle_message(event, server) == None
 
 def test_handle_message_basic():
@@ -110,6 +110,19 @@ def test_handle_message_basic():
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == msg
+
+def test_handle_channel_join():
+    event = {
+      "user": "2",
+      "type": "message",
+      "subtype": "channel_join",
+      "text": "User has joined"
+    }
+
+    hooks = limbo.init_plugins("test/plugins")
+    server = limbo.FakeServer(hooks=hooks)
+
+    assert limbo.handle_message(event, server) == "saw user 2 join"
 
 # Under unclear circumstances, slack can return a None user.
 # https://github.com/llimllib/limbo/issues/40
@@ -126,7 +139,7 @@ def test_handle_message_slack_user_nil():
 
 def test_handle_bot_message():
     msg = u"!echo Iñtërnâtiônàlizætiøn bot"
-    event = {"bot_id": "1", "text": msg, "subtype": "bot_message"}
+    event = {"bot_id": "2", "text": msg, "subtype": "bot_message"}
 
     hooks = limbo.init_plugins("test/plugins")
     server = limbo.FakeServer(hooks=hooks)
