@@ -117,8 +117,7 @@ def get_user_id_from_message(msg, msgtype):
             return msg["message"]["user"]
         if msgtype == "message_deleted":
             return msg["previous_message"]["user"]
-        if msgtype in ["message", "channel_join", "channel_leave"]:
-            return msg['user']
+        return msg['user']
     except KeyError:
             return None
 
