@@ -5,6 +5,8 @@ APP=limbo
 testall: requirements
 	tox
 
+# to run a single file, with debugger support:
+# pytest -s test/test_plugins/test_image.py
 .PHONY: test
 test: install
 	LANG=en_US.UTF-8 pytest --cov=limbo --cov-report term-missing
@@ -21,15 +23,9 @@ run: install
 repl: install
 	bin/limbo -t
 
-# non-empty if we're on python 2.6
-PYTHON2_6 = $(shell python --version 2>&1 | grep 2.6)
-
 .PHONY: requirements
 requirements:
 	pip install -r requirements.txt
-ifneq ($(PYTHON2_6), )
-	pip install -r requirements-2.6.txt
-endif
 
 .PHONY: install
 install: requirements

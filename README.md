@@ -79,3 +79,4 @@ These are the current default plugins:
 * [@adamghill](https://github.com/adamghill)
 * [@PeterGrace](https://github.com/PeterGrace)
 * [@SkiftCreative](https://github.com/SkiftCreative)
+* [@diceone](https://github.com/diceone)
