@@ -26,8 +26,6 @@ def define(word):
         return "Please only attempt to define a single word at a time!"
 
     request_url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/{language}/{word}'.format(**info)
-    print(request_url)
-    print(headers)
     definition_url = 'https://{language}.oxforddictionaries.com/definition/{word}'.format(**info)
 
     result = requests.get(request_url, headers=headers)
