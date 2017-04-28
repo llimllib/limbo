@@ -142,8 +142,8 @@ def basic_handle(event_name):
 
 event_handlers = {
     "message": handle_message,
-    "member_joined_channel": basic_handle("member_joined"),
-    "member_left_channel": basic_handle("member_left"),
+    "member_joined_channel": basic_handle("member_joined_channel"),
+    "member_left_channel": basic_handle("member_left_channel"),
 }
 
 def handle_event(event, server):
