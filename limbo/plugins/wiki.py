@@ -43,3 +43,5 @@ def on_message(msg, server):
 
     searchterm = match[0]
     return wiki(searchterm.encode("utf8"))
+
+on_bot_message = on_message

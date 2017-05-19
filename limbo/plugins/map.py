@@ -45,3 +45,5 @@ def on_message(msg, server):
         return
 
     return makemap(match[0])
+
+on_bot_message = on_message

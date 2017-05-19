@@ -16,3 +16,5 @@ def on_init(server):
 CREATE TABLE IF NOT EXISTS log
     (msg STRING, sender STRING, time STRING, team STRING, channel STRING)
 """)
+
+on_bot_message = on_message

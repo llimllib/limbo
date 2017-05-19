@@ -37,3 +37,5 @@ def on_message(msg, server):
         return
     searchterm = match[0]
     return urban(searchterm)
+
+on_bot_message = on_message

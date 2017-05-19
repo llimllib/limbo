@@ -45,3 +45,5 @@ def on_message(msg, server):
     tickers = (''.join(list(x)).encode("utf8") for x in matches)
     prices = (stockprice(ticker) for ticker in tickers)
     return "\n".join(p for p in prices if p)
+
+on_bot_message = on_message

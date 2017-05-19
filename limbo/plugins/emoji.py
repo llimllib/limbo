@@ -24,3 +24,5 @@ def on_message(msg, server):
     n = 1 if not match[0][1] else int(match[0][1])
 
     return emoji(n)
+
+on_bot_message = on_message

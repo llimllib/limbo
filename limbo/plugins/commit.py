@@ -12,3 +12,5 @@ def on_message(msg, server):
         return
 
     return commit()
+
+on_bot_message = on_message
