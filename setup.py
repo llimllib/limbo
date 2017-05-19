@@ -39,7 +39,7 @@ setup(
     include_package_data=True,
     install_requires=required,
     license='MIT',
-    classifiers=(
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
@@ -49,6 +49,6 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: PyPy',
-    ),
+    ],
     keywords="slack chatbot chat limbo",
 )
