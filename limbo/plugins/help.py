@@ -16,3 +16,5 @@ def on_message(msg, server):
         # if no plugin has a docstring, there's no help key
         helpdict = server.hooks.get("help", {})
         return "\n".join(sorted(helpdict[key] for key in helpdict))
+
+on_bot_message = on_message

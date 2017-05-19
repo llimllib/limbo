@@ -15,3 +15,5 @@ def on_message(msg, server):
     lst = ["heads", "tails"] if not match[0] else match[0].strip().split(',')
 
     return flip(lst)
+
+on_bot_message = on_message

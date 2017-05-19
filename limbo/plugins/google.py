@@ -31,3 +31,5 @@ def on_message(msg, server):
         return
 
     return google(match[0])
+
+on_bot_message = on_message
