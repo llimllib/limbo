@@ -7,8 +7,10 @@ def define(word):
     app_id = os.environ.get('OXFORD_APP_ID', '')
     app_key = os.environ.get('OXFORD_APP_KEY', '')
 
-    if not app_id and not app_key:
-        return
+    if not app_id or not app_key:
+        return "Please set the OXFORD_APP_ID and OXFORD_APP_KEY environment variables " \
+               "to valid (free) Oxford dictionary API keys: " \
+               "https://developer.oxforddictionaries.com/"
 
     # LANGUAGE CODES AVAILABLE HERE: https://developer.oxforddictionaries.com/documentation/languages
     language = os.environ.get('OXFORD_LANG_CODE', 'en')
