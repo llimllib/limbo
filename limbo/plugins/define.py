@@ -7,8 +7,10 @@ def define(word):
     app_id = os.environ.get('OXFORD_APP_ID', '')
     app_key = os.environ.get('OXFORD_APP_KEY', '')
 
-    if not app_id and not app_key:
-        return
+    if not app_id or not app_key:
+        return "Please set the OXFORD_APP_ID and OXFORD_APP_KEY environment variables " \
+               "to valid (free) Oxford dictionary API keys: " \
+               "https://developer.oxforddictionaries.com/"
 
     # LANGUAGE CODES AVAILABLE HERE: https://developer.oxforddictionaries.com/documentation/languages
     language = os.environ.get('OXFORD_LANG_CODE', 'en')
@@ -43,9 +45,14 @@ def define(word):
             info['example'] = 'Well this is awkward, no example is given for this definition... :scream:'
         info['definition'] = data['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0]
         info['definition_url'] = definition_url
-        text = "*Oxford Dictionary Definition for _{word}_*:\n>{definition}\n*Example usage*:\n_{example}_\nFind out more here: {definition_url}".format(
-            **info)
-        return text
+
+        return """*Oxford Dictionary Definition for _{word}_*:
+>{definition}
+
+*Example usage*:
+_{example}_
+
+{definition_url}""".format(**info)
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -54,4 +61,4 @@ def on_message(msg, server):
         return
 
     word = match[0]
-    return define(word.encode("utf8"))
+    return define(word)
