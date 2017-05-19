@@ -135,8 +135,15 @@ def handle_message(event, server):
         return
     return "\n".join(run_hook(server.hooks, subtype, event, server))
 
+def basic_handle(event_name):
+    def handlefunc(event, server):
+        return "\n".join(run_hook(server.hooks, event_name, event, server))
+    return handlefunc
+
 event_handlers = {
     "message": handle_message,
+    "member_joined_channel": basic_handle("member_joined_channel"),
+    "member_left_channel": basic_handle("member_left_channel"),
 }
 
 def handle_event(event, server):

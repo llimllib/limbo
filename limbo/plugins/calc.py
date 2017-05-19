@@ -29,3 +29,5 @@ def on_message(msg, server):
         return
 
     return calc(match[0].encode("utf8"))
+
+on_bot_message = on_message

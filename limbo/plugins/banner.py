@@ -38,3 +38,5 @@ def on_message(msg, server):
         return
 
     return make_banner(match[0])
+
+on_bot_message = on_message

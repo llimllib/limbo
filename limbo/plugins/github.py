@@ -337,3 +337,5 @@ def on_message(msg, server):
             '',
             as_user=server.slack.username,
             **kwargs)
+
+on_bot_message = on_message
