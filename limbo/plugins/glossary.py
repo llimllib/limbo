@@ -5,8 +5,6 @@
 !glossary remove `term` removes <term> from the glossary
 """
 
-import json
-import os
 import re
 
 def on_init(server):
@@ -58,9 +56,6 @@ def on_message(msg, server):
 
     if not match:
         return
-
-    if not os.path.isfile(GLOSSARY_FILE):
-        open(GLOSSARY_FILE, 'a').close()
 
     groups = match.groups()
     if groups[1]:
