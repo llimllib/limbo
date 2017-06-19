@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+!glossary `term` returns the definition for `term` or "I don't know that term."
+!glossary add `term`: `definition` adds the definition to limbo's glossary
+!glossary remove `term` removes <term> from the glossary
+"""
+
 import json
 import os
 import re
-
-"""
-!glossary <term> returns the term definition OR "I don't know that term."
-!glossary add <term>: <definition> adds the definition to limbo's glossary
-"""
-
-GLOSSARY_FILE = os.environ.get('LIMBO_GLOSSARY_FILE', "/tmp/glossary.json")
 
 def on_init(server):
     server.query("""
