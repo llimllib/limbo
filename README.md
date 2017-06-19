@@ -80,3 +80,4 @@ These are the current default plugins:
 * [@PeterGrace](https://github.com/PeterGrace)
 * [@SkiftCreative](https://github.com/SkiftCreative)
 * [@diceone](https://github.com/diceone)
+* [@rnagle](https://github.com/rnagle)
