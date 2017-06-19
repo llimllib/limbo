@@ -10,52 +10,48 @@ import re
 
 GLOSSARY_FILE = os.environ.get('LIMBO_GLOSSARY_FILE', "/tmp/glossary.json")
 
+def on_init(server):
+    server.query("""
+CREATE TABLE IF NOT EXISTS glossary(word text, definition text)
+""")
 
-def add(term, definition):
-    with open(GLOSSARY_FILE, 'r') as f:
-        try:
-            glossary = json.loads(f.read())
-        except ValueError:
-            glossary = {}
+def add(term, definition, server):
+    results = server.query("""
+SELECT word, definition FROM glossary WHERE word=?
+""", term)
+    if not results:
+        server.query("""
+INSERT INTO glossary(word, definition) VALUES (?, ?)
+""", term, definition)
+        return "Successfully added {}".format(term)
+    else:
+        server.query("""
+UPDATE glossary SET definition=? WHERE word=?
+        """, definition, term)
+        return "Successfully updated {}".format(term)
 
-    action = bool(glossary.get(term, False)) and "Updated" or "Added"
-    glossary[term] = definition
+def remove(term, server):
+    results = server.query("""
+SELECT word, definition FROM glossary WHERE word=?
+""", term)
+    if not results:
+        return "No definition found for {}".format(term)
 
-    with open(GLOSSARY_FILE, 'w') as f:
-        f.write(json.dumps(glossary))
+    server.query("""
+DELETE FROM glossary WHERE word=?
+""", term)
 
-    return "%s a definition for %s"% (action, term)
+    return "Removed definition for {}".format(term)
 
-def remove(term):
-    with open(GLOSSARY_FILE, 'r') as f:
-        try:
-            glossary = json.loads(f.read())
-        except ValueError:
-            return "There aren't any definitions to remove yet! Add a definition with '!glossary add <term>: <definition>'"
+def lookup(term, server):
+    results = server.query("""
+SELECT word, definition FROM glossary WHERE word=?
+""", term)
+    if not results:
+        return ("No definition found for {}. Add a definition with "
+        "'!glossary add <term>: <definition>'.".format(term))
 
-    del(glossary[term])
-
-    with open(GLOSSARY_FILE, 'w') as f:
-        f.write(json.dumps(glossary))
-
-    return "Removed definition for %s" % term
-
-def lookup(term):
-    not_found = "I don't know that term. Add a definition with '!glossary add <term>: <definition>'."
-
-    try:
-        with open(GLOSSARY_FILE, 'r') as f:
-            try:
-                glossary = json.loads(f.read())
-            except ValueError:
-                glossary = {}
-            definition = glossary.get(term, None)
-            if not definition:
-                return not_found
-            return definition
-    except IOError:
-        return not_found
-
+    return "{}: {}".format(results[0][0], results[0][1])
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -73,10 +69,10 @@ def on_message(msg, server):
         if action == 'add':
             term = groups[2].strip()
             definition = groups[3].lstrip(':').strip()
-            return add(term, definition)
+            return add(term, definition, server)
         elif action == 'remove':
-            return remove(groups[2])
+            return remove(groups[2], server)
     else:
-        return lookup(groups[2])
+        return lookup(groups[2], server)
 
 on_bot_message = on_message
