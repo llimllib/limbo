@@ -9,46 +9,50 @@ import re
 
 def on_init(server):
     server.query("""
-CREATE TABLE IF NOT EXISTS glossary(word text, definition text)
+CREATE TABLE IF NOT EXISTS glossary(term text, definition text)
 """)
 
-def add(term, definition, server):
+def get(term, server):
     results = server.query("""
-SELECT word, definition FROM glossary WHERE word=?
+SELECT term, definition FROM glossary WHERE term LIKE ?
 """, term)
+    return results[0] if results else None
+
+def add(term, definition, server):
+    results = get(term, server)
     if not results:
         server.query("""
-INSERT INTO glossary(word, definition) VALUES (?, ?)
+INSERT INTO glossary(term, definition) VALUES (?, ?)
 """, term, definition)
         return "Successfully added {}".format(term)
     else:
         server.query("""
-UPDATE glossary SET definition=? WHERE word=?
-        """, definition, term)
+UPDATE glossary SET definition=? WHERE term=?
+        """, definition, results[0])
         return "Successfully updated {}".format(term)
 
 def remove(term, server):
-    results = server.query("""
-SELECT word, definition FROM glossary WHERE word=?
-""", term)
+    results = get(term, server)
     if not results:
         return "No definition found for {}".format(term)
+    else:
+        # if case is different, stick with the version in the DB.
+        # this prevents separate definitions for FOO and Foo
+        term = results[0]
 
     server.query("""
-DELETE FROM glossary WHERE word=?
+DELETE FROM glossary WHERE term=?
 """, term)
 
     return "Removed definition for {}".format(term)
 
 def lookup(term, server):
-    results = server.query("""
-SELECT word, definition FROM glossary WHERE word=?
-""", term)
+    results = get(term, server)
     if not results:
         return ("No definition found for {}. Add a definition with "
         "'!glossary add <term>: <definition>'.".format(term))
 
-    return "{}: {}".format(results[0][0], results[0][1])
+    return "{}: {}".format(*results)
 
 def on_message(msg, server):
     text = msg.get("text", "")
