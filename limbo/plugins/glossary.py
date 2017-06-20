@@ -67,7 +67,7 @@ def lookup(term, server):
 
 def on_message(msg, server):
     text = msg.get("text", "")
-    match = re.match(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?', text, re.IGNORECASE)
+    match = re.search(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?', text, re.IGNORECASE)
 
     if not match:
         return
