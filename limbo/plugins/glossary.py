@@ -3,6 +3,7 @@
 !glossary `term` returns the definition for `term` or "I don't know that term."
 !glossary add `term`: `definition` adds the definition to limbo's glossary
 !glossary remove `term` removes `term` from the glossary
+!glossary search `term` to search all entries for `term`
 """
 
 import re
@@ -17,6 +18,16 @@ def get(term, server):
 SELECT term, definition FROM glossary WHERE term LIKE ?
 """, term)
     return results[0] if results else None
+
+def search(term, server):
+    wildterm = "%{}%".format(term)
+    results = server.query("""
+select term, definition from glossary WHERE term LIKE ? OR definition LIKE ?;
+""", wildterm, wildterm)
+    if not results:
+        return "No results found for {}".format(term)
+    else:
+        return "\n".join("*{}*: {}".format(*result) for result in results)
 
 def add(term, definition, server):
     results = get(term, server)
@@ -52,11 +63,11 @@ def lookup(term, server):
         return ("No definition found for {}. Add a definition with "
         "'!glossary add <term>: <definition>'.".format(term))
 
-    return "{}: {}".format(*results)
+    return "*{}*: {}".format(*results)
 
 def on_message(msg, server):
     text = msg.get("text", "")
-    match = re.match(r'!gloss(ary)? (add|remove\s+)?([^:]*)(.*)?', text, re.IGNORECASE)
+    match = re.match(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?', text, re.IGNORECASE)
 
     if not match:
         return
@@ -70,6 +81,8 @@ def on_message(msg, server):
             return add(term, definition, server)
         elif action == 'remove':
             return remove(groups[2], server)
+        elif action == 'search':
+            return search(groups[2], server)
     else:
         return lookup(groups[2], server)
 
