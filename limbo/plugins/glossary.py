@@ -3,6 +3,7 @@
 !glossary `term` returns the definition for `term` or "I don't know that term."
 !glossary add `term`: `definition` adds the definition to limbo's glossary
 !glossary remove `term` removes `term` from the glossary
+!glossary search `term` to search all entries for `term`
 """
 
 import re
