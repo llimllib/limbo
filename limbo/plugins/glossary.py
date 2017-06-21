@@ -65,6 +65,14 @@ def lookup(term, server):
 
     return "*{}*: {}".format(*results)
 
+def sanitize_definition(definition):
+    # if there are links, de-slackify them and remove the leading ':'
+    # slack links can be of the form <http://google.com> or of the form
+    # <http://google.com|title of the link>.
+    return re.sub("<(.*?)>", lambda x: x.group(1).split("|")[0], definition) \
+            .lstrip(':') \
+            .strip()
+
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.search(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?', text, re.IGNORECASE)
@@ -77,12 +85,12 @@ def on_message(msg, server):
         action = groups[1].strip()
         if action == 'add':
             term = groups[2].strip()
-            definition = groups[3].lstrip(':').strip()
+            definition = sanitize_definition(groups[3])
             return add(term, definition, server)
         elif action == 'remove':
-            return remove(groups[2], server)
+            return remove(groups[2].strip(), server)
         elif action == 'search':
-            return search(groups[2], server)
+            return search(groups[2].strip(), server)
     else:
         return lookup(groups[2], server)
 
