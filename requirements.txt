@@ -1,5 +1,4 @@
 asn1crypto==0.22.0
-backup-all-my-flickr-photos==0.6
 beautifulsoup4==4.6.0
 certifi==2017.4.17
 cffi==1.10.0
@@ -10,19 +9,12 @@ coverage==4.4.1
 cryptography==1.9
 enum34==1.1.6
 flake8==3.3.0
-flickr-api==0.5
-flickr-download==0.2.18
 funcsigs==1.0.2
 html5lib==0.999999999
-humanfriendly==3.2
 idna==2.5
 ipaddress==1.0.18
 mccabe==0.6.1
 mock==2.0.0
-monotonic==1.3
-numpy==1.12.1
-oauth==1.0.1
-pandas==0.20.2
 pbr==3.1.0
 pluggy==0.4.0
 py==1.4.34
@@ -33,8 +25,6 @@ pyflakes==1.5.0
 pyOpenSSL==17.0.0
 pytest==3.1.2
 pytest-cov==2.5.1
-python-dateutil==1.5
-pytz==2017.2
 PyYAML==3.12
 requests==2.18.1
 six==1.10.0
@@ -43,4 +33,5 @@ urllib3==1.21.1
 vcrpy==1.11.1
 virtualenv==15.1.0
 webencodings==0.5.1
+websocket-client==0.42.1
 wrapt==1.10.10

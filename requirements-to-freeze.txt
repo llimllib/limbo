@@ -22,3 +22,6 @@ tox
 
 # banner plugin
 pyfiglet
+
+#slack
+websocket-client
