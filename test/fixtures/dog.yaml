@@ -1,0 +1,27 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://dog.ceo/api/breeds/image/random
+  response:
+    body: {string: !!python/unicode '{"status":"success","message":"https:\/\/dog.ceo\/api\/img\/pembroke\/n02113023_2012.jpg"}'}
+    headers:
+      accept-ranges: [bytes]
+      access-control-allow-origin: ['*']
+      age: ['0']
+      cache-control: ['no-cache, private']
+      connection: [keep-alive]
+      content-length: ['90']
+      content-type: [application/json]
+      date: ['Thu, 20 Jul 2017 15:15:46 GMT']
+      server: [Apache/2.4.26]
+      via: ['1.1 varnish-v4, 1.1 varnish-v4']
+      x-cache: [MISS]
+      x-cache-hits: ['0']
+    status: {code: 200, message: OK}
+version: 1
