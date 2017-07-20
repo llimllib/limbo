@@ -1,4 +1,4 @@
-"""!commit returns a useful commit message"""
+"""!dog returns an image of a doggo or puppo."""
 import re
 import requests
 
