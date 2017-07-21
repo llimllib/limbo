@@ -47,7 +47,6 @@ These are the current default plugins:
 * [map](https://github.com/llimllib/limbo/wiki/Map-Plugin)
 * [stock](https://github.com/llimllib/limbo/wiki/Stock-Plugin)
 * [stockphoto](https://github.com/llimllib/limbo/wiki/Stock-Photo-Plugin)
-* [urban](https://github.com/llimllib/limbo/wiki/Urban)
 * [weather](https://github.com/llimllib/limbo/wiki/Weather-Plugin)
 * [wiki](https://github.com/llimllib/limbo/wiki/Wiki-Plugin)
 * [youtube](https://github.com/llimllib/limbo/wiki/Youtube-Plugin)
