@@ -33,5 +33,5 @@ urllib3==1.21.1
 vcrpy==1.11.1
 virtualenv==15.1.0
 webencodings==0.5.1
-websocket-client==0.42.1
+websocket-client==0.44.0
 wrapt==1.10.10
