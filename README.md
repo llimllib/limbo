@@ -18,7 +18,7 @@
 * --test, -t: Enter command line mode to enter a limbo repl.
 * --hook: Specify the hook to test. (Defaults to "message").
 * -c: Run a single command.
-* --database, -d: Where to store the limbo tinydb database. Defaults to log.json.
+* --database, -d: Where to store the limbo sqlite3 database. Defaults to limbo.sqlite3.
 * --pluginpath, -pp: The path where limbo should look to find its plugins (defaults to /plugins).
 
 ## Environment Variables
