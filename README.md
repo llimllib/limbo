@@ -27,7 +27,7 @@
 * LIMBO_LOGLEVEL: The logging level. Defaults to INFO.
 * LIMBO_LOGFILE: File to log info to. Defaults to none.
 * LIMBO_LOGFORMAT: Format for log messages. Defaults to `%(asctime)s:%(levelname)s:%(name)s:%(message)s`.
-* LIMBO_PLUGINS: Comma-delimited string of plugins to load. Defaults to loading all plugins in the plugins directory (which defaults to "/plugins")
+* LIMBO_PLUGINS: Comma-delimited string of plugins to load. Defaults to loading all plugins in the plugins directory (which defaults to "limbo/plugins")
 
 ## Commands
 
