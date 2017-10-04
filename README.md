@@ -35,6 +35,8 @@ It's super easy to add your own commands! Just create a python file in the plugi
 
 You can use the `!help` command to print out all available commands and a brief help message about them. `!help <plugin>` will return just the help for a particular plugin.
 
+By default, plugins won't react to messages from other bots (just messages from humans). Define an `on_bot_message` function to handle bot messages too. See the example plugins for an easy way to define these functions.
+
 These are the current default plugins:
 
 * [calc](https://github.com/llimllib/limbo/wiki/Calc-Plugin)
