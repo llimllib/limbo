@@ -82,3 +82,4 @@ These are the current default plugins:
 * [@SkiftCreative](https://github.com/SkiftCreative)
 * [@diceone](https://github.com/diceone)
 * [@rnagle](https://github.com/rnagle)
+* [@topher200](https://github.com/topher200)
