@@ -25,34 +25,9 @@ class SlackNotConnected(Exception): pass
 class SlackConnectionError(Exception): pass
 class SlackLoginError(Exception): pass
 
-User = namedtuple('User', 'server name id real_name tz')
+User = namedtuple('User', 'id name real_name tz')
 Bot = namedtuple('Bot', 'id name icons deleted')
-
-class Channel(object):
-    def __init__(self, server, name, id, members=[]):
-        self.server = server
-        self.name = name
-        self.id = id
-        self.members = members
-
-    def __eq__(self, compare_str):
-        if self.name == compare_str or self.name == "#" + compare_str or self.id == compare_str:
-            return True
-        else:
-            return False
-
-    def __str__(self):
-        data = ""
-        for key in list(self.__dict__.keys()):
-            data += "{0} : {1}\n".format(key, str(self.__dict__[key])[:40])
-        return data
-
-    def __repr__(self):
-        return self.__str__()
-
-    def send_message(self, message):
-        message_json = {"type": "message", "channel": self.id, "text": message}
-        self.server.send_to_websocket(message_json)
+Channel = namedtuple('Channel', 'id name')
 
 class SlackClient(object):
     def __init__(self, token):
@@ -68,9 +43,6 @@ class SlackClient(object):
         self.connected = False
         self.pingcounter = 0
 
-    def api_call(self, method, **kwargs):
-        return self.server.api_call(method, **kwargs)
-
     def rtm_read(self):
         data = [json.loads(d) for d in self.websocket_safe_read()]
 
@@ -81,7 +53,8 @@ class SlackClient(object):
         return data
 
     def rtm_send_message(self, channel_id, message):
-        return self.channels[channel_id].send_message(message)
+        message_json = {"type": "message", "channel": channel_id, "text": message}
+        self.send_to_websocket(message_json)
 
     def post_message(self, channel_id, message, **kwargs):
         params = {
@@ -98,17 +71,17 @@ class SlackClient(object):
         if "type" in data.keys():
             if data["type"] in ('channel_created', 'group_joined'):
                 channel = data["channel"]
-                self.attach_channel(channel["name"], channel["id"], [])
+                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
             if data["type"] == "im_created":
                 channel = data["channel"]
-                self.attach_channel(channel["user"], channel["id"], [])
+                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
             elif data["type"] == "team_join":
                 user = data["user"]
-                self.parse_user_data([user])
+                self.parse_users([user])
             pass
 
     def rtm_connect(self, reconnect=False):
-        reply = self.do("rtm.start")
+        reply = self.do("rtm.connect")
         if reply.status_code != 200:
             raise SlackConnectionError
         else:
@@ -121,16 +94,15 @@ class SlackClient(object):
             else:
                 raise SlackLoginError
 
+        self.get_channel_list()
+        self.get_user_list()
+
     def parse_slack_login_data(self, login_data):
         self.login_data = login_data
+        self.team_id = self.login_data["team"]["id"]
         self.domain = self.login_data["team"]["domain"]
         self.username = self.login_data["self"]["name"]
         self.userid = self.login_data["self"]["id"]
-        self.parse_channel_data(login_data["channels"])
-        self.parse_channel_data(login_data["groups"])
-        self.parse_channel_data(login_data["ims"])
-        self.parse_user_data(login_data["users"])
-        self.parse_bot_data(login_data["bots"])
 
     def connect_slack_websocket(self, ws_url):
         try:
@@ -139,40 +111,79 @@ class SlackClient(object):
         except:
             raise SlackConnectionError
 
-    def parse_channel_data(self, channel_data):
-        for channel in channel_data:
-            if "name" not in channel:
-                channel["name"] = channel["id"]
-            if "members" not in channel:
-                channel["members"] = []
+    def _dig(self, obj, *keys):
+        for key in keys:
+            if not obj or key not in obj:
+                return None
+            obj = obj[key]
+        return obj
 
-            self.attach_channel(channel['name'], channel['id'], channel['members'])
+    def get_all(self, api_method, collection_name):
+        """
+        Return all objects in an api_method and handle pagination.
 
-    def parse_user_data(self, user_data):
-        for user in user_data:
+        For example, "users.list" returns an object like:
+
+        {
+            "members": [{<member_obj>}, {<member_obj_2>}],
+            "response_metadata": {
+                "next_cursor": "cursor_id"
+            }
+        }
+
+        so if you call `get_all("users.list", "members")`, this function
+        will return all member objects to you while handling pagination
+        """
+        objs = []
+        # if you don't provide a limit, the slack API won't return a cursor to you
+        page = json.loads(self.api_call(api_method, limit=25))
+        while 1:
+            for obj in page[collection_name]:
+                objs.append(obj)
+
+            cursor = self._dig(page, "response_metadata", "next_cursor")
+            if cursor:
+                page = json.loads(self.api_call(api_method, cursor=cursor))
+            else:
+                break
+
+        return objs
+
+    def get_channel_list(self):
+        # this call may or may not provide members for each channel, so
+        # let's not rely on the members being in it. If we need them
+        # (which I don't think we do?) we can get them later
+        for ch in self.get_all("channels.list", "channels"):
+            self.channels[ch["id"]] = Channel(ch['id'], ch["name"])
+
+    def get_user_list(self):
+        self.parse_users(self.get_all("users.list", "members"))
+
+    def parse_users(self, users):
+        for user in users:
             if "tz" not in user:
                 user["tz"] = "unknown"
             if "real_name" not in user:
                 user["real_name"] = user["name"]
+
+            if user["is_bot"]:
+                self.parse_bot_data(user)
+                continue
 
             id = user['id']
             name = user['name']
             real_name = user['real_name']
             tz = user['tz']
 
-            self.users[user['id']] = User(self, name, id, real_name, tz)
+            self.users[user['id']] = User(id, name, real_name, tz)
 
-    def parse_bot_data(self, bot_data):
-        for bot in bot_data:
-            self.bots[bot['id']] = Bot(bot['id'], bot['name'], bot.get('icons', ''), bot['deleted'])
+    def parse_bot_data(self, bot):
+        self.bots[bot['id']] = Bot(bot['id'], bot['name'], bot.get('icons', ''), bot['deleted'])
 
     def send_to_websocket(self, data):
         """Send (data) directly to the websocket."""
-        try:
-            data = json.dumps(data)
-            self.websocket.send(data)
-        except:
-            self.rtm_connect(reconnect=True)
+        data = json.dumps(data)
+        self.websocket.send(data)
 
     def ping(self):
         return self.send_to_websocket({"type": "ping"})
@@ -193,9 +204,6 @@ class SlackClient(object):
                     return data
                 raise
 
-    def attach_channel(self, name, id, members=[]):
-        self.channels[id] = Channel(self, name, id, members)
-
     def join_channel(self, name):
         print(self.do("channels.join?name={0}".format(name)).read())
 
@@ -203,7 +211,8 @@ class SlackClient(object):
         reply = self.do(method, **kwargs)
         return reply.text
 
-    def do(self, request, post_data={}, files=None):
+    def do(self, request, post_data={}, files=None, **kwargs):
         url = 'https://slack.com/api/{0}'.format(request)
         post_data["token"] = self.token
+        post_data.update(kwargs)
         return requests.post(url, data=post_data, files=files)
