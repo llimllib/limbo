@@ -22,7 +22,23 @@ Bot = namedtuple('Bot', 'id name icons deleted')
 Channel = namedtuple('Channel', 'id name')
 
 def dig(obj, *keys):
-    "Retrieves the value object corresponding to the each key objects repeatedly."
+    """
+    Return obj[key_1][key_2][...] for each key in keys, or None if any key
+    in the chain is not found
+
+    So, given this `obj`:
+
+    {
+        "banana": {
+            "cream": "pie"
+        }
+    }
+
+    dig(obj, "banana") -> {"cream": "pie"}
+    dig(obj, "banana", "cream") -> "pie"
+    dig(obj, "banana", "rama") -> None
+    dig(obj, "Led", "Zeppelin") -> None
+    """
     for key in keys:
         if not obj or key not in obj:
             return None
