@@ -223,7 +223,8 @@ class SlackClient(object):
         reply = self.do(method, **kwargs)
         return reply.text
 
-    def do(self, request, post_data={}, files=None, **kwargs):
+    def do(self, request, post_data=None, files=None, **kwargs):
+        post_data = {} if not post_data else post_data
         url = 'https://slack.com/api/{0}'.format(request)
         post_data["token"] = self.token
         post_data.update(kwargs)
