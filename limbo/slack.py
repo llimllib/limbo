@@ -75,7 +75,7 @@ class SlackClient(object):
             if data["type"] == "im_created":
                 channel = data["channel"]
                 self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
-            else data["type"] == "team_join":
+            elif data["type"] == "team_join":
                 user = data["user"]
                 self.parse_users([user])
 
