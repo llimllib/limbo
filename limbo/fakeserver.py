@@ -31,10 +31,10 @@ class FakeSlack(object):
         self.userid = "1"
 
         self.users = users if users else {
-            "1": User(self, "limbo_test", 1, "", 0),
-            "2": User(self, "msguser", 2, "", 0),
-            "3": User(self, "slackbot", 3, "", 0),
-            "4": User(self, "replbot", 4, "", 0),
+            "1": User("limbo_test", 1, "", 0),
+            "2": User("msguser", 2, "", 0),
+            "3": User("slackbot", 3, "", 0),
+            "4": User("replbot", 4, "", 0),
         }
 
         self.bots = bots if bots else {

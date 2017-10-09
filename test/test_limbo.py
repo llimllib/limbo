@@ -17,7 +17,7 @@ import limbo
 # TODO: test plugin that throws exception (on import, init and message)
 
 # copied from slackrtm
-User = namedtuple('User', 'server name id real_name tz')
+User = namedtuple('User', 'name id real_name tz')
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 PARENT = os.path.split(DIR)[0]
@@ -151,7 +151,7 @@ def test_handle_member_left():
 def test_handle_message_slack_user_nil():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "msguser", "text": msg}
-    users = {"0": User(None, "nobody", 0, "", 0)}
+    users = {"0": User("nobody", 0, "", 0)}
 
     hooks = limbo.init_plugins("test/plugins")
     slack = limbo.FakeSlack(users=users)
