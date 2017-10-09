@@ -117,9 +117,10 @@ class SlackClient(object):
             obj = obj[key]
         return obj
 
-    def get_all(self, api_method, collection_name):
+    def get_all(self, api_method, collection_name, **kwargs):
         """
-        Return all objects in an api_method and handle pagination.
+        Return all objects in an api_method, handle pagination, and pass
+        kwargs on to the method being called.
 
         For example, "users.list" returns an object like:
 
@@ -134,15 +135,16 @@ class SlackClient(object):
         will return all member objects to you while handling pagination
         """
         objs = []
+        limit = 25
         # if you don't provide a limit, the slack API won't return a cursor to you
-        page = json.loads(self.api_call(api_method, limit=25))
+        page = json.loads(self.api_call(api_method, limit=limit, **kwargs))
         while 1:
             for obj in page[collection_name]:
                 objs.append(obj)
 
             cursor = self._dig(page, "response_metadata", "next_cursor")
             if cursor:
-                page = json.loads(self.api_call(api_method, cursor=cursor))
+                page = json.loads(self.api_call(api_method, cursor=cursor, limit=limit, **kwargs))
             else:
                 break
 
@@ -152,7 +154,7 @@ class SlackClient(object):
         # this call may or may not provide members for each channel, so
         # let's not rely on the members being in it. If we need them
         # (which I don't think we do?) we can get them later
-        for ch in self.get_all("channels.list", "channels"):
+        for ch in self.get_all("channels.list", "channels", exclude_members=True):
             self.channels[ch["id"]] = Channel(ch['id'], ch["name"])
 
     def get_user_list(self):
