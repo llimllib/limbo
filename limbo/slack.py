@@ -75,10 +75,9 @@ class SlackClient(object):
             if data["type"] == "im_created":
                 channel = data["channel"]
                 self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
-            elif data["type"] == "team_join":
+            else data["type"] == "team_join":
                 user = data["user"]
                 self.parse_users([user])
-            pass
 
     def rtm_connect(self, reconnect=False):
         reply = self.do("rtm.connect")
