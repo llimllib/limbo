@@ -130,7 +130,7 @@ def handle_message(event, server):
 
     # skip messages from ourselves and from slackbot to prevent message loops
     if not user_id or user_id == server.slack.userid or user_id == "USLACKBOT":
-        logger.info("skipping message {} no user found or user is "
+        logger.debug("skipping message {} no user found or user is "
             "self".format(event))
         return
     return "\n".join(run_hook(server.hooks, subtype, event, server))
