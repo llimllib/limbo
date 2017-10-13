@@ -1,5 +1,7 @@
 from collections import namedtuple
 import json
+import logging
+import time
 from ssl import SSLError
 
 import requests
@@ -20,6 +22,8 @@ class SlackLoginError(Exception): pass
 User = namedtuple('User', 'id name real_name tz')
 Bot = namedtuple('Bot', 'id name icons deleted')
 Channel = namedtuple('Channel', 'id name')
+
+LOG = logging.getLogger(__name__)
 
 def dig(obj, *keys):
     """
@@ -71,10 +75,28 @@ class SlackClient(object):
         return data
 
     def rtm_send_message(self, channel_id, message):
+        """
+        Send a message using the slack webhook (RTM) API.
+
+        RTM messages should be used for simple messages that don't include anything fancy (like
+        attachments). Use Slack's basic message formatting:
+        https://api.slack.com/docs/message-formatting
+        """
         message_json = {"type": "message", "channel": channel_id, "text": message}
         self.send_to_websocket(message_json)
 
     def post_message(self, channel_id, message, **kwargs):
+        """
+        Send a message using the slack Event API.
+
+        Event messages should be used for more complex messages. See
+        https://api.slack.com/methods/chat.postMessage for details on arguments can be included
+        with your message.
+
+        When using the post_message API, to have your message look like it's sent from your bot
+        you'll need to include the `as_user` kwarg. Example of how to do this:
+            server.slack.post_message(msg['channel'], 'My message', as_user=server.slack.username)
+        """
         params = {
             "post_data": {
                 "text": message,
@@ -146,15 +168,26 @@ class SlackClient(object):
         will return all member objects to you while handling pagination
         """
         objs = []
-        limit = 25
+        limit = 250
         # if you don't provide a limit, the slack API won't return a cursor to you
         page = json.loads(self.api_call(api_method, limit=limit, **kwargs))
         while 1:
-            for obj in page[collection_name]:
-                objs.append(obj)
+            try:
+                for obj in page[collection_name]:
+                    objs.append(obj)
+            except KeyError:
+                LOG.error(
+                    "Unable to find key %s in page object: \n"
+                    "%s", collection_name, page)
+
+                return objs
 
             cursor = dig(page, "response_metadata", "next_cursor")
             if cursor:
+                # In general we allow applications that integrate with Slack to send
+                # no more than one message per second
+                # https://api.slack.com/docs/rate-limits
+                time.sleep(1)
                 page = json.loads(self.api_call(api_method, cursor=cursor, limit=limit, **kwargs))
             else:
                 break
