@@ -11,6 +11,10 @@ testall: requirements
 test: install
 	LANG=en_US.UTF-8 pytest --cov=limbo --cov-report term-missing test
 
+.PHONY: test-network
+test-network: install
+	LIMBO_NETWORK_TESTS=True make test
+
 .PHONY: clean
 clean:
 	rm -rf build dist limbo.egg-info
