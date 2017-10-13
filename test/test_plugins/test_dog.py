@@ -2,14 +2,15 @@
 import os
 import sys
 
-import vcr
+from .utils import VCR
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(DIR, '../../limbo/plugins'))
 
 from dog import on_message
 
+
 def test_dog():
-  with vcr.use_cassette('test/fixtures/dog.yaml'):
-    ret = on_message({"text": u"!dog"}, None)
-    assert "https://dog.ceo/api/img/" in ret
+    with VCR.use_cassette('test/fixtures/dog.yaml'):
+        ret = on_message({"text": u"!dog"}, None)
+        assert "https://dog.ceo/api/img/" in ret

@@ -4,7 +4,7 @@ import os
 import sys
 import sqlite3
 
-import vcr
+from .utils import VCR
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(DIR, '../../limbo/plugins'))
@@ -19,7 +19,7 @@ def dicteq(a, b):
     assert sorted(a.items()) == sorted(b.items())
 
 def test_basic():
-    with vcr.use_cassette('test/fixtures/github_issues.yaml'):
+    with VCR.use_cassette('test/fixtures/github_issues.yaml'):
         ret = on_message({"text": u"!hub issue 5 -r llimllib/limbo", "channel": "test_channel"}, SERVER)
         #import ipdb; ipdb.set_trace()
         expected = {
