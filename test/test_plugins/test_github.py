@@ -20,15 +20,14 @@ def dicteq(a, b):
 
 def test_basic():
     with VCR.use_cassette('test/fixtures/github_issues.yaml'):
-        ret = on_message({"text": u"!hub issue 5 -r llimllib/limbo", "channel": "test_channel"}, SERVER)
-        #import ipdb; ipdb.set_trace()
+        _ = on_message({"text": u"!hub issue 5 -r llimllib/limbo", "channel": "test_channel"}, SERVER)
         expected = {
-            u'author_icon': u'https://avatars.githubusercontent.com/u/7150?v=3',
+            u'author_icon': u'https://avatars3.githubusercontent.com/u/7150?v=4',
             u'author_link': u'https://github.com/llimllib',
             u'author_name': u'llimllib',
             u'color': u'good',
             u'fallback': u'Create an emoji translator',
-            u'text': u'i.e. if you type "I love to eat bananas", the plugin does *something* to try and convert that into a string of emoji. It probably involves a list of synonyms? Maybe even a word model? Or it does something really simple? I don\'t know, but it would be an awesome feature.',
+            u'text': u'i.e. if you type "I love to eat bananas", the plugin does _something_ to try and convert that into a string of emoji. It probably involves a list of synonyms? Maybe even a word model? Or it does something really simple? I don\'t know, but it would be an awesome feature.\n',
             u'title': u'[5] Create an emoji translator',
             u'title_link': u'https://github.com/llimllib/limbo/issues/5'
         }

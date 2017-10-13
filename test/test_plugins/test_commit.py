@@ -2,6 +2,8 @@
 import os
 import sys
 
+import six
+
 from .utils import VCR
 
 DIR = os.path.dirname(os.path.realpath(__file__))
@@ -12,4 +14,5 @@ from commit import on_message
 def test_commit():
     with VCR.use_cassette('test/fixtures/commit.yaml'):
         ret = on_message({"text": u"!commit"}, None)
-        assert 'stuff' in ret
+        assert isinstance(ret, six.string_types), ret
+        assert len(ret) > 0
