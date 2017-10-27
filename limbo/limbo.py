@@ -184,7 +184,7 @@ def loop(server, test_loop=None):
                 response = handle_event(event, server)
 
                 # The docs (https://api.slack.com/docs/message-threading)
-                # suggest looking for messages there `thread_ts` != `ts`,
+                # suggest looking for messages where `thread_ts` != `ts`,
                 # but I can't see anywhere that it would make a practical
                 # difference. If a message is part of a thread, respond to
                 # that thread.
