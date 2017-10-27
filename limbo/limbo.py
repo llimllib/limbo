@@ -46,7 +46,7 @@ def init_plugins(plugindir, plugins_to_load=None):
     if not plugindir:
         plugindir = DIR("plugins")
 
-    logger.debug("plugindir: {0}".format(plugindir))
+    logger.debug("plugindir: %s", plugindir)
 
     if os.path.isdir(plugindir):
         pluginfiles = glob(os.path.join(plugindir, "[!_]*.py"))
@@ -68,10 +68,10 @@ def init_plugins(plugindir, plugins_to_load=None):
 
     for plugin in plugins:
         if plugins_to_load and plugin not in plugins_to_load:
-            logger.debug("skipping plugin {0}, not in plugins_to_load {1}".format(plugin, plugins_to_load))
+            logger.debug("skipping plugin %s, not in plugins_to_load %s", plugin, plugins_to_load)
             continue
 
-        logger.debug("plugin: {0}".format(plugin))
+        logger.debug("plugin: %s", plugin)
         try:
             mod = importlib.import_module(plugin)
             modname = mod.__name__
@@ -88,24 +88,24 @@ def init_plugins(plugindir, plugins_to_load=None):
         # bare except, because the modules could raise any number of errors
         # on import, and we want them not to kill our server
         except:
-            logger.warning("import failed on module {0}, module not loaded".format(plugin))
-            logger.warning("{0}".format(sys.exc_info()[0]))
-            logger.warning("{0}".format(traceback.format_exc()))
+            logger.warning("import failed on module %s, module not loaded", plugin)
+            logger.warning("%s", sys.exc_info()[0])
+            logger.warning("%s", traceback.format_exc())
 
     sys.path = oldpath
     return hooks
 
-def run_hook(hooks, hook, *args):
+def run_hook(hooks, hookname, *args):
     responses = []
-    for hook in hooks.get(hook, []):
+    for hook in hooks.get(hookname, []):
         try:
-            h = hook(*args)
-            if h:
-                responses.append(h)
+            hookres = hook(*args)
+            if hookres:
+                responses.append(hookres)
         except:
-            logger.warning("Failed to run plugin {0}, module not loaded".format(hook))
-            logger.warning("{0}".format(sys.exc_info()[0]))
-            logger.warning("{0}".format(traceback.format_exc()))
+            logger.warning("Failed to run plugin %s, module not loaded", hook)
+            logger.warning("%s", sys.exc_info()[0])
+            logger.warning("%s", traceback.format_exc())
 
     return responses
 
@@ -119,7 +119,7 @@ def get_user_id_from_message(msg, msgtype):
             return msg["previous_message"]["user"]
         return msg["user"]
     except KeyError:
-            return None
+        return None
 
 def handle_message(event, server):
     # plain mesages don't have a subtype; message_changed, bot_message,
@@ -130,8 +130,8 @@ def handle_message(event, server):
 
     # skip messages from ourselves and from slackbot to prevent message loops
     if not user_id or user_id == server.slack.userid or user_id == "USLACKBOT":
-        logger.info("skipping message {} no user found or user is "
-            "self".format(event))
+        logger.info("skipping message %s no user found or user is "
+                    "self", event)
         return
     return "\n".join(run_hook(server.hooks, subtype, event, server))
 
@@ -180,7 +180,7 @@ def loop(server, test_loop=None):
             events = server.slack.rtm_read()
             for event in events:
                 loops_without_activity = 0
-                logger.debug("got {0}".format(event))
+                logger.debug("got %s", event)
                 response = handle_event(event, server)
 
                 # The docs (https://api.slack.com/docs/message-threading)
@@ -311,7 +311,13 @@ def main(args):
 # returns a string appropriate for printing (str in py2 and py3)
 def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
     server.hooks = init_plugins(pluginpath, plugins_to_load)
-    event = {'type': hook, 'text': cmd, "user": "2", 'ts': time.time(), 'team': None, 'channel': 'repl_channel'}
+    event = {'type': hook,
+             'text': cmd,
+             'user': '2',
+             'ts': time.time(),
+             'team': None,
+             'channel':
+             'repl_channel'}
     return encode(handle_event(event, server))
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
