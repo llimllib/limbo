@@ -84,3 +84,4 @@ These are the current default plugins:
 * [@rnagle](https://github.com/rnagle)
 * [@topher200](https://github.com/topher200)
 * [@StewPoll](https://github.com/StewPoll)
+* [@eSoares](https://github.com/eSoares)
