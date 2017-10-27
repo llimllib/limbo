@@ -82,10 +82,10 @@ class SlackClient(object):
         attachments). Use Slack's basic message formatting:
         https://api.slack.com/docs/message-formatting
         """
-        message_json = {"type": "message", "channel": channel_id, "text": message}
+        message = {"type": "message", "channel": channel_id, "text": message}
         if thread_ts:
-            message_json["thread_ts"] = thread_ts
-        self.send_to_websocket(message_json)
+            message["thread_ts"] = thread_ts
+        self.send_to_websocket(message)
 
     def post_message(self, channel_id, message, **kwargs):
         """
