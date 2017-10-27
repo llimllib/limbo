@@ -182,9 +182,16 @@ def loop(server, test_loop=None):
                 loops_without_activity = 0
                 logger.debug("got {0}".format(event))
                 response = handle_event(event, server)
+
+                # The docs (https://api.slack.com/docs/message-threading)
+                # suggest looking for messages there `thread_ts` != `ts`,
+                # but I can't see anywhere that it would make a practical
+                # difference. If a message is part of a thread, respond to
+                # that thread.
                 thread_ts = None
                 if 'thread_ts' in event:
                     thread_ts = event['thread_ts']
+
                 while response:
                     # The Slack API documentation says:
                     #
