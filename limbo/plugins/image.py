@@ -41,11 +41,13 @@ def on_message(msg, server):
     if not match:
         return
 
-    searchterm = match[0]
+    res = image(match[0])
+    if not res:
+        return
 
     attachment = {
-        "fallback": searchterm,
-        "image_url": image(searchterm)
+        "fallback": match[0],
+        "image_url": res
     }
     server.slack.post_message(
         msg['channel'],
