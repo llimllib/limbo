@@ -48,6 +48,8 @@ def on_message(msg, server):
 
     attachment = {
         "fallback": match[0],
+        "title": match[0],
+        "title_link": res,
         "image_url": res
     }
     server.slack.post_message(
