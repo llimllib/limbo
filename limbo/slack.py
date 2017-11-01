@@ -74,11 +74,31 @@ class SlackClient(object):
 
         return data
 
-    def rtm_send_message(self, channel_id, message):
-        message_json = {"type": "message", "channel": channel_id, "text": message}
-        self.send_to_websocket(message_json)
+    def rtm_send_message(self, channel_id, message, thread_ts=None):
+        """
+        Send a message using the slack webhook (RTM) API.
+
+        RTM messages should be used for simple messages that don't include anything fancy (like
+        attachments). Use Slack's basic message formatting:
+        https://api.slack.com/docs/message-formatting
+        """
+        message = {"type": "message", "channel": channel_id, "text": message}
+        if thread_ts:
+            message["thread_ts"] = thread_ts
+        self.send_to_websocket(message)
 
     def post_message(self, channel_id, message, **kwargs):
+        """
+        Send a message using the slack Event API.
+
+        Event messages should be used for more complex messages. See
+        https://api.slack.com/methods/chat.postMessage for details on arguments can be included
+        with your message.
+
+        When using the post_message API, to have your message look like it's sent from your bot
+        you'll need to include the `as_user` kwarg. Example of how to do this:
+            server.slack.post_message(msg['channel'], 'My message', as_user=server.slack.username)
+        """
         params = {
             "post_data": {
                 "text": message,

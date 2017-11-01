@@ -25,14 +25,14 @@ except:
 
 setup(
     name='limbo',
-    version='6.0.1',
+    version='6.2.0',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
     author_email='bill@billmill.org',
     url='https://github.com/llimllib/limbo',
     packages=packages,
-    scripts = ['bin/limbo'],
+    scripts=['bin/limbo'],
     package_data={'': ['LICENSE',], '': ['limbo/plugins/*.py']},
     include_package_data=True,
     install_requires=required,
