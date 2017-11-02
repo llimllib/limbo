@@ -4,7 +4,6 @@ import vcr
 
 # use environment variable to enable network tests
 LIMBO_NETWORK_TESTS = os.environ.get('LIMBO_NETWORK_TESTS', False)
-print(os.environ)
 
 
 def before_record_callback(request):
