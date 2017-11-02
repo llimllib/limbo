@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://api.github.com/repos/llimllib/limbo/issues/5
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6VUXW/TQBD8K6t74SXECUkgtYT6gHjoA1RCICQois72Jjl6vrPuw5GJ+t+Zc9KU
+        RkCbVlFk2bszOze3u1sRnRa5WIfQ+DzLZKOGKxXWsRiWts4cN9ZnWqsa/yLDs7CZ8j6yz2ZiIPq4
+        CtZ1i5N5ANeyYO1Phx4kZDuGbWZkzTdghOiaTXgW5y0H6Lh9LtmOAVTrUOujk/5h9L8tVpXIp7PJ
+        2Ww0mQ6EiXXBTuSzgQgqaMbVvXMsA5M0xLX9qSg4abyWuBRUjT5lb4W2K2WQfFsHoUT8ZjwbDYRs
+        ZZDu+Br6j36yb4dEVFoT4EffGTFL2PP27RRUK7enSJwilf1fUyWqu6Z6tDVIXFqt7QboY633u/Z+
+        geyAOjAos3oCA1DbzIY1wyocIbXbSvmHeu1ITI/YZumxUFXi8LDZcXWSoD0GcjYGSrb9oPZksfCl
+        U01Q1pzm0j0kmKxbSaN+ydOZgPQg6HfDSafqEUA+ZuqObN1BtlnjVCvLLlnhuGTVwtgn0B1hwRa6
+        Jg3blzRPsFkFXsiqTjO1lNrzze0yE/n3bT9a8/n0bDKfjR8Yhr9u2N1Wy9ispSk5LTTUTCsOCu5/
+        LK3GnOdiPi1ec4Gsipcy6iDy4CLf/OjbKyScbdggrm15zZDXq8boe69WhpFgotZ37x7nALhWmn2w
+        5hA/7MYce6PsN0+1kCgnXo3G05fj0cvR2efxm3wyz2fjb6gXm+p/OdOUU2rr9zR7FTGsrVtAnC1V
+        34EocPn14/tPyC5s1eFVDXlIakmdjZQuh67EBWnbMgVL0EWFNPj5KzEgzCw1OmIFUmXZ08LbmsM6
+        rYGUHVyH9VkR9lvLLiAdcGUQkeSDQxrZ5W67DukiUONsIQvdIae1ugWhJI2BTlm+M9Z0tT+nD7Ir
+        mFLzIbyxrqLaVqzP6dKRCjshBx0EKzUYvaobzed0gbh5Eeja2M2Aigg9ASRRVwRS7Hq54QSmJY4a
+        HQ+v0uXujSzgTzLy5jdm695z3gcAAA==
+    headers:
+      access-control-allow-origin: ['*']
+      access-control-expose-headers: ['ETag, Link, X-GitHub-OTP, X-RateLimit-Limit,
+          X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+          X-Poll-Interval']
+      cache-control: ['public, max-age=60, s-maxage=60']
+      content-encoding: [gzip]
+      content-security-policy: [default-src 'none']
+      content-type: [application/json; charset=utf-8]
+      date: ['Fri, 13 Oct 2017 05:20:06 GMT']
+      etag: [W/"5698a9d5a25a4b6fbcb76f8fe0c27544"]
+      last-modified: ['Fri, 13 Oct 2017 02:21:40 GMT']
+      server: [GitHub.com]
+      status: [200 OK]
+      strict-transport-security: [max-age=31536000; includeSubdomains; preload]
+      vary: [Accept]
+      x-content-type-options: [nosniff]
+      x-frame-options: [deny]
+      x-github-media-type: [github.v3; format=json]
+      x-github-request-id: ['F0D6:1A2D:56FD6:A47D3:59E04D06']
+      x-ratelimit-limit: ['60']
+      x-ratelimit-remaining: ['53']
+      x-ratelimit-reset: ['1507872710']
+      x-runtime-rack: ['0.060862']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
