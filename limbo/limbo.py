@@ -182,6 +182,16 @@ def loop(server, test_loop=None):
                 loops_without_activity = 0
                 logger.debug("got {0}".format(event))
                 response = handle_event(event, server)
+
+                # The docs (https://api.slack.com/docs/message-threading)
+                # suggest looking for messages where `thread_ts` != `ts`,
+                # but I can't see anywhere that it would make a practical
+                # difference. If a message is part of a thread, respond to
+                # that thread.
+                thread_ts = None
+                if 'thread_ts' in event:
+                    thread_ts = event['thread_ts']
+
                 while response:
                     # The Slack API documentation says:
                     #
@@ -193,7 +203,7 @@ def loop(server, test_loop=None):
                     # but empirical testing shows that I'm getting disconnected
                     # at 4000 characters and even quite a bit lower. Use 1000
                     # to be safe
-                    server.slack.rtm_send_message(event["channel"], response[:1000])
+                    server.slack.rtm_send_message(event["channel"], response[:1000], thread_ts)
                     response = response[1000:]
 
             # Run the loop hook. This doesn't send messages it receives,
