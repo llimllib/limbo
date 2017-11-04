@@ -47,6 +47,7 @@ These are the current default plugins:
 * [help](https://github.com/llimllib/limbo/wiki/Help-Plugin)
 * [image](https://github.com/llimllib/limbo/wiki/Image-Plugin)
 * [map](https://github.com/llimllib/limbo/wiki/Map-Plugin)
+* [poll](https://github.com/llimllib/limbo/wiki/Poll-Plugin)
 * [stock](https://github.com/llimllib/limbo/wiki/Stock-Plugin)
 * [stockphoto](https://github.com/llimllib/limbo/wiki/Stock-Photo-Plugin)
 * [weather](https://github.com/llimllib/limbo/wiki/Weather-Plugin)

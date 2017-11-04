@@ -107,7 +107,22 @@ class SlackClient(object):
         }
         params["post_data"].update(kwargs)
 
-        self.api_call("chat.postMessage", **params)
+        return self.api_call("chat.postMessage", **params)
+
+    def post_reaction(self, channel_id, timestamp, reaction_name, **kwargs):
+        """
+        Send a reaction to a message using slack Event API
+        """
+        params = {
+            "post_data": {
+                "name": reaction_name,
+                "channel": channel_id,
+                "timestamp": timestamp,
+            }
+        }
+        params["post_data"].update(kwargs)
+
+        return self.api_call("reactions.add", **params)
 
     def process_changes(self, data):
         if "type" in data.keys():
