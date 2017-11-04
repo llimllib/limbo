@@ -5,10 +5,12 @@ try:
     from urllib import quote
 except ImportError:
     from urllib.request import quote
+import logging
 import os
 import re
-import requests
 import time
+
+import requests
 
 # http://openweathermap.org/weather-conditions
 iconmap = {
@@ -36,6 +38,9 @@ def weather(searchterm):
                   searchterm, weather_api_key)
 
     dat = requests.get(url).json()
+    if 'city' not in dat:
+        logging.warning('weather response missing fields. response: %s', dat)
+        return ":crying_cat_face: Sorry, weather request failed :crying_cat_face:"
 
     msg = ["{0}: ".format(dat["city"]["name"])]
     for day in dat["list"]:
