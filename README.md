@@ -13,6 +13,8 @@
 
 ![kitten mittens](http://i.imgur.com/xhmD6QO.png)
 
+I recommend that you always run limbo in a [virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/) so that you are running in a clean environment.
+
 ## Command Arguments
 
 * --test, -t: Enter command line mode to enter a limbo repl.
@@ -28,6 +30,8 @@
 * LIMBO_LOGFILE: File to log info to. Defaults to none.
 * LIMBO_LOGFORMAT: Format for log messages. Defaults to `%(asctime)s:%(levelname)s:%(name)s:%(message)s`.
 * LIMBO_PLUGINS: Comma-delimited string of plugins to load. Defaults to loading all plugins in the plugins directory (which defaults to "limbo/plugins")
+
+Note that if you are getting an error message about not seeing environment variables, you may be running limbo as `sudo`, which will clear the environment. Use a virtualenv and always run limbo as a user process!
 
 ## Commands
 
@@ -86,3 +90,4 @@ These are the current default plugins:
 * [@topher200](https://github.com/topher200)
 * [@StewPoll](https://github.com/StewPoll)
 * [@eSoares](https://github.com/eSoares)
+* [@sweinstein89](https://github.com/sweinstein89)
