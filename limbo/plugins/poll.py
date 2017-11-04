@@ -10,6 +10,7 @@ POLL_EMOJIS = ["one", "two", "three", "four", "five", "six", "seven", "eight",
 
 ERROR_WRONG_NUMBER_OF_ARGUMENTS = "A Poll must have at least a question and " \
     "between two to ten options"
+ERROR_INVALID_FORMAT = "Sorry, your poll contains unbalanced quotation marks"
 
 ARGPARSE = argparse.ArgumentParser()
 ARGPARSE.add_argument('poll', nargs='*')
@@ -24,7 +25,10 @@ def poll(poll, msg, server):
     """Given a question and answers, present a poll"""
     poll = remove_smart_quotes(poll.replace(u"\u2014", u"--"))
 
-    args = ARGPARSE.parse_args(shlex.split(poll)).poll
+    try:
+        args = ARGPARSE.parse_args(shlex.split(poll)).poll
+    except ValueError:
+        return ERROR_INVALID_FORMAT
 
     if not 2 < len(args) < len(POLL_EMOJIS) + 1:
         return ERROR_WRONG_NUMBER_OF_ARGUMENTS
