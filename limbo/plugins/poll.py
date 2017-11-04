@@ -23,6 +23,9 @@ def poll(poll, msg, server):
 
     args = ARGPARSE.parse_args(shlex.split(poll)).poll
 
+    if len(args) < 3:
+        return "A Poll must have at least a question and two options"
+
     result = ["Poll: {}\n".format(args[0])]
     for emoji, answer in zip(POLL_EMOJIS, args[1:]):
         result.append(":{}: {}\n".format(emoji, answer))
