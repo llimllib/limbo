@@ -53,11 +53,7 @@ class FakeSlack(object):
         })
 
     def post_reaction(self, channel, ts, reaction):
-        if ts in self.posted_reactions.keys():
-            self.posted_reactions[ts].append(reaction)
-        else:
-            self.posted_reactions[ts] = [reaction]
-        return None
+        self.posted_reactions.setdefault(ts, []).append(reaction)
 
     def rtm_read(self):
         return self.events.pop() if self.events else []
