@@ -32,6 +32,6 @@ def test_basic():
             u'title': u'[5] Create an emoji translator',
             u'title_link': u'https://github.com/llimllib/limbo/issues/5'
         }
-        actual = json.loads(SERVER.slack.posted_message[1]['attachments'])
+        actual = json.loads(SERVER.slack.posted_messages[0][1]['attachments'])
         assert len(actual) == 1
         dicteq(expected, actual[0])
