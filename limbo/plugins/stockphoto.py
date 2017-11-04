@@ -13,12 +13,12 @@ from bs4 import BeautifulSoup
 def stock(searchterm):
     searchterm = quote(searchterm)
     url = "https://www.shutterstock.com/search?searchterm={0}".format(searchterm)
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text, "html5lib")
-    images = [x['src'] for x in soup.select('.img-wrap img')]
+    res = requests.get(url)
+    soup = BeautifulSoup(res.text, "html5lib")
+    images = ["https:" + x["src"] for x in soup.select(".img-wrap img")]
     shuffle(images)
 
-    return 'https:' + images[0] if images else ""
+    return images[0] if images else ""
 
 def on_message(msg, server):
     text = msg.get("text", "")
