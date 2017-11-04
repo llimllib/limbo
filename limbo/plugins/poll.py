@@ -8,6 +8,8 @@ import shlex
 POLL_EMOJIS = ["one", "two", "three", "four", "five", "six", "seven", "eight",
                "nine", "keycap_ten"]
 
+ERROR_WRONG_NUMBER_OF_ARGUMENTS = "A Poll must have at least a question and two options"
+
 ARGPARSE = argparse.ArgumentParser()
 ARGPARSE.add_argument('poll', nargs='*')
 
@@ -24,7 +26,7 @@ def poll(poll, msg, server):
     args = ARGPARSE.parse_args(shlex.split(poll)).poll
 
     if len(args) < 3:
-        return "A Poll must have at least a question and two options"
+        return ERROR_WRONG_NUMBER_OF_ARGUMENTS
 
     result = ["Poll: {}\n".format(args[0])]
     for emoji, answer in zip(POLL_EMOJIS, args[1:]):
