@@ -1,3 +1,6 @@
+import json
+import time
+
 from .slack import User, Bot
 
 class FakeServer(object):
@@ -20,7 +23,8 @@ class FakeServer(object):
 
 class FakeSlack(object):
     def __init__(self, server=None, users=None, events=None, bots=None, botname="test"):
-        self.posted_message = None
+        self.posted_messages = []
+        self.posted_reactions = {}
         self.events = events if events else []
         self.login_data = {
             "self": {
@@ -43,7 +47,13 @@ class FakeSlack(object):
 
 
     def post_message(self, channel, message, **kwargs):
-        self.posted_message = (message, kwargs)
+        self.posted_messages.append((message, kwargs))
+        return json.dumps({
+            "ts": time.time()
+        })
+
+    def post_reaction(self, channel, ts, reaction):
+        self.posted_reactions.setdefault(ts, []).append(reaction)
 
     def rtm_read(self):
         return self.events.pop() if self.events else []

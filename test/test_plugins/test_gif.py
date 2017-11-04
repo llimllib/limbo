@@ -25,7 +25,7 @@ def test_gif():
     with vcr.use_cassette('test/fixtures/gif_bananas.yaml'):
         on_message(msgobj(u"!gif bananas"), server)
 
-    url = json.loads(server.slack.posted_message[1]["attachments"])[0]['image_url']
+    url = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]['image_url']
     assert url in bananas_gifs, "{0} not in {1}".format(url, bananas_gifs)
 
 def test_unicode():
