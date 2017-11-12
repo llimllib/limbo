@@ -4,7 +4,7 @@ import re
 import random
 from emojicodedict import emojiCodeDict
 
-CUSTOM_EMOJI = None
+ALL_EMOJI = None
 
 def randomelt(dic):
     """return a random element from a dictionary with replacement"""
@@ -13,9 +13,11 @@ def randomelt(dic):
     return dic[keys[i]]
 
 def get_custom_emoji(server):
-    """get a workspace's custom emoji and store them in CUSTOM_EMOJI"""
+    """get a workspace's custom emoji and store them in ALL_EMOJI"""
+    global ALL_EMOJI
+    ALL_EMOJI = list(emojiCodeDict.keys())
+
     emoji_res = json.loads(server.slack.api_call("emoji.list"))
-    CUSTOM_EMOJI = []
     for emo in emoji_res["emoji"]:
         url = emoji_res["emoji"][emo]
         emoji = ":{}:".format(emo)
@@ -23,13 +25,14 @@ def get_custom_emoji(server):
         # don't want to include dupes in our list so we don't bias towards them
         # https://api.slack.com/methods/emoji.list
         if url.startswith("http") and emoji not in emojiCodeDict:
-            CUSTOM_EMOJI.append(emoji)
+            ALL_EMOJI.append(emoji)
 
 def emoji_list(server, n=1):
     """return a list of `n` random emoji"""
-    if CUSTOM_EMOJI is None:
+    if ALL_EMOJI is None:
         get_custom_emoji(server)
-    return "".join(randomelt(emojiCodeDict) for _ in range(n))
+    random.shuffle(ALL_EMOJI)
+    return "".join(ALL_EMOJI[:n])
 
 def on_message(msg, server):
     text = msg.get("text", "")
