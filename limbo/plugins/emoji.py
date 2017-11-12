@@ -29,11 +29,7 @@ def emoji_list(server, n=1):
     """return a list of `n` random emoji"""
     if CUSTOM_EMOJI is None:
         get_custom_emoji(server)
-    emoji = []
-    for _ in range(n):
-        emoji.append(randomelt(emojiCodeDict))
-
-    return "".join(emoji)
+    return "".join(randomelt(emojiCodeDict) for _ in range(n))
 
 def on_message(msg, server):
     text = msg.get("text", "")
