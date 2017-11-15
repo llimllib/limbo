@@ -35,3 +35,4 @@ virtualenv==15.1.0
 webencodings==0.5.1
 websocket-client==0.44.0
 wrapt==1.10.10
+configparser==3.5.0

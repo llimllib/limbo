@@ -15,6 +15,7 @@ import traceback
 from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
+from .config import Config
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
@@ -151,19 +152,6 @@ def handle_event(event, server):
     if handler:
         return handler(event, server)
 
-def getif(config, name, envvar):
-    if envvar in os.environ:
-        config[name] = os.environ.get(envvar)
-
-def init_config():
-    config = {}
-    getif(config, "token", "SLACK_TOKEN")
-    getif(config, "loglevel", "LIMBO_LOGLEVEL")
-    getif(config, "logfile", "LIMBO_LOGFILE")
-    getif(config, "logformat", "LIMBO_LOGFORMAT")
-    getif(config, "plugins", "LIMBO_PLUGINS")
-
-    return config
 
 def loop(server, test_loop=None):
     """Run the main loop
@@ -282,7 +270,7 @@ def encode(str_, codec='utf8'):
         return str_.encode(codec)
 
 def main(args):
-    config = init_config()
+    config = Config()
     if args.test:
         init_log(config)
         return repl(FakeServer(), args)
