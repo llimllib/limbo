@@ -9,7 +9,7 @@ from limbo.config import Config
 
 def test_config():
     # test wrong config location
-    os.environ["LIMBO_CONFIG_LOCATION"] = "config.ini"
+    os.environ["LIMBO_CONFIG_LOCATION"] = "config_non_existent.ini"
     try:
         config = Config()
         assert False
@@ -17,7 +17,7 @@ def test_config():
         assert True
 
     # know a correct config location
-    os.environ["LIMBO_CONFIG_LOCATION"] = "../config.ini"
+    os.environ["LIMBO_CONFIG_LOCATION"] = "config.ini"
     config = Config()
     assert config["SLACK_TOKEN"] == "token"
 

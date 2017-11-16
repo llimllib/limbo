@@ -33,13 +33,18 @@ class Config:
         if envvar in os.environ:
             config[name] = os.environ.get(envvar)
 
-    def get(self, plugin_name, item_name):
-        if plugin_name and plugin_name + "_" + item_name in self.env_config.keys():
+    def get_by_section(self, plugin_name, item_name):
+        if plugin_name and plugin_name + "_" + str(item_name) in self.env_config.keys():
             return self.env_config[plugin_name + "_" + item_name]
         try:
             return self.file_config.get(plugin_name, item_name)
-        except confparser.NoSectionError:
+        except confparser.Error:
             return None  # in case of not finding it anywhere
+
+    def get(self, *args):
+        if len(args) > 1:
+            return self.get_by_section(args[0], args[1])
+        return self.get_by_section("BOT", args[0])
 
     def __getitem__(self, item):
         return self.get("BOT", item)
