@@ -2,37 +2,51 @@
 import json
 import re
 import random
+from time import time
 from emojicodedict import emojiCodeDict
 
-ALL_EMOJI = None
+EMOJI = None
 
-def randomelt(dic):
-    """return a random element from a dictionary with replacement"""
-    keys = list(dic.keys())
-    i = random.randint(0, len(keys) - 1)
-    return dic[keys[i]]
+class EmojiCache(object):
+    def __init__(self, server):
+        self.server = server
+        self.last_updated = 0
+        self.emoji = []
 
-def get_custom_emoji(server):
-    """get a workspace's custom emoji and store them in ALL_EMOJI"""
-    global ALL_EMOJI
-    ALL_EMOJI = list(emojiCodeDict.keys())
+    def __len__(self):
+        return len(self.emoji)
 
-    emoji_res = json.loads(server.slack.api_call("emoji.list"))
-    for emo in emoji_res["emoji"]:
-        url = emoji_res["emoji"][emo]
-        emoji = ":{}:".format(emo)
-        # duplicate emoji will start with "alias:" instead of an "http"; we
-        # don't want to include dupes in our list so we don't bias towards them
-        # https://api.slack.com/methods/emoji.list
-        if url.startswith("http") and emoji not in emojiCodeDict:
-            ALL_EMOJI.append(emoji)
+    def __getitem__(self, idx):
+        return self.emoji[idx]
+
+    def __setitem__(self, idx, val):
+        self.emoji[idx] = val
+
+    def get(self, n):
+        if time() - self.last_updated > 60 * 60:
+            self.update()
+            self.last_updated = time()
+        random.shuffle(self.emoji)
+        return "".join(self.emoji[:n])
+
+    def update(self):
+        self.emoji = list(emojiCodeDict.keys())
+        emoji_res = json.loads(self.server.slack.api_call("emoji.list"))
+        for emo in emoji_res["emoji"]:
+            url = emoji_res["emoji"][emo]
+            emoji = ":{}:".format(emo)
+            # duplicate emoji will start with "alias:" instead of an "http"; we
+            # don't want to include dupes in our list so we don't bias towards them
+            # https://api.slack.com/methods/emoji.list
+            if url.startswith("http") and emoji not in emojiCodeDict:
+                self.emoji.append(emoji)
 
 def emoji_list(server, n=1):
     """return a list of `n` random emoji"""
-    if ALL_EMOJI is None:
-        get_custom_emoji(server)
-    random.shuffle(ALL_EMOJI)
-    return "".join(ALL_EMOJI[:n])
+    global EMOJI
+    if EMOJI is None:
+        EMOJI = EmojiCache(server)
+    return EMOJI.get(n)
 
 def on_message(msg, server):
     text = msg.get("text", "")
