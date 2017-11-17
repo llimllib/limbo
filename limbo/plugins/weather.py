@@ -80,13 +80,13 @@ def weather(searchterm):
     Throws WeatherException if the location given by `searchterm` can't be
     found.
     """
-    yql = 'select * from weather.forecast where woeid in '\
+    yql = u'select * from weather.forecast where woeid in '\
           '(select woeid from geo.places(1) where text="{}")'.format(
               searchterm)
 
     unit = "c" if os.environ.get("WEATHER_CELSIUS") else "f"
     if unit == "c":
-        yql += ' AND u="c"'
+        yql += u' AND u="c"'
 
     url = 'https://query.yahooapis.com/v1/public/yql?'\
           'q={}&format=json'.format(quote(yql.encode('utf8')))
