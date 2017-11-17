@@ -71,9 +71,11 @@ class WeatherException(Exception):
 def weather(searchterm):
     """Get the weather for a place given by searchterm
 
-    Returns an array of messages. The first describes the location for the
-    forecast (i.e. "Portland, ME USA") and the next 5 are the next 5 days'
-    forecast, formatted for slack.
+    Returns a title and a list of forecasts.
+
+    The title describes the location for the forecast (i.e. "Portland, ME USA")
+    The list of forecasts is a list of dictionaries in slack attachment fields
+        format (see https://api.slack.com/docs/message-attachments)
 
     Throws WeatherException if the location given by `searchterm` can't be
     found.
@@ -98,14 +100,26 @@ def weather(searchterm):
     forecast = dat['query']['results']['channel']['item']['forecast']
     location = dat['query']['results']['channel']['location']
 
-    msg = ["Weather for {}, {} {}: ".format(
-        location["city"], location['region'].strip(), location['country'])]
-    for day in forecast[:5]:
-        day_of_wk = time.strftime("%a", time.strptime(day["date"], "%d %b %Y"))
-        icon = ICONMAP.get(day["code"], ":question:")
-        msg.append(u"{} {}°{} {}".format(icon, day["high"], unit, day_of_wk))
+    region = location['region'].strip()
+    if region == location["city"].strip():
+        region = ""
+    else:
+        region = "{} ".format(region)
 
-    return msg
+    title = "Weather for {}, {}{}: ".format(
+        location["city"], region, location['country'])
+
+    forecasts = []
+    for day in forecast:
+        day_of_wk = time.strftime("%A", time.strptime(day["date"], "%d %b %Y"))
+        icon = ICONMAP.get(day["code"], ":question:")
+        forecasts.append({
+            "title": day_of_wk,
+            "value": u"{} {}°{}".format(icon, day["high"], unit),
+            "short": True,
+        })
+
+    return title, forecasts
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -114,14 +128,14 @@ def on_message(msg, server):
         return
 
     try:
-        res = weather(match[0])
+        title, forecasts = weather(match[0])
     except WeatherException as err:
         return err.args[0]
 
     attachment = {
-        "fallback": res[0],
-        "pretext": res[0],
-        "text": "\n".join(res[1:])
+        "fallback": title,
+        "pretext": title,
+        "fields": forecasts[0:4]
     }
     server.slack.post_message(
         msg['channel'],
