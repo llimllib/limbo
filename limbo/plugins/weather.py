@@ -5,6 +5,7 @@ try:
     from urllib import quote
 except ImportError:
     from urllib.request import quote
+import json
 import logging
 import os
 import re
@@ -63,11 +64,26 @@ ICONMAP = {
     "47": ":thunder_cloud_and_rain:",
 }
 
+class WeatherException(Exception):
+    """An exception finding the weather"""
+    pass
+
 def weather(searchterm):
+    """Get the weather for a place given by searchterm
+
+    Returns an array of messages. The first describes the location for the
+    forecast (i.e. "Portland, ME USA") and the next 5 are the next 5 days'
+    forecast, formatted for slack.
+
+    Throws WeatherException if the location given by `searchterm` can't be
+    found.
+    """
     yql = 'select * from weather.forecast where woeid in '\
           '(select woeid from geo.places(1) where text="{}")'.format(
               searchterm)
-    if os.environ.get("WEATHER_CELSIUS"):
+
+    unit = "c" if os.environ.get("WEATHER_CELSIUS") else "f"
+    if unit == "c":
         yql += ' AND u="c"'
 
     url = 'https://query.yahooapis.com/v1/public/yql?'\
@@ -76,18 +92,20 @@ def weather(searchterm):
     dat = requests.get(url).json()
     if 'query' not in dat or not dat['query']['results']:
         logging.warning('weather response missing fields. response: %s', dat)
-        return ":crying_cat_face: Sorry, weather request failed :crying_cat_face:"
+        raise WeatherException(":crying_cat_face: Sorry, weather request failed"
+                               ":crying_cat_face:")
 
     forecast = dat['query']['results']['channel']['item']['forecast']
     location = dat['query']['results']['channel']['location']
 
-    msg = ["{}, {}: ".format(location["city"], location['region'].strip())]
+    msg = ["Weather for {}, {} {}: ".format(
+        location["city"], location['region'].strip(), location['country'])]
     for day in forecast[:5]:
-        name = time.strftime("%a", time.strptime(day["date"], "%d %b %Y"))
+        day_of_wk = time.strftime("%a", time.strptime(day["date"], "%d %b %Y"))
         icon = ICONMAP.get(day["code"], ":question:")
-        msg.append(u"{0} {1}° {2}".format(name, day["high"], icon))
+        msg.append(u"{} {}°{} {}".format(icon, day["high"], unit, day_of_wk))
 
-    return " ".join(msg)
+    return msg
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -95,6 +113,20 @@ def on_message(msg, server):
     if not match:
         return
 
-    return weather(match[0])
+    try:
+        res = weather(match[0])
+    except WeatherException as err:
+        return err.args[0]
+
+    attachment = {
+        "fallback": res[0],
+        "pretext": res[0],
+        "text": "\n".join(res[1:])
+    }
+    server.slack.post_message(
+        msg['channel'],
+        '',
+        as_user=server.slack.username,
+        attachments=json.dumps([attachment]))
 
 on_bot_message = on_message
