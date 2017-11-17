@@ -9,8 +9,6 @@ sys.path.insert(0, os.path.join(DIR, '../../limbo/plugins'))
 
 from weather import on_message
 
-os.environ["WEATHER_API_KEY"] = "abcdef"
-
 def test_basic():
     with vcr.use_cassette('test/fixtures/weather_basic.yaml'):
         ret = on_message({"text": u"!weather Oahu, HI"}, None)
