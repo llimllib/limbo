@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://query.yahooapis.com/v1/public/yql?q=select%20%2A%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%22%29&format=json
+  response:
+    body: {string: '{"query":{"count":1,"created":"2017-11-17T03:30:46Z","lang":"en-US","results":{"channel":{"units":{"distance":"mi","pressure":"in","speed":"mph","temperature":"F"},"title":"Yahoo!
+        Weather - Bangkok, Bangkok, TH","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/","description":"Yahoo!
+        Weather for Bangkok, Bangkok, TH","language":"en-us","lastBuildDate":"Fri,
+        17 Nov 2017 10:30 AM ICT","ttl":"60","location":{"city":"Bangkok","country":"Thailand","region":"
+        Bangkok"},"wind":{"chill":"82","direction":"0","speed":"7"},"atmosphere":{"humidity":"85","pressure":"1011.0","rising":"0","visibility":"16.1"},"astronomy":{"sunrise":"6:19
+        am","sunset":"5:47 pm"},"image":{"title":"Yahoo! Weather","width":"142","height":"18","link":"http://weather.yahoo.com","url":"http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif"},"item":{"title":"Conditions
+        for Bangkok, Bangkok, TH at 09:00 AM ICT","lat":"13.75335","long":"100.504829","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/","pubDate":"Fri,
+        17 Nov 2017 09:00 AM ICT","condition":{"code":"28","date":"Fri, 17 Nov 2017
+        09:00 AM ICT","temp":"82","text":"Mostly Cloudy"},"forecast":[{"code":"4","date":"17
+        Nov 2017","day":"Fri","high":"89","low":"76","text":"Thunderstorms"},{"code":"4","date":"18
+        Nov 2017","day":"Sat","high":"90","low":"75","text":"Thunderstorms"},{"code":"4","date":"19
+        Nov 2017","day":"Sun","high":"86","low":"77","text":"Thunderstorms"},{"code":"12","date":"20
+        Nov 2017","day":"Mon","high":"82","low":"76","text":"Rain"},{"code":"4","date":"21
+        Nov 2017","day":"Tue","high":"85","low":"76","text":"Thunderstorms"},{"code":"4","date":"22
+        Nov 2017","day":"Wed","high":"86","low":"74","text":"Thunderstorms"},{"code":"47","date":"23
+        Nov 2017","day":"Thu","high":"85","low":"74","text":"Scattered Thunderstorms"},{"code":"28","date":"24
+        Nov 2017","day":"Fri","high":"84","low":"75","text":"Mostly Cloudy"},{"code":"30","date":"25
+        Nov 2017","day":"Sat","high":"84","low":"71","text":"Partly Cloudy"},{"code":"28","date":"26
+        Nov 2017","day":"Sun","high":"82","low":"74","text":"Mostly Cloudy"}],"description":"<![CDATA[<img
+        src=\"http://l.yimg.com/a/i/us/we/52/28.gif\"/>\n<BR />\n<b>Current Conditions:</b>\n<BR
+        />Mostly Cloudy\n<BR />\n<BR />\n<b>Forecast:</b>\n<BR /> Fri - Thunderstorms.
+        High: 89Low: 76\n<BR /> Sat - Thunderstorms. High: 90Low: 75\n<BR /> Sun -
+        Thunderstorms. High: 86Low: 77\n<BR /> Mon - Rain. High: 82Low: 76\n<BR />
+        Tue - Thunderstorms. High: 85Low: 76\n<BR />\n<BR />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/\">Full
+        Forecast at Yahoo! Weather</a>\n<BR />\n<BR />\n<BR />\n]]>","guid":{"isPermaLink":"false"}}}}}}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Age: ['0']
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Type: [application/json;charset=utf-8]
+      Date: ['Fri, 17 Nov 2017 03:30:46 GMT']
+      Public-Key-Pins-Report-Only: ['max-age=2592000; pin-sha256="2oALgLKofTmeZvoZ1y/fSZg7R9jPMix8eVA6DH4o/q8=";
+          pin-sha256="cAajgxHlj7GTSEIzIYIQxmEloOSoJq7VOaxWHfv72QM="; pin-sha256="SVqWumuteCQHvVIaALrOZXuzVVVeS7f4FGxxu6V+es4=";
+          pin-sha256="UZJDjsNp1+4M5x9cbbdflB779y5YRBcV6Z6rBMLIrO4="; pin-sha256="JbQbUG5JMJUoI6brnx0x3vZF6jilxsapbXGVfjhN8Fg=";
+          pin-sha256="lnsM2T/O9/J84sJFdnrpsFp3awZJ+ZZbYpCWhGloaHI="; pin-sha256="h6801m+z8v3zbgkRHpq6L29Esgfzhj89C1SyUCOQmqU=";
+          pin-sha256="SQVGZiOrQXi+kqxcvWWE96HhfydlLVqFr4lQTqI5qqo="; pin-sha256="q5hJUnat8eyv8o81xTBIeB5cFxjaucjmelBPT2pRMo8=";
+          pin-sha256="vPtEqrmtAhAVcGtBIep2HIHJ6IlnWQ9vlK50TciLePs="; pin-sha256="lpkiXF3lLlbN0y3y6W0c/qWqPKC7Us2JM8I7XCdEOCA=";
+          pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E="; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=";
+          pin-sha256="2fRAUXyxl4A1/XHrKNBmc8bTkzA7y4FB/GLJuNAzCqY="; pin-sha256="dolnbtzEBnELx/9lOEQ22e6OZO/QNb6VSSX2XHA3E7A=";
+          includeSubdomains; report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-hpkp-report-only"']
+      Server: [ATS]
+      Strict-Transport-Security: [max-age=31536000]
+      Via: ['http/1.1 a98.ue.bf1.yahoo.net (ApacheTrafficServer [cMsSf ])']
+      X-Content-Type-Options: [nosniff]
+    status: {code: 200, message: OK}
+version: 1

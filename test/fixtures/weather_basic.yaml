@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.18.1]
+    method: GET
+    uri: https://query.yahooapis.com/v1/public/yql?q=select%20%2A%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22Oahu%2C%20HI%22%29&format=json
+  response:
+    body: {string: '{"query":{"count":1,"created":"2017-11-17T03:29:42Z","lang":"en-US","results":{"channel":{"units":{"distance":"mi","pressure":"in","speed":"mph","temperature":"F"},"title":"Yahoo!
+        Weather - Honolulu, HI, US","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/","description":"Yahoo!
+        Weather for Honolulu, HI, US","language":"en-us","lastBuildDate":"Thu, 16
+        Nov 2017 05:29 PM HST","ttl":"60","location":{"city":"Honolulu","country":"United
+        States","region":" HI"},"wind":{"chill":"72","direction":"45","speed":"18"},"atmosphere":{"humidity":"66","pressure":"981.0","rising":"0","visibility":"16.1"},"astronomy":{"sunrise":"6:44
+        am","sunset":"5:50 pm"},"image":{"title":"Yahoo! Weather","width":"142","height":"18","link":"http://weather.yahoo.com","url":"http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif"},"item":{"title":"Conditions
+        for Honolulu, HI, US at 04:00 PM HST","lat":"21.483601","long":"-157.964783","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/","pubDate":"Thu,
+        16 Nov 2017 04:00 PM HST","condition":{"code":"34","date":"Thu, 16 Nov 2017
+        04:00 PM HST","temp":"71","text":"Mostly Sunny"},"forecast":[{"code":"30","date":"16
+        Nov 2017","day":"Thu","high":"73","low":"65","text":"Partly Cloudy"},{"code":"30","date":"17
+        Nov 2017","day":"Fri","high":"72","low":"63","text":"Partly Cloudy"},{"code":"30","date":"18
+        Nov 2017","day":"Sat","high":"74","low":"61","text":"Partly Cloudy"},{"code":"34","date":"19
+        Nov 2017","day":"Sun","high":"72","low":"60","text":"Mostly Sunny"},{"code":"34","date":"20
+        Nov 2017","day":"Mon","high":"72","low":"60","text":"Mostly Sunny"},{"code":"30","date":"21
+        Nov 2017","day":"Tue","high":"73","low":"62","text":"Partly Cloudy"},{"code":"12","date":"22
+        Nov 2017","day":"Wed","high":"72","low":"64","text":"Rain"},{"code":"34","date":"23
+        Nov 2017","day":"Thu","high":"74","low":"67","text":"Mostly Sunny"},{"code":"30","date":"24
+        Nov 2017","day":"Fri","high":"74","low":"66","text":"Partly Cloudy"},{"code":"23","date":"25
+        Nov 2017","day":"Sat","high":"73","low":"67","text":"Breezy"}],"description":"<![CDATA[<img
+        src=\"http://l.yimg.com/a/i/us/we/52/34.gif\"/>\n<BR />\n<b>Current Conditions:</b>\n<BR
+        />Mostly Sunny\n<BR />\n<BR />\n<b>Forecast:</b>\n<BR /> Thu - Partly Cloudy.
+        High: 73Low: 65\n<BR /> Fri - Partly Cloudy. High: 72Low: 63\n<BR /> Sat -
+        Partly Cloudy. High: 74Low: 61\n<BR /> Sun - Mostly Sunny. High: 72Low: 60\n<BR
+        /> Mon - Mostly Sunny. High: 72Low: 60\n<BR />\n<BR />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/\">Full
+        Forecast at Yahoo! Weather</a>\n<BR />\n<BR />\n<BR />\n]]>","guid":{"isPermaLink":"false"}}}}}}'}
+    headers:
+      Access-Control-Allow-Origin: ['*']
+      Age: ['0']
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Type: [application/json;charset=utf-8]
+      Date: ['Fri, 17 Nov 2017 03:29:42 GMT']
+      Public-Key-Pins-Report-Only: ['max-age=2592000; pin-sha256="2oALgLKofTmeZvoZ1y/fSZg7R9jPMix8eVA6DH4o/q8=";
+          pin-sha256="cAajgxHlj7GTSEIzIYIQxmEloOSoJq7VOaxWHfv72QM="; pin-sha256="SVqWumuteCQHvVIaALrOZXuzVVVeS7f4FGxxu6V+es4=";
+          pin-sha256="UZJDjsNp1+4M5x9cbbdflB779y5YRBcV6Z6rBMLIrO4="; pin-sha256="JbQbUG5JMJUoI6brnx0x3vZF6jilxsapbXGVfjhN8Fg=";
+          pin-sha256="lnsM2T/O9/J84sJFdnrpsFp3awZJ+ZZbYpCWhGloaHI="; pin-sha256="h6801m+z8v3zbgkRHpq6L29Esgfzhj89C1SyUCOQmqU=";
+          pin-sha256="SQVGZiOrQXi+kqxcvWWE96HhfydlLVqFr4lQTqI5qqo="; pin-sha256="q5hJUnat8eyv8o81xTBIeB5cFxjaucjmelBPT2pRMo8=";
+          pin-sha256="vPtEqrmtAhAVcGtBIep2HIHJ6IlnWQ9vlK50TciLePs="; pin-sha256="lpkiXF3lLlbN0y3y6W0c/qWqPKC7Us2JM8I7XCdEOCA=";
+          pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E="; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=";
+          pin-sha256="2fRAUXyxl4A1/XHrKNBmc8bTkzA7y4FB/GLJuNAzCqY="; pin-sha256="dolnbtzEBnELx/9lOEQ22e6OZO/QNb6VSSX2XHA3E7A=";
+          includeSubdomains; report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-hpkp-report-only"']
+      Server: [ATS]
+      Strict-Transport-Security: [max-age=31536000]
+      Via: ['http/1.1 a90.ue.bf1.yahoo.net (ApacheTrafficServer [cMsSf ])']
+      X-Content-Type-Options: [nosniff]
+    status: {code: 200, message: OK}
+version: 1
