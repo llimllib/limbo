@@ -18,7 +18,8 @@ class Config(object):
         if not os.path.exists(config_file):
             logger = logging.getLogger(__name__)
             logger.warning("File for configuration not found")
-        self.file_config.read(config_file)
+        else:
+            self.file_config.read(config_file)
 
     def load_env_config(self):
         config = {}
@@ -37,6 +38,8 @@ class Config(object):
     def get_by_section(self, plugin_name, item_name):
         if plugin_name and plugin_name + "_" + str(item_name) in self.env_config.keys():
             return self.env_config[plugin_name + "_" + item_name]
+        if not self.file_config:
+            return None
         try:
             return self.file_config.get(plugin_name, item_name)
         except confparser.Error:

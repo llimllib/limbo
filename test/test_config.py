@@ -10,11 +10,8 @@ from limbo.config import Config
 def test_config():
     # test wrong config location
     os.environ["LIMBO_CONFIG_LOCATION"] = "config_non_existent.ini"
-    try:
-        config = Config()
-        assert False
-    except IOError:
-        assert True
+    config = Config()
+    assert config.file_config is None
 
     # know a correct config location
     os.environ["LIMBO_CONFIG_LOCATION"] = "config.ini"
