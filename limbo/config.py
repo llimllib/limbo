@@ -6,19 +6,19 @@ from backports import configparser as confparser
 class Config(object):
 
     def __init__(self):
-        self.load_env_config()
-        self.load_config_file()
         self.env_config = {}
         self.file_config = None  # type: confparser.ConfigParser
+        self.load_env_config()
+        self.load_config_file()
 
     def load_config_file(self):
-        self.file_config = confparser.ConfigParser()
         config_file = self.env_config.get("config_location", "config.ini")
         # check if config exists
         if not os.path.exists(config_file):
             logger = logging.getLogger(__name__)
             logger.warning("File for configuration not found")
         else:
+            self.file_config = confparser.ConfigParser()
             self.file_config.read(config_file)
 
     def load_env_config(self):
