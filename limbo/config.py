@@ -1,22 +1,23 @@
+import logging
 import os
 from backports import configparser as confparser
 
 
-class Config:
-    env_config = {}
-    file_config = None  # type: confparser.ConfigParser
+class Config(object):
 
     def __init__(self):
         self.load_env_config()
         self.load_config_file()
+        self.env_config = {}
+        self.file_config = None  # type: confparser.ConfigParser
 
     def load_config_file(self):
         self.file_config = confparser.ConfigParser()
         config_file = self.env_config.get("config_location", "config.ini")
         # check if config exists
-        import os
         if not os.path.exists(config_file):
-            raise IOError("File for configuration not found")
+            logger = logging.getLogger(__name__)
+            logger.warning("File for configuration not found")
         self.file_config.read(config_file)
 
     def load_env_config(self):
