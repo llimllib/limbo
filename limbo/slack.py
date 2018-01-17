@@ -136,17 +136,18 @@ class SlackClient(object):
                 user = data["user"]
                 self.parse_users([user])
 
-    def rtm_connect(self, reconnect=False):
+    def rtm_connect(self):
         reply = self.do("rtm.connect")
         if reply.status_code != 200:
             raise SlackConnectionError
         else:
             login_data = reply.json()
             if login_data["ok"]:
+                # this URL is only valid for 30 seconds, so make sure to
+                # connect ASAP
                 ws_url = login_data['url']
-                if not reconnect:
-                    self.parse_slack_login_data(login_data)
                 self.connect_slack_websocket(ws_url)
+                self.parse_slack_login_data(login_data)
             else:
                 raise SlackLoginError
 
