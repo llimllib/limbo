@@ -7,6 +7,7 @@ from emojicodedict import emojiCodeDict
 
 EMOJI = None
 
+
 class EmojiCache(object):
     def __init__(self, server):
         self.server = server
@@ -41,12 +42,14 @@ class EmojiCache(object):
             if url.startswith("http") and emoji not in emojiCodeDict:
                 self.emoji.append(emoji)
 
+
 def emoji_list(server, n=1):
     """return a list of `n` random emoji"""
     global EMOJI
     if EMOJI is None:
         EMOJI = EmojiCache(server)
     return EMOJI.get(n)
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -57,5 +60,6 @@ def on_message(msg, server):
     n = 1 if not match[0][1] else int(match[0][1])
 
     return emoji_list(server, n)
+
 
 on_bot_message = on_message

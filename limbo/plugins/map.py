@@ -11,6 +11,7 @@ except ImportError:
     from urllib.request import quote
 import re
 
+
 def makemap(query):
     querywords = []
     args = {
@@ -38,6 +39,7 @@ def makemap(query):
 
     return url
 
+
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!map (.*)", text)
@@ -45,5 +47,6 @@ def on_message(msg, server):
         return
 
     return makemap(match[0])
+
 
 on_bot_message = on_message

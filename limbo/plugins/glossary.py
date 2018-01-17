@@ -8,16 +8,19 @@
 
 import re
 
+
 def on_init(server):
     server.query("""
 CREATE TABLE IF NOT EXISTS glossary(term text, definition text)
 """)
+
 
 def get(term, server):
     results = server.query("""
 SELECT term, definition FROM glossary WHERE term LIKE ?
 """, term)
     return results[0] if results else None
+
 
 def search(term, server):
     wildterm = "%{}%".format(term)
@@ -28,6 +31,7 @@ select term, definition from glossary WHERE term LIKE ? OR definition LIKE ?;
         return "No results found for {}".format(term)
     else:
         return "\n".join("*{}*: {}".format(*result) for result in results)
+
 
 def add(term, definition, server):
     results = get(term, server)
@@ -41,6 +45,7 @@ INSERT INTO glossary(term, definition) VALUES (?, ?)
 UPDATE glossary SET definition=? WHERE term=?
         """, definition, results[0])
         return "Successfully updated {}".format(term)
+
 
 def remove(term, server):
     results = get(term, server)
@@ -57,13 +62,15 @@ DELETE FROM glossary WHERE term=?
 
     return "Removed definition for {}".format(term)
 
+
 def lookup(term, server):
     results = get(term, server)
     if not results:
         return ("No definition found for {}. Add a definition with "
-        "'!glossary add <term>: <definition>'.".format(term))
+                "'!glossary add <term>: <definition>'.".format(term))
 
     return "*{}*: {}".format(*results)
+
 
 def sanitize_definition(definition):
     # if there are links, de-slackify them and remove the leading ':'
@@ -73,9 +80,11 @@ def sanitize_definition(definition):
             .lstrip(':') \
             .strip()
 
+
 def on_message(msg, server):
     text = msg.get("text", "")
-    match = re.search(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?', text, re.IGNORECASE)
+    match = re.search(r'!gloss(ary)? (add|remove\s+|search)?([^:]*)(.*)?',
+                      text, re.IGNORECASE)
 
     if not match:
         return
@@ -93,5 +102,6 @@ def on_message(msg, server):
             return search(groups[2].strip(), server)
     else:
         return lookup(groups[2], server)
+
 
 on_bot_message = on_message

@@ -2,8 +2,11 @@
 import re
 import requests
 
+
 def dog():
-    return requests.get("https://dog.ceo/api/breeds/image/random").json()['message']
+    return requests.get("https://dog.ceo/api/breeds/image/random").json()[
+        'message']
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -12,5 +15,6 @@ def on_message(msg, server):
         return
 
     return dog()
+
 
 on_bot_message = on_message
