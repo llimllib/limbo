@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # Thanks to Kenneth Reitz, I stole the template for this
 
-import os
 import sys
 
 try:
@@ -25,7 +24,7 @@ except:
 
 setup(
     name='limbo',
-    version='6.4.3',
+    version='6.5.0',
     description='Simple and Clean Slack Chatbot',
     long_description=longdesc,
     author='Bill Mill',
@@ -33,7 +32,7 @@ setup(
     url='https://github.com/llimllib/limbo',
     packages=packages,
     scripts=['bin/limbo'],
-    package_data={'': ['LICENSE',], '': ['limbo/plugins/*.py']},
+    package_data={'': ['LICENSE', 'limbo/plugins/*.py']},
     include_package_data=True,
     install_requires=required,
     license='MIT',
