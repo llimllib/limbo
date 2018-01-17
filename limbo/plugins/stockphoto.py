@@ -10,15 +10,18 @@ except ImportError:
 import requests
 from bs4 import BeautifulSoup
 
+
 def stock(searchterm):
     searchterm = quote(searchterm)
-    url = "https://www.shutterstock.com/search?searchterm={0}".format(searchterm)
+    url = "https://www.shutterstock.com/search?searchterm={0}".format(
+        searchterm)
     res = requests.get(url)
     soup = BeautifulSoup(res.text, "html5lib")
     images = ["https:" + x["src"] for x in soup.select(".img-wrap img")]
     shuffle(images)
 
     return images[0] if images else ""
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -27,5 +30,6 @@ def on_message(msg, server):
         return
 
     return stock(match[0].encode("utf8"))
+
 
 on_bot_message = on_message

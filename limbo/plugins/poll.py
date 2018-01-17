@@ -5,8 +5,10 @@ import json
 import re
 import shlex
 
-POLL_EMOJIS = ["one", "two", "three", "four", "five", "six", "seven", "eight",
-               "nine", "keycap_ten"]
+POLL_EMOJIS = [
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "keycap_ten"
+]
 
 ERROR_WRONG_NUMBER_OF_ARGUMENTS = "A Poll must have at least a question and " \
     "between two to ten options"
@@ -15,11 +17,13 @@ ERROR_INVALID_FORMAT = "Sorry, your poll contains unbalanced quotation marks"
 ARGPARSE = argparse.ArgumentParser()
 ARGPARSE.add_argument('poll', nargs='*')
 
-def remove_smart_quotes (text):
+
+def remove_smart_quotes(text):
     return text.replace(u"\u2018", "'") \
         .replace(u"\u2019", "'") \
         .replace(u"\u201c", '"') \
         .replace(u"\u201d", '"')
+
 
 def poll(poll, msg, server):
     """Given a question and answers, present a poll"""
@@ -40,9 +44,7 @@ def poll(poll, msg, server):
     # for this we are going to need to post the message to Slack via Web API in order to
     #  get the TS and add reactions
     msg_posted = server.slack.post_message(
-        msg['channel'],
-        "".join(result),
-        as_user=server.slack.username)
+        msg['channel'], "".join(result), as_user=server.slack.username)
     ts = json.loads(msg_posted)["ts"]
     for i in range(len(args) - 1):
         server.slack.post_reaction(msg['channel'], ts, POLL_EMOJIS[i])

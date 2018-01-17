@@ -3,6 +3,7 @@ import time
 
 from .slack import User, Bot
 
+
 class FakeServer(object):
     def __init__(self, slack=None, config=None, hooks=None, db=None):
         self.slack = slack or FakeSlack()
@@ -21,8 +22,14 @@ class FakeServer(object):
         self.db.commit()
         return rows
 
+
 class FakeSlack(object):
-    def __init__(self, server=None, users=None, events=None, bots=None, botname="test"):
+    def __init__(self,
+                 server=None,
+                 users=None,
+                 events=None,
+                 bots=None,
+                 botname="test"):
         self.posted_messages = []
         self.posted_reactions = {}
         self.events = events if events else []
@@ -41,16 +48,11 @@ class FakeSlack(object):
             "4": User("replbot", 4, "", 0),
         }
 
-        self.bots = bots if bots else {
-            "1": Bot("1", "otherbot", [], False)
-        }
-
+        self.bots = bots if bots else {"1": Bot("1", "otherbot", [], False)}
 
     def post_message(self, channel, message, **kwargs):
         self.posted_messages.append((message, kwargs))
-        return json.dumps({
-            "ts": time.time()
-        })
+        return json.dumps({"ts": time.time()})
 
     def post_reaction(self, channel, ts, reaction):
         self.posted_reactions.setdefault(ts, []).append(reaction)

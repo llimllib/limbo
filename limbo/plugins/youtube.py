@@ -8,6 +8,7 @@ except ImportError:
 
 import requests
 
+
 def youtube(searchterm):
     url = "https://www.youtube.com/results?search_query={0}"
     url = url.format(quote(searchterm))
@@ -20,6 +21,7 @@ def youtube(searchterm):
 
     return "https://www.youtube.com{0}".format(results[0])
 
+
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!youtube (.*)", text)
@@ -28,5 +30,6 @@ def on_message(msg, server):
 
     searchterm = match[0]
     return youtube(searchterm.encode("utf8"))
+
 
 on_bot_message = on_message

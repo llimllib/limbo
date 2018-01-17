@@ -64,9 +64,11 @@ ICONMAP = {
     "47": ":thunder_cloud_and_rain:",
 }
 
+
 class WeatherException(Exception):
     """An exception finding the weather"""
     pass
+
 
 def weather(searchterm):
     """Get the weather for a place given by searchterm
@@ -94,8 +96,9 @@ def weather(searchterm):
     dat = requests.get(url).json()
     if 'query' not in dat or not dat['query']['results']:
         logging.warning('weather response missing fields. response: %s', dat)
-        raise WeatherException(":crying_cat_face: Sorry, weather request failed"
-                               ":crying_cat_face:")
+        raise WeatherException(
+            ":crying_cat_face: Sorry, weather request failed"
+            ":crying_cat_face:")
 
     forecast = dat['query']['results']['channel']['item']['forecast']
     location = dat['query']['results']['channel']['location']
@@ -106,8 +109,8 @@ def weather(searchterm):
     else:
         region = "{} ".format(region)
 
-    title = "Weather for {}, {}{}: ".format(
-        location["city"], region, location['country'])
+    title = "Weather for {}, {}{}: ".format(location["city"], region,
+                                            location['country'])
 
     forecasts = []
     for day in forecast:
@@ -120,6 +123,7 @@ def weather(searchterm):
         })
 
     return title, forecasts
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -142,5 +146,6 @@ def on_message(msg, server):
         '',
         as_user=server.slack.username,
         attachments=json.dumps([attachment]))
+
 
 on_bot_message = on_message
