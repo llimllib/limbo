@@ -12,12 +12,15 @@ import requests
 
 logger = logging.getLogger(__name__)
 
+
 def stockprice(ticker):
     url = "https://www.google.com/finance?q={0}"
-    soup = BeautifulSoup(requests.get(url.format(quote(ticker))).text, "html5lib")
+    soup = BeautifulSoup(
+        requests.get(url.format(quote(ticker))).text, "html5lib")
 
     try:
-        company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text, re.M)[0]
+        company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text,
+                                     re.M)[0]
     except IndexError:
         logging.info("Unable to find stock {0}".format(ticker))
         return ""
@@ -30,7 +33,7 @@ def stockprice(ticker):
             else ":chart_with_downwards_trend:"
 
     return "{0} {1} {2}: {3} {4} {5} {6} {7}".format(
-            emoji, company, ticker, price, change, pct, time, emoji)
+        emoji, company, ticker, price, change, pct, time, emoji)
 
 
 def on_message(msg, server):
@@ -45,5 +48,6 @@ def on_message(msg, server):
     tickers = (''.join(list(x)).encode("utf8") for x in matches)
     prices = (stockprice(ticker) for ticker in tickers)
     return "\n".join(p for p in prices if p)
+
 
 on_bot_message = on_message

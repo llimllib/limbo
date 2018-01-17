@@ -7,6 +7,7 @@ except ImportError:
     from urllib.request import quote
 import requests
 
+
 def calc(eq):
     query = quote(eq)
     url = "https://encrypted.google.com/search?hl=en&q={0}".format(query)
@@ -22,6 +23,7 @@ def calc(eq):
     answer = answer[0].text.replace(u"\xa0", ",")
     return answer
 
+
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!calc (.*)", text)
@@ -29,5 +31,6 @@ def on_message(msg, server):
         return
 
     return calc(match[0].encode("utf8"))
+
 
 on_bot_message = on_message

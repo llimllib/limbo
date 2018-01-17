@@ -2,8 +2,10 @@
 import re
 import requests
 
+
 def commit():
     return requests.get("http://whatthecommit.com/index.txt").text
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -12,5 +14,6 @@ def on_message(msg, server):
         return
 
     return commit()
+
 
 on_bot_message = on_message

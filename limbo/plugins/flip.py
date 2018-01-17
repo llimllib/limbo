@@ -2,9 +2,11 @@
 import random
 import re
 
+
 def flip(lst):
     random.shuffle(lst)
     return ", ".join(lst)
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -15,5 +17,6 @@ def on_message(msg, server):
     lst = ["heads", "tails"] if not match[0] else match[0].strip().split(',')
 
     return flip(lst)
+
 
 on_bot_message = on_message
