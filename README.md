@@ -22,6 +22,7 @@ I recommend that you always run limbo in a [virtualenv](http://docs.python-guide
 * -c: Run a single command.
 * --database, -d: Where to store the limbo sqlite3 database. Defaults to limbo.sqlite3.
 * --pluginpath, -pp: The path where limbo should look to find its plugins (defaults to /plugins).
+* --botname: Prints the user-name associated with SLACK_TOKEN (as reported by Slack `auth.test` endpoint).
 
 ## Environment Variables
 
