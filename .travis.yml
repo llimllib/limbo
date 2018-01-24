@@ -11,3 +11,19 @@ notifications:
   slack:
     secure: qTTpPJZRjkFNlWUQd4M4odA+/QnuEqoD3ole8tQA+oFo2hzA7toQbAorgKd20mJ0VMLbrTxUDeCHwuLH6EYs0k9gnaDx7J8gaohW3ePHU6vncGfSh/9r8jCLHOdD/23ySm6D4TKR5SV7izNS+4WyqLqeLugdk5rFCwW4JJS118U=
   email: false
+
+jobs:
+  include:
+    - stage: test
+      sudo: required
+      services:
+        - docker
+      env:
+        # Provides a useful label in TravisCI Web UI
+        - DONE_IN_DOCKER=true
+      install:
+        - sudo apt-get update
+        - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+      script:
+        - docker-compose build
+        - docker-compose run test

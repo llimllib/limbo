@@ -1,0 +1,13 @@
+**/*.pyc
+**/*~
+**/*.config.py
+
+.git
+.tox
+NOTES
+build
+dist
+docs
+limbo.egg-info
+limbo.sqlite3
+slask.egg-info

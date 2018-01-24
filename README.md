@@ -60,13 +60,54 @@ These are the current default plugins:
 
 ## Docker
 
-  * How do I try out Limbo via docker?
-    - @PeterGrace maintains a public build of limbo, available from the docker registry.  Executing `make docker_run` will start the default bot.
-    - `make docker_stop` will stop the bot
-  * When I start the docker container, I see an error about unable to source limbo.env.  Is this a problem?
-    - No.  The limbo.env file only exists when using Kubernetes with the included opaque secret recipe for storing your environment variables.
-  * I'd like to develop plugins for Limbo, but would still like to use Docker to run the bot.  Is there a quick way to add plugins to the bot?
-    - Yes!  Use the included Dockerfile.dev as a template, and simply build via `make docker_build`  You'll then need to start the bot with your new_image_name, for example `docker run -d -e SLACK_TOKEN=<your_token> new_image_name`
+Docker can be used as an alternative tool for building, testing, and running Limbo.  With this alternative, you only need to install Docker on your dev machine: commands for downloading Limbo's dependencies, building and testing Limbo itself, and, ultimately, running Limbo can be run inside Docker containers.
+
+To build Limbo using Docker, simply type:
+
+```
+docker-compose build
+```
+
+(This build command -- and all the Docker commands in this section -- must be issued from the root of the Limbo source directory.)  This build command creates an image tagged as simply `limbo` in your local cache maintained by `dockerd`.  The first time you run this command, it will take quite a few minutes because Docker has to download a lot of dependencies.  Subsequent runs will be quite fast because Docker will have cached these dependencies locally.
+
+After you've built the Limbo image, you can test Limbo using Docker by typing:
+
+```
+docker-compose run test
+```
+
+This command creates a container using the `limbo` image, binds the container's terminal to the terminal of the shell you used to run this command, and then runs the Limbo test suit, sending its output to your terminal.
+
+Assuming the test completes successfull, you can run Limbo in a Docker container by typing:
+
+```
+docker-compose run limbo
+```
+
+Be sure to set your `SLACK_TOKEN` environment variable before running Slack.  As before, this command will create a container bound to your current terminal and start the Limbo program.  You can type control-C to break out of Limbo.
+
+If for some reason Limbo is detatched from your terminal, you can kill it with the following command:
+
+```
+docker stop `docker ps -q --filter ancestor=limbo --format="{{.ID}}"`
+```
+
+You can pass command-line arguments to `limbo` by adding them to the command line above.  For example:
+
+```
+docker-compose run limbo --help
+```
+
+will print the Limbo help message.
+
+The Docker Compose configuration we've provided will automatically pass `SLACK_TOKEN` plus the various `LIMBO_*` environment variables from your shell into the environment of the container used to run Limbo.  If you want to override those variables -- or set a variable not on this list -- you can use the `-e` option, for example:
+
+```
+docker-compose run -e LIMBO_LOGLEVEL=DEBUG limbo
+```
+
+**Warning to Windows users.**  Docker does no line-ending conversion when creating the build context or copying files from the context into Docker images.  Thus, if you checked-out Limbo with `autocrlf=true` -- and thus converted Unix line-endings into DOS line-endings -- the Docker image created for Limbo can break.  Thus, it's best to checkout Limbo on Windows using `autocrlf=input` (indeed, the Interwebs seem to suggest this is the best setting for all Git work on Windows).  Just be sure your editor doesn't start introducing DOS line-endings when you edit files (be especially careful for new files).
+
 
 ## Contributors
 

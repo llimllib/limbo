@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  # Laptop overrides for limbo service
+  limbo:
+    image: limbo
+    build: .
+    environment:
+      SLACK_TOKEN:
+      LIMBO_LOGLEVEL:
+      LIMBO_LOGFILE:
+      LIMBO_LOGFORMAT:
+      LIMBO_PLUGINS:
