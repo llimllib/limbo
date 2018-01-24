@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+  # "docker-compose run" entry for invoking our tests
+  test:
+    image: limbo
+    entrypoint: [ "pytest", "--cov=limbo", "--cov-report", "term-missing", "test" ]
