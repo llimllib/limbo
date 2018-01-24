@@ -14,10 +14,13 @@ notifications:
 
 jobs:
   include:
-    - stage: Docker Test
+    - stage: test
       sudo: required
       services:
         - docker
+      env:
+        # Provides a useful label in TravisCI Web UI
+        - DONE_IN_DOCKER=true
       install:
         - sudo apt-get update
         - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
