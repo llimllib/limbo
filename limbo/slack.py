@@ -147,15 +147,6 @@ class SlackClient(object):
                 user = data["user"]
                 self.parse_users([user])
 
-    def botname(self):
-        reply = self.do("auth.test")
-        if reply.status_code != 200:
-            raise SlackConnectionError
-        r = reply.json()
-        if not r["ok"]:
-            raise SlackLoginError
-        return r["user"]
-
     def rtm_connect(self):
         reply = self.do("rtm.connect")
         if reply.status_code != 200:
