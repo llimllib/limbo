@@ -311,13 +311,15 @@ def main(args):
     config = init_config()
     if args.test:
         init_log(config)
-        return repl(FakeServer(), args)
+        db = init_db(args.database_name)
+        return repl(FakeServer(db=db), args)
     elif args.command is not None:
         init_log(config)
+        db = init_db(args.database_name)
         cmd = decode(args.command)
         print(
             run_cmd(cmd,
-                    FakeServer(), args.hook, args.pluginpath,
+                    FakeServer(db=db), args.hook, args.pluginpath,
                     config.get("plugins")))
         return
 
