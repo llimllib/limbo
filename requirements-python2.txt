@@ -5,14 +5,21 @@ beautifulsoup4==4.6.3
 certifi==2018.8.13
 cffi==1.11.5
 chardet==3.0.4
+configparser==3.5.0
+contextlib2==0.5.5
 coverage==4.5.1
 cryptography==2.3.1
+enum34==1.1.6
 flake8==3.5.0
+funcsigs==1.0.2
 html5lib==1.0.1
 idna==2.7
+ipaddress==1.0.22
 mccabe==0.6.1
+mock==2.0.0
 more-itertools==4.3.0
-multidict==4.3.1
+pathlib2==2.3.2
+pbr==4.2.0
 pluggy==0.7.1
 py==1.5.4
 pycodestyle==2.3.1
@@ -24,6 +31,7 @@ pytest==3.7.2
 pytest-cov==2.5.1
 PyYAML==3.13
 requests==2.19.1
+scandir==1.9.0
 six==1.11.0
 tox==3.2.1
 urllib3==1.23
@@ -32,4 +40,3 @@ virtualenv==16.0.0
 webencodings==0.5.1
 websocket-client==0.51.0
 wrapt==1.10.11
-yarl==1.2.6

@@ -13,6 +13,7 @@ ARGPARSE.add_argument('--font')
 ARGPARSE.add_argument('-l', action='store_const', const=True)
 ARGPARSE.add_argument('bannertext', nargs='*')
 
+
 def make_banner(query):
     # Slack turns -- into an emdash; un-turn it
     query = query.replace(u"\u2014", u"--")
@@ -25,11 +26,13 @@ def make_banner(query):
     if font not in FONTS:
         return "Unable to find font {0}".format(font)
 
-    banner = pyfiglet.figlet_format(" ".join(ns.bannertext), font=font).rstrip()
+    banner = pyfiglet.figlet_format(
+        " ".join(ns.bannertext), font=font).rstrip()
     if not banner:
         return
 
     return "```{0}```".format(banner)
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -38,5 +41,6 @@ def on_message(msg, server):
         return
 
     return make_banner(match[0])
+
 
 on_bot_message = on_message

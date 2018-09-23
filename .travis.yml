@@ -1,13 +1,27 @@
+os:
+  - linux
+dist: xenial
 language: python
-python:
-  - '2.7'
-  - '3.4'
-  - '3.5'
-  - '3.6'
-  - "pypy"
-install: pip install -r requirements.txt && python setup.py install
+install: make install
 script: make test
 notifications:
   slack:
     secure: qTTpPJZRjkFNlWUQd4M4odA+/QnuEqoD3ole8tQA+oFo2hzA7toQbAorgKd20mJ0VMLbrTxUDeCHwuLH6EYs0k9gnaDx7J8gaohW3ePHU6vncGfSh/9r8jCLHOdD/23ySm6D4TKR5SV7izNS+4WyqLqeLugdk5rFCwW4JJS118U=
   email: false
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      python: 2.7
+    - os: linux
+      dist: xenial
+      python: 3.5
+    - os: linux
+      dist: xenial
+      python: 3.6
+    - os: linux
+      dist: xenial
+      python: 3.7
+    - os: linux
+      dist: trusty
+      python: pypy

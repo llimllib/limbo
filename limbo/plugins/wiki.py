@@ -8,6 +8,7 @@ except ImportError:
 import requests
 from bs4 import BeautifulSoup
 
+
 def wiki(searchterm):
     """return the top wiki search result for the term"""
     searchterm = quote(searchterm)
@@ -28,12 +29,15 @@ def wiki(searchterm):
     page = quote(pages[0]["title"].encode("utf8"))
     link = "http://en.wikipedia.org/wiki/{0}".format(page)
 
-    r = requests.get("http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".format(page)).json()
+    r = requests.get(
+        "http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".
+        format(page)).json()
     soup = BeautifulSoup(r["parse"]["text"]["*"], "html5lib")
     p = soup.find('p').get_text()
     p = p[:8000]
 
     return u"{0}\n{1}".format(p, link)
+
 
 def on_message(msg, server):
     text = msg.get("text", "")
@@ -43,5 +47,6 @@ def on_message(msg, server):
 
     searchterm = match[0]
     return wiki(searchterm.encode("utf8"))
+
 
 on_bot_message = on_message

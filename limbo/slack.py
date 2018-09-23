@@ -13,10 +13,18 @@ try:
 except ImportError:
     SSLWantReadError = SSLError
 
+
 # Exceptions
-class SlackNotConnected(Exception): pass
-class SlackConnectionError(Exception): pass
-class SlackLoginError(Exception): pass
+class SlackNotConnected(Exception):
+    pass
+
+
+class SlackConnectionError(Exception):
+    pass
+
+
+class SlackLoginError(Exception):
+    pass
 
 
 User = namedtuple('User', 'id name real_name tz')
@@ -24,6 +32,7 @@ Bot = namedtuple('Bot', 'id name icons deleted')
 Channel = namedtuple('Channel', 'id name')
 
 LOG = logging.getLogger(__name__)
+
 
 def dig(obj, *keys):
     """
@@ -128,25 +137,28 @@ class SlackClient(object):
         if "type" in data.keys():
             if data["type"] in ('channel_created', 'group_joined'):
                 channel = data["channel"]
-                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
+                self.channels[channel["id"]] = Channel(channel["id"],
+                                                       channel["name"])
             if data["type"] == "im_created":
                 channel = data["channel"]
-                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
+                self.channels[channel["id"]] = Channel(channel["id"],
+                                                       channel["name"])
             elif data["type"] == "team_join":
                 user = data["user"]
                 self.parse_users([user])
 
-    def rtm_connect(self, reconnect=False):
+    def rtm_connect(self):
         reply = self.do("rtm.connect")
         if reply.status_code != 200:
             raise SlackConnectionError
         else:
             login_data = reply.json()
             if login_data["ok"]:
+                # this URL is only valid for 30 seconds, so make sure to
+                # connect ASAP
                 ws_url = login_data['url']
-                if not reconnect:
-                    self.parse_slack_login_data(login_data)
                 self.connect_slack_websocket(ws_url)
+                self.parse_slack_login_data(login_data)
             else:
                 raise SlackLoginError
 
@@ -193,9 +205,8 @@ class SlackClient(object):
                 for obj in page[collection_name]:
                     objs.append(obj)
             except KeyError:
-                LOG.error(
-                    "Unable to find key %s in page object: \n"
-                    "%s", collection_name, page)
+                LOG.error("Unable to find key %s in page object: \n"
+                          "%s", collection_name, page)
 
                 return objs
 
@@ -205,7 +216,9 @@ class SlackClient(object):
                 # no more than one message per second
                 # https://api.slack.com/docs/rate-limits
                 time.sleep(1)
-                page = json.loads(self.api_call(api_method, cursor=cursor, limit=limit, **kwargs))
+                page = json.loads(
+                    self.api_call(
+                        api_method, cursor=cursor, limit=limit, **kwargs))
             else:
                 break
 
@@ -215,7 +228,8 @@ class SlackClient(object):
         # this call may or may not provide members for each channel, so
         # let's not rely on the members being in it. If we need them
         # (which I don't think we do?) we can get them later
-        for chan in self.get_all("channels.list", "channels", exclude_members=True):
+        for chan in self.get_all(
+                "channels.list", "channels", exclude_members=True):
             self.channels[chan["id"]] = Channel(chan['id'], chan["name"])
 
     def get_user_list(self):
@@ -240,7 +254,8 @@ class SlackClient(object):
             self.users[user['id']] = User(uid, name, real_name, tz)
 
     def parse_bot_data(self, bot):
-        self.bots[bot['id']] = Bot(bot['id'], bot['name'], bot.get('icons', ''), bot['deleted'])
+        self.bots[bot['id']] = Bot(bot['id'], bot['name'],
+                                   bot.get('icons', ''), bot['deleted'])
 
     def send_to_websocket(self, data):
         """Send (data) directly to the websocket."""

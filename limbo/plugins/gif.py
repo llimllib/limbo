@@ -10,9 +10,11 @@ from random import shuffle
 
 import requests
 
+
 def unescape(url):
     # for unclear reasons, google replaces url escapes with \x escapes
     return url.replace(r"\x", "%")
+
 
 def gif(search, unsafe=False):
     """given a search string, return a gif URL via google search"""
@@ -34,6 +36,7 @@ def gif(search, unsafe=False):
     if gifs:
         return gifs[0]
     return ""
+
 
 def on_message(msg, server):
     """handle a message and return an gif"""
@@ -57,5 +60,6 @@ def on_message(msg, server):
         '',
         as_user=server.slack.username,
         attachments=json.dumps([attachment]))
+
 
 on_bot_message = on_message

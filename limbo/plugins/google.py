@@ -24,6 +24,7 @@ def google(q):
         # google response! Let's grab it and display it to the user.
         return ' '.join(answer[0].stripped_strings)
 
+
 def on_message(msg, server):
     text = msg.get("text", "")
     match = re.findall(r"!(?:google|search) (.*)", text)
@@ -31,5 +32,6 @@ def on_message(msg, server):
         return
 
     return google(match[0])
+
 
 on_bot_message = on_message

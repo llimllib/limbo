@@ -10,16 +10,19 @@ from random import shuffle
 
 import requests
 
+
 def unescape(url):
     # for unclear reasons, google replaces url escapes with \x escapes
     return url.replace(r"\x", "%")
+
 
 def image(search, unsafe=False):
     """given a search string, return a image URL via google search"""
     searchb = quote(search.encode("utf8"))
 
     safe = "&safe=" if unsafe else "&safe=active"
-    searchurl = "https://www.google.com/search?tbm=isch&q={0}{1}".format(searchb, safe)
+    searchurl = "https://www.google.com/search?tbm=isch&q={0}{1}".format(
+        searchb, safe)
 
     # this is an old iphone user agent. Seems to make google return good results.
     useragent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us)" \
@@ -33,6 +36,7 @@ def image(search, unsafe=False):
     if images:
         return images[0]
     return ""
+
 
 def on_message(msg, server):
     """handle a message and return an image"""
@@ -56,5 +60,6 @@ def on_message(msg, server):
         '',
         as_user=server.slack.username,
         attachments=json.dumps([attachment]))
+
 
 on_bot_message = on_message

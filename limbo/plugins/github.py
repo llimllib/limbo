@@ -39,6 +39,7 @@ import requests
 
 HUB_URL = 'https://api.github.com/{0}'
 
+
 class Github(object):
     def __init__(self, username, password):
         self.auth = username, password
@@ -46,18 +47,14 @@ class Github(object):
 
     def _get(self, url_fragment, **params):
         return requests.get(
-                 HUB_URL.format(url_fragment),
-                 auth=self.auth,
-                 params=params
-               )
+            HUB_URL.format(url_fragment), auth=self.auth, params=params)
 
     def _post(self, url_fragment, data={}, **params):
         return requests.post(
-                 HUB_URL.format(url_fragment),
-                 auth=self.auth,
-                 data=data,
-                 params=params
-               )
+            HUB_URL.format(url_fragment),
+            auth=self.auth,
+            data=data,
+            params=params)
 
     def issues(self, repo):
         # defaults to only open issues
@@ -72,17 +69,17 @@ class Github(object):
 
     def create_issue(self, repo, title, body=''):
         res = self._post(
-                'repos/{0}/issues'.format(repo),
-                data=json.dumps({
-                    "title": title,
-                    "body": body}))
+            'repos/{0}/issues'.format(repo),
+            data=json.dumps({
+                "title": title,
+                "body": body
+            }))
         if res.status_code == 201:
             return res.json()
 
     def search_issue_in_repo(self, repo, query):
         return self._get(
-                'search/issues',
-                q="{0} repo:{1}".format(query, repo)).json()
+            'search/issues', q="{0} repo:{1}".format(query, repo)).json()
 
     def pull_requests(self, repo):
         res = self._get('repos/{0}/pulls'.format(repo))
@@ -108,12 +105,14 @@ class Github(object):
 
         return repo_names
 
+
 # create an authed github object
 HUB = Github(os.environ.get("GITHUB_USER"), os.environ.get("GITHUB_PASS"))
 
 # Gather all repo names available to the authed user. Eventually this will
 # need to be refreshed; but for now just assume this is good enough.
 # ALL_REPOS = HUB.get_all_repos()
+
 
 def format_issue(issue_json, verbose=False):
     d = {
@@ -130,6 +129,7 @@ def format_issue(issue_json, verbose=False):
         d["text"] = issue_json["body"]
 
     return d
+
 
 def format_pull(pull_json):
     pull_json["s"] = "s" if pull_json["commits"] > 1 else ""
@@ -150,6 +150,7 @@ def format_pull(pull_json):
 
     return d
 
+
 def get_default_repo(server, room):
     rows = server.query('''
         SELECT repo FROM github_room_repo_defaults WHERE room=?''', room)
@@ -158,10 +159,12 @@ def get_default_repo(server, room):
         return rows[0][0]
     return None
 
+
 def set_default_repo(server, room, repo):
     server.query('''
         INSERT INTO github_room_repo_defaults(room, repo)
         VALUES (?, ?)''', room, repo)
+
 
 def issues(repo, _):
     issues = HUB.issues(repo)
@@ -183,6 +186,7 @@ def issues(repo, _):
         "text": text,
     }
 
+
 def pulls(repo, _):
     pulls = HUB.pull_requests(repo)
     if pulls is None:
@@ -203,6 +207,7 @@ def pulls(repo, _):
         "text": text,
     }
 
+
 def issue(repo, body):
     n = body[0]
     issue = HUB.issue(repo, n)
@@ -214,6 +219,7 @@ def issue(repo, body):
         "text": "",
     }
 
+
 def pull_request(repo, body):
     n = body[0]
     pull = HUB.pull(repo, n)
@@ -224,6 +230,7 @@ def pull_request(repo, body):
         "attachments": json.dumps([format_pull(pull)]),
         "text": "",
     }
+
 
 def create_issue(repo, body):
     title = ' '.join(body)
@@ -238,26 +245,24 @@ def create_issue(repo, body):
         "text": "",
     }
 
+
 def search(repo, body):
     query = ' '.join(body)
     response = HUB.search_issue_in_repo(repo, query)
 
     if response["total_count"] == 0:
-        return {
-            "text": "sorry, no issues found"
-        }
+        return {"text": "sorry, no issues found"}
 
     issues = response["items"]
     attachments = json.dumps([format_issue(i) for i in issues[:5]])
     text = "Found {0} items".format(response["total_count"])
-    return {
-        "attachments": attachments,
-        "text": text
-    }
+    return {"attachments": attachments, "text": text}
+
 
 def getdefault(repo, _):
     return "Default repo for this room is `{0}`. " \
            "To change it, run `!hub setdefault <repo_name>`".format(repo)
+
 
 COMMANDS = {
     "issues": issues,
@@ -268,6 +273,7 @@ COMMANDS = {
     "search": search,
     "getdefault": getdefault
 }
+
 
 def github(server, room, cmd, body, repo):
     # If repo wasn't passed in explicitly, grab it from the database
@@ -290,18 +296,23 @@ def github(server, room, cmd, body, repo):
     except KeyError:
         return
 
+
 # Only run create_database on this module's first execution
-FIRST=True
+FIRST = True
+
+
 def create_database(server):
     server.query('''
         CREATE TABLE IF NOT EXISTS github_room_repo_defaults
             (room text, repo text)''')
-    FIRST=False
+    FIRST = False
+
 
 ARGPARSE = argparse.ArgumentParser()
 ARGPARSE.add_argument('-r', dest="repo")
 ARGPARSE.add_argument('command', nargs=1)
 ARGPARSE.add_argument('body', nargs='*')
+
 
 def on_message(msg, server):
     if FIRST:
@@ -333,9 +344,7 @@ def on_message(msg, server):
     # otherwise, post the message via the slack API; this lets us use fancy
     # formatting rather than the plain formatting the RTM API allows
     server.slack.post_message(
-            msg['channel'],
-            '',
-            as_user=server.slack.username,
-            **kwargs)
+        msg['channel'], '', as_user=server.slack.username, **kwargs)
+
 
 on_bot_message = on_message
