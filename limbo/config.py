@@ -1,6 +1,7 @@
 import logging
 import os
-from backports import configparser as confparser
+
+import configparser as confparser
 
 
 class Config(object):
