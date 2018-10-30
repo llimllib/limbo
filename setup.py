@@ -30,7 +30,7 @@ setup(
     include_package_data=True,
     install_requires=required,
     license='MIT',
-    python_requires='!=3.0.*, !=3.1.*, !=3.2.*, !=3.3.* !=3.4.* !=3.5.*',
+    python_requires='!=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
