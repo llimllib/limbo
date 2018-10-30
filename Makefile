@@ -1,6 +1,5 @@
 NAMESPACE=llimllib
 APP=limbo
-PYTHON_MAJOR_VERSION=$(shell python -c "import sys; print(sys.version_info[0])")
 
 .PHONY: testall
 testall: requirements
@@ -26,11 +25,7 @@ repl: install
 
 .PHONY: requirements
 requirements:
-ifeq (${PYTHON_MAJOR_VERSION},3)
 	pip install -r requirements.txt
-else
-	pip install -r requirements-python2.txt
-endif
 
 .PHONY: install
 install: requirements

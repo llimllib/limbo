@@ -20,18 +20,18 @@ def make_banner(query):
 
     ns = ARGPARSE.parse_args(query.split(" "))
     if ns.l:
-        return "```{0}```".format(", ".join(FONTS))
+        return f"```{', '.join(FONTS)}```"
     font = ns.font or "standard"
 
     if font not in FONTS:
-        return "Unable to find font {0}".format(font)
+        return f"Unable to find font {font}"
 
     banner = pyfiglet.figlet_format(
         " ".join(ns.bannertext), font=font).rstrip()
     if not banner:
         return
 
-    return "```{0}```".format(banner)
+    return f"```{banner}```"
 
 
 def on_message(msg, server):

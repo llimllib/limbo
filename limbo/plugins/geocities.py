@@ -1,9 +1,6 @@
 """!geocities <search term> return a gif from the internet archive's geocities collection"""
 
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 import re
 import requests
 from random import shuffle
@@ -11,12 +8,9 @@ from random import shuffle
 
 def gif(searchterm):
     searchterm = quote(searchterm)
-    searchurl = "https://gifcities.archive.org/api/v1/gifsearch?q={}".format(
-        searchterm)
+    searchurl = f"https://gifcities.archive.org/api/v1/gifsearch?q={searchterm}"
     results = requests.get(searchurl).json()
-    gifs = list(
-        map(lambda x: "https://web.archive.org/web/{0}".format(x['gif']),
-            results))
+    gifs = [f"https://web.archive.org/web/{x['gif']}" for x in results]
     shuffle(gifs)
 
     if gifs:

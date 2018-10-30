@@ -2,10 +2,7 @@
 from __future__ import print_function
 import logging
 import re
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 
 from bs4 import BeautifulSoup
 import requests
@@ -14,9 +11,8 @@ logger = logging.getLogger(__name__)
 
 
 def stockprice(ticker):
-    url = "https://www.google.com/finance?q={0}"
-    soup = BeautifulSoup(
-        requests.get(url.format(quote(ticker))).text, "html5lib")
+    url = f"https://www.google.com/finance?q={quote(ticker)}"
+    soup = BeautifulSoup(requests.get(url).text, "html5lib")
 
     try:
         company, ticker = re.findall(u"^(.+?)\xa0\xa0(.+?)\xa0", soup.text,

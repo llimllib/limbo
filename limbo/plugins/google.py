@@ -1,16 +1,13 @@
 """!search <query> will return the top google result for that query (!google is an alias)"""
 from bs4 import BeautifulSoup
 import re
-try:
-    from urllib import quote, unquote
-except ImportError:
-    from urllib.request import quote, unquote
+from urllib.request import quote, unquote
 import requests
 
 
 def google(q):
     query = quote(q)
-    url = "https://encrypted.google.com/search?q={0}".format(query)
+    url = f"https://encrypted.google.com/search?q={query}"
     soup = BeautifulSoup(requests.get(url).text, "html5lib")
 
     answer = soup.findAll("h3", attrs={"class": "r"})

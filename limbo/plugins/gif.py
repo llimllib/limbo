@@ -1,9 +1,6 @@
 """!gif <search term> return a random result from the  google gif search result for <search term>"""
 
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 import json
 import re
 from random import shuffle
@@ -21,8 +18,7 @@ def gif(search, unsafe=False):
     searchb = quote(search.encode("utf8"))
 
     safe = "&safe=" if unsafe else "&safe=active"
-    searchurl = "https://www.google.com/search?tbs=itp:animated&tbm=isch&q={0}{1}" \
-        .format(searchb, safe)
+    searchurl = f"https://www.google.com/search?tbs=itp:animated&tbm=isch&q={searchb}{safe}"
 
     # this is an old iphone user agent. Seems to make google return good results.
     useragent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us)" \

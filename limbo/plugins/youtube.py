@@ -1,17 +1,13 @@
 """!youtube <search term> return the first youtube search result for <search term>"""
 
 import re
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 
 import requests
 
 
 def youtube(searchterm):
-    url = "https://www.youtube.com/results?search_query={0}"
-    url = url.format(quote(searchterm))
+    url = f"https://www.youtube.com/results?search_query={quote(searchterm)}"
 
     r = requests.get(url)
     results = re.findall('a href="(/watch[^&]*?)"', r.text)
@@ -19,7 +15,7 @@ def youtube(searchterm):
     if not results:
         return "sorry, no videos found"
 
-    return "https://www.youtube.com{0}".format(results[0])
+    return f"https://www.youtube.com{results[0]}"
 
 
 def on_message(msg, server):

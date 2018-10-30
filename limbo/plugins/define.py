@@ -22,18 +22,14 @@ def define(word):
     if len(word.split(" ")) > 1:
         return "Please only attempt to define a single word at a time!"
 
-    request_url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/{language}/{word}'.format(
-        **info)
-    definition_url = 'https://{language}.oxforddictionaries.com/definition/{word}'.format(
-        **info)
+    request_url = f'https://od-api.oxforddictionaries.com:443/api/v1/entries/{language}/{word}'
+    definition_url = f'https://{language}.oxforddictionaries.com/definition/{word}'
 
     result = requests.get(request_url, headers=headers)
     if result.status_code == 404:
-        return "Oxford has no definition for {0}. If you're searching for the plural, try the singular term".format(
-            word)
+        return f"Oxford has no definition for {word}. If you're searching for the plural, try the singular term"
     elif result.status_code != 200:
-        return "Something went wrong when searching for _{0}_! Please try again later".format(
-            word)
+        return f"Something went wrong when searching for _{word}_! Please try again later"
     else:
         data = result.json()
         try:
@@ -44,15 +40,14 @@ def define(word):
                 'example'] = 'Well this is awkward, no example is given for this definition... :scream:'
         info['definition'] = data['results'][0]['lexicalEntries'][0][
             'entries'][0]['senses'][0]['definitions'][0]
-        info['definition_url'] = definition_url
 
-        return """*Oxford Dictionary Definition for _{word}_*:
->{definition}
+        return f"""*Oxford Dictionary Definition for _{word}_*:
+>{info['definition']}
 
 *Example usage*:
-_{example}_
+_{info['example']}_
 
-{definition_url}""".format(**info)
+{definition_url}"""
 
 
 def on_message(msg, server):

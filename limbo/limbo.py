@@ -19,14 +19,12 @@ from .fakeserver import FakeServer
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
-PYTHON3 = sys.version_info[0] > 2
-
 logger = logging.getLogger(__name__)
 
 
 class InvalidPluginDir(Exception):
     def __init__(self, plugindir):
-        message = "Unable to find plugin dir {0}".format(plugindir)
+        message = f"Unable to find plugin dir {plugindir}"
         super(InvalidPluginDir, self).__init__(message)
 
 
@@ -52,7 +50,7 @@ def init_plugins(plugindir, plugins_to_load=None):
     if not plugindir:
         plugindir = DIR("plugins")
 
-    logger.debug("plugindir: {0}".format(plugindir))
+    logger.debug(f"plugindir: {plugindir}")
 
     if os.path.isdir(plugindir):
         pluginfiles = glob(os.path.join(plugindir, "[!_]*.py"))
@@ -75,11 +73,11 @@ def init_plugins(plugindir, plugins_to_load=None):
     for plugin in plugins:
         if plugins_to_load and plugin not in plugins_to_load:
             logger.debug(
-                "skipping plugin {0}, not in plugins_to_load {1}".format(
-                    plugin, plugins_to_load))
+                f"skipping plugin {plugin}, not in plugins_to_load {plugins_to_load}"
+            )
             continue
 
-        logger.debug("plugin: {0}".format(plugin))
+        logger.debug(f"plugin: {plugin}")
         try:
             mod = importlib.import_module(plugin)
             modname = mod.__name__
@@ -97,10 +95,9 @@ def init_plugins(plugindir, plugins_to_load=None):
         # on import, and we want them not to kill our server
         except:
             logger.warning(
-                "import failed on module {0}, module not loaded".format(
-                    plugin))
-            logger.warning("{0}".format(sys.exc_info()[0]))
-            logger.warning("{0}".format(traceback.format_exc()))
+                f"import failed on module {plugin}, module not loaded")
+            logger.warning(f"{sys.exc_info()[0]}")
+            logger.warning(f"{traceback.format_exc()}")
 
     sys.path = oldpath
     return hooks
@@ -114,10 +111,9 @@ def run_hook(hooks, hook, *args):
             if h:
                 responses.append(h)
         except:
-            logger.warning(
-                "Failed to run plugin {0}, module not loaded".format(hook))
-            logger.warning("{0}".format(sys.exc_info()[0]))
-            logger.warning("{0}".format(traceback.format_exc()))
+            logger.warning(f"Failed to run plugin {hook}, module not loaded")
+            logger.warning(f"{sys.exc_info()[0]}")
+            logger.warning(f"{traceback.format_exc()}")
 
     return responses
 
@@ -144,8 +140,7 @@ def handle_message(event, server):
 
     # skip messages from ourselves and from slackbot to prevent message loops
     if not user_id or user_id == server.slack.userid or user_id == "USLACKBOT":
-        logger.debug("skipping message {} no user found or user is "
-                     "self".format(event))
+        logger.debug(f"skipping message {event} no user found or user is self")
         return
     return "\n".join(run_hook(server.hooks, subtype, event, server))
 
@@ -201,7 +196,7 @@ def loop(server, test_loop=None):
             events = server.slack.rtm_read()
             for event in events:
                 loops_without_activity = 0
-                logger.debug("got {0}".format(event))
+                logger.debug(f"got {event}")
                 response = handle_event(event, server)
 
                 # The docs (https://api.slack.com/docs/message-threading)
@@ -265,7 +260,7 @@ def relevant_environ():
 
 def init_server(args, config, Server=LimboServer, Client=SlackClient):
     init_log(config)
-    logger.debug("config: {0}".format(config))
+    logger.debug(f"config: {config}")
     db = init_db(args.database_name)
 
     config_plugins = config.get("plugins")
@@ -275,36 +270,21 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
     try:
         slack = Client(config["token"])
     except KeyError:
-        logger.error("""Unable to find a slack token. The environment variables
+        logger.error(
+            f"""Unable to find a slack token. The environment variables
 limbo sees are:
-{0}
+{relevant_environ()}
 
 and the current config is:
-{1}
+{config}
 
 Try setting your bot's slack token with:
 
 export SLACK_TOKEN=<your-slack-bot-token>
-""".format(relevant_environ(), config))
+""")
         raise
     server = Server(slack, config, hooks, db)
     return server
-
-
-# decode a string. if str is a python 3 string, do nothing.
-def decode(str_, codec='utf8'):
-    if PYTHON3:
-        return str_
-    else:
-        return str_.decode(codec)
-
-
-# encode a string. if str is a python 3 string, do nothing.
-def encode(str_, codec='utf8'):
-    if PYTHON3:
-        return str_
-    else:
-        return str_.encode(codec)
 
 
 def main(args):
@@ -316,10 +296,9 @@ def main(args):
     elif args.command is not None:
         init_log(config)
         db = init_db(args.database_name)
-        cmd = decode(args.command)
+        cmd = args.command
         print(
-            run_cmd(cmd,
-                    FakeServer(db=db), args.hook, args.pluginpath,
+            run_cmd(cmd, FakeServer(db=db), args.hook, args.pluginpath,
                     config.get("plugins")))
         return
 
@@ -335,8 +314,7 @@ def main(args):
         logger.warn("Unable to connect to Slack. Bad network?")
         raise
     except SlackLoginError:
-        logger.warn("Login Failed, invalid token <{0}>?".format(
-            config["token"]))
+        logger.warn("Login Failed, invalid token <{config['token']}}>?")
         raise
 
 
@@ -352,7 +330,7 @@ def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
         'team': None,
         'channel': 'repl_channel'
     }
-    return encode(handle_event(event, server))
+    return handle_event(event, server)
 
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
@@ -365,7 +343,7 @@ except NameError:
 def repl(server, args):
     try:
         while 1:
-            cmd = decode(input("limbo> "))
+            cmd = input("limbo> ")
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 

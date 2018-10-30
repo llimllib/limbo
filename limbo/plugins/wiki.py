@@ -1,9 +1,6 @@
 """!wiki <topic> returns a wiki link for <topic>"""
 import re
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,8 +10,8 @@ def wiki(searchterm):
     """return the top wiki search result for the term"""
     searchterm = quote(searchterm)
 
-    url = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch={0}&format=json"
-    url = url.format(searchterm)
+    url = "https://en.wikipedia.org/w/api.php?action=query&list=search&"\
+          f"srsearch={searchterm}&format=json"
 
     result = requests.get(url).json()
 
@@ -27,16 +24,16 @@ def wiki(searchterm):
         return ""
 
     page = quote(pages[0]["title"].encode("utf8"))
-    link = "http://en.wikipedia.org/wiki/{0}".format(page)
+    link = f"http://en.wikipedia.org/wiki/{page}"
 
     r = requests.get(
-        "http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".
-        format(page)).json()
+        f"http://en.wikipedia.org/w/api.php?format=json&action=parse&page={page}"
+    ).json()
     soup = BeautifulSoup(r["parse"]["text"]["*"], "html5lib")
     p = soup.find('p').get_text()
     p = p[:8000]
 
-    return u"{0}\n{1}".format(p, link)
+    return f"{p}\n{link}"
 
 
 def on_message(msg, server):

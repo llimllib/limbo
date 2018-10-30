@@ -2,10 +2,7 @@
 
 from random import shuffle
 import re
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,8 +10,7 @@ from bs4 import BeautifulSoup
 
 def stock(searchterm):
     searchterm = quote(searchterm)
-    url = "https://www.shutterstock.com/search?searchterm={0}".format(
-        searchterm)
+    url = f"https://www.shutterstock.com/search?searchterm={searchterm}"
     res = requests.get(url)
     soup = BeautifulSoup(res.text, "html5lib")
     images = ["https:" + x["src"] for x in soup.select(".img-wrap img")]

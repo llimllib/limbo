@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 """!weather <zip or place name> return the 5-day forecast"""
 
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 import json
 import logging
 import os
@@ -83,15 +80,14 @@ def weather(searchterm):
     found.
     """
     yql = u'select * from weather.forecast where woeid in '\
-          '(select woeid from geo.places(1) where text="{}")'.format(
-              searchterm)
+          f'(select woeid from geo.places(1) where text="{searchterm}")'
 
     unit = "c" if os.environ.get("WEATHER_CELSIUS") else "f"
     if unit == "c":
         yql += u' AND u="c"'
 
     url = 'https://query.yahooapis.com/v1/public/yql?'\
-          'q={}&format=json'.format(quote(yql.encode('utf8')))
+          f'q={quote(yql.encode("utf8"))}&format=json'
 
     dat = requests.get(url).json()
     if 'query' not in dat or not dat['query']['results']:
@@ -107,10 +103,9 @@ def weather(searchterm):
     if region == location["city"].strip():
         region = ""
     else:
-        region = "{} ".format(region)
+        region = f"{region} "
 
-    title = "Weather for {}, {}{}: ".format(location["city"], region,
-                                            location['country'])
+    title = f"Weather for {location['city']}, {region}{location['country']}: "
 
     forecasts = []
     for day in forecast:
@@ -118,7 +113,7 @@ def weather(searchterm):
         icon = ICONMAP.get(day["code"], ":question:")
         forecasts.append({
             "title": day_of_wk,
-            "value": u"{} {}°{}".format(icon, day["high"], unit),
+            "value": f"{icon} {day['high']}°{unit}",
             "short": True,
         })
 

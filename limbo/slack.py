@@ -7,11 +7,7 @@ from ssl import SSLError
 import requests
 from websocket import create_connection
 
-# python 2.7.9+ and python 3 have this error
-try:
-    from ssl import SSLWantReadError
-except ImportError:
-    SSLWantReadError = SSLError
+from ssl import SSLWantReadError
 
 
 # Exceptions
@@ -254,8 +250,8 @@ class SlackClient(object):
             self.users[user['id']] = User(uid, name, real_name, tz)
 
     def parse_bot_data(self, bot):
-        self.bots[bot['id']] = Bot(bot['id'], bot['name'],
-                                   bot.get('icons', ''), bot['deleted'])
+        self.bots[bot['id']] = Bot(bot['id'], bot['name'], bot.get(
+            'icons', ''), bot['deleted'])
 
     def send_to_websocket(self, data):
         """Send (data) directly to the websocket."""
@@ -282,7 +278,7 @@ class SlackClient(object):
                 raise
 
     def join_channel(self, name):
-        print(self.do("channels.join?name={0}".format(name)).read())
+        print(self.do(f"channels.join?name={name}").read())
 
     def api_call(self, method, **kwargs):
         reply = self.do(method, **kwargs)
@@ -290,7 +286,7 @@ class SlackClient(object):
 
     def do(self, request, post_data=None, files=None, **kwargs):
         post_data = {} if not post_data else post_data
-        url = 'https://slack.com/api/{0}'.format(request)
+        url = f'https://slack.com/api/{request}'
         post_data["token"] = self.token
         post_data.update(kwargs)
         return requests.post(url, data=post_data, files=files)

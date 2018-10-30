@@ -1,16 +1,13 @@
 """!calc <equation> will return the google calculator result for <equation>"""
 from bs4 import BeautifulSoup
 import re
-try:
-    from urllib import quote
-except ImportError:
-    from urllib.request import quote
+from urllib.request import quote
 import requests
 
 
 def calc(eq):
     query = quote(eq)
-    url = "https://encrypted.google.com/search?hl=en&q={0}".format(query)
+    url = f"https://encrypted.google.com/search?hl=en&q={query}"
     soup = BeautifulSoup(requests.get(url).text, "html5lib")
 
     answer = soup.findAll("h2", attrs={"class": "r"})

@@ -16,41 +16,45 @@ CREATE TABLE IF NOT EXISTS glossary(term text, definition text)
 
 
 def get(term, server):
-    results = server.query("""
+    results = server.query(
+        """
 SELECT term, definition FROM glossary WHERE term LIKE ?
 """, term)
     return results[0] if results else None
 
 
 def search(term, server):
-    wildterm = "%{}%".format(term)
-    results = server.query("""
+    wildterm = f"%{term}%"
+    results = server.query(
+        """
 select term, definition from glossary WHERE term LIKE ? OR definition LIKE ?;
 """, wildterm, wildterm)
     if not results:
-        return "No results found for {}".format(term)
+        return f"No results found for {term}"
     else:
-        return "\n".join("*{}*: {}".format(*result) for result in results)
+        return "\n".join(f"*{result[0]}*: {result[1]}" for result in results)
 
 
 def add(term, definition, server):
     results = get(term, server)
     if not results:
-        server.query("""
+        server.query(
+            """
 INSERT INTO glossary(term, definition) VALUES (?, ?)
 """, term, definition)
-        return "Successfully added {}".format(term)
+        return f"Successfully added {term}"
     else:
-        server.query("""
+        server.query(
+            """
 UPDATE glossary SET definition=? WHERE term=?
         """, definition, results[0])
-        return "Successfully updated {}".format(term)
+        return f"Successfully updated {term}"
 
 
 def remove(term, server):
     results = get(term, server)
     if not results:
-        return "No definition found for {}".format(term)
+        return f"No definition found for {term}"
     else:
         # if case is different, stick with the version in the DB.
         # this prevents separate definitions for FOO and Foo
@@ -60,16 +64,16 @@ def remove(term, server):
 DELETE FROM glossary WHERE term=?
 """, term)
 
-    return "Removed definition for {}".format(term)
+    return f"Removed definition for {term}"
 
 
 def lookup(term, server):
     results = get(term, server)
     if not results:
-        return ("No definition found for {}. Add a definition with "
-                "'!glossary add <term>: <definition>'.".format(term))
+        return (f"No definition found for {term}. Add a definition with "
+                "'!glossary add <term>: <definition>'.")
 
-    return "*{}*: {}".format(*results)
+    return f"*{results[0]}*: {results[1]}"
 
 
 def sanitize_definition(definition):

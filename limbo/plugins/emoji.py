@@ -35,7 +35,7 @@ class EmojiCache(object):
         emoji_res = json.loads(self.server.slack.api_call("emoji.list"))
         for emo in emoji_res["emoji"]:
             url = emoji_res["emoji"][emo]
-            emoji = ":{}:".format(emo)
+            emoji = f":{emo}:"
             # duplicate emoji will start with "alias:" instead of an "http"; we
             # don't want to include dupes in our list so we don't bias towards them
             # https://api.slack.com/methods/emoji.list

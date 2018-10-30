@@ -43,7 +43,8 @@ HUB_URL = 'https://api.github.com/{0}'
 class Github(object):
     def __init__(self, username, password):
         self.auth = username, password
-        if not any(self.auth): self.auth = None
+        if not any(self.auth):
+            self.auth = None
 
     def _get(self, url_fragment, **params):
         return requests.get(
@@ -58,18 +59,18 @@ class Github(object):
 
     def issues(self, repo):
         # defaults to only open issues
-        res = self._get('repos/{0}/issues'.format(repo))
+        res = self._get(f'repos/{repo}/issues')
         if res.status_code == 200:
             return res.json()
 
     def issue(self, repo, n):
-        res = self._get('repos/{0}/issues/{1}'.format(repo, n))
+        res = self._get(f'repos/{repo}/issues/{n}')
         if res.status_code == 200:
             return res.json()
 
     def create_issue(self, repo, title, body=''):
         res = self._post(
-            'repos/{0}/issues'.format(repo),
+            f'repos/{repo}/issues',
             data=json.dumps({
                 "title": title,
                 "body": body
@@ -78,16 +79,15 @@ class Github(object):
             return res.json()
 
     def search_issue_in_repo(self, repo, query):
-        return self._get(
-            'search/issues', q="{0} repo:{1}".format(query, repo)).json()
+        return self._get('search/issues', q=f"{query} repo:{repo}").json()
 
     def pull_requests(self, repo):
-        res = self._get('repos/{0}/pulls'.format(repo))
+        res = self._get(f'repos/{repo}/pulls')
         if res.status_code == 200:
             return res.json()
 
     def pull(self, repo, n):
-        res = self._get('repos/{0}/pulls/{1}'.format(repo, n))
+        res = self._get(f'repos/{repo}/pulls/{n}')
         if res.status_code == 200:
             return res.json()
 
@@ -120,7 +120,7 @@ def format_issue(issue_json, verbose=False):
         "author_name": issue_json["user"]["login"],
         "author_link": issue_json["user"]["html_url"],
         "fallback": issue_json["title"],
-        "title": "[{0}] {1}".format(issue_json["number"], issue_json["title"]),
+        "title": f"[{issue_json['number']}] {issue_json['title']}",
         "title_link": issue_json["html_url"],
         "color": "good"
     }
@@ -141,7 +141,7 @@ def format_pull(pull_json):
         "author_name": pull_json["user"]["login"],
         "author_link": pull_json["user"]["html_url"],
         "fallback": pull_json["title"],
-        "title": "[{0}] {1}".format(pull_json["number"], pull_json["title"]),
+        "title": f"[{pull_json['number']}] {pull_json['title']}",
         "title_link": pull_json["html_url"],
         "color": "good",
         "mrkdwn_in": ["text"],
@@ -152,7 +152,8 @@ def format_pull(pull_json):
 
 
 def get_default_repo(server, room):
-    rows = server.query('''
+    rows = server.query(
+        '''
         SELECT repo FROM github_room_repo_defaults WHERE room=?''', room)
 
     if rows:
@@ -161,7 +162,8 @@ def get_default_repo(server, room):
 
 
 def set_default_repo(server, room, repo):
-    server.query('''
+    server.query(
+        '''
         INSERT INTO github_room_repo_defaults(room, repo)
         VALUES (?, ?)''', room, repo)
 
@@ -169,15 +171,15 @@ def set_default_repo(server, room, repo):
 def issues(repo, _):
     issues = HUB.issues(repo)
     if issues is None:
-        return "Unable to find repository {0}".format(repo)
+        return f"Unable to find repository {repo}"
 
     l = len(issues)
     if l == 0:
-        return "0 open issues on repository {0}".format(repo)
+        return f"0 open issues on repository {repo}"
     elif l > 5:
-        text = "{0} open issues, showing the 5 most recent".format(l)
+        text = f"{l} open issues, showing the 5 most recent"
     else:
-        text = "{0} open issues".format(l)
+        text = f"{l} open issues"
 
     attachments = json.dumps([format_issue(i) for i in issues[:5]])
 
@@ -190,15 +192,15 @@ def issues(repo, _):
 def pulls(repo, _):
     pulls = HUB.pull_requests(repo)
     if pulls is None:
-        return "Unable to find repository {0}".format(repo)
+        return f"Unable to find repository {repo}"
 
     l = len(pulls)
     if l == 0:
-        return "0 open pull requests on repository {0}".format(repo)
+        return f"0 open pull requests on repository {repo}"
     elif l > 5:
-        text = "{0} open pull requests, showing the 5 most recent".format(l)
+        text = f"{l} open pull requests, showing the 5 most recent"
     else:
-        text = "{0} open pull requests".format(l)
+        text = f"{l} open pull requests"
 
     attachments = json.dumps([format_issue(p) for p in pulls[:5]])
 
@@ -212,7 +214,7 @@ def issue(repo, body):
     n = body[0]
     issue = HUB.issue(repo, n)
     if not issue:
-        return "Unable to find issue #{0} in repo {1}".format(n, repo)
+        return f"Unable to find issue #{n} in repo {repo}"
 
     return {
         "attachments": json.dumps([format_issue(issue, verbose=True)]),
@@ -224,7 +226,7 @@ def pull_request(repo, body):
     n = body[0]
     pull = HUB.pull(repo, n)
     if not issue:
-        return "Unable to find pull request #{0} in repo {1}".format(n, repo)
+        return f"Unable to find pull request #{n} in repo {repo}"
 
     return {
         "attachments": json.dumps([format_pull(pull)]),
@@ -236,7 +238,7 @@ def create_issue(repo, body):
     title = ' '.join(body)
     issue = HUB.create_issue(repo, title)
     if not issue:
-        return "Unable to create issue in repo {0}".format(repo)
+        return f"Unable to create issue in repo {repo}"
 
     attachment = json.dumps([format_issue(issue)])
 
@@ -255,13 +257,13 @@ def search(repo, body):
 
     issues = response["items"]
     attachments = json.dumps([format_issue(i) for i in issues[:5]])
-    text = "Found {0} items".format(response["total_count"])
+    text = f"Found {response['total_count']} items"
     return {"attachments": attachments, "text": text}
 
 
 def getdefault(repo, _):
-    return "Default repo for this room is `{0}`. " \
-           "To change it, run `!hub setdefault <repo_name>`".format(repo)
+    return f"Default repo for this room is `{repo}`. " \
+           "To change it, run `!hub setdefault <repo_name>`"
 
 
 COMMANDS = {
@@ -285,7 +287,7 @@ def github(server, room, cmd, body, repo):
     if not repo:
         if cmd == "setdefault":
             set_default_repo(server, room, body[0])
-            return "Default repo for this room set to `{0}`".format(body[0])
+            return f"Default repo for this room set to `{body[0]}`"
         else:
             return "Unable to find default repo for this channel. "\
                    "Run `!hub setdefault <repo_name>`"

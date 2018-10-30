@@ -37,9 +37,9 @@ def poll(poll, msg, server):
     if not 2 < len(args) < len(POLL_EMOJIS) + 1:
         return ERROR_WRONG_NUMBER_OF_ARGUMENTS
 
-    result = ["Poll: {}\n".format(args[0])]
+    result = [f"Poll: {args[0]}\n"]
     for emoji, answer in zip(POLL_EMOJIS, args[1:]):
-        result.append(":{}: {}\n".format(emoji, answer))
+        result.append(f":{emoji}: {answer}\n")
 
     # for this we are going to need to post the message to Slack via Web API in order to
     #  get the TS and add reactions

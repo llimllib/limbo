@@ -12,12 +12,6 @@ matrix:
   include:
     - os: linux
       dist: xenial
-      python: 2.7
-    - os: linux
-      dist: xenial
-      python: 3.5
-    - os: linux
-      dist: xenial
       python: 3.6
     - os: linux
       dist: xenial
