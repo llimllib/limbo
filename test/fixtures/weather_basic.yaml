@@ -5,54 +5,144 @@ interactions:
       Accept: ['*/*']
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
-      User-Agent: [python-requests/2.18.1]
+      User-Agent: [python-requests/2.20.0]
     method: GET
-    uri: https://query.yahooapis.com/v1/public/yql?q=select%20%2A%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22Oahu%2C%20HI%22%29&format=json
+    uri: https://api.mapbox.com/geocoding/v5/mapbox.places/Oahu%2C%20HI.json?limit=1&access_token=fake_mapbox_token
   response:
-    body: {string: '{"query":{"count":1,"created":"2017-11-17T03:29:42Z","lang":"en-US","results":{"channel":{"units":{"distance":"mi","pressure":"in","speed":"mph","temperature":"F"},"title":"Yahoo!
-        Weather - Honolulu, HI, US","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/","description":"Yahoo!
-        Weather for Honolulu, HI, US","language":"en-us","lastBuildDate":"Thu, 16
-        Nov 2017 05:29 PM HST","ttl":"60","location":{"city":"Honolulu","country":"United
-        States","region":" HI"},"wind":{"chill":"72","direction":"45","speed":"18"},"atmosphere":{"humidity":"66","pressure":"981.0","rising":"0","visibility":"16.1"},"astronomy":{"sunrise":"6:44
-        am","sunset":"5:50 pm"},"image":{"title":"Yahoo! Weather","width":"142","height":"18","link":"http://weather.yahoo.com","url":"http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif"},"item":{"title":"Conditions
-        for Honolulu, HI, US at 04:00 PM HST","lat":"21.483601","long":"-157.964783","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/","pubDate":"Thu,
-        16 Nov 2017 04:00 PM HST","condition":{"code":"34","date":"Thu, 16 Nov 2017
-        04:00 PM HST","temp":"71","text":"Mostly Sunny"},"forecast":[{"code":"30","date":"16
-        Nov 2017","day":"Thu","high":"73","low":"65","text":"Partly Cloudy"},{"code":"30","date":"17
-        Nov 2017","day":"Fri","high":"72","low":"63","text":"Partly Cloudy"},{"code":"30","date":"18
-        Nov 2017","day":"Sat","high":"74","low":"61","text":"Partly Cloudy"},{"code":"34","date":"19
-        Nov 2017","day":"Sun","high":"72","low":"60","text":"Mostly Sunny"},{"code":"34","date":"20
-        Nov 2017","day":"Mon","high":"72","low":"60","text":"Mostly Sunny"},{"code":"30","date":"21
-        Nov 2017","day":"Tue","high":"73","low":"62","text":"Partly Cloudy"},{"code":"12","date":"22
-        Nov 2017","day":"Wed","high":"72","low":"64","text":"Rain"},{"code":"34","date":"23
-        Nov 2017","day":"Thu","high":"74","low":"67","text":"Mostly Sunny"},{"code":"30","date":"24
-        Nov 2017","day":"Fri","high":"74","low":"66","text":"Partly Cloudy"},{"code":"23","date":"25
-        Nov 2017","day":"Sat","high":"73","low":"67","text":"Breezy"}],"description":"<![CDATA[<img
-        src=\"http://l.yimg.com/a/i/us/we/52/34.gif\"/>\n<BR />\n<b>Current Conditions:</b>\n<BR
-        />Mostly Sunny\n<BR />\n<BR />\n<b>Forecast:</b>\n<BR /> Thu - Partly Cloudy.
-        High: 73Low: 65\n<BR /> Fri - Partly Cloudy. High: 72Low: 63\n<BR /> Sat -
-        Partly Cloudy. High: 74Low: 61\n<BR /> Sun - Mostly Sunny. High: 72Low: 60\n<BR
-        /> Mon - Mostly Sunny. High: 72Low: 60\n<BR />\n<BR />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-12485533/\">Full
-        Forecast at Yahoo! Weather</a>\n<BR />\n<BR />\n<BR />\n]]>","guid":{"isPermaLink":"false"}}}}}}'}
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA3WS307bMBTGX+XIV0MKqZ00idO7CQ3BBYMJ2A1CyE0O1FtiB9uhVFUfaK+xJ9tx
+        u66Dabnzyfl+5zt/1iysBmQzdooqjA5PbNdhE7Q1LGHPI7oVm90xqxYjvRea3SfscZfp6cea6Za0
+        qm3p7dOcZ6LMZFnURTWdiowkb+kUGDrV4MMufLdXRqzDDl+UaSguKM3ZAV3Qscx6Qxx8DcS53BnZ
+        QYzq8XcsgQs7mqC0ga8alwmcqaXSGuqyqkQCt0YHbOE6qEDAhDVoAjoycCyKIhVciCIRdTqtqiKX
+        5OUJbY8h9r7ed3BltQlRaq1rtdmC/qPfxCyzc7wf0WB9aGyLqcimkvNCSl7WcpqXnP1pbmuWbZK9
+        JDaZyppLKYt6KuiTWUxf6u+6VUFRzpcsz/Oqrg+QN3M4wBw+0U5TIXjGucxKWZVZVm5xfmFdeIjm
+        KO/2+vjs/F2NSmYH/m6wB3AT67lVWvMi55y2X2VFyYt/wKN/R83/6vztfjb3G9qBCsHp+bg9xRn7
+        fHlzfvJpBj9/QMaFhAs1zO0rKNOCDh78OAydRudT+Nh14PTTgqJ0WuhesE3h1iPYRwgL7SEaAB01
+        82906hAsxXFPvEHX+5h7TVLdIHxYhDD42WSyXC7TfpuUNrafqLkdw4QCfnKUwk0kU73BGioVbUWm
+        No/W9Sr2QDYhXgWtxkOvVmBsgDmSJoaix6vL8w/+COjyX3RL05iv4NSOzj+PymHKNr8AqY+EcKsD
+        AAA=
     headers:
       Access-Control-Allow-Origin: ['*']
-      Age: ['0']
-      Cache-Control: [no-cache]
+      Access-Control-Expose-Headers: ['x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset']
+      Age: ['2066']
+      Cache-Control: [max-age=604800]
       Connection: [keep-alive]
-      Content-Type: [application/json;charset=utf-8]
-      Date: ['Fri, 17 Nov 2017 03:29:42 GMT']
-      Public-Key-Pins-Report-Only: ['max-age=2592000; pin-sha256="2oALgLKofTmeZvoZ1y/fSZg7R9jPMix8eVA6DH4o/q8=";
-          pin-sha256="cAajgxHlj7GTSEIzIYIQxmEloOSoJq7VOaxWHfv72QM="; pin-sha256="SVqWumuteCQHvVIaALrOZXuzVVVeS7f4FGxxu6V+es4=";
-          pin-sha256="UZJDjsNp1+4M5x9cbbdflB779y5YRBcV6Z6rBMLIrO4="; pin-sha256="JbQbUG5JMJUoI6brnx0x3vZF6jilxsapbXGVfjhN8Fg=";
-          pin-sha256="lnsM2T/O9/J84sJFdnrpsFp3awZJ+ZZbYpCWhGloaHI="; pin-sha256="h6801m+z8v3zbgkRHpq6L29Esgfzhj89C1SyUCOQmqU=";
-          pin-sha256="SQVGZiOrQXi+kqxcvWWE96HhfydlLVqFr4lQTqI5qqo="; pin-sha256="q5hJUnat8eyv8o81xTBIeB5cFxjaucjmelBPT2pRMo8=";
-          pin-sha256="vPtEqrmtAhAVcGtBIep2HIHJ6IlnWQ9vlK50TciLePs="; pin-sha256="lpkiXF3lLlbN0y3y6W0c/qWqPKC7Us2JM8I7XCdEOCA=";
-          pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E="; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=";
-          pin-sha256="2fRAUXyxl4A1/XHrKNBmc8bTkzA7y4FB/GLJuNAzCqY="; pin-sha256="dolnbtzEBnELx/9lOEQ22e6OZO/QNb6VSSX2XHA3E7A=";
-          includeSubdomains; report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-hpkp-report-only"']
-      Server: [ATS]
-      Strict-Transport-Security: [max-age=31536000]
-      Via: ['http/1.1 a90.ue.bf1.yahoo.net (ApacheTrafficServer [cMsSf ])']
+      Content-Encoding: [gzip]
+      Content-Type: [application/vnd.geo+json; charset=utf-8]
+      Date: ['Fri, 18 Jan 2019 15:37:11 GMT']
+      ETag: ['"7b3891e6826bf90d41abe6d2f062ddd3"']
+      Last-Modified: ['Thu, 17 Jan 2019 19:47:09 GMT']
+      Transfer-Encoding: [chunked]
+      Vary: [Accept-Encoding]
+      Via: [1.1 663b9ec2cd0b34391786d62f92365deb.cloudfront.net (CloudFront)]
+      X-Amz-Cf-Id: [6RAUhAjqVSmMuMW1yTkSh0JrEpK5KEDdNqN-SFYp2nBDu618NuF2Gw==]
+      X-Cache: [Hit from cloudfront]
+      X-Powered-By: [Express]
+      X-Rate-Limit-Interval: ['60']
+      X-Rate-Limit-Limit: ['600']
+      X-Rate-Limit-Reset: ['1547825891']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.20.0]
+    method: GET
+    uri: https://api.darksky.net/forecast/fake_darksky_key/19.477538,-155.10115?unit=us
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control: [max-age=60]
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 18 Jan 2019 16:11:37 GMT']
+      Expires: ['Fri, 18 Jan 2019 16:12:37 +0000']
+      Transfer-Encoding: [chunked]
+      Vary: [Accept-Encoding]
+      X-Authentication-Time: [1ms]
       X-Content-Type-Options: [nosniff]
+      X-Forecast-API-Calls: ['13']
+      X-Response-Time: [95.512ms]
     status: {code: 200, message: OK}
 version: 1

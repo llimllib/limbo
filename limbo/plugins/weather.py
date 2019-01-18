@@ -1,72 +1,50 @@
 # -*- coding: utf-8 -*-
-"""!weather <zip or place name> return the 5-day forecast"""
+"""!weather <zip or place name> return the 5-day forecast
+
+Three environment variables control the behavior of this plugin:
+    MAPBOX_API_TOKEN: must be set to a valid Mapbox API token
+                      https://docs.mapbox.com/api/search/#geocoding
+    DARKSKY_API_KEY: must be set to a valid Dark Sky API key
+                      https://darksky.net/dev/docs#data-point-object
+    WEATHER_CELSIUS: if this environment variable is present with any value,
+                     the plugin will report temperatures in celsius instead of
+                     farenheit
+"""
 
 try:
     from urllib import quote
 except ImportError:
     from urllib.request import quote
 import json
-import logging
 import os
 import re
-import time
+from datetime import datetime
 
 import requests
 
-# https://developer.yahoo.com/weather/documentation.html
+# https://darksky.net/dev/docs#data-point-object
 ICONMAP = {
-    "0": ":tornado:",
-    "1": ":cyclone:",
-    "2": ":cyclone:",
-    "3": ":thunder_cloud_and_rain:",
-    "4": ":thunder_cloud_and_rain:",
-    "5": ":snow_cloud:",
-    "6": ":snow_cloud:",
-    "7": ":snow_cloud:",
-    "8": ":snow_cloud:",
-    "9": ":rain_cloud:",
-    "10": ":snow_cloud:",
-    "11": ":rain_cloud:",
-    "12": ":rain_cloud:",
-    "13": ":snow_cloud:",
-    "14": ":snow_cloud:",
-    "15": ":snowflake:",
-    "16": ":snowflake:",
-    "17": ":thunder_cloud_and_rain:",
-    "18": ":rain_cloud:",
-    "19": ":desert:",
-    "20": ":cloud:",
-    "21": ":cloud:",
-    "22": ":smoking:",
-    "23": ":wind_blowing_face:",
-    "24": ":wind_blowing_face:",
-    "25": ":snowman_without_snow:",
-    "26": ":cloud:",
-    "27": ":sun_behind_cloud:",
-    "28": ":sun_behind_cloud:",
-    "29": ":sun_small_cloud:",
-    "30": ":sun_small_cloud:",
-    "32": ":sunny:",
-    "33": ":sunny:",
-    "34": ":sunny:",
-    "35": ":thunder_cloud_and_rain:",
-    "36": ":sunny:",
-    "37": ":thunder_cloud_and_rain:",
-    "38": ":thunder_cloud_and_rain:",
-    "39": ":thunder_cloud_and_rain:",
-    "40": ":rain_cloud:",
-    "41": ":snowflake:",
-    "42": ":snowflake:",
-    "43": ":snowflake:",
-    "44": ":partly_sunny:",
-    "45": ":thunder_cloud_and_rain:",
-    "46": ":snowflake:",
-    "47": ":thunder_cloud_and_rain:",
+    "clear-day": ":sunny:",
+    "clear-night": ":moon:",
+    "rain": ":rain_cloud:",
+    "snow": ":snowflake:",
+    "sleet": ":snow_cloud:",
+    "wind": ":wind_blowing_face:",
+    "fog": ":fog:",
+    "cloudy": ":cloud:",
+    "partly-cloudy-day": ":sun_behind_cloud:",
+    "partly-cloudy-night": ":sun_behind_cloud:",
+    "thunderstorm": ":thunder_cloud_and_rain:",
+    "tornado": ":tornado:",
 }
+
+MAPBOX_API_TOKEN = os.environ.get("MAPBOX_API_TOKEN")
+DARKSKY_API_KEY = os.environ.get("DARKSKY_API_KEY")
 
 
 class WeatherException(Exception):
     """An exception finding the weather"""
+
     pass
 
 
@@ -82,45 +60,37 @@ def weather(searchterm):
     Throws WeatherException if the location given by `searchterm` can't be
     found.
     """
-    yql = u'select * from weather.forecast where woeid in '\
-          '(select woeid from geo.places(1) where text="{}")'.format(
-              searchterm)
+    unit = "si" if os.environ.get("WEATHER_CELSIUS") else "us"
 
-    unit = "c" if os.environ.get("WEATHER_CELSIUS") else "f"
-    if unit == "c":
-        yql += u' AND u="c"'
+    geo = requests.get(
+        "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?limit=1&access_token={}".format(
+            quote(searchterm.encode("utf8")), MAPBOX_API_TOKEN
+        )
+    ).json()
+    citystate = geo["features"][0]["place_name"]
+    lon, lat = geo["features"][0]["center"]
+    forecast = requests.get(
+        "https://api.darksky.net/forecast/{}/{},{}?unit={}".format(
+            DARKSKY_API_KEY, lat, lon, unit
+        )
+    ).json()
 
-    url = 'https://query.yahooapis.com/v1/public/yql?'\
-          'q={}&format=json'.format(quote(yql.encode('utf8')))
-
-    dat = requests.get(url).json()
-    if 'query' not in dat or not dat['query']['results']:
-        logging.warning('weather response missing fields. response: %s', dat)
-        raise WeatherException(
-            ":crying_cat_face: Sorry, weather request failed"
-            ":crying_cat_face:")
-
-    forecast = dat['query']['results']['channel']['item']['forecast']
-    location = dat['query']['results']['channel']['location']
-
-    region = location['region'].strip()
-    if region == location["city"].strip():
-        region = ""
-    else:
-        region = "{} ".format(region)
-
-    title = "Weather for {}, {}{}: ".format(location["city"], region,
-                                            location['country'])
+    title = "Weather for {}: ".format(citystate)
 
     forecasts = []
-    for day in forecast:
-        day_of_wk = time.strftime("%A", time.strptime(day["date"], "%d %b %Y"))
-        icon = ICONMAP.get(day["code"], ":question:")
-        forecasts.append({
-            "title": day_of_wk,
-            "value": u"{} {}°{}".format(icon, day["high"], unit),
-            "short": True,
-        })
+    unit_abbrev = "f" if unit == "us" else "c"
+    for day in forecast["daily"]["data"][0:4]:
+        day_of_wk = datetime.fromtimestamp(day["time"]).strftime("%A")
+        icon = ICONMAP.get(day["icon"], ":question:")
+        forecasts.append(
+            {
+                "title": day_of_wk,
+                "value": u"{} {}°{}".format(
+                    icon, int(round(day["temperatureHigh"])), unit_abbrev
+                ),
+                "short": True,
+            }
+        )
 
     return title, forecasts
 
@@ -136,16 +106,13 @@ def on_message(msg, server):
     except WeatherException as err:
         return err.args[0]
 
-    attachment = {
-        "fallback": title,
-        "pretext": title,
-        "fields": forecasts[0:4]
-    }
+    attachment = {"fallback": title, "pretext": title, "fields": forecasts[0:4]}
     server.slack.post_message(
-        msg['channel'],
-        '',
+        msg["channel"],
+        "",
         as_user=server.slack.username,
-        attachments=json.dumps([attachment]))
+        attachments=json.dumps([attachment]),
+    )
 
 
 on_bot_message = on_message

@@ -30,7 +30,7 @@ pyflakes==2.0.0
 pyOpenSSL==18.0.0
 pytest==3.9.3
 pytest-cov==2.6.0
-PyYAML==3.13
+PyYAML==4.2b4
 requests==2.20.0
 scandir==1.9.0
 six==1.11.0
