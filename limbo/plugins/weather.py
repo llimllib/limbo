@@ -64,7 +64,7 @@ def weather(searchterm):
 
     geo = requests.get(
         "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?limit=1&access_token={}".format(
-            quote(searchterm), MAPBOX_API_TOKEN
+            quote(searchterm.encode("utf8")), MAPBOX_API_TOKEN
         )
     ).json()
     citystate = geo["features"][0]["place_name"]
@@ -86,7 +86,7 @@ def weather(searchterm):
             {
                 "title": day_of_wk,
                 "value": u"{} {}°{}".format(
-                    icon, round(day["temperatureHigh"]), unit_abbrev
+                    icon, int(round(day["temperatureHigh"])), unit_abbrev
                 ),
                 "short": True,
             }
