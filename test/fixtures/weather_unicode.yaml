@@ -5,54 +5,133 @@ interactions:
       Accept: ['*/*']
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
-      User-Agent: [python-requests/2.18.1]
+      User-Agent: [python-requests/2.20.0]
     method: GET
-    uri: https://query.yahooapis.com/v1/public/yql?q=select%20%2A%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3%22%29&format=json
+    uri: https://api.mapbox.com/geocoding/v5/mapbox.places/%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3.json?limit=1&access_token=pk.eyJ1IjoibGxpbWxsaWIiLCJhIjoiY2lldXJ1Nzh2MHBvOXQ2bTN1cTYxZHdsNSJ9.2WMSERArMbRJRJDyll5LiQ
   response:
-    body: {string: '{"query":{"count":1,"created":"2017-11-17T03:30:46Z","lang":"en-US","results":{"channel":{"units":{"distance":"mi","pressure":"in","speed":"mph","temperature":"F"},"title":"Yahoo!
-        Weather - Bangkok, Bangkok, TH","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/","description":"Yahoo!
-        Weather for Bangkok, Bangkok, TH","language":"en-us","lastBuildDate":"Fri,
-        17 Nov 2017 10:30 AM ICT","ttl":"60","location":{"city":"Bangkok","country":"Thailand","region":"
-        Bangkok"},"wind":{"chill":"82","direction":"0","speed":"7"},"atmosphere":{"humidity":"85","pressure":"1011.0","rising":"0","visibility":"16.1"},"astronomy":{"sunrise":"6:19
-        am","sunset":"5:47 pm"},"image":{"title":"Yahoo! Weather","width":"142","height":"18","link":"http://weather.yahoo.com","url":"http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif"},"item":{"title":"Conditions
-        for Bangkok, Bangkok, TH at 09:00 AM ICT","lat":"13.75335","long":"100.504829","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/","pubDate":"Fri,
-        17 Nov 2017 09:00 AM ICT","condition":{"code":"28","date":"Fri, 17 Nov 2017
-        09:00 AM ICT","temp":"82","text":"Mostly Cloudy"},"forecast":[{"code":"4","date":"17
-        Nov 2017","day":"Fri","high":"89","low":"76","text":"Thunderstorms"},{"code":"4","date":"18
-        Nov 2017","day":"Sat","high":"90","low":"75","text":"Thunderstorms"},{"code":"4","date":"19
-        Nov 2017","day":"Sun","high":"86","low":"77","text":"Thunderstorms"},{"code":"12","date":"20
-        Nov 2017","day":"Mon","high":"82","low":"76","text":"Rain"},{"code":"4","date":"21
-        Nov 2017","day":"Tue","high":"85","low":"76","text":"Thunderstorms"},{"code":"4","date":"22
-        Nov 2017","day":"Wed","high":"86","low":"74","text":"Thunderstorms"},{"code":"47","date":"23
-        Nov 2017","day":"Thu","high":"85","low":"74","text":"Scattered Thunderstorms"},{"code":"28","date":"24
-        Nov 2017","day":"Fri","high":"84","low":"75","text":"Mostly Cloudy"},{"code":"30","date":"25
-        Nov 2017","day":"Sat","high":"84","low":"71","text":"Partly Cloudy"},{"code":"28","date":"26
-        Nov 2017","day":"Sun","high":"82","low":"74","text":"Mostly Cloudy"}],"description":"<![CDATA[<img
-        src=\"http://l.yimg.com/a/i/us/we/52/28.gif\"/>\n<BR />\n<b>Current Conditions:</b>\n<BR
-        />Mostly Cloudy\n<BR />\n<BR />\n<b>Forecast:</b>\n<BR /> Fri - Thunderstorms.
-        High: 89Low: 76\n<BR /> Sat - Thunderstorms. High: 90Low: 75\n<BR /> Sun -
-        Thunderstorms. High: 86Low: 77\n<BR /> Mon - Rain. High: 82Low: 76\n<BR />
-        Tue - Thunderstorms. High: 85Low: 76\n<BR />\n<BR />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-1225448/\">Full
-        Forecast at Yahoo! Weather</a>\n<BR />\n<BR />\n<BR />\n]]>","guid":{"isPermaLink":"false"}}}}}}'}
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA41Ty27UMBT9FcurVooyeT9mBxWVuigtoqyqqnKS24lpYqe20+moGgkkJD4BsUFC
+        rBA7VmHLl+RTuJ6ZvmZDV4mP7znn5tybW2oWHdAp3QdmegV7smmgNFwK6tCrHtSCTk/pOHwchx/j
+        MIzD5/HPh3H4Mg7fxuH7OPwah9/j8HUcPmEBPXPoxVpHI+2W8gqVu4aV4PqBn3lxlHpeHAcpPlH/
+        qTUCq9LzNXy6PllNBQ1cM4GHqefmCdYp2YEy3Nrc0jm/5BUzDKXe+Fni0yVKw43B80smZpfy8l5a
+        sBYeYIdsXsghGJSUDdcOOakZb5iokNQyU9ZczM43cs/N4RHzie8z+f/tqyjkDSbke54bBmmexo4f
+        ulEeJJHvWDAPsyC3WB5HYRJhhCUIA2rDif0kSe11GuPVDGSLNgsb5WYix5ILgz6llKrigpnVPLep
+        S1sg1tHcDVvBDHcHy4IoCPPQj9LIz2I7bF1LZc5LWaGB6JvGeTK3zEuiLKLbg3sUAE5141HKXmC/
+        buYFYZRmYeJ5XpD72ybU1HTLJMkfHO7jXJ4tMQVmjOJFv9r8KX19dHKw92pK/v4kgedn5JB1GDnB
+        csKNJrrvuoaD0i550TRE8VmNKG49qGuoXPJOA5EXxNRcE2tOuOUU7/HPIkYiDneKJ6BabWvfIpWX
+        QHZqYzo9nUzm87nbrorcUrYTVsjeTBDQk10Xd4Gv/Dop0Mq2ZTW5uJAKNw+/AdskdjiMC01atiBC
+        GlIAcixkezw+OtjRuwR/pWteQUWKBdmXvdJXPVPg0uU/C4BIgxoEAAA=
     headers:
       Access-Control-Allow-Origin: ['*']
-      Age: ['0']
-      Cache-Control: [no-cache]
+      Access-Control-Expose-Headers: ['x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset']
+      Cache-Control: [max-age=604800]
       Connection: [keep-alive]
-      Content-Type: [application/json;charset=utf-8]
-      Date: ['Fri, 17 Nov 2017 03:30:46 GMT']
-      Public-Key-Pins-Report-Only: ['max-age=2592000; pin-sha256="2oALgLKofTmeZvoZ1y/fSZg7R9jPMix8eVA6DH4o/q8=";
-          pin-sha256="cAajgxHlj7GTSEIzIYIQxmEloOSoJq7VOaxWHfv72QM="; pin-sha256="SVqWumuteCQHvVIaALrOZXuzVVVeS7f4FGxxu6V+es4=";
-          pin-sha256="UZJDjsNp1+4M5x9cbbdflB779y5YRBcV6Z6rBMLIrO4="; pin-sha256="JbQbUG5JMJUoI6brnx0x3vZF6jilxsapbXGVfjhN8Fg=";
-          pin-sha256="lnsM2T/O9/J84sJFdnrpsFp3awZJ+ZZbYpCWhGloaHI="; pin-sha256="h6801m+z8v3zbgkRHpq6L29Esgfzhj89C1SyUCOQmqU=";
-          pin-sha256="SQVGZiOrQXi+kqxcvWWE96HhfydlLVqFr4lQTqI5qqo="; pin-sha256="q5hJUnat8eyv8o81xTBIeB5cFxjaucjmelBPT2pRMo8=";
-          pin-sha256="vPtEqrmtAhAVcGtBIep2HIHJ6IlnWQ9vlK50TciLePs="; pin-sha256="lpkiXF3lLlbN0y3y6W0c/qWqPKC7Us2JM8I7XCdEOCA=";
-          pin-sha256="r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E="; pin-sha256="WoiWRyIOVNa9ihaBciRSC7XHjliYS9VwUGOIud4PB18=";
-          pin-sha256="2fRAUXyxl4A1/XHrKNBmc8bTkzA7y4FB/GLJuNAzCqY="; pin-sha256="dolnbtzEBnELx/9lOEQ22e6OZO/QNb6VSSX2XHA3E7A=";
-          includeSubdomains; report-uri="http://csp.yahoo.com/beacon/csp?src=yahoocom-hpkp-report-only"']
-      Server: [ATS]
-      Strict-Transport-Security: [max-age=31536000]
-      Via: ['http/1.1 a98.ue.bf1.yahoo.net (ApacheTrafficServer [cMsSf ])']
+      Content-Encoding: [gzip]
+      Content-Type: [application/vnd.geo+json; charset=utf-8]
+      Date: ['Fri, 18 Jan 2019 15:37:12 GMT']
+      ETag: ['"3b11400282a24f1012812150e17f9878"']
+      Last-Modified: ['Thu, 17 Jan 2019 19:47:09 GMT']
+      Transfer-Encoding: [chunked]
+      Vary: [Accept-Encoding]
+      Via: [1.1 8bbf72e941cf5b676089162d6282d373.cloudfront.net (CloudFront)]
+      X-Amz-Cf-Id: [HP5fj76KVEHdxYvusr0CnyeayJC-ZB5pon5_qm-iqyCuqP1nLRsJhQ==]
+      X-Cache: [Miss from cloudfront]
+      X-Powered-By: [Express]
+      X-Rate-Limit-Interval: ['60']
+      X-Rate-Limit-Limit: ['600']
+      X-Rate-Limit-Reset: ['1547825892']
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Connection: [keep-alive]
+      User-Agent: [python-requests/2.20.0]
+    method: GET
+    uri: https://api.darksky.net/forecast/ac44334ffa0ecfd450dd26a2e3c5c8eb/13.75,100.51667?unit=us
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control: [max-age=3600]
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Type: [application/json; charset=utf-8]
+      Date: ['Fri, 18 Jan 2019 15:37:12 GMT']
+      Expires: ['Fri, 18 Jan 2019 16:37:12 +0000']
+      Transfer-Encoding: [chunked]
+      Vary: [Accept-Encoding]
+      X-Authentication-Time: [1ms]
       X-Content-Type-Options: [nosniff]
+      X-Forecast-API-Calls: ['6']
+      X-Response-Time: [51.521ms]
     status: {code: 200, message: OK}
 version: 1
