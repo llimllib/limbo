@@ -2,10 +2,13 @@
 """!weather <zip or place name> return the 5-day forecast
 
 Three environment variables control the behavior of this plugin:
-    MAPBOX_API_TOKEN: must be set to a valid Mapbox API token https://docs.mapbox.com/api/search/#geocoding
-    DARKSKY_API_KEY: must be set to a valid Dark Sky API key https://darksky.net/dev/docs#data-point-object
-    WEATHER_CELSIUS: if this environment variable is present with any value, the plugin will report
-                     temperatures in celsius instead of farenheit
+    MAPBOX_API_TOKEN: must be set to a valid Mapbox API token
+                      https://docs.mapbox.com/api/search/#geocoding
+    DARKSKY_API_KEY: must be set to a valid Dark Sky API key
+                      https://darksky.net/dev/docs#data-point-object
+    WEATHER_CELSIUS: if this environment variable is present with any value,
+                     the plugin will report temperatures in celsius instead of
+                     farenheit
 """
 
 try:
