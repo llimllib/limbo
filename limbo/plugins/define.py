@@ -10,7 +10,7 @@ def define(word):
 
     if not app_id or not app_key:
         return "Please set the OXFORD_APP_ID and OXFORD_APP_KEY environment variables " \
-               "to valid (free) Oxford dictionary API keys: " \
+               "to valid Oxford dictionary API keys: " \
                "https://developer.oxforddictionaries.com/"
 
     # LANGUAGE CODES AVAILABLE HERE: https://developer.oxforddictionaries.com/documentation/languages
@@ -22,7 +22,7 @@ def define(word):
     if len(word.split(" ")) > 1:
         return "Please only attempt to define a single word at a time!"
 
-    request_url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/{language}/{word}'.format(
+    request_url = 'https://od-api.oxforddictionaries.com:443/api/v2/entries/{language}/{word}?fields=definitions%2Cexamples'.format(
         **info)
     definition_url = 'https://{language}.oxforddictionaries.com/definition/{word}'.format(
         **info)
@@ -37,22 +37,14 @@ def define(word):
     else:
         data = result.json()
         try:
-            info['example'] = data['results'][0]['lexicalEntries'][0][
-                'entries'][0]['senses'][0]['examples'][0]['text']
+            info['example'] = data['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['examples'][0]['text']
         except KeyError:
-            info[
-                'example'] = 'Well this is awkward, no example is given for this definition... :scream:'
+            info['example'] = 'Well this is awkward, no example is given for this definition... :scream:'
         info['definition'] = data['results'][0]['lexicalEntries'][0][
             'entries'][0]['senses'][0]['definitions'][0]
         info['definition_url'] = definition_url
 
-        return """*Oxford Dictionary Definition for _{word}_*:
->{definition}
-
-*Example usage*:
-_{example}_
-
-{definition_url}""".format(**info)
+        return "*Oxford Dictionary Definition for _{word}_*:\n>{definition}\n\n*Example usage*:\n_{example}_\n\n{definition_url}".format(**info)
 
 
 def on_message(msg, server):
