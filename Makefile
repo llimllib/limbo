@@ -61,3 +61,11 @@ docker_run:
 .PHONY: docker_stop
 docker_clean:
 	docker stop $(docker ps -a -q  --filter ancestor=petergrace/limbo --format="{{.ID}}")
+
+.PHONY: update-requirements
+update-requirements:
+	rm -rf update-requirements || true
+	python -mvenv update-requirements
+	update-requirements/bin/pip install -r requirements-to-freeze.txt --upgrade
+	update-requirements/bin/pip freeze > requirements.txt
+	rm -rf update-requirements
