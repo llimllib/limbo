@@ -69,3 +69,12 @@ update-requirements:
 	update-requirements/bin/pip install -r requirements-to-freeze.txt --upgrade
 	update-requirements/bin/pip freeze > requirements.txt
 	rm -rf update-requirements
+
+.PHONY: update-requirements-py2
+update-requirements-py2:
+	pyenv local 2.7.15
+	rm -rf update-requirements-py2 || true
+	virtualenv --no-site-packages update-requirements-py2
+	update-requirements-py2/bin/pip install -r requirements-to-freeze.txt --upgrade
+	update-requirements-py2/bin/pip freeze > requirements-python2.txt
+	rm -rf update-requirements-py2
