@@ -70,7 +70,7 @@ def weather(searchterm):
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
     forecast = requests.get(
-        "https://api.darksky.net/forecast/{}/{},{}?unit={}".format(
+        "https://api.darksky.net/forecast/{}/{},{}?units={}".format(
             DARKSKY_API_KEY, lat, lon, unit
         )
     ).json()
