@@ -44,7 +44,7 @@ def test_unicode():
         on_message(msgobj(u"!weather กรุงเทพมหานคร"), server)
         # not blowing up == success
 
-def test_units():
+def test_units(monkeypatch):
     from weather import on_message
     monkeypatch.setenv("WEATHER_CELSIUS", "yes")
 
