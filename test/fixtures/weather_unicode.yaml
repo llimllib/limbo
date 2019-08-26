@@ -51,7 +51,7 @@ interactions:
       Connection: [keep-alive]
       User-Agent: [python-requests/2.20.0]
     method: GET
-    uri: https://api.darksky.net/forecast/fake_darksky_key/13.75,100.51667?unit=us
+    uri: https://api.darksky.net/forecast/fake_darksky_key/13.75,100.51667?units=us
   response:
     body:
       string: !!binary |
