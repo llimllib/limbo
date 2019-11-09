@@ -7,6 +7,25 @@ except ImportError:
     from urllib.request import quote, unquote
 import requests
 
+google_api_key = None
+google_cse_id = None
+
+def on_init(server):
+    global google_api_key
+    global google_cse_id
+    google_api_key = server.config.get("GOOGLE", "API")
+    google_cse_id = server.config.get("GOOGLE", "CSE")
+
+def improved_google(q):
+    # google custom search is more acurate than the old search
+    # in order to use google custom search configure your account and get your API KEY and CSE ID
+    # instructions to configure can be found here: https://stackoverflow.com/a/45911123/2999723
+    results = requests.get("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s"%(google_api_key, google_cse_id, query)).json()
+    #pprint.pprint(results)
+    if not results or "items" not in results.keys():
+        return ":crying_cat_face: Sorry, google doesn't have an answer for you :crying_cat_face:"
+    result = results["items"][0]
+    return result["title"] + " in: "+ result["link"]  
 
 def google(q):
     query = quote(q)
@@ -30,8 +49,10 @@ def on_message(msg, server):
     match = re.findall(r"!(?:google|search) (.*)", text)
     if not match:
         return
-
-    return google(match[0])
+    if google_api_key and google_cse_id:
+        return improved_google(match[0])
+    else:
+        return google(match[0])
 
 
 on_bot_message = on_message
