@@ -30,7 +30,7 @@ def image(search, unsafe=False):
 
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
-    images = list(map(unescape, re.findall(r"var u='(.*?)'", result)))
+    images = list(map(unescape, re.findall(r"imgres[?]imgurl=(.*?)&amp;", result)))
     shuffle(images)
 
     if images:
