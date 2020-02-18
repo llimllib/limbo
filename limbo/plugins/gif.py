@@ -30,7 +30,7 @@ def gif(search, unsafe=False):
 
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
-    gifs = list(map(unescape, re.findall(r"var u='(.*?)'", result)))
+    gifs = list(map(unescape, re.findall(r"imgres[?]imgurl=(.*?)&amp;", result)))
     shuffle(gifs)
 
     if gifs:
