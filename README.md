@@ -91,3 +91,4 @@ These are the current default plugins:
 * [@StewPoll](https://github.com/StewPoll)
 * [@eSoares](https://github.com/eSoares)
 * [@sweinstein89](https://github.com/sweinstein89)
+* [@fenwar](https://github.com/fenwar)
