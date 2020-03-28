@@ -6,6 +6,8 @@ import sys
 
 DIR = os.path.dirname(os.path.realpath(__file__))
 TESTPLUGINS = os.path.join(DIR, "plugins")
+os.environ["LIMBO_CONFIG_LOCATION"] = "config.ini"
+
 
 # http://stackoverflow.com/a/13160748/42559
 def sh(cmd):
