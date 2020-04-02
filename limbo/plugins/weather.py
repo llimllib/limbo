@@ -4,8 +4,8 @@
 Three environment variables control the behavior of this plugin:
     MAPBOX_API_TOKEN: must be set to a valid Mapbox API token
                       https://docs.mapbox.com/api/search/#geocoding
-    DARKSKY_API_KEY: must be set to a valid Dark Sky API key
-                      https://darksky.net/dev/docs#data-point-object
+    OPENWEATHER_API_KEY: must be set to a valid OpenWeather API key
+                      https://openweathermap.org/current
     WEATHER_CELSIUS: if this environment variable is present with any value,
                      the plugin will report temperatures in celsius instead of
                      farenheit
@@ -22,24 +22,32 @@ from datetime import datetime
 
 import requests
 
-# https://darksky.net/dev/docs#data-point-object
+# https://openweathermap.org/weather-conditions
 ICONMAP = {
-    "clear-day": ":sunny:",
-    "clear-night": ":moon:",
-    "rain": ":rain_cloud:",
-    "snow": ":snowflake:",
-    "sleet": ":snow_cloud:",
-    "wind": ":wind_blowing_face:",
-    "fog": ":fog:",
-    "cloudy": ":cloud:",
-    "partly-cloudy-day": ":sun_behind_cloud:",
-    "partly-cloudy-night": ":sun_behind_cloud:",
-    "thunderstorm": ":thunder_cloud_and_rain:",
-    "tornado": ":tornado:",
+    "01d": ":sunny:",
+    "01n": ":moon:",
+    "02d": ":sun_behind_cloud:",
+    "02n": ":sun_behind_cloud:",
+    "03d": ":cloud:",
+    "03n": ":cloud:",
+    "04d": ":cloud:",
+    "04n": ":cloud:",
+    "09d": ":rain_cloud:",
+    "09n": ":rain_cloud:",
+    "10d": ":sun_behind_rain_cloud:",
+    "10n": ":sun_behind_rain_cloud:",
+    "11d": ":thunder_cloud_and_rain:",
+    "11n": ":thunder_cloud_and_rain:",
+    "13d": ":snowflake:",
+    "13n": ":snowflake:",
+    "50d": ":fog:",
+    "50n": ":fog:",
 }
+CELSIUS = "metric"
+IMPERIAL = "imperial"
 
 MAPBOX_API_TOKEN = os.environ.get("MAPBOX_API_TOKEN")
-DARKSKY_API_KEY = os.environ.get("DARKSKY_API_KEY")
+OPENWEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 
 
 class WeatherException(Exception):
@@ -60,7 +68,7 @@ def weather(searchterm):
     Throws WeatherException if the location given by `searchterm` can't be
     found.
     """
-    unit = "si" if os.environ.get("WEATHER_CELSIUS") else "us"
+    unit = CELSIUS if os.environ.get("WEATHER_CELSIUS") else IMPERIAL
 
     geo = requests.get(
         "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?limit=1&access_token={}".format(
@@ -69,28 +77,26 @@ def weather(searchterm):
     ).json()
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
-    forecast = requests.get(
-        "https://api.darksky.net/forecast/{}/{},{}?units={}".format(
-            DARKSKY_API_KEY, lat, lon, unit
+    today = requests.get(
+        "https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&units={}&appid={}".format(
+            lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
 
     title = "Weather for {}: ".format(citystate)
 
-    forecasts = []
-    unit_abbrev = "f" if unit == "us" else "c"
-    for day in forecast["daily"]["data"][0:4]:
-        day_of_wk = datetime.fromtimestamp(day["time"]).strftime("%A")
-        icon = ICONMAP.get(day["icon"], ":question:")
-        forecasts.append(
-            {
-                "title": day_of_wk,
-                "value": u"{} {}°{}".format(
-                    icon, int(round(day["temperatureHigh"])), unit_abbrev
-                ),
-                "short": True,
-            }
-        )
+    unit_abbrev = "f" if unit == IMPERIAL else "c"
+    day_of_wk = datetime.fromtimestamp(today["dt"]).strftime("%A")
+    icon = ICONMAP.get(today["weather"][0]["icon"], ":question:")
+    forecasts = [
+        {
+            "title": day_of_wk,
+            "value": u"{} {}°{}".format(
+                icon, int(round(today["main"]["temp"])), unit_abbrev
+            ),
+            "short": True,
+        }
+    ]
 
     return title, forecasts
 
