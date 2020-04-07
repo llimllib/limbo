@@ -20,6 +20,7 @@ import json
 import os
 import re
 from datetime import datetime
+from itertools import groupby
 
 import requests
 
@@ -70,50 +71,38 @@ def weather(searchterm):
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
 
-    today = requests.get(
-        "https://api.openweathermap.org/data/2.5/weather?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
-            lat, lon, unit, OPENWEATHER_API_KEY
-        )
-    ).json()
     forecast = requests.get(
         "https://api.openweathermap.org/data/2.5/forecast?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
 
+    if forecast["cod"] != "200":
+        raise KeyError("Invalid OpenWeatherMap key")
+
     title = "Weather for {}: ".format(citystate)
 
-    # offset in seconds
-    utc_offset = today["timezone"]
-    current_time = datetime.fromtimestamp(today["dt"] + utc_offset)
+    # relies on the forecast list being sorted
+    days = groupby(forecast["list"], lambda i: i["dt_txt"].split(" ")[0])
+    messages = []
+    for dt, forecasts in days:
+        dayname = datetime.strptime("2020-04-07", "%Y-%m-%d").strftime("%A")
+        high = max(
+            (round(cast["main"]["temp_max"]), cast["weather"][0]["icon"])
+            for cast in forecasts
+        )
+        icon = ICONMAP.get(high[1], ":question:")
+        unit_abbrev = "f" if unit == IMPERIAL else "c"
 
-    forecasts = [parse_forecast(today, current_time, unit)]
+        messages.append(
+            {
+                "title": dayname,
+                "value": u"{} {}°{}".format(icon, high[0], unit_abbrev),
+                "short": True,
+            }
+        )
 
-    for event in forecast["list"]:
-        event_time = datetime.fromtimestamp(event["dt"] + utc_offset)
-        hour = event_time.strftime("%H")
-        # not today and is 3-hour forecast > 11am and <= 2pm
-        if (
-            current_time.strftime("%d") != event_time.strftime("%d")
-            and hour > "11"
-            and hour <= "14"
-        ):
-            forecasts.append(parse_forecast(event, event_time, unit))
-
-    return title, forecasts[0:4]
-
-
-def parse_forecast(event, time, unit):
-    day_of_wk = time.strftime("%A")
-    icon = ICONMAP.get(event["weather"][0]["icon"], ":question:")
-    unit_abbrev = "f" if unit == IMPERIAL else "c"
-    return {
-        "title": day_of_wk,
-        "value": u"{} {}°{}".format(
-            icon, int(round(event["main"]["temp"])), unit_abbrev
-        ),
-        "short": True,
-    }
+    return title, messages[:4]
 
 
 def on_message(msg, server):
