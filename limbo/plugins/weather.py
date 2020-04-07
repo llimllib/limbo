@@ -20,6 +20,7 @@ import json
 import os
 import re
 from datetime import datetime
+from itertools import groupby
 
 import requests
 
@@ -61,6 +62,7 @@ def weather(searchterm):
         format (see https://api.slack.com/docs/message-attachments)
     """
     unit = CELSIUS if os.environ.get("WEATHER_CELSIUS") else IMPERIAL
+    unit_abbrev = "f" if unit == IMPERIAL else "c"
 
     geo = requests.get(
         "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?limit=1&access_token={}".format(
@@ -70,50 +72,44 @@ def weather(searchterm):
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
 
-    today = requests.get(
-        "https://api.openweathermap.org/data/2.5/weather?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
-            lat, lon, unit, OPENWEATHER_API_KEY
-        )
-    ).json()
+    title = "Weather for {}: ".format(citystate)
+
     forecast = requests.get(
         "https://api.openweathermap.org/data/2.5/forecast?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
+    if forecast["cod"] != "200":
+        raise KeyError("Invalid OpenWeatherMap key")
 
-    title = "Weather for {}: ".format(citystate)
+    # the dates are in UTC, but we want them in local time. convert them
+    utc_offset = forecast["city"]["timezone"]
+    forecasts = sorted(
+        (
+            datetime.fromtimestamp(cast["dt"] + utc_offset).strftime("%Y-%m-%d"),
+            int(round(cast["main"]["temp_max"])),
+            ICONMAP.get(cast["weather"][0]["icon"], ":question:"),
+        )
+        for cast in forecast["list"]
+    )
 
-    # offset in seconds
-    utc_offset = today["timezone"]
-    current_time = datetime.fromtimestamp(today["dt"] + utc_offset)
+    # for each day's forecasts, pick the one with the max temperature and
+    # create a weather message
+    days = groupby(forecasts, lambda x: x[0])
+    messages = []
+    for dt, forecasts in days:
+        dayname = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
+        high, icon = max((cast[1], cast[2]) for cast in forecasts)
 
-    forecasts = [parse_forecast(today, current_time, unit)]
+        messages.append(
+            {
+                "title": dayname,
+                "value": u"{} {}°{}".format(icon, high, unit_abbrev),
+                "short": True,
+            }
+        )
 
-    for event in forecast["list"]:
-        event_time = datetime.fromtimestamp(event["dt"] + utc_offset)
-        hour = event_time.strftime("%H")
-        # not today and is 3-hour forecast > 11am and <= 2pm
-        if (
-            current_time.strftime("%d") != event_time.strftime("%d")
-            and hour > "11"
-            and hour <= "14"
-        ):
-            forecasts.append(parse_forecast(event, event_time, unit))
-
-    return title, forecasts[0:4]
-
-
-def parse_forecast(event, time, unit):
-    day_of_wk = time.strftime("%A")
-    icon = ICONMAP.get(event["weather"][0]["icon"], ":question:")
-    unit_abbrev = "f" if unit == IMPERIAL else "c"
-    return {
-        "title": day_of_wk,
-        "value": u"{} {}°{}".format(
-            icon, int(round(event["main"]["temp"])), unit_abbrev
-        ),
-        "short": True,
-    }
+    return title, messages[:4]
 
 
 def on_message(msg, server):
