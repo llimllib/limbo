@@ -72,32 +72,41 @@ def weather(searchterm):
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
 
+    title = "Weather for {}: ".format(citystate)
+
     forecast = requests.get(
         "https://api.openweathermap.org/data/2.5/forecast?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
-
     if forecast["cod"] != "200":
         raise KeyError("Invalid OpenWeatherMap key")
 
-    title = "Weather for {}: ".format(citystate)
+    # the dates are in UTC, but we want them in local time. convert them
+    utc_offset = forecast["city"]["timezone"]
+    forecasts = sorted(
+        (
+            datetime.fromtimestamp(cast["dt"] + utc_offset).strftime("%Y-%m-%d"),
+            int(round(cast["main"]["temp_max"])),
+            cast["weather"][0]["icon"],
+        )
+        for cast in forecast["list"]
+    )
 
-    # relies on the forecast list being sorted
-    days = groupby(forecast["list"], lambda i: i["dt_txt"].split(" ")[0])
+    # for each day's forecasts, pick the one with the max temperature and
+    # create a weather message
+    days = groupby(forecasts, lambda x: x[0])
     messages = []
     for dt, forecasts in days:
         dayname = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
-        high = max(
-            (int(round(cast["main"]["temp_max"])), cast["weather"][0]["icon"])
-            for cast in forecasts
+        high, icon = max(
+            (cast[1], ICONMAP.get(cast[2], ":question:")) for cast in forecasts
         )
-        icon = ICONMAP.get(high[1], ":question:")
 
         messages.append(
             {
                 "title": dayname,
-                "value": u"{} {}°{}".format(icon, high[0], unit_abbrev),
+                "value": u"{} {}°{}".format(icon, high, unit_abbrev),
                 "short": True,
             }
         )
