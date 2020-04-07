@@ -82,7 +82,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: https://api.openweathermap.org/data/2.5/weather?lat=19.4775384629664&lon=-155.101150021228&units=metric&appid=fake_openweather_key
+    uri: https://api.openweathermap.org/data/2.5/weather?lat=19.48&lon=-155.10&units=metric&appid=fake_openweather_key
   response:
     body:
       string: '{"coord":{"lon":-155.1,"lat":19.48},"weather":[{"id":803,"main":"Clouds","description":"broken
@@ -122,7 +122,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: https://api.openweathermap.org/data/2.5/forecast?lat=19.4775384629664&lon=-155.101150021228&units=metric&appid=fake_openweather_key
+    uri: https://api.openweathermap.org/data/2.5/forecast?lat=19.48&lon=-155.10&units=metric&appid=fake_openweather_key
   response:
     body:
       string: '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1586228400,"main":{"temp":21.44,"feels_like":20.48,"temp_min":21.18,"temp_max":21.44,"pressure":1013,"sea_level":1013,"grnd_level":948,"humidity":61,"temp_kf":0.26},"weather":[{"id":500,"main":"Rain","description":"light

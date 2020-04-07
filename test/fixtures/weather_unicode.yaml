@@ -80,7 +80,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: https://api.openweathermap.org/data/2.5/weather?lat=13.75&lon=100.51667&units=imperial&appid=fake_openweather_key
+    uri: https://api.openweathermap.org/data/2.5/weather?lat=13.75&lon=100.52&units=imperial&appid=fake_openweather_key
   response:
     body:
       string: '{"coord":{"lon":100.52,"lat":13.75},"weather":[{"id":801,"main":"Clouds","description":"few
@@ -119,7 +119,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: https://api.openweathermap.org/data/2.5/forecast?lat=13.75&lon=100.51667&units=imperial&appid=fake_openweather_key
+    uri: https://api.openweathermap.org/data/2.5/forecast?lat=13.75&lon=100.52&units=imperial&appid=fake_openweather_key
   response:
     body:
       string: '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1586228400,"main":{"temp":93.61,"feels_like":96.37,"temp_min":90.48,"temp_max":93.61,"pressure":1012,"sea_level":1012,"grnd_level":1011,"humidity":54,"temp_kf":1.74},"weather":[{"id":804,"main":"Clouds","description":"overcast

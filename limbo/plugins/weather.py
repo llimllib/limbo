@@ -69,13 +69,14 @@ def weather(searchterm):
     ).json()
     citystate = geo["features"][0]["place_name"]
     lon, lat = geo["features"][0]["center"]
+
     today = requests.get(
-        "https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&units={}&appid={}".format(
+        "https://api.openweathermap.org/data/2.5/weather?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
     forecast = requests.get(
-        "https://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&units={}&appid={}".format(
+        "https://api.openweathermap.org/data/2.5/forecast?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
