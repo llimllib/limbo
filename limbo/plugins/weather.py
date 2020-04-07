@@ -86,7 +86,7 @@ def weather(searchterm):
     days = groupby(forecast["list"], lambda i: i["dt_txt"].split(" ")[0])
     messages = []
     for dt, forecasts in days:
-        dayname = datetime.strptime("2020-04-07", "%Y-%m-%d").strftime("%A")
+        dayname = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
         high = max(
             (int(round(cast["main"]["temp_max"])), cast["weather"][0]["icon"])
             for cast in forecasts
