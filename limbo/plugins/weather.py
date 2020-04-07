@@ -51,12 +51,6 @@ MAPBOX_API_TOKEN = os.environ.get("MAPBOX_API_TOKEN")
 OPENWEATHER_API_KEY = os.environ.get("OPENWEATHER_API_KEY")
 
 
-class WeatherException(Exception):
-    """An exception finding the weather"""
-
-    pass
-
-
 def weather(searchterm):
     """Get the weather for a place given by searchterm
 
@@ -65,9 +59,6 @@ def weather(searchterm):
     The title describes the location for the forecast (i.e. "Portland, ME USA")
     The list of forecasts is a list of dictionaries in slack attachment fields
         format (see https://api.slack.com/docs/message-attachments)
-
-    Throws WeatherException if the location given by `searchterm` can't be
-    found.
     """
     unit = CELSIUS if os.environ.get("WEATHER_CELSIUS") else IMPERIAL
 
@@ -132,8 +123,8 @@ def on_message(msg, server):
 
     try:
         title, forecasts = weather(match[0])
-    except WeatherException as err:
-        return err.args[0]
+    except KeyError as err:
+        return "KeyError: {}".format(err.args[0])
 
     attachment = {"fallback": title, "pretext": title, "fields": forecasts[0:4]}
     server.slack.post_message(
