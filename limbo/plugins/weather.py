@@ -88,7 +88,7 @@ def weather(searchterm):
     for dt, forecasts in days:
         dayname = datetime.strptime("2020-04-07", "%Y-%m-%d").strftime("%A")
         high = max(
-            (round(cast["main"]["temp_max"]), cast["weather"][0]["icon"])
+            (int(round(cast["main"]["temp_max"])), cast["weather"][0]["icon"])
             for cast in forecasts
         )
         icon = ICONMAP.get(high[1], ":question:")
