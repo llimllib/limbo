@@ -22,7 +22,7 @@ def msgobj(msg):
 def weather_env_vars(monkeypatch):
     """Disable environment variables that mess up our tests"""
     monkeypatch.setenv("MAPBOX_API_TOKEN", "fake_mapbox_token")
-    monkeypatch.setenv("DARKSKY_API_KEY", "fake_darksky_key")
+    monkeypatch.setenv("OPENWEATHER_API_KEY", "fake_openweather_key")
 
 
 def test_basic():
@@ -33,7 +33,7 @@ def test_basic():
         on_message(msgobj(u"!weather Oahu, HI"), server)
         attachment = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]
         assert "Weather for Oahu" in attachment["pretext"]
-        assert attachment["fields"][0]["value"] == u":rain_cloud: 75°f"
+        assert attachment["fields"][0]["value"] == u":cloud: 72°f"
 
 
 def test_unicode():
@@ -44,14 +44,15 @@ def test_unicode():
         on_message(msgobj(u"!weather กรุงเทพมหานคร"), server)
         # not blowing up == success
 
+
 def test_units(monkeypatch):
     from weather import on_message
+
     monkeypatch.setenv("WEATHER_CELSIUS", "yes")
 
     server = limbo.FakeServer()
-    #todo record a fixture with correct content for celcius
     with vcr.use_cassette("test/fixtures/weather_celsius.yaml"):
         on_message(msgobj(u"!weather Oahu, HI"), server)
         attachment = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]
         assert "Weather for Oahu" in attachment["pretext"]
-        assert attachment["fields"][0]["value"] == u":rain_cloud: 75°c"
+        assert attachment["fields"][0]["value"] == u":cloud: 23°c"
