@@ -33,7 +33,7 @@ def test_basic():
         on_message(msgobj(u"!weather Oahu, HI"), server)
         attachment = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]
         assert "Weather for Oahu" in attachment["pretext"]
-        assert attachment["fields"][0]["value"] == u":cloud: 72°f"
+        assert attachment["fields"][0]["value"] == u":cloud: 74°f"
 
 
 def test_unicode():
