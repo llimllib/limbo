@@ -62,6 +62,7 @@ def weather(searchterm):
         format (see https://api.slack.com/docs/message-attachments)
     """
     unit = CELSIUS if os.environ.get("WEATHER_CELSIUS") else IMPERIAL
+    unit_abbrev = "f" if unit == IMPERIAL else "c"
 
     geo = requests.get(
         "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?limit=1&access_token={}".format(
@@ -92,7 +93,6 @@ def weather(searchterm):
             for cast in forecasts
         )
         icon = ICONMAP.get(high[1], ":question:")
-        unit_abbrev = "f" if unit == IMPERIAL else "c"
 
         messages.append(
             {
