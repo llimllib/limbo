@@ -88,7 +88,7 @@ def weather(searchterm):
         (
             datetime.fromtimestamp(cast["dt"] + utc_offset).strftime("%Y-%m-%d"),
             int(round(cast["main"]["temp_max"])),
-            cast["weather"][0]["icon"],
+            ICONMAP.get(cast["weather"][0]["icon"], ":question:"),
         )
         for cast in forecast["list"]
     )
@@ -99,9 +99,7 @@ def weather(searchterm):
     messages = []
     for dt, forecasts in days:
         dayname = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
-        high, icon = max(
-            (cast[1], ICONMAP.get(cast[2], ":question:")) for cast in forecasts
-        )
+        high, icon = max((cast[1], cast[2]) for cast in forecasts)
 
         messages.append(
             {
