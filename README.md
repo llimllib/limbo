@@ -92,3 +92,4 @@ These are the current default plugins:
 * [@eSoares](https://github.com/eSoares)
 * [@sweinstein89](https://github.com/sweinstein89)
 * [@fenwar](https://github.com/fenwar)
+* [@rdimartino](https://github.com/rdimartino)
