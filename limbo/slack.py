@@ -224,7 +224,9 @@ class SlackClient(object):
         # this call may or may not provide members for each channel, so
         # let's not rely on the members being in it. If we need them
         # (which I don't think we do?) we can get them later
-        for chan in self.get_all("channels.list", "channels", exclude_members=True):
+        for chan in self.get_all(
+            "conversations.list", "channels", exclude_members=True
+        ):
             self.channels[chan["id"]] = Channel(chan["id"], chan["name"])
 
     def get_user_list(self):
