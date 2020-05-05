@@ -19,8 +19,6 @@ from .fakeserver import FakeServer
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
-PYTHON3 = sys.version_info[0] > 2
-
 logger = logging.getLogger(__name__)
 
 
@@ -32,11 +30,13 @@ class InvalidPluginDir(Exception):
 
 def init_log(config):
     loglevel = config.get("loglevel", logging.INFO)
-    logformat = config.get("logformat",
-                           '%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+    logformat = config.get(
+        "logformat", "%(asctime)s:%(levelname)s:%(name)s:%(message)s"
+    )
     if config.get("logfile"):
         logging.basicConfig(
-            filename=config.get("logfile"), format=logformat, level=loglevel)
+            filename=config.get("logfile"), format=logformat, level=loglevel
+        )
     else:
         logging.basicConfig(format=logformat, level=loglevel)
 
@@ -61,9 +61,11 @@ def init_plugins(plugindir, plugins_to_load=None):
         # we might be in an egg; try to get the files that way
         logger.debug("trying pkg_resources")
         import pkg_resources
+
         try:
             plugins = strip_extension(
-                pkg_resources.resource_listdir(__name__, "plugins"))
+                pkg_resources.resource_listdir(__name__, "plugins")
+            )
         except OSError:
             raise InvalidPluginDir(plugindir)
 
@@ -76,7 +78,9 @@ def init_plugins(plugindir, plugins_to_load=None):
         if plugins_to_load and plugin not in plugins_to_load:
             logger.debug(
                 "skipping plugin {0}, not in plugins_to_load {1}".format(
-                    plugin, plugins_to_load))
+                    plugin, plugins_to_load
+                )
+            )
             continue
 
         logger.debug("plugin: {0}".format(plugin))
@@ -89,16 +93,16 @@ def init_plugins(plugindir, plugins_to_load=None):
                 hooks.setdefault(hook, []).append(hookfun)
 
             if mod.__doc__:
-                firstline = mod.__doc__.split('\n')[0]
-                hooks.setdefault('help', {})[modname] = firstline
-                hooks.setdefault('extendedhelp', {})[modname] = mod.__doc__
+                firstline = mod.__doc__.split("\n")[0]
+                hooks.setdefault("help", {})[modname] = firstline
+                hooks.setdefault("extendedhelp", {})[modname] = mod.__doc__
 
         # bare except, because the modules could raise any number of errors
         # on import, and we want them not to kill our server
         except:
             logger.warning(
-                "import failed on module {0}, module not loaded".format(
-                    plugin))
+                "import failed on module {0}, module not loaded".format(plugin)
+            )
             logger.warning("{0}".format(sys.exc_info()[0]))
             logger.warning("{0}".format(traceback.format_exc()))
 
@@ -114,8 +118,7 @@ def run_hook(hooks, hook, *args):
             if h:
                 responses.append(h)
         except:
-            logger.warning(
-                "Failed to run plugin {0}, module not loaded".format(hook))
+            logger.warning("Failed to run plugin {0}, module not loaded".format(hook))
             logger.warning("{0}".format(sys.exc_info()[0]))
             logger.warning("{0}".format(traceback.format_exc()))
 
@@ -144,8 +147,9 @@ def handle_message(event, server):
 
     # skip messages from ourselves and from slackbot to prevent message loops
     if not user_id or user_id == server.slack.userid or user_id == "USLACKBOT":
-        logger.debug("skipping message {} no user found or user is "
-                     "self".format(event))
+        logger.debug(
+            "skipping message {} no user found or user is " "self".format(event)
+        )
         return
     return "\n".join(run_hook(server.hooks, subtype, event, server))
 
@@ -210,8 +214,8 @@ def loop(server, test_loop=None):
                 # difference. If a message is part of a thread, respond to
                 # that thread.
                 thread_ts = None
-                if 'thread_ts' in event:
-                    thread_ts = event['thread_ts']
+                if "thread_ts" in event:
+                    thread_ts = event["thread_ts"]
 
                 while response:
                     # The Slack API documentation says:
@@ -224,8 +228,9 @@ def loop(server, test_loop=None):
                     # but empirical testing shows that I'm getting disconnected
                     # at 4000 characters and even quite a bit lower. Use 1000
                     # to be safe
-                    server.slack.rtm_send_message(event["channel"],
-                                                  response[:1000], thread_ts)
+                    server.slack.rtm_send_message(
+                        event["channel"], response[:1000], thread_ts
+                    )
                     response = response[1000:]
 
             # Run the loop hook. This doesn't send messages it receives,
@@ -254,13 +259,17 @@ def loop(server, test_loop=None):
     except KeyboardInterrupt:
         if os.environ.get("LIMBO_DEBUG"):
             import ipdb
+
             ipdb.set_trace()
         raise
 
 
 def relevant_environ():
-    return dict((key, os.environ[key]) for key in os.environ
-                if key.startswith("SLACK") or key.startswith("LIMBO"))
+    return dict(
+        (key, os.environ[key])
+        for key in os.environ
+        if key.startswith("SLACK") or key.startswith("LIMBO")
+    )
 
 
 def init_server(args, config, Server=LimboServer, Client=SlackClient):
@@ -275,7 +284,8 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
     try:
         slack = Client(config["token"])
     except KeyError:
-        logger.error("""Unable to find a slack token. The environment variables
+        logger.error(
+            """Unable to find a slack token. The environment variables
 limbo sees are:
 {0}
 
@@ -285,26 +295,13 @@ and the current config is:
 Try setting your bot's slack token with:
 
 export SLACK_TOKEN=<your-slack-bot-token>
-""".format(relevant_environ(), config))
+""".format(
+                relevant_environ(), config
+            )
+        )
         raise
     server = Server(slack, config, hooks, db)
     return server
-
-
-# decode a string. if str is a python 3 string, do nothing.
-def decode(str_, codec='utf8'):
-    if PYTHON3:
-        return str_
-    else:
-        return str_.decode(codec)
-
-
-# encode a string. if str is a python 3 string, do nothing.
-def encode(str_, codec='utf8'):
-    if PYTHON3:
-        return str_
-    else:
-        return str_.encode(codec)
 
 
 def main(args):
@@ -316,11 +313,16 @@ def main(args):
     elif args.command is not None:
         init_log(config)
         db = init_db(args.database_name)
-        cmd = decode(args.command)
+        cmd = args.command
         print(
-            run_cmd(cmd,
-                    FakeServer(db=db), args.hook, args.pluginpath,
-                    config.get("plugins")))
+            run_cmd(
+                cmd,
+                FakeServer(db=db),
+                args.hook,
+                args.pluginpath,
+                config.get("plugins"),
+            )
+        )
         return
 
     server = init_server(args, config)
@@ -335,24 +337,23 @@ def main(args):
         logger.warn("Unable to connect to Slack. Bad network?")
         raise
     except SlackLoginError:
-        logger.warn("Login Failed, invalid token <{0}>?".format(
-            config["token"]))
+        logger.warn("Login Failed, invalid token <{0}>?".format(config["token"]))
         raise
 
 
-# run a command. cmd should be a unicode string (str in python3, unicode in python2).
-# returns a string appropriate for printing (str in py2 and py3)
+# run a command. cmd should be a unicode string
+# returns a string appropriate for printing
 def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
     server.hooks = init_plugins(pluginpath, plugins_to_load)
     event = {
-        'type': hook,
-        'text': cmd,
+        "type": hook,
+        "text": cmd,
         "user": "2",
-        'ts': time.time(),
-        'team': None,
-        'channel': 'repl_channel'
+        "ts": time.time(),
+        "team": None,
+        "channel": "repl_channel",
     }
-    return encode(handle_event(event, server))
+    return handle_event(event, server)
 
 
 # raw_input in 2.6 is input in python 3. Set `input` to the correct function
@@ -365,7 +366,7 @@ except NameError:
 def repl(server, args):
     try:
         while 1:
-            cmd = decode(input("limbo> "))
+            cmd = input("limbo> ")
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
