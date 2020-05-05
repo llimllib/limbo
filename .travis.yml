@@ -24,4 +24,4 @@ matrix:
       python: 3.8
     - os: linux
       dist: trusty
-      python: pypy
+      python: pypy3
