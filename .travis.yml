@@ -23,5 +23,5 @@ matrix:
       dist: xenial
       python: 3.8
     - os: linux
-      dist: trusty
+      dist: bionic
       python: pypy3
