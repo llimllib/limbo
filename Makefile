@@ -35,8 +35,11 @@ install: requirements
 .PHONY: publish
 publish:
 	pandoc -s -w rst README.md -o README.rst
-	python setup.py sdist upload
+	pip install wheel twine
+	python setup.py sdist bdist_wheel
+	twine upload dist/*
 	rm README.rst
+	rm -rf dist
 
 .PHONY: flake8
 flake8:
