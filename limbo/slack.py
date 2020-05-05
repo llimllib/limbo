@@ -27,9 +27,9 @@ class SlackLoginError(Exception):
     pass
 
 
-User = namedtuple('User', 'id name real_name tz')
-Bot = namedtuple('Bot', 'id name icons deleted')
-Channel = namedtuple('Channel', 'id name')
+User = namedtuple("User", "id name real_name tz")
+Bot = namedtuple("Bot", "id name icons deleted")
+Channel = namedtuple("Channel", "id name")
 
 LOG = logging.getLogger(__name__)
 
@@ -108,12 +108,7 @@ class SlackClient(object):
         you'll need to include the `as_user` kwarg. Example of how to do this:
             server.slack.post_message(msg['channel'], 'My message', as_user=server.slack.username)
         """
-        params = {
-            "post_data": {
-                "text": message,
-                "channel": channel_id,
-            }
-        }
+        params = {"post_data": {"text": message, "channel": channel_id,}}
         params["post_data"].update(kwargs)
 
         return self.api_call("chat.postMessage", **params)
@@ -135,14 +130,12 @@ class SlackClient(object):
 
     def process_changes(self, data):
         if "type" in data.keys():
-            if data["type"] in ('channel_created', 'group_joined'):
+            if data["type"] in ("channel_created", "group_joined"):
                 channel = data["channel"]
-                self.channels[channel["id"]] = Channel(channel["id"],
-                                                       channel["name"])
+                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
             if data["type"] == "im_created":
                 channel = data["channel"]
-                self.channels[channel["id"]] = Channel(channel["id"],
-                                                       channel["name"])
+                self.channels[channel["id"]] = Channel(channel["id"], channel["name"])
             elif data["type"] == "team_join":
                 user = data["user"]
                 self.parse_users([user])
@@ -156,7 +149,7 @@ class SlackClient(object):
             if login_data["ok"]:
                 # this URL is only valid for 30 seconds, so make sure to
                 # connect ASAP
-                ws_url = login_data['url']
+                ws_url = login_data["url"]
                 self.connect_slack_websocket(ws_url)
                 self.parse_slack_login_data(login_data)
             else:
@@ -205,8 +198,11 @@ class SlackClient(object):
                 for obj in page[collection_name]:
                     objs.append(obj)
             except KeyError:
-                LOG.error("Unable to find key %s in page object: \n"
-                          "%s", collection_name, page)
+                LOG.error(
+                    "Unable to find key %s in page object: \n" "%s",
+                    collection_name,
+                    page,
+                )
 
                 return objs
 
@@ -217,8 +213,8 @@ class SlackClient(object):
                 # https://api.slack.com/docs/rate-limits
                 time.sleep(1)
                 page = json.loads(
-                    self.api_call(
-                        api_method, cursor=cursor, limit=limit, **kwargs))
+                    self.api_call(api_method, cursor=cursor, limit=limit, **kwargs)
+                )
             else:
                 break
 
@@ -229,8 +225,9 @@ class SlackClient(object):
         # let's not rely on the members being in it. If we need them
         # (which I don't think we do?) we can get them later
         for chan in self.get_all(
-                "channels.list", "channels", exclude_members=True):
-            self.channels[chan["id"]] = Channel(chan['id'], chan["name"])
+            "conversations.list", "channels", exclude_members=True
+        ):
+            self.channels[chan["id"]] = Channel(chan["id"], chan["name"])
 
     def get_user_list(self):
         self.parse_users(self.get_all("users.list", "members"))
@@ -246,16 +243,17 @@ class SlackClient(object):
                 self.parse_bot_data(user)
                 continue
 
-            uid = user['id']
-            name = user['name']
-            real_name = user['real_name']
-            tz = user['tz']
+            uid = user["id"]
+            name = user["name"]
+            real_name = user["real_name"]
+            tz = user["tz"]
 
-            self.users[user['id']] = User(uid, name, real_name, tz)
+            self.users[user["id"]] = User(uid, name, real_name, tz)
 
     def parse_bot_data(self, bot):
-        self.bots[bot['id']] = Bot(bot['id'], bot['name'],
-                                   bot.get('icons', ''), bot['deleted'])
+        self.bots[bot["id"]] = Bot(
+            bot["id"], bot["name"], bot.get("icons", ""), bot["deleted"]
+        )
 
     def send_to_websocket(self, data):
         """Send (data) directly to the websocket."""
@@ -290,7 +288,7 @@ class SlackClient(object):
 
     def do(self, request, post_data=None, files=None, **kwargs):
         post_data = {} if not post_data else post_data
-        url = 'https://slack.com/api/{0}'.format(request)
+        url = "https://slack.com/api/{0}".format(request)
         post_data["token"] = self.token
         post_data.update(kwargs)
         return requests.post(url, data=post_data, files=files)
