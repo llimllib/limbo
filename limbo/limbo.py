@@ -129,7 +129,7 @@ def get_user_id_from_message(msg, msgtype):
     try:
         if msgtype == "bot_message":
             return msg["bot_id"]
-        if msgtype == "message_changed":
+        if msgtype in ["message_changed", "message_replied"]:
             return msg["message"]["user"]
         if msgtype == "message_deleted":
             return msg["previous_message"]["user"]
