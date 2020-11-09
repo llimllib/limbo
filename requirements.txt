@@ -37,4 +37,4 @@ virtualenv==20.1.0
 webencodings==0.5.1
 websocket-client==0.57.0
 wrapt==1.12.1
-yarl==1.6.2
+yarl==1.6.0
