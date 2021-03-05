@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 # Thanks to Kenneth Reitz, I stole the template for this
 
-import sys
-
 try:
     from setuptools import setup
 except ImportError:
@@ -19,7 +17,7 @@ except:
 
 setup(
     name="limbo",
-    version="8.1.0",
+    version="8.2.0",
     description="Simple and Clean Slack Chatbot",
     long_description=longdesc,
     author="Bill Mill",
