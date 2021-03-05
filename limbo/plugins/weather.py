@@ -20,7 +20,6 @@ import json
 import os
 import re
 from datetime import datetime
-from itertools import groupby
 
 import requests
 
@@ -75,41 +74,29 @@ def weather(searchterm):
     title = "Weather for {}: ".format(citystate)
 
     forecast = requests.get(
-        "https://api.openweathermap.org/data/2.5/forecast?lat={:.2f}&lon={:.2f}&units={}&appid={}".format(
+        "https://api.openweathermap.org/data/2.5/forecast/daily?lat={:.2f}&lon={:.2f}&cnt=4&units={}&appid={}".format(
             lat, lon, unit, OPENWEATHER_API_KEY
         )
     ).json()
     if forecast["cod"] != "200":
         raise KeyError("Invalid OpenWeatherMap key")
 
-    # the dates are in UTC, but we want them in local time. convert them
-    utc_offset = forecast["city"]["timezone"]
-    forecasts = sorted(
-        (
-            datetime.fromtimestamp(cast["dt"] + utc_offset).strftime("%Y-%m-%d"),
-            int(round(cast["main"]["temp_max"])),
-            ICONMAP.get(cast["weather"][0]["icon"], ":question:"),
-        )
-        for cast in forecast["list"]
-    )
-
-    # for each day's forecasts, pick the one with the max temperature and
-    # create a weather message
-    days = groupby(forecasts, lambda x: x[0])
     messages = []
-    for dt, forecasts in days:
-        dayname = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
-        high, icon = max((cast[1], cast[2]) for cast in forecasts)
+    for cast in forecast["list"]:
+        # do I need to mess with tz at all, or is this accurate enough?
+        dt = datetime.fromtimestamp(cast["dt"]).strftime("%A")
+        high = int(round(cast["temp"]["max"]))
+        icon = ICONMAP.get(cast["weather"][0]["icon"], ":question:")
 
         messages.append(
             {
-                "title": dayname,
+                "title": dt,
                 "value": u"{} {}°{}".format(icon, high, unit_abbrev),
                 "short": True,
             }
         )
 
-    return title, messages[:4]
+    return title, messages
 
 
 def on_message(msg, server):
