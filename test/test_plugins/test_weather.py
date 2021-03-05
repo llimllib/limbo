@@ -33,7 +33,7 @@ def test_basic():
         on_message(msgobj(u"!weather Oahu, HI"), server)
         attachment = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]
         assert "Weather for Oahu" in attachment["pretext"]
-        assert attachment["fields"][0]["value"] == u":sun_behind_rain_cloud: 71°f"
+        assert attachment["fields"][0]["value"] == u":sun_behind_rain_cloud: 68°f"
 
 
 def test_unicode():
@@ -55,4 +55,4 @@ def test_units(monkeypatch):
         on_message(msgobj(u"!weather Oahu, HI"), server)
         attachment = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]
         assert "Weather for Oahu" in attachment["pretext"]
-        assert attachment["fields"][0]["value"] == u":sun_behind_rain_cloud: 21°c"
+        assert attachment["fields"][0]["value"] == u":sun_behind_rain_cloud: 20°c"

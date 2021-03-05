@@ -1,231 +1,111 @@
 interactions:
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.23.0
-    method: GET
-    uri: https://api.mapbox.com/geocoding/v5/mapbox.places/Oahu%2C%20HI.json?limit=1&access_token=fake_mapbox_token
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA42Tz1LbMBDGX2VHpzJjHFvxHym3DlMGDhQ6QC8Mwyj2QtTakpFkQiaTB+pr9Mm6
-        Spqm0Et90+fd3367Wq1ZWA3IZuwUVRgdntiuwyZoa1jCnkd0Kza7Y1YtRjovNLtP2OMu0tOPNdMt
-        5aq2pbNPeSFlWdWyymrJhSwo5S2dhKFTDT7s5Lt9ZsQ67PBFmYb0nMKcHdAFHcusmWqa0amGvDAf
-        HGJgG0LjayDhcudtxzWqx99aAhd2NEFpA181LhM4U0ulNciqrvMEbo0O2MJ1UIFqJKxBE9CRp+O8
-        LNM8y/Myy3jOuUhymRZ1XU5FUXFZVQWZfULbY4jDWe9bvLLahAiy1rXabLH/RdvEHLPrZj/RwfrQ
-        2BbTnBciy0ohskqKYlpl7E/j20ZoEPuUOIBUyEwIUcoip0/wGL7U33WrgqKYL3w6ndZSHiBvZnSA
-        OXyiFSDjRSF4XmQVmeXVFucX1oWHaI7ibq+Pz87f1agFP/B3Qz+Am1jPrdJcTkte5nXNJS+rrPyH
-        PPp32Olfrb+9vM39hq5EheD0fNyu7ox9vrw5P/k0g58/gGc8gws1zO0rKNOCDh78OAydRudT+Nh1
-        4PTTglRaRXQv2KZw6xHsI4SF9hANgI4582/0NCBY0nFPvEHX+xh7Tam6QfiwCGHws8lkuVym/TYo
-        bWw/UXM7hgkJfnKUwk0kU73BGioVbUWmNo/W9Sr2QDYhrgXdjYdercDYAHOknChFj1eX5x/8EdBL
-        edEtTWO+glM7Ov88Kocp2/wCHsvGkNsDAAA=
-    headers:
-      Access-Control-Allow-Origin:
-      - '*'
-      Access-Control-Expose-Headers:
-      - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
-      Age:
-      - '551'
-      Cache-Control:
-      - max-age=604800
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/vnd.geo+json; charset=utf-8
-      Date:
-      - Tue, 07 Apr 2020 02:13:34 GMT
-      ETag:
-      - '"58c736d68967e252df9aaece3d55a693"'
-      Last-Modified:
-      - Wed, 25 Mar 2020 14:25:21 GMT
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      Via:
-      - 1.1 81834769243dfd27a095a32cf5b86723.cloudfront.net (CloudFront)
-      X-Amz-Cf-Id:
-      - Lc2DVnnhJ1nA-euChomIArgAieph4UKrO0jts2630wIcJm9DvIWXmA==
-      X-Amz-Cf-Pop:
-      - EWR52-C2
-      X-Cache:
-      - Hit from cloudfront
-      X-Powered-By:
-      - Express
-      X-Rate-Limit-Interval:
-      - '60'
-      X-Rate-Limit-Limit:
-      - '600'
-      X-Rate-Limit-Reset:
-      - '1586225674'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.23.0
-    method: GET
-    uri: https://api.openweathermap.org/data/2.5/weather?lat=19.48&lon=-155.10&units=metric&appid=fake_openweather_key
-  response:
-    body:
-      string: '{"coord":{"lon":-155.1,"lat":19.48},"weather":[{"id":803,"main":"Clouds","description":"broken
-        clouds","icon":"04d"}],"base":"stations","main":{"temp":23.49,"feels_like":23.16,"temp_min":21.11,"temp_max":26,"pressure":1012,"humidity":65},"visibility":16093,"wind":{"speed":3.6,"deg":130},"clouds":{"all":75},"dt":1586226165,"sys":{"type":1,"id":7881,"country":"US","sunrise":1586189350,"sunset":1586234135},"timezone":-36000,"id":5855088,"name":"Fern
-        Acres","cod":200}'
-    headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST
-      Access-Control-Allow-Origin:
-      - '*'
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '468'
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Tue, 07 Apr 2020 02:22:45 GMT
-      Server:
-      - openresty
-      X-Cache-Key:
-      - /data/2.5/weather?lat=19.48&lon=-155.1&units=metric
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.23.0
-    method: GET
-    uri: https://api.openweathermap.org/data/2.5/forecast?lat=19.48&lon=-155.10&units=metric&appid=fake_openweather_key
-  response:
-    body:
-      string: '{"cod":"200","message":0,"cnt":40,"list":[{"dt":1586228400,"main":{"temp":21.44,"feels_like":20.48,"temp_min":21.18,"temp_max":21.44,"pressure":1013,"sea_level":1013,"grnd_level":948,"humidity":61,"temp_kf":0.26},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":21},"wind":{"speed":2.99,"deg":149},"rain":{"3h":0.34},"sys":{"pod":"d"},"dt_txt":"2020-04-07
-        03:00:00"},{"dt":1586239200,"main":{"temp":19.73,"feels_like":19.19,"temp_min":19.54,"temp_max":19.73,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":68,"temp_kf":0.19},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":27},"wind":{"speed":2.41,"deg":173},"rain":{"3h":0.16},"sys":{"pod":"n"},"dt_txt":"2020-04-07
-        06:00:00"},{"dt":1586250000,"main":{"temp":19.11,"feels_like":18.43,"temp_min":18.98,"temp_max":19.11,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":68,"temp_kf":0.13},"weather":[{"id":801,"main":"Clouds","description":"few
-        clouds","icon":"02n"}],"clouds":{"all":20},"wind":{"speed":2.33,"deg":189},"sys":{"pod":"n"},"dt_txt":"2020-04-07
-        09:00:00"},{"dt":1586260800,"main":{"temp":18.65,"feels_like":18.07,"temp_min":18.59,"temp_max":18.65,"pressure":1015,"sea_level":1015,"grnd_level":949,"humidity":68,"temp_kf":0.06},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":18},"wind":{"speed":1.99,"deg":198},"rain":{"3h":0.19},"sys":{"pod":"n"},"dt_txt":"2020-04-07
-        12:00:00"},{"dt":1586271600,"main":{"temp":18.07,"feels_like":17.28,"temp_min":18.07,"temp_max":18.07,"pressure":1014,"sea_level":1014,"grnd_level":949,"humidity":66,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01n"}],"clouds":{"all":1},"wind":{"speed":1.85,"deg":217},"sys":{"pod":"n"},"dt_txt":"2020-04-07
-        15:00:00"},{"dt":1586282400,"main":{"temp":20.93,"feels_like":20.7,"temp_min":20.93,"temp_max":20.93,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":58,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01d"}],"clouds":{"all":2},"wind":{"speed":1.37,"deg":188},"sys":{"pod":"d"},"dt_txt":"2020-04-07
-        18:00:00"},{"dt":1586293200,"main":{"temp":23.39,"feels_like":22.15,"temp_min":23.39,"temp_max":23.39,"pressure":1016,"sea_level":1016,"grnd_level":952,"humidity":56,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03d"}],"clouds":{"all":35},"wind":{"speed":3.63,"deg":147},"sys":{"pod":"d"},"dt_txt":"2020-04-07
-        21:00:00"},{"dt":1586304000,"main":{"temp":23.71,"feels_like":21.94,"temp_min":23.71,"temp_max":23.71,"pressure":1014,"sea_level":1014,"grnd_level":950,"humidity":55,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":45},"wind":{"speed":4.39,"deg":158},"rain":{"3h":0.83},"sys":{"pod":"d"},"dt_txt":"2020-04-08
-        00:00:00"},{"dt":1586314800,"main":{"temp":22.26,"feels_like":20.67,"temp_min":22.26,"temp_max":22.26,"pressure":1014,"sea_level":1014,"grnd_level":949,"humidity":59,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":22},"wind":{"speed":4.01,"deg":177},"rain":{"3h":1.05},"sys":{"pod":"d"},"dt_txt":"2020-04-08
-        03:00:00"},{"dt":1586325600,"main":{"temp":20.02,"feels_like":19.52,"temp_min":20.02,"temp_max":20.02,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":68,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":18},"wind":{"speed":2.48,"deg":185},"rain":{"3h":0.88},"sys":{"pod":"n"},"dt_txt":"2020-04-08
-        06:00:00"},{"dt":1586336400,"main":{"temp":19.65,"feels_like":19.17,"temp_min":19.65,"temp_max":19.65,"pressure":1017,"sea_level":1017,"grnd_level":951,"humidity":69,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03n"}],"clouds":{"all":25},"wind":{"speed":2.39,"deg":194},"sys":{"pod":"n"},"dt_txt":"2020-04-08
-        09:00:00"},{"dt":1586347200,"main":{"temp":18.8,"feels_like":17.87,"temp_min":18.8,"temp_max":18.8,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":68,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":24},"wind":{"speed":2.55,"deg":200},"rain":{"3h":0.27},"sys":{"pod":"n"},"dt_txt":"2020-04-08
-        12:00:00"},{"dt":1586358000,"main":{"temp":18.34,"feels_like":17.54,"temp_min":18.34,"temp_max":18.34,"pressure":1015,"sea_level":1015,"grnd_level":949,"humidity":67,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03n"}],"clouds":{"all":31},"wind":{"speed":2.07,"deg":203},"sys":{"pod":"n"},"dt_txt":"2020-04-08
-        15:00:00"},{"dt":1586368800,"main":{"temp":20.88,"feels_like":20.05,"temp_min":20.88,"temp_max":20.88,"pressure":1017,"sea_level":1017,"grnd_level":952,"humidity":58,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":19},"wind":{"speed":2.21,"deg":190},"rain":{"3h":0.17},"sys":{"pod":"d"},"dt_txt":"2020-04-08
-        18:00:00"},{"dt":1586379600,"main":{"temp":23.96,"feels_like":22.44,"temp_min":23.96,"temp_max":23.96,"pressure":1016,"sea_level":1016,"grnd_level":952,"humidity":52,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01d"}],"clouds":{"all":2},"wind":{"speed":3.73,"deg":172},"sys":{"pod":"d"},"dt_txt":"2020-04-08
-        21:00:00"},{"dt":1586390400,"main":{"temp":24.08,"feels_like":21.92,"temp_min":24.08,"temp_max":24.08,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":53,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":8},"wind":{"speed":4.84,"deg":180},"rain":{"3h":0.44},"sys":{"pod":"d"},"dt_txt":"2020-04-09
-        00:00:00"},{"dt":1586401200,"main":{"temp":22.26,"feels_like":21.06,"temp_min":22.26,"temp_max":22.26,"pressure":1014,"sea_level":1014,"grnd_level":949,"humidity":60,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":27},"wind":{"speed":3.58,"deg":193},"rain":{"3h":1.38},"sys":{"pod":"d"},"dt_txt":"2020-04-09
-        03:00:00"},{"dt":1586412000,"main":{"temp":20.07,"feels_like":19.06,"temp_min":20.07,"temp_max":20.07,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":67,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":27},"wind":{"speed":3.12,"deg":193},"rain":{"3h":0.55},"sys":{"pod":"n"},"dt_txt":"2020-04-09
-        06:00:00"},{"dt":1586422800,"main":{"temp":19.51,"feels_like":18.49,"temp_min":19.51,"temp_max":19.51,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":68,"temp_kf":0},"weather":[{"id":801,"main":"Clouds","description":"few
-        clouds","icon":"02n"}],"clouds":{"all":17},"wind":{"speed":2.99,"deg":187},"sys":{"pod":"n"},"dt_txt":"2020-04-09
-        09:00:00"},{"dt":1586433600,"main":{"temp":18.72,"feels_like":17.7,"temp_min":18.72,"temp_max":18.72,"pressure":1014,"sea_level":1014,"grnd_level":949,"humidity":67,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":10},"wind":{"speed":2.54,"deg":206},"rain":{"3h":0.12},"sys":{"pod":"n"},"dt_txt":"2020-04-09
-        12:00:00"},{"dt":1586444400,"main":{"temp":18.19,"feels_like":17.65,"temp_min":18.19,"temp_max":18.19,"pressure":1015,"sea_level":1015,"grnd_level":949,"humidity":64,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01n"}],"clouds":{"all":2},"wind":{"speed":1.35,"deg":222},"sys":{"pod":"n"},"dt_txt":"2020-04-09
-        15:00:00"},{"dt":1586455200,"main":{"temp":20.95,"feels_like":20.66,"temp_min":20.95,"temp_max":20.95,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":57,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01d"}],"clouds":{"all":2},"wind":{"speed":1.34,"deg":190},"sys":{"pod":"d"},"dt_txt":"2020-04-09
-        18:00:00"},{"dt":1586466000,"main":{"temp":24.25,"feels_like":22.66,"temp_min":24.25,"temp_max":24.25,"pressure":1016,"sea_level":1016,"grnd_level":952,"humidity":48,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01d"}],"clouds":{"all":2},"wind":{"speed":3.39,"deg":167},"sys":{"pod":"d"},"dt_txt":"2020-04-09
-        21:00:00"},{"dt":1586476800,"main":{"temp":24.7,"feels_like":22.54,"temp_min":24.7,"temp_max":24.7,"pressure":1015,"sea_level":1015,"grnd_level":951,"humidity":47,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":10},"wind":{"speed":4.24,"deg":198},"rain":{"3h":0.35},"sys":{"pod":"d"},"dt_txt":"2020-04-10
-        00:00:00"},{"dt":1586487600,"main":{"temp":22.71,"feels_like":22.12,"temp_min":22.71,"temp_max":22.71,"pressure":1014,"sea_level":1014,"grnd_level":950,"humidity":56,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":47},"wind":{"speed":2.39,"deg":195},"rain":{"3h":0.47},"sys":{"pod":"d"},"dt_txt":"2020-04-10
-        03:00:00"},{"dt":1586498400,"main":{"temp":20.43,"feels_like":20.14,"temp_min":20.43,"temp_max":20.43,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":66,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":66},"wind":{"speed":2.15,"deg":182},"rain":{"3h":0.54},"sys":{"pod":"n"},"dt_txt":"2020-04-10
-        06:00:00"},{"dt":1586509200,"main":{"temp":19.72,"feels_like":19.05,"temp_min":19.72,"temp_max":19.72,"pressure":1017,"sea_level":1017,"grnd_level":952,"humidity":68,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":76},"wind":{"speed":2.59,"deg":195},"rain":{"3h":0.27},"sys":{"pod":"n"},"dt_txt":"2020-04-10
-        09:00:00"},{"dt":1586520000,"main":{"temp":19.18,"feels_like":18.77,"temp_min":19.18,"temp_max":19.18,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":67,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":77},"wind":{"speed":1.87,"deg":227},"rain":{"3h":0.24},"sys":{"pod":"n"},"dt_txt":"2020-04-10
-        12:00:00"},{"dt":1586530800,"main":{"temp":18.41,"feels_like":18.31,"temp_min":18.41,"temp_max":18.41,"pressure":1015,"sea_level":1015,"grnd_level":950,"humidity":68,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03n"}],"clouds":{"all":31},"wind":{"speed":1.2,"deg":235},"sys":{"pod":"n"},"dt_txt":"2020-04-10
-        15:00:00"},{"dt":1586541600,"main":{"temp":21.02,"feels_like":21.17,"temp_min":21.02,"temp_max":21.02,"pressure":1017,"sea_level":1017,"grnd_level":952,"humidity":57,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03d"}],"clouds":{"all":40},"wind":{"speed":0.75,"deg":200},"sys":{"pod":"d"},"dt_txt":"2020-04-10
-        18:00:00"},{"dt":1586552400,"main":{"temp":23.91,"feels_like":22.99,"temp_min":23.91,"temp_max":23.91,"pressure":1017,"sea_level":1017,"grnd_level":952,"humidity":49,"temp_kf":0},"weather":[{"id":803,"main":"Clouds","description":"broken
-        clouds","icon":"04d"}],"clouds":{"all":60},"wind":{"speed":2.44,"deg":140},"sys":{"pod":"d"},"dt_txt":"2020-04-10
-        21:00:00"},{"dt":1586563200,"main":{"temp":24.71,"feels_like":23.04,"temp_min":24.71,"temp_max":24.71,"pressure":1015,"sea_level":1015,"grnd_level":951,"humidity":47,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":44},"wind":{"speed":3.55,"deg":163},"rain":{"3h":0.27},"sys":{"pod":"d"},"dt_txt":"2020-04-11
-        00:00:00"},{"dt":1586574000,"main":{"temp":23.27,"feels_like":22.06,"temp_min":23.27,"temp_max":23.27,"pressure":1015,"sea_level":1015,"grnd_level":951,"humidity":52,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":18},"wind":{"speed":3,"deg":188},"rain":{"3h":0.62},"sys":{"pod":"d"},"dt_txt":"2020-04-11
-        03:00:00"},{"dt":1586584800,"main":{"temp":20.3,"feels_like":19.47,"temp_min":20.3,"temp_max":20.3,"pressure":1017,"sea_level":1017,"grnd_level":951,"humidity":64,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":17},"wind":{"speed":2.64,"deg":206},"rain":{"3h":0.43},"sys":{"pod":"n"},"dt_txt":"2020-04-11
-        06:00:00"},{"dt":1586595600,"main":{"temp":19.65,"feels_like":19.84,"temp_min":19.65,"temp_max":19.65,"pressure":1018,"sea_level":1018,"grnd_level":952,"humidity":67,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":12},"wind":{"speed":1.22,"deg":200},"rain":{"3h":0.14},"sys":{"pod":"n"},"dt_txt":"2020-04-11
-        09:00:00"},{"dt":1586606400,"main":{"temp":19.09,"feels_like":18.81,"temp_min":19.09,"temp_max":19.09,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":66,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10n"}],"clouds":{"all":13},"wind":{"speed":1.55,"deg":225},"rain":{"3h":0.26},"sys":{"pod":"n"},"dt_txt":"2020-04-11
-        12:00:00"},{"dt":1586617200,"main":{"temp":18.38,"feels_like":18.04,"temp_min":18.38,"temp_max":18.38,"pressure":1016,"sea_level":1016,"grnd_level":951,"humidity":66,"temp_kf":0},"weather":[{"id":800,"main":"Clear","description":"clear
-        sky","icon":"01n"}],"clouds":{"all":8},"wind":{"speed":1.33,"deg":252},"sys":{"pod":"n"},"dt_txt":"2020-04-11
-        15:00:00"},{"dt":1586628000,"main":{"temp":20.95,"feels_like":20.47,"temp_min":20.95,"temp_max":20.95,"pressure":1017,"sea_level":1017,"grnd_level":952,"humidity":55,"temp_kf":0},"weather":[{"id":802,"main":"Clouds","description":"scattered
-        clouds","icon":"03d"}],"clouds":{"all":25},"wind":{"speed":1.38,"deg":185},"sys":{"pod":"d"},"dt_txt":"2020-04-11
-        18:00:00"},{"dt":1586638800,"main":{"temp":24.67,"feels_like":23.05,"temp_min":24.67,"temp_max":24.67,"pressure":1017,"sea_level":1017,"grnd_level":953,"humidity":44,"temp_kf":0},"weather":[{"id":803,"main":"Clouds","description":"broken
-        clouds","icon":"04d"}],"clouds":{"all":79},"wind":{"speed":3.03,"deg":177},"sys":{"pod":"d"},"dt_txt":"2020-04-11
-        21:00:00"},{"dt":1586649600,"main":{"temp":24.34,"feels_like":23.43,"temp_min":24.34,"temp_max":24.34,"pressure":1016,"sea_level":1016,"grnd_level":952,"humidity":50,"temp_kf":0},"weather":[{"id":500,"main":"Rain","description":"light
-        rain","icon":"10d"}],"clouds":{"all":89},"wind":{"speed":2.74,"deg":207},"rain":{"3h":0.26},"sys":{"pod":"d"},"dt_txt":"2020-04-12
-        00:00:00"}],"city":{"id":5855088,"name":"Fern Acres","coord":{"lat":19.5122,"lon":-155.0803},"country":"US","population":1504,"timezone":-36000,"sunrise":1586189345,"sunset":1586234131}}'
-    headers:
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST
-      Access-Control-Allow-Origin:
-      - '*'
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '14585'
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Tue, 07 Apr 2020 02:22:45 GMT
-      Server:
-      - openresty
-      X-Cache-Key:
-      - /data/2.5/forecast?lat=19.48&lon=-155.1&units=metric
-    status:
-      code: 200
-      message: OK
+  - request:
+      body: null
+      headers:
+        Accept:
+          - '*/*'
+        Accept-Encoding:
+          - gzip, deflate
+        Connection:
+          - keep-alive
+        User-Agent:
+          - python-requests/2.24.0
+      method: GET
+      uri: https://api.mapbox.com/geocoding/v5/mapbox.places/Oahu%2C%20HI.json?limit=1&access_token=fake_mapbox_token
+    response:
+      body:
+        string: !!binary |
+          H4sIAAAAAAAAA42Tz07cMBDGX8XyCaSQjZ0/dvZWoSI4UKhYekEIeZOBdZvYwXZYVqt9oL5Gn6zj
+          XbYraA/NzV9mfjPzebymYTUAndIzUGF0cGq7DpqgraEJfR7Brej0jlq1GPG80PQ+oY+7SI8/1lS3
+          mKvaFs8+req6EEywsuBVmUvMeA9HYehUAw87+W6fGKkOOnhRpkGdYZizA7igY5U1VU0zOtVgK9QH
+          BxDoBtHwGlC42rW24xrVw5uWkEs7mqC0Id80LBNyrpZKa1JXQrCE3BodoCU3QQWskdAGTACHPZ2w
+          skxZxliZZZxxLhNWp4UQOE9R8bqqCmz2CWwPIXqz3o94bbUJEWSta7XZYv+Ltok5ZjfN3tDB+tDY
+          FlLGC5llpZRZVcsirzL6Z/DtIGjEPiUakMo6k1KWdcHwkzyGL/UP3aqgMOYrz/Nc1PUB8s6jA6zV
+          6LNuAtYXUpR1mYuK8+ovXiFFnhcH3JvHp5G6OuAcPOFCpawSlWBZJpn8J01IjopfWBce4vSo3d6c
+          nF985B/ATSzkVilDM9CjsiirXHBefyTn2Ufw6A/U97uwud/gDauABszH7UOY0i9Xs4vTz1Py6yfh
+          eI/kUg1z+0qUaYkOnvhxGDoNzqfkU9cRp58WqOJmg3uBNiW3Hoh9JGGhPYktER1z5t/xoZFgUYc9
+          cQau9zH2BlN1A+RoEcLgp5PJcrlM+21Q2th+ouZ2DBMU/OQ4JbNIxnqDNVgqthWZ2jxa16s4A7ZJ
+          4pbhVXvSqxUxNpA5YE6UYo/XVxdH/pjgw3vRLboxX5EzOzr/PCoHKd38BorxRdgpBAAA
+      headers:
+        Access-Control-Allow-Origin:
+          - '*'
+        Access-Control-Expose-Headers:
+          - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
+        Age:
+          - '1'
+        Cache-Control:
+          - max-age=604800
+        Connection:
+          - keep-alive
+        Content-Encoding:
+          - gzip
+        Content-Type:
+          - application/vnd.geo+json; charset=utf-8
+        Date:
+          - Fri, 05 Mar 2021 19:49:22 GMT
+        ETag:
+          - '"7b6be9fa4ac33c1ed8bff633548e2c68"'
+        Last-Modified:
+          - Wed, 03 Mar 2021 16:27:11 GMT
+        Transfer-Encoding:
+          - chunked
+        Vary:
+          - Accept-Encoding
+        Via:
+          - 1.1 6cf3377e93378c7e591abeecafea2e6a.cloudfront.net (CloudFront)
+        X-Amz-Cf-Id:
+          - hRYzVowtQmjgTxrJQdKw7E5Q1EK1THjEB65_PrG-YkF9N52JCL9m6A==
+        X-Amz-Cf-Pop:
+          - EWR53-C1
+        X-Cache:
+          - Hit from cloudfront
+        X-Powered-By:
+          - Express
+        X-Rate-Limit-Interval:
+          - '60'
+        X-Rate-Limit-Limit:
+          - '600'
+        X-Rate-Limit-Reset:
+          - '1614973821'
+      status:
+        code: 200
+        message: OK
+  - request:
+      body: null
+      headers:
+        Accept:
+          - '*/*'
+        Accept-Encoding:
+          - gzip, deflate
+        Connection:
+          - keep-alive
+        User-Agent:
+          - python-requests/2.24.0
+      method: GET
+      uri: https://api.openweathermap.org/data/2.5/forecast/daily?lat=19.48&lon=-155.10&cnt=4&units=metric&appid=fake_openweather_key
+    response:
+      body:
+        string: '{"city":{"id":5855088,"name":"Fern Acres","coord":{"lon":-155.1,"lat":19.48},"country":"US","population":1504,"timezone":-36000},"cod":"200","message":5.0247318,"cnt":4,"list":[{"dt":1614981600,"sunrise":1614962198,"sunset":1615004833,"temp":{"day":19.74,"min":15.1,"max":19.97,"night":15.89,"eve":17.41,"morn":15.14},"feels_like":{"day":18.34,"night":14.99,"eve":16.87,"morn":14.41},"pressure":1018,"humidity":67,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":3.53,"deg":65,"clouds":99,"pop":0.88,"rain":1.93},{"dt":1615068000,"sunrise":1615048550,"sunset":1615091252,"temp":{"day":19.75,"min":15.01,"max":19.93,"night":16.17,"eve":18.42,"morn":15.17},"feels_like":{"day":17.5,"night":15.06,"eve":16.52,"morn":14.06},"pressure":1019,"humidity":74,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":5.51,"deg":37,"clouds":54,"pop":0.59,"rain":4.39},{"dt":1615154400,"sunrise":1615134902,"sunset":1615177670,"temp":{"day":20.66,"min":15.58,"max":20.66,"night":17.14,"eve":17.6,"morn":15.58},"feels_like":{"day":19.1,"night":16.14,"eve":16.5,"morn":14.07},"pressure":1019,"humidity":71,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":4.65,"deg":32,"clouds":27,"pop":1,"rain":39.92},{"dt":1615240800,"sunrise":1615221253,"sunset":1615264088,"temp":{"day":16.48,"min":15.99,"max":16.89,"night":16.05,"eve":16.01,"morn":16.72},"feels_like":{"day":15.92,"night":14.86,"eve":15.1,"morn":16.09},"pressure":1020,"humidity":94,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":3.37,"deg":24,"clouds":100,"pop":1,"rain":107.89}]}'
+      headers:
+        Access-Control-Allow-Credentials:
+          - 'true'
+        Access-Control-Allow-Methods:
+          - GET, POST
+        Access-Control-Allow-Origin:
+          - '*'
+        Connection:
+          - keep-alive
+        Content-Length:
+          - '1682'
+        Content-Type:
+          - application/json; charset=utf-8
+        Date:
+          - Fri, 05 Mar 2021 19:49:23 GMT
+        Server:
+          - openresty
+        X-Cache-Key:
+          - /data/2.5/forecast/daily?cnt=4&lat=19.48&lon=-155.1&units=metric
+      status:
+        code: 200
+        message: OK
 version: 1
