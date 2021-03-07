@@ -9,6 +9,7 @@ except ImportError:
 
 appdir = os.path.dirname(os.path.realpath(__file__))
 requirements = f"{appdir}/requirements.txt"
+# should I bother to remove testing requirements?
 required = [l.strip() for l in open(requirements) if not l.startswith("#")]
 
 packages = ["limbo", "limbo.plugins"]
