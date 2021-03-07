@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Thanks to Kenneth Reitz, I stole the template for this
+import os
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-required = []
+appdir = os.path.dirname(os.path.realpath(__file__))
+requirements = f"{appdir}/requirements.txt"
+# should I bother to remove testing requirements?
+required = [l.strip() for l in open(requirements) if not l.startswith("#")]
+
 packages = ["limbo", "limbo.plugins"]
 
 try:
@@ -17,7 +21,7 @@ except:
 
 setup(
     name="limbo",
-    version="8.2.0",
+    version="8.2.1",
     description="Simple and Clean Slack Chatbot",
     long_description=longdesc,
     author="Bill Mill",
