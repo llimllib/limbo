@@ -116,6 +116,7 @@ def on_message(msg, server):
         "",
         as_user=server.slack.username,
         attachments=json.dumps([attachment]),
+        thread_ts=msg.get("thread_ts", None),
     )
 
 

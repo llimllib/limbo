@@ -21,12 +21,13 @@ def image(search, unsafe=False):
     searchb = quote(search.encode("utf8"))
 
     safe = "&safe=" if unsafe else "&safe=active"
-    searchurl = "https://www.google.com/search?tbm=isch&q={0}{1}".format(
-        searchb, safe)
+    searchurl = "https://www.google.com/search?tbm=isch&q={0}{1}".format(searchb, safe)
 
     # this is an old iphone user agent. Seems to make google return good results.
-    useragent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us)" \
+    useragent = (
+        "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us)"
         " AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7"
+    )
 
     result = requests.get(searchurl, headers={"User-agent": useragent}).text
 
@@ -53,13 +54,15 @@ def on_message(msg, server):
         "fallback": match[0],
         "title": match[0],
         "title_link": res,
-        "image_url": res
+        "image_url": res,
     }
     server.slack.post_message(
-        msg['channel'],
-        '',
+        msg["channel"],
+        "",
         as_user=server.slack.username,
-        attachments=json.dumps([attachment]))
+        attachments=json.dumps([attachment]),
+        thread_ts=msg.get("thread_ts", None),
+    )
 
 
 on_bot_message = on_message

@@ -37,70 +37,65 @@ import re
 
 import requests
 
-HUB_URL = 'https://api.github.com/{0}'
+HUB_URL = "https://api.github.com/{0}"
 
 
 class Github(object):
     def __init__(self, username, password):
         self.auth = username, password
-        if not any(self.auth): self.auth = None
+        if not any(self.auth):
+            self.auth = None
 
     def _get(self, url_fragment, **params):
-        return requests.get(
-            HUB_URL.format(url_fragment), auth=self.auth, params=params)
+        return requests.get(HUB_URL.format(url_fragment), auth=self.auth, params=params)
 
     def _post(self, url_fragment, data={}, **params):
         return requests.post(
-            HUB_URL.format(url_fragment),
-            auth=self.auth,
-            data=data,
-            params=params)
+            HUB_URL.format(url_fragment), auth=self.auth, data=data, params=params
+        )
 
     def issues(self, repo):
         # defaults to only open issues
-        res = self._get('repos/{0}/issues'.format(repo))
+        res = self._get("repos/{0}/issues".format(repo))
         if res.status_code == 200:
             return res.json()
 
     def issue(self, repo, n):
-        res = self._get('repos/{0}/issues/{1}'.format(repo, n))
+        res = self._get("repos/{0}/issues/{1}".format(repo, n))
         if res.status_code == 200:
             return res.json()
 
-    def create_issue(self, repo, title, body=''):
+    def create_issue(self, repo, title, body=""):
         res = self._post(
-            'repos/{0}/issues'.format(repo),
-            data=json.dumps({
-                "title": title,
-                "body": body
-            }))
+            "repos/{0}/issues".format(repo),
+            data=json.dumps({"title": title, "body": body}),
+        )
         if res.status_code == 201:
             return res.json()
 
     def search_issue_in_repo(self, repo, query):
-        return self._get(
-            'search/issues', q="{0} repo:{1}".format(query, repo)).json()
+        return self._get("search/issues", q="{0} repo:{1}".format(query, repo)).json()
 
     def pull_requests(self, repo):
-        res = self._get('repos/{0}/pulls'.format(repo))
+        res = self._get("repos/{0}/pulls".format(repo))
         if res.status_code == 200:
             return res.json()
 
     def pull(self, repo, n):
-        res = self._get('repos/{0}/pulls/{1}'.format(repo, n))
+        res = self._get("repos/{0}/pulls/{1}".format(repo, n))
         if res.status_code == 200:
             return res.json()
 
     def get_all_repos(self):
-        repos = self._get('user/repos', per_page=100)
+        repos = self._get("user/repos", per_page=100)
         repo_names = [repo["full_name"] for repo in repos.json()]
-        last = re.findall(r'rel="last"', repos.headers['link'])
+        last = re.findall(r'rel="last"', repos.headers["link"])
 
         page = 2
         while last:
-            repos = self._get('user/repos', per_page=100, page=page)
+            repos = self._get("user/repos", per_page=100, page=page)
             repo_names += [repo["full_name"] for repo in repos.json()]
-            last = re.findall(r'rel="last"', repos.headers['link'])
+            last = re.findall(r'rel="last"', repos.headers["link"])
             page += 1
 
         return repo_names
@@ -122,7 +117,7 @@ def format_issue(issue_json, verbose=False):
         "fallback": issue_json["title"],
         "title": "[{0}] {1}".format(issue_json["number"], issue_json["title"]),
         "title_link": issue_json["html_url"],
-        "color": "good"
+        "color": "good",
     }
 
     if verbose:
@@ -133,9 +128,10 @@ def format_issue(issue_json, verbose=False):
 
 def format_pull(pull_json):
     pull_json["s"] = "s" if pull_json["commits"] > 1 else ""
-    text = "{body}\n>  _*{commits}* commit{s} *{additions}* ++ " \
-           "*{deletions}* -- *{changed_files}* changed_".format(
-                **pull_json)
+    text = (
+        "{body}\n>  _*{commits}* commit{s} *{additions}* ++ "
+        "*{deletions}* -- *{changed_files}* changed_".format(**pull_json)
+    )
     d = {
         "author_icon": pull_json["user"]["avatar_url"],
         "author_name": pull_json["user"]["login"],
@@ -152,8 +148,11 @@ def format_pull(pull_json):
 
 
 def get_default_repo(server, room):
-    rows = server.query('''
-        SELECT repo FROM github_room_repo_defaults WHERE room=?''', room)
+    rows = server.query(
+        """
+        SELECT repo FROM github_room_repo_defaults WHERE room=?""",
+        room,
+    )
 
     if rows:
         return rows[0][0]
@@ -161,9 +160,13 @@ def get_default_repo(server, room):
 
 
 def set_default_repo(server, room, repo):
-    server.query('''
+    server.query(
+        """
         INSERT INTO github_room_repo_defaults(room, repo)
-        VALUES (?, ?)''', room, repo)
+        VALUES (?, ?)""",
+        room,
+        repo,
+    )
 
 
 def issues(repo, _):
@@ -233,7 +236,7 @@ def pull_request(repo, body):
 
 
 def create_issue(repo, body):
-    title = ' '.join(body)
+    title = " ".join(body)
     issue = HUB.create_issue(repo, title)
     if not issue:
         return "Unable to create issue in repo {0}".format(repo)
@@ -247,7 +250,7 @@ def create_issue(repo, body):
 
 
 def search(repo, body):
-    query = ' '.join(body)
+    query = " ".join(body)
     response = HUB.search_issue_in_repo(repo, query)
 
     if response["total_count"] == 0:
@@ -260,8 +263,10 @@ def search(repo, body):
 
 
 def getdefault(repo, _):
-    return "Default repo for this room is `{0}`. " \
-           "To change it, run `!hub setdefault <repo_name>`".format(repo)
+    return (
+        "Default repo for this room is `{0}`. "
+        "To change it, run `!hub setdefault <repo_name>`".format(repo)
+    )
 
 
 COMMANDS = {
@@ -271,7 +276,7 @@ COMMANDS = {
     "pull": pull_request,
     "create": create_issue,
     "search": search,
-    "getdefault": getdefault
+    "getdefault": getdefault,
 }
 
 
@@ -287,8 +292,10 @@ def github(server, room, cmd, body, repo):
             set_default_repo(server, room, body[0])
             return "Default repo for this room set to `{0}`".format(body[0])
         else:
-            return "Unable to find default repo for this channel. "\
-                   "Run `!hub setdefault <repo_name>`"
+            return (
+                "Unable to find default repo for this channel. "
+                "Run `!hub setdefault <repo_name>`"
+            )
 
     try:
         command_func = COMMANDS[cmd]
@@ -302,16 +309,18 @@ FIRST = True
 
 
 def create_database(server):
-    server.query('''
+    server.query(
+        """
         CREATE TABLE IF NOT EXISTS github_room_repo_defaults
-            (room text, repo text)''')
+            (room text, repo text)"""
+    )
     FIRST = False
 
 
 ARGPARSE = argparse.ArgumentParser()
-ARGPARSE.add_argument('-r', dest="repo")
-ARGPARSE.add_argument('command', nargs=1)
-ARGPARSE.add_argument('body', nargs='*')
+ARGPARSE.add_argument("-r", dest="repo")
+ARGPARSE.add_argument("command", nargs=1)
+ARGPARSE.add_argument("body", nargs="*")
 
 
 def on_message(msg, server):
@@ -325,7 +334,7 @@ def on_message(msg, server):
 
     # If given -h or -v, argparse will try to quit. Don't let it.
     try:
-        ns = ARGPARSE.parse_args(match[0].split(' '))
+        ns = ARGPARSE.parse_args(match[0].split(" "))
     except SystemExit:
         return __doc__
     command = ns.command[0]
@@ -344,7 +353,12 @@ def on_message(msg, server):
     # otherwise, post the message via the slack API; this lets us use fancy
     # formatting rather than the plain formatting the RTM API allows
     server.slack.post_message(
-        msg['channel'], '', as_user=server.slack.username, **kwargs)
+        msg["channel"],
+        "",
+        as_user=server.slack.username,
+        thread_ts=msg.get("thread_ts", None),
+        **kwargs
+    )
 
 
 on_bot_message = on_message
