@@ -16,6 +16,8 @@ from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
+VERSION = "8.4.0"
+
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)
 
@@ -305,6 +307,10 @@ export SLACK_TOKEN=<your-slack-bot-token>
 
 
 def main(args):
+    if args.version:
+        print(f"limbo {VERSION}")
+        return
+
     config = init_config()
     if args.test:
         init_log(config)

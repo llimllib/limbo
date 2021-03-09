@@ -12,6 +12,8 @@ parser.add_argument('--database', '-d', dest='database_name', default='limbo.sql
                     help="Where to store the limbo sqlite database. Defaults to limbo.sqlite3")
 parser.add_argument('--pluginpath', '-pp', dest='pluginpath', default=None,
                     help="The path where limbo should look to find its plugins")
+parser.add_argument('--version', '-v', dest='version', action='store_true', required=False,
+                    help='Print limbo\'s version and exit')
 args = parser.parse_args()
 
 main(args)
