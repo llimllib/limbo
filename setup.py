@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+from limbo import VERSION
 
 try:
     from setuptools import setup
@@ -21,7 +22,7 @@ except:
 
 setup(
     name="limbo",
-    version="8.3.0",
+    version=VERSION,
     description="Simple and Clean Slack Chatbot",
     long_description=longdesc,
     author="Bill Mill",
