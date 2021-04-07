@@ -95,7 +95,7 @@ def init_plugins(plugindir, plugins_to_load=None):
                 hooks.setdefault(hook, []).append(hookfun)
 
             if mod.__doc__:
-                firstline = mod.__doc__.split("\n")[0]
+                firstline = mod.__doc__.strip().split("\n")[0]
                 hooks.setdefault("help", {})[modname] = firstline
                 hooks.setdefault("extendedhelp", {})[modname] = mod.__doc__
 
