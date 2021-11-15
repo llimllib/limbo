@@ -4,6 +4,12 @@
 
 ![](https://travis-ci.org/llimllib/limbo.svg?branch=master)
 
+## Status
+
+At the moment, I consider limbo to be feature complete, and the project is in maintenance mode. Every once in a while I come in and update the dependencies.
+
+Contributions will be considered and may be accepted, you may want to [email me](bill@billmill.org) because I might not notice your PR.
+
 ## Installation
 
 1. Clone the repo
