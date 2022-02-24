@@ -20,3 +20,4 @@ slask.egg-info/
 .envrc
 __pycache__
 .pytest_cache
+.tool-versions
