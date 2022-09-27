@@ -2,8 +2,6 @@
 
 ### A [Slack](https://slack.com/) chatbot
 
-![](https://travis-ci.org/llimllib/limbo.svg?branch=master)
-
 ## Status
 
 At the moment, I consider limbo to be feature complete, and the project is in maintenance mode. Every once in a while I come in and update the dependencies.
