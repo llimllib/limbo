@@ -11,7 +11,11 @@ parser.add_argument('-c', dest="command", help='run a single command')
 parser.add_argument('--database', '-d', dest='database_name', default='limbo.sqlite3',
                     help="Where to store the limbo sqlite database. Defaults to limbo.sqlite3")
 parser.add_argument('--pluginpath', '-pp', dest='pluginpath', default=None,
-                    help="The path where limbo should look to find its plugins")
+                    help=("The primary path where limbo should look to find its plugins. Setting this "
+                          "will override the default list of plugins."))
+parser.add_argument('--extrapluginpaths', '-epp', dest='extrapluginpaths', default=None,
+                    help=("Additional paths where limbo should look to find more plugins. Setting this "
+                          "will not override the default list of plugins."))
 parser.add_argument('--version', '-v', dest='version', action='store_true', required=False,
                     help='Print limbo\'s version and exit')
 args = parser.parse_args()
