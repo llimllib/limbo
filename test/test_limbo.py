@@ -60,6 +60,24 @@ def test_config_plugin_doesnt_exist():
     hooks = limbo.init_plugins("test/plugins", "doesnotexist")
     assert len(hooks) == 0
 
+def test_extra_plugin_empty_success():
+    hooks = limbo.init_plugins("test/plugins", None, [])
+    assert len(hooks) == 9
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 2
+
+
+def test_extra_plugin_one_success():
+    hooks = limbo.init_plugins("test/plugins", None, ["test/extraplugins"])
+    assert len(hooks) == 11
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 3
+
+
 def test_plugin_invalid_dir():
     try:
         limbo.init_plugins("invalid/package")

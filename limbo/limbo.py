@@ -289,8 +289,9 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
 
     config_plugins = config.get("plugins")
     plugins_to_load = config_plugins.split(",") if config_plugins else []
-
-    hooks = init_plugins(args.pluginpath, plugins_to_load)
+    extra_plugin_dirs = args.extrapluginpaths.split(",") if args.extrapluginpaths else []
+    
+    hooks = init_plugins(args.pluginpath, plugins_to_load, extra_plugin_dirs)
     try:
         slack = Client(config["token"])
     except KeyError:

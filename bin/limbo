@@ -14,7 +14,8 @@ parser.add_argument('--pluginpath', '-pp', dest='pluginpath', default=None,
                     help=("The primary path where limbo should look to find its plugins. Setting this "
                           "will override the default list of plugins."))
 parser.add_argument('--extrapluginpaths', '-epp', dest='extrapluginpaths', default=None,
-                    help=("Additional paths where limbo should look to find more plugins. Setting this "
+                    help=("Comma-separated list of additional paths where limbo "
+                          "should look to find more plugins. Setting this "
                           "will not override the default list of plugins."))
 parser.add_argument('--version', '-v', dest='version', action='store_true', required=False,
                     help='Print limbo\'s version and exit')
