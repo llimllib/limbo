@@ -289,9 +289,8 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
 
     config_plugins = config.get("plugins")
     plugins_to_load = config_plugins.split(",") if config_plugins else []
-    extra_plugin_dirs = args.extrapluginpaths.split(",") if args.extrapluginpaths else []
     
-    hooks = init_plugins(args.pluginpath, plugins_to_load, extra_plugin_dirs)
+    hooks = init_plugins(args.pluginpath, plugins_to_load, args.extrapluginpaths)
     try:
         slack = Client(config["token"])
     except KeyError:
@@ -336,6 +335,7 @@ def main(args):
                 args.hook,
                 args.pluginpath,
                 config.get("plugins"),
+                args.extrapluginpaths
             )
         )
         return
@@ -358,8 +358,8 @@ def main(args):
 
 # run a command. cmd should be a unicode string
 # returns a string appropriate for printing
-def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
-    server.hooks = init_plugins(pluginpath, plugins_to_load)
+def run_cmd(cmd, server, hook, pluginpath, plugins_to_load, extra_plugin_dirs):
+    server.hooks = init_plugins(pluginpath, plugins_to_load, extra_plugin_dirs)
     event = {
         "type": hook,
         "text": cmd,

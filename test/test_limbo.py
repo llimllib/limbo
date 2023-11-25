@@ -78,6 +78,15 @@ def test_extra_plugin_one_success():
     assert len(hooks["message"]) == 3
 
 
+def test_extra_plugin_two_success():
+    hooks = limbo.init_plugins("test/plugins", None, ["test/extraplugins", "test/moreextraplugins"])
+    assert len(hooks) == 13
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 4
+
+
 def test_plugin_invalid_dir():
     try:
         limbo.init_plugins("invalid/package")
