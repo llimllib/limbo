@@ -385,7 +385,7 @@ def repl(server, args):
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath, None))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath, None, args.extrapluginpaths))
     except (EOFError, KeyboardInterrupt):
         print()
         pass
