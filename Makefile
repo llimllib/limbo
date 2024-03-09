@@ -1,10 +1,3 @@
-NAMESPACE=llimllib
-APP=limbo
-
-.PHONY: testall
-testall: requirements
-	tox
-
 # to run a single file, with debugger support:
 # pytest -s test/test_plugins/test_image.py
 .PHONY: test
