@@ -49,7 +49,6 @@ By default, plugins won't react to messages from other bots (just messages from 
 
 These are the current default plugins:
 
-- [calc](https://github.com/llimllib/limbo/wiki/Calc-Plugin)
 - [emoji](https://github.com/llimllib/limbo/wiki/Emoji-Plugin)
 - [flip](https://github.com/llimllib/limbo/wiki/Flip-Plugin)
 - [gif](https://github.com/llimllib/limbo/wiki/Gif-Plugin)
@@ -58,11 +57,8 @@ These are the current default plugins:
 - [image](https://github.com/llimllib/limbo/wiki/Image-Plugin)
 - [map](https://github.com/llimllib/limbo/wiki/Map-Plugin)
 - [poll](https://github.com/llimllib/limbo/wiki/Poll-Plugin)
-- [stock](https://github.com/llimllib/limbo/wiki/Stock-Plugin)
-- [stockphoto](https://github.com/llimllib/limbo/wiki/Stock-Photo-Plugin)
 - [weather](https://github.com/llimllib/limbo/wiki/Weather-Plugin)
 - [wiki](https://github.com/llimllib/limbo/wiki/Wiki-Plugin)
-- [youtube](https://github.com/llimllib/limbo/wiki/Youtube-Plugin)
 
 ## Docker
 
