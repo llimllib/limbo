@@ -2,14 +2,13 @@ name: Python application
 
 on:
   - push
-  - pull_request
 
 jobs:
   ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.10", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python

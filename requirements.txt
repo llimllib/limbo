@@ -2,7 +2,6 @@ beautifulsoup4==4.12.3
 certifi==2024.2.2
 charset-normalizer==3.3.2
 coverage==7.4.3
-exceptiongroup==1.2.0
 flake8==7.0.0
 html5lib==1.1
 idna==3.6
@@ -18,9 +17,9 @@ pytest==8.1.1
 pytest-cov==4.1.0
 PyYAML==6.0.1
 requests==2.31.0
+setuptools==69.1.1
 six==1.16.0
 soupsieve==2.5
-tomli==2.0.1
 urllib3==2.2.1
 vcrpy==6.0.1
 webencodings==0.5.1
