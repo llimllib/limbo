@@ -45,21 +45,6 @@ publish:
 flake8:
 	flake8 limbo test
 
-NAMESPACE=petergrace
-APP=limbo
-
-.PHONY: docker_build
-docker_build:
-	docker build -f Dockerfile.dev -t ${NAMESPACE}/${APP} .
-
-.PHONY: docker_run
-docker_run:
-	docker run -d -e SLACK_TOKEN=${SLACK_TOKEN} ${NAMESPACE}/${APP}
-
-.PHONY: docker_stop
-docker_clean:
-	docker stop $(docker ps -a -q  --filter ancestor=petergrace/limbo --format="{{.ID}}")
-
 .PHONY: update-requirements
 update-requirements:
 	rm -rf update-requirements || true
