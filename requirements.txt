@@ -1,13 +1,8 @@
 beautifulsoup4==4.12.3
-cachetools==5.3.3
 certifi==2024.2.2
-chardet==5.2.0
 charset-normalizer==3.3.2
-colorama==0.4.6
 coverage==7.4.3
-distlib==0.3.8
 exceptiongroup==1.2.0
-filelock==3.13.1
 flake8==7.0.0
 html5lib==1.1
 idna==3.6
@@ -15,12 +10,10 @@ iniconfig==2.0.0
 mccabe==0.7.0
 multidict==6.0.5
 packaging==23.2
-platformdirs==4.2.0
 pluggy==1.4.0
 pycodestyle==2.11.1
 pyfiglet==1.0.2
 pyflakes==3.2.0
-pyproject-api==1.6.1
 pytest==8.1.1
 pytest-cov==4.1.0
 PyYAML==6.0.1
@@ -28,10 +21,8 @@ requests==2.31.0
 six==1.16.0
 soupsieve==2.5
 tomli==2.0.1
-tox==4.14.1
 urllib3==2.2.1
 vcrpy==6.0.1
-virtualenv==20.25.1
 webencodings==0.5.1
 websocket-client==1.7.0
 wrapt==1.16.0
