@@ -9,44 +9,46 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.25.1
+      - python-requests/2.31.0
     method: GET
     uri: https://api.thecatapi.com/v1/images/search
   response:
     body:
-      string: '[{"breeds":[],"id":"MTc3MDc5Ng","url":"https://cdn2.thecatapi.com/images/MTc3MDc5Ng.gif","width":500,"height":281}]'
+      string: '[{"id":"MTY3MzM3OA","url":"https://cdn2.thecatapi.com/images/MTY3MzM3OA.jpg","width":640,"height":424}]'
     headers:
-      Cache-Control:
-      - post-check=0, pre-check=0
-      Connection:
-      - keep-alive
       Content-Length:
-      - '115'
-      Content-Type:
-      - application/json; charset=utf-8
+      - '103'
       Date:
-      - Wed, 07 Apr 2021 14:56:48 GMT
-      Expires:
-      - Tue, 03 Jul 2001 06:00:00 GMT
-      Last-Modified:
-      - Wed Apr 07 2021 14:56:48 GMT+0000 (Coordinated Universal Time)
+      - Sat, 09 Mar 2024 15:26:04 GMT
       Server:
-      - nginx/1.18.0
-      Strict-Transport-Security:
+      - Google Frontend
+      X-Cloud-Trace-Context:
+      - 1589ab66d6e0fdf6d1cdb329a80a8967
+      authenticated:
+      - 'false'
+      cache-control:
+      - post-check=0, pre-check=0
+      content-type:
+      - application/json; charset=utf-8
+      expires:
+      - Tue, 03 Jul 2001 06:00:00 GMT
+      last-modified:
+      - Sat Mar 09 2024 15:26:04 GMT+0000 (Coordinated Universal Time)
+      strict-transport-security:
       - max-age=15552000; includeSubDomains
-      Vary:
+      vary:
       - Origin
-      X-Content-Type-Options:
+      x-content-type-options:
       - nosniff
-      X-DNS-Prefetch-Control:
+      x-dns-prefetch-control:
       - 'off'
-      X-Download-Options:
+      x-download-options:
       - noopen
-      X-Frame-Options:
+      x-frame-options:
       - SAMEORIGIN
-      X-Response-Time:
-      - 3ms
-      X-XSS-Protection:
+      x-response-time:
+      - 2ms
+      x-xss-protection:
       - 1; mode=block
     status:
       code: 200

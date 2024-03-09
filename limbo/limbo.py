@@ -16,7 +16,7 @@ from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
 from .fakeserver import FakeServer
 
-VERSION = "8.6.1"
+VERSION = "8.7.0"
 
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 DIR = functools.partial(os.path.join, CURDIR)

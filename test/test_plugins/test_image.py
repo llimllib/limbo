@@ -7,29 +7,50 @@ import limbo
 import vcr
 
 DIR = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, os.path.join(DIR, '../../limbo/plugins'))
+sys.path.insert(0, os.path.join(DIR, "../../limbo/plugins"))
 
 from image import on_message
 
 # The set of valid images given the bananas fixture
-bananas_images = [u'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-320-80.jpg', u'https://article.images.consumerreports.org/f_auto/prod/content/dam/CRO%2520Images%25202018/Health/April/CR-Health-Inlinehero-bananas-good-for-you-0418', u'https://s7d6.scene7.com/is/image/bjs/14526?$bjs-Zoom$', u'https://i5.walmartimages.com/asr/209bb8a0-30ab-46be-b38d-58c2feb93e4a_1.1a15fb5bcbecbadd4a45822a11bf6257.jpeg?odnWidth%3D450%26odnHeight%3D450%26odnBg%3Dffffff', u'https://images-na.ssl-images-amazon.com/images/I/61fZ%252BYAYGaL._SL1500_.jpg', u'https://images.agoramedia.com/everydayhealth/gcms/All-About-Bananas-Nutrition-Facts-Health-Benefits-Recipes-and-More-RM-722x406.jpg', u'https://www.kroger.com/product/images/large/front/0000000004011', u'https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/271/271157/bananas-chopped-up-in-a-bowl.jpg?w%3D1155%26h%3D1528', u'https://cdn1.sph.harvard.edu/wp-content/uploads/sites/30/2018/08/bananas-1354785_1920-1200x800.jpg', u'http://static1.squarespace.com/static/5a3ed64f4c326d77c53e744a/5a48ed5d0d92977993050ffe/5c44e6630ebbe823a7957ee1/1549560889543/Bananas.jpg?format%3D1500w', u'https://static.toiimg.com/photo/72169067.cms', u'https://www.chiquita.com/sites/default/files/styles/cover_mobile_retinafied/public/2018-07/header_banans_around_world_1536x1024_60.jpg?itok%3DlZqjnwV_', u'https://cosmos-images2.imgix.net/file/spina/photo/13954/100118_Debunked_01.jpg?ixlib%3Drails-2.1.4%26auto%3Dformat%26ch%3DWidth%252CDPR%26fit%3Dmax%26w%3D835', u'https://target.scene7.com/is/image/Target/GUEST_7d6b94b8-2680-4143-bfa4-0216ca301d4d?wid%3D488%26hei%3D488%26fmt%3Dpjpeg']
+bananas_images = [
+    "https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg?quality%3D90%26resize%3D440,400",
+    "https://images.everydayhealth.com/images/diet-nutrition/all-about-bananas-nutrition-facts-health-benefits-recipes-and-more-rm-722x406.jpg",
+    "https://media.cnn.com/api/v1/images/stellar/prod/120604032828-fresh-ripe-bananas.jpg?q%3Dw_3590,h_2774,x_0,y_0,c_fill",
+    "https://hips.hearstapps.com/hmg-prod/images/bananas-royalty-free-image-1702061943.jpg",
+    "https://cdn-prod.medicalnewstoday.com/content/images/articles/271/271157/bananas-chopped-up-in-a-bowl.jpg",
+    "https://domf5oio6qrcr.cloudfront.net/medialibrary/6372/202ebeef-6657-44ec-8fff-28352e1f5999.jpg",
+    "https://draxe.com/wp-content/uploads/2015/01/BananaNutritionThumbnail.jpg",
+    "https://media.post.rvohealth.io/wp-content/uploads/2020/09/bananas-732x549-thumbnail.jpg",
+    "https://www.health.com/thmb/zvIgtdQscZdYENlsSg1a0LmveJs%3D/2121x0/filters:no_upscale():max_bytes(150000):strip_icc()/Bananas-02809456216b4984b8771f12be063cdf.jpg",
+    "https://ip.prod.freshop.retail.ncrcloud.com/resize?url%3Dhttps://images.freshop.ncrcloud.com/produce_bananas/d6b28f69c0414ca28c61935a591654d4_large.png%26width%3D512%26type%3Dwebp%26quality%3D90",
+    "https://cdn.mos.cms.futurecdn.net/YDFk8cgmSKu8VYFVedUQ8j.jpg",
+    "https://i5.walmartimages.com/asr/3bbb1151-d69a-43fb-b132-47e0bc066307.1f28c1acf3df725a6a39ba4c8738e025.jpeg?odnHeight%3D768%26odnWidth%3D768%26odnBg%3DFFFFFF",
+    "https://th-thumbnailer.cdn-si-edu.com/xK6NAJHiv_51fzn5sDiQt0eD5Is%3D/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/d5/24/d5243019-e0fc-4b3c-8cdb-48e22f38bff2/istock-183380744.jpg",
+    "https://www.usatoday.com/gcdn/-mm-/ac688eec997d2fce10372bf71657297ff863814d/c%3D171-0-1195-768/local/-/media/2022/01/25/USATODAY/usatsports/gettyimages-174959827.jpg",
+    "https://parade.com/.image/ar_4:3%252Cc_fill%252Ccs_srgb%252Cfl_progressive%252Cq_auto:good%252Cw_1200/MTk3MDYyOTU3MDI3MzA0NzY3/are-bananas-good-for-you.jpg",
+    "https://www.theglobeandmail.com/resizer/v2/UY7R46JKR5HHTDH34DXVXI6KZI?auth%3D9a3f2d7281510d7e0f8989bdc3ed02943111bc60c2e009c7e4b9e548d0474c18%26width%3D1500%26height%3D1000%26quality%3D80",
+    "https://m.media-amazon.com/images/I/61fZ%2BYAYGaL._AC_UF1000,1000_QL80_.jpg",
+    "https://media.tegna-media.com/assets/VERIFY/images/b24f0d90-0844-43d8-97f5-9fc0653c0f65/b24f0d90-0844-43d8-97f5-9fc0653c0f65_750x422.jpg",
+    "https://www.forbesindia.com/media/images/2022/Sep/img_193775_bananas.jpg",
+    "https://media.npr.org/assets/img/2011/08/19/istock_000017061174small-6ca3bb7c8b6c768b92153932e822623a95065935.jpg",
+]
+
 
 def msgobj(msg):
-    return {
-        "text": msg,
-        "channel": "abc123"
-    }
+    return {"text": msg, "channel": "abc123"}
+
 
 def test_image():
     server = limbo.FakeServer()
-    with vcr.use_cassette('test/fixtures/image_bananas.yaml'):
-        on_message(msgobj(u"!image bananas"), server)
+    with vcr.use_cassette("test/fixtures/image_bananas.yaml"):
+        on_message(msgobj("!image bananas"), server)
 
-    url = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]['image_url']
+    url = json.loads(server.slack.posted_messages[0][1]["attachments"])[0]["image_url"]
     assert url in bananas_images, "{0} not in {1}".format(url, bananas_images)
+
 
 def test_unicode():
     server = limbo.FakeServer()
-    with vcr.use_cassette('test/fixtures/image_unicode.yaml'):
-        on_message(msgobj(u"!image Mötörhead"), server)
+    with vcr.use_cassette("test/fixtures/image_unicode.yaml"):
+        on_message(msgobj("!image Mötörhead"), server)
         # not blowing up == success, for our purposes

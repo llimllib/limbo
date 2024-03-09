@@ -15,120 +15,138 @@ interactions:
     uri: https://www.google.com/search?tbs=itp:animated&tbm=isch&q=bananas&safe=active
   response:
     body:
-      string: !!binary |
-        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
+      string: '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//WAPFORUM//DTD
+        XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd"><html
+        xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta content="application/xhtml+xml;
+        charset=UTF-8" http-equiv="Content-Type"/><meta content="no-cache" name="Cache-Control"/><title>bananas
+        - Google Search</title><style>a{text-decoration:none;color:inherit}a img{border:0}body{font-family:Roboto,Helvetica,Arial,sans-serif;padding:8px;margin:0
+        auto;max-width:700px;min-width:240px;}.FbhRzb{border-left:thin solid #dadce0;border-right:thin
+        solid #dadce0;border-top:thin solid #dadce0;height:24px;overflow:hidden}.n692Zd{margin-bottom:10px}.cvifge{height:24px;border-spacing:0}.QvGUP{height:24px;padding:0
+        8px 0 8px;vertical-align:top}.O4cRJf{height:24px;width:100%;padding:0;}.O1ePr{height:24px;padding:0;vertical-align:top}.kgJEQe{height:16px;width:16px;vertical-align:top;margin-top:4px}.lXLRf{vertical-align:top}.MhzMZd{border:0;vertical-align:middle;font-size:12px;height:24px;padding:0;width:100%;}.xB0fq{height:24px;border:none;font-size:12px;background-color:#1a73e8;color:#fff;padding:0
+        8px;margin:0;vertical-align:top;}.xB0fq:focus{border:1px solid #1a73e8}.M7pB2{border:thin
+        solid #dadce0;margin:0 0 3px 0;font-size:10px;font-weight:500;height:28px}.euZec{width:100%;height:28px;text-align:center;border-spacing:0}table.euZec
+        td{padding:0;width:25%}.QIqI7{display:inline-block;padding-top:4px;font-weight:bold;color:#4285f4}.EY24We{border-bottom:2px
+        solid #4285f4}.CsQyDc{display:inline-block;color:#70757a}.TuS8Ad{font-size:12px}.HddGcc{padding:8px;color:#70757a}.dzp8ae{font-weight:bold;color:#3c4043}.rEM8G{color:#70757a}.bookcf{table-layout:fixed;width:100%;border-spacing:0}.InWNIe{text-align:center}.uZgmoc{border:thin
+        solid #dadce0;color:#70757a;font-size:12px;text-align:center;table-layout:fixed;width:100%}.frGj1b{display:block;padding:8px
+        0 8px 0;width:100%}.nQvrDb{text-align:center}</style></head><body><style>.X6ZCif{color:#202124;font-size:10px;line-height:16px;display:inline-block;padding-top:2px;overflow:hidden;padding-bottom:4px;width:100%}.TwVfHd{border-radius:16px;border:thin
+        solid #dadce0;display:inline-block;padding:8px 8px;margin-right:8px;margin-bottom:4px}.yekiAe{background-color:#dadce0}.jjVJ4e{display:inline-block;margin:5px
+        3px}.ezO2md{border:thin solid #dadce0;padding:8px 8px 8px 8px;margin-bottom:10px;font-family:Roboto,Helvetica,Arial,sans-serif}.lIMUZd{font-family:Roboto,Helvetica,Arial,sans-serif}.SpelHe{position:relative}.kCmkOe{position:relative}.AlD19d{padding-top:2px;padding-bottom:8px;}</style><div
+        class="n692Zd"><div class="FbhRzb"><form action="/search"><input name="safe"
+        value="active" type="hidden"/><input name="sca_esv" value="59c13155e087bde1"
+        type="hidden"/><input name="tbs" value="itp:animated" type="hidden"/><input
+        name="tbm" value="isch" type="hidden"/><input name="oq" type="hidden"/><input
+        name="aqs" type="hidden"/><table class="cvifge"><tr><td class="QvGUP"><a class="lXLRf"
+        href="/?safe=active&amp;sca_esv=59c13155e087bde1&amp;output=images&amp;tbs=itp:animated&amp;tbm=isch&amp;sa=X&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQPAgC"><img
+        class="kgJEQe" src="//www.gstatic.com/m/images/icons/googleg.gif" alt="Google"/></a></td><td
+        class="O4cRJf"><input class="MhzMZd" value="bananas" name="q" type="text"/></td><td
+        class="O1ePr"><input class="xB0fq" value="Search" type="submit"/></td></tr></table></form></div><div
+        class="M7pB2"><table class="euZec"><tbody><tr><td><a class="CsQyDc" href="/search?q=bananas&amp;safe=active&amp;sca_esv=59c13155e087bde1&amp;source=lnms&amp;sa=X&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQ_AUIBCgA">ALL</a></td><td
+        class="EY24We"><span class="QIqI7">IMAGES</span></td><td><a class="CsQyDc"
+        href="/search?q=bananas&amp;safe=active&amp;sca_esv=59c13155e087bde1&amp;tbm=vid&amp;source=lnms&amp;sa=X&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQ_AUIBigC">VIDEOS</a></td><td><a
+        class="CsQyDc" href="/search?q=bananas&amp;safe=active&amp;sca_esv=59c13155e087bde1&amp;tbm=nws&amp;source=lnms&amp;sa=X&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQ_AUIBygD">NEWS</a></td></tr></tbody></table></div></div><div><div
+        class="nQvrDb"><span><div class="jjVJ4e"> <div> <div class="lIMUZd"><div><a
+        href="/imgres?imgurl=https://www.thespruceeats.com/thmb/j3JUCjFKjju2er6BzsbL1mhHRPE%3D/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Types-of-bananas-4018334-V3-0b1563d7e6e04328b8dc7c48a86721fb.gif&amp;imgrefurl=https://www.thespruceeats.com/types-of-bananas-4018334&amp;h=1000&amp;w=1500&amp;tbnid=yaFMt7fL1GXnuM&amp;q=bananas&amp;tbnh=183&amp;tbnw=275&amp;iact=rc&amp;usg=AI4_-kQqaIVQ_6Z3TQ7tWwHms93VkuWfFA&amp;vet=1&amp;docid=sZwjjkP2wH4QmM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgDEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbcPJv0bobm0KWYGnfAbJtR96nOZdzQOgItzrRMBzbZMLpedAzNn-FpnFF&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.rd.com/wp-content/uploads/2023/01/GettyImages-938346402-MW-Edit.gif&amp;imgrefurl=https://www.rd.com/article/eat-a-banana-every-day/&amp;h=1200&amp;w=1200&amp;tbnid=Jlw9wS8ZAJg1HM&amp;q=bananas&amp;tbnh=225&amp;tbnw=225&amp;iact=rc&amp;usg=AI4_-kS3webYvC5a2uEKnDHqyX7YtUKaJQ&amp;vet=1&amp;docid=uiHNwQG8Q080EM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgTEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbil76FIMy9FOOK_w--kM__tybr9uHi_cJxLAngbzUpvVYuL1uy8l03nfuA&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://images.eatsmarter.com/sites/default/files/bananas_us_0.gif&amp;imgrefurl=https://eatsmarter.com/ingredients/fruit/bananas&amp;h=1200&amp;w=798&amp;tbnid=mx859KAYOTE6wM&amp;q=bananas&amp;tbnh=275&amp;tbnw=183&amp;iact=rc&amp;usg=AI4_-kRovL73kgUsJ8klnJ6XNr3SaObBuQ&amp;vet=1&amp;docid=f8Oyyh3ipcR0LM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgSEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT65FHV3J5Wyhwl_vkgkFVtTWItB0hddIgpkSkwzVgGr5YbzmqMJW0SLd0tTg&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.healthshots.com/wp-content/uploads/2019/12/banana.gif&amp;imgrefurl=https://www.healthshots.com/healthy-eating/nutrition/go-bananas-with-their-nutritional-facts-and-benefits-of-the-wonder-fruit/&amp;h=360&amp;w=640&amp;tbnid=NFkt7y2voXGUaM&amp;q=bananas&amp;tbnh=168&amp;tbnw=300&amp;iact=rc&amp;usg=AI4_-kSWtI72KOTIGZE-TVyCeS9zW790PA&amp;vet=1&amp;docid=UdEyKpCnVkCkHM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgREAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR59OzwuQGM009JNOTYKW1337vRY_fscpawTPCEXSwH5FK_AC9vQaMxwjyN&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://miamifruit.org/cdn/shop/files/bananavarietyboxmiamifruit_300x.gif?v%3D1706903566&amp;imgrefurl=https://miamifruit.org/products/banana-variety-box&amp;h=253&amp;w=253&amp;tbnid=ktS4lakQGz6ZbM&amp;q=bananas&amp;tbnh=225&amp;tbnw=225&amp;iact=rc&amp;usg=AI4_-kQsPdQVIsl02TXCvDAY9Q0U8UKzng&amp;vet=1&amp;docid=d0Lurhl83pdfBM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgPEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJFntZhrfQZp0SKs7Ifk2PZdyKuKXLwXf_mYdtfelVDGJz0RnA_RIaVjZ5rg&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://qph.cf2.quoracdn.net/main-qimg-71e3e4dd4f3f6eeeea19ed5306365169&amp;imgrefurl=https://www.quora.com/Why-do-people-call-a-bunch-of-bananas-a-hand-of-bananas&amp;h=500&amp;w=500&amp;tbnid=Hj05kmvh1rOb_M&amp;q=bananas&amp;tbnh=225&amp;tbnw=225&amp;iact=rc&amp;usg=AI4_-kRi2abkOxJyeJAW9THBd031ZylFVg&amp;vet=1&amp;docid=8pNmyzciQC3iVM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgOEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjvbLXHMxdUgPvpOqa-T0t9jshMh8m40g-mnzL5ziB61wh86p9vdgz7R7R&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.chiquita.com/wp-content/uploads/2020/03/Make-memories-at-breakfast-6.gif&amp;imgrefurl=https://www.chiquita.com/blog/benefits-of-bananas-bananas-are-one-of-the-best-superfoods/&amp;h=698&amp;w=1048&amp;tbnid=64UpkwLKwhMDzM&amp;q=bananas&amp;tbnh=183&amp;tbnw=275&amp;iact=rc&amp;usg=AI4_-kS_hAriMQegAxP8wb7P-pens8Hprg&amp;vet=1&amp;docid=8e28Fn2hYL9R5M&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgKEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMh0c24Hb67HDjHvb3y_U8Ob1NnRy6MCeWOmQX5Rk_pKNCbVDaQG5G9YyETQ&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://si.wsj.net/public/resources/images/OG-EG460_202004_8SR_20200430092718.gif&amp;imgrefurl=https://www.wsj.com/articles/forget-baking-sourdough-everybodys-making-banana-bread-11588255498&amp;h=799&amp;w=875&amp;tbnid=XNYspCu4boQ0TM&amp;q=bananas&amp;tbnh=215&amp;tbnw=235&amp;iact=rc&amp;usg=AI4_-kS5IFsRurSJq_pKevPtoEGnn6xyOQ&amp;vet=1&amp;docid=ywxURAGQpkI5mM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgQEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8AjzTxTjSewFdrXVVlnuZsvoQ8XbZu6-hTCtaPFgF3tw6WkEIJp-cYmen&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.localguidesconnect.com/t5/image/serverpage/image-id/1073068i64783B1241CEC85A/image-size/large?v%3Dv2%26px%3D999&amp;imgrefurl=https://www.localguidesconnect.com/t5/General-Discussion/Let-s-Go-Bananas-Variants-from-around-the-world/td-p/2849147&amp;h=434&amp;w=570&amp;tbnid=5IL9bjKY-5nR7M&amp;q=bananas&amp;tbnh=196&amp;tbnw=257&amp;iact=rc&amp;usg=AI4_-kRCfL_7aoa_MHm7Y0tLAKCosHEhMg&amp;vet=1&amp;docid=kKmBk1dzTjEJeM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgMEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQO-gdxfjYtaO70WpV6l-yy2yo5ChROtJYtvZDTMD9iDYv1geVYH0PDyHcG&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://scx2.b-cdn.net/gfx/news/2022/ecological-coating-for.gif&amp;imgrefurl=https://phys.org/news/2022-01-ecological-coating-bananas.html&amp;h=354&amp;w=480&amp;tbnid=fAdyw-OaMCvcdM&amp;q=bananas&amp;tbnh=193&amp;tbnw=262&amp;iact=rc&amp;usg=AI4_-kQIQ9m3IDKkZR9E_3k0vD5KdO2P_w&amp;vet=1&amp;docid=zwP4116XhlTuFM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgNEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7lZCVgFV-Zfgnlmlt-2r2xuyEmsjOu7VIEjEDUfTzZowvKrsqqbgJ7pfG3w&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.thisiscolossal.com/wp-content/uploads/2016/07/banana-2-big.gif&amp;imgrefurl=https://www.thisiscolossal.com/2016/07/bananas-animated-short/&amp;h=360&amp;w=640&amp;tbnid=ZQ8nChI7Ev5DwM&amp;q=bananas&amp;tbnh=168&amp;tbnw=300&amp;iact=rc&amp;usg=AI4_-kS3GufMEs_2mAQ3TzKUWj0Wr8DFtg&amp;vet=1&amp;docid=NF_p6nGGLCqBGM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgLEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVAzJgny3CMIUWWbmgOgZZRfUVcG-96NhlM-5n9a7fKdG-zncKAKI3WlCAEA&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://www.bu.edu/lernet/artemis/years/2016/students/AnnaWebsite/Images/banana.gif&amp;imgrefurl=https://www.bu.edu/lernet/artemis/years/2016/students/AnnaWebsite/pages/bananas.html&amp;h=200&amp;w=265&amp;tbnid=40a6UW2yeclMbM&amp;q=bananas&amp;tbnh=195&amp;tbnw=258&amp;iact=rc&amp;usg=AI4_-kQ17kGNBF7zo-qjb_q0J-qUvfGcQw&amp;vet=1&amp;docid=7ChGu5SOCpM1jM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgJEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIOXKa9379Im3IjtoN3_DiM560ojgwzM0RvlhvVBJB4txlpZ3krX8QdAmV&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://assets.bonappetit.com/photos/650b3b9f3c38ccae3fa89d55/3:2/w_1686,h_1124,c_limit/bananas-2.gif&amp;imgrefurl=https://www.bonappetit.com/story/nobody-can-order-right-amount-bananas-on-instacart&amp;h=1124&amp;w=1686&amp;tbnid=ivnxX-0jNSqirM&amp;q=bananas&amp;tbnh=183&amp;tbnw=275&amp;iact=rc&amp;usg=AI4_-kS_7QPXvPiEspJ76OR4EYb8bOXbOw&amp;vet=1&amp;docid=GHCucGxJte5upM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgAEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdS9TCM9bL3UpwNAE_9cx2hArfq97MLJ9dVUsSSGNGmkp_Rzf_a_Acp3Jn9A&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://static.wixstatic.com/media/50ae26_7aebc968b0ff4d139a2f3ef284274160~mv2.gif&amp;imgrefurl=https://www.refinedanddandy.com/post/great-for-using-up-those-week-old-bananas&amp;h=2048&amp;w=2048&amp;tbnid=elPxRRLdzSJV6M&amp;q=bananas&amp;tbnh=225&amp;tbnw=225&amp;iact=rc&amp;usg=AI4_-kRiPYNIhQE00nAhTNfUFzDWfZsbqw&amp;vet=1&amp;docid=_COKbcNewmt2eM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgCEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUnNr7w4Z-EZ2oa35MUdedyVt9OqAevXsHH74w6Kv2B6sUh_KBf8ThN1kp&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=http://www.thebahamasweekly.com/uploads/12/BANANA.gif&amp;imgrefurl=http://www.thebahamasweekly.com/publish/gardening-in-the-bahamas/Bananas_The_Super_Fruit_that_is_an_Absolute_Must_for_Your_Garden_printer.shtml&amp;h=586&amp;w=350&amp;tbnid=D2itVK3FksWcPM&amp;q=bananas&amp;tbnh=291&amp;tbnw=173&amp;iact=rc&amp;usg=AI4_-kQIFOuKFMnUUanoiDjDlvLy1aOz1A&amp;vet=1&amp;docid=AvZO9FFIvp-i1M&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgBEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaP60__24BV-6fJGB0xKqtGe18rmoiAV7mdcAVJj2M_0hC7fBwygeVmxKO&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://hips.hearstapps.com/delish/assets/16/20/1463601723-banana.gif&amp;imgrefurl=https://www.delish.com/food-news/news/a47274/youve-been-peeling-bananas-wrong-your-whole-life/&amp;h=339&amp;w=500&amp;tbnid=c0CdzuWagoKIlM&amp;q=bananas&amp;tbnh=185&amp;tbnw=273&amp;iact=rc&amp;usg=AI4_-kQmTdf6-WgMwP7wdTXyfKqYIMra7A&amp;vet=1&amp;docid=1fpU46NTVPl3sM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgEEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEpdVfZOnqG7fZsHDAWZdGfx9kdd_Ok6TDu1B6iABDFq0reHO0gk7en9tn&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://media.baamboozle.com/uploads/images/78483/1650297704_182548_gif-url.gif&amp;imgrefurl=https://www.baamboozle.com/study/982841&amp;h=289&amp;w=400&amp;tbnid=5_nAADPNOuEv1M&amp;q=bananas&amp;tbnh=191&amp;tbnw=264&amp;iact=rc&amp;usg=AI4_-kRfisTj4Tl_SWLXErADKK1SdbfVEg&amp;vet=1&amp;docid=sKcdTm3ZjH1NTM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgHEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTkAXcWrt6J39rmY5Ta8vnivxEm-PNe1d9CHDsph1T3ZpdagVMZh_4v9nC&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://i.pinimg.com/originals/d0/56/90/d05690d485adb123ff3d3e836fed290f.gif&amp;imgrefurl=https://www.pinterest.com/pin/berrrrrnnn--758715868450727784/&amp;h=480&amp;w=480&amp;tbnid=dAscAlVel2erMM&amp;q=bananas&amp;tbnh=225&amp;tbnw=225&amp;iact=rc&amp;usg=AI4_-kTGCemcx-Lyce9BoLClq_oPGfH20A&amp;vet=1&amp;docid=_GXPM18_Z7wK1M&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgFEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjcAyZ-Hv7NpXwPn0_DM4rmIzalxjqMZeBA8l1FJi1npuWWH1BPTRyeSRB&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://theprintableconcept.com/cdn/shop/products/ezgif.com-gif-maker-11_360x.gif?v%3D1677370556&amp;imgrefurl=https://theprintableconcept.com/products/kitchen-wall-art-banana-pastel&amp;h=480&amp;w=360&amp;tbnid=x0qy37Fy4bEkVM&amp;q=bananas&amp;tbnh=259&amp;tbnw=194&amp;iact=rc&amp;usg=AI4_-kSE_qIxbNk9y1CGzZiGXtflD6YVBg&amp;vet=1&amp;docid=FqLfzuRkUy9_JM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgGEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSghaKScflepceTIvicrO6Ld72QUbxdWggVmovE9xoxOHyCJ_AKzeclbMoZ&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div><div
+        class="jjVJ4e"> <div> <div class="lIMUZd"><div><a href="/imgres?imgurl=https://cdn.dribbble.com/users/515313/screenshots/2947416/dribble_dancing_nanas.gif&amp;imgrefurl=https://dribbble.com/shots/2947416-Dancing-Bananas&amp;h=600&amp;w=800&amp;tbnid=v4IxA64X0QrwnM&amp;q=bananas&amp;tbnh=194&amp;tbnw=259&amp;iact=rc&amp;usg=AI4_-kRCzDT-uE01Yku3ZUXGgFE5uP8MgQ&amp;vet=1&amp;docid=_UwAsgiVcwCHaM&amp;itg=1&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQrQN6BAgIEAE"><div
+        class="SpelHe"><img class="lgD2Tc" alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFmjf2uFTJJYBoPZ6NDwmJHW-VWCXlG7k-jYXrshxscIHpnLRakHTT5Aa3g&amp;s"
+        style="max-width:130px;max-height:70px"/></div></a></div></div> </div> </div></span></div></div><table
+        class="uZgmoc"><tbody><td><a class="frGj1b" href="/search?q=bananas&amp;safe=active&amp;sca_esv=59c13155e087bde1&amp;tbs=itp:animated&amp;tbm=isch&amp;ei=jX_sZaCNNL2nptQP_LyskA4&amp;start=20&amp;sa=N">Next&nbsp;&gt;</a></td></tbody></table><br/><div
+        class="TuS8Ad" data-ved="0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQpyoIMQ"><style>.VYM29{font-weight:bold}</style><div
+        class="HddGcc" align="center"><span class="VYM29">04101, Portland, ME</span><span>&nbsp;-&nbsp;</span><span>From
+        your IP address</span><span>&nbsp;-&nbsp;</span><a href="/url?q=https://support.google.com/websearch%3Fp%3Dws_m_learnmore_location%26hl%3Den&amp;opi=89978449&amp;sa=U&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQty4IMg&amp;usg=AOvVaw0rErUMKj7fr_kuY1iwl7m0">Learn
+        more</a></div><div align="center"><a class="rEM8G" href="/url?q=https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Ftbs%253Ditp:animated%2526tbm%253Disch%2526q%253Dbananas%2526safe%253Dactive%26hl%3Den&amp;opi=89978449&amp;sa=U&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQxs8CCDM&amp;usg=AOvVaw0Qrrffu611jwIQq1HRJBk6">Sign
+        in</a></div><div><table class="bookcf"><tbody class="InWNIe"><tr><td><a class="rEM8G"
+        href="https://www.google.com/preferences?hl=en&amp;sa=X&amp;ved=0ahUKEwjgh8nqvueEAxW9k4kEHXweC-IQv5YECDQ">Settings</a></td><td><a
+        class="rEM8G" href="https://www.google.com/intl/en_us/policies/privacy/">Privacy</a></td><td><a
+        class="rEM8G" href="https://www.google.com/intl/en_us/policies/terms/">Terms</a></td></tr></tbody></table></div></div><div>  </div></body></html>'
     headers:
-      alt-svc:
-      - quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443";
-        ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443";
-        ma=2592000
-      cache-control:
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Cache-Control:
       - private, max-age=0
-      content-encoding:
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Security-Policy:
+      - 'object-src ''none'';base-uri ''self'';script-src ''nonce-ZkcLWfpcqO3BQjEwO7rNMQ''
+        ''strict-dynamic'' ''report-sample'' ''unsafe-eval'' ''unsafe-inline'' https:
+        http:;report-uri https://csp.withgoogle.com/csp/gws/other'
+      Content-Type:
       - application/xhtml+xml; charset=UTF-8
-      date:
-      - Tue, 18 Feb 2020 02:13:21 GMT
-      expires:
+      Date:
+      - Sat, 09 Mar 2024 15:26:05 GMT
+      Expires:
       - '-1'
-      p3p:
+      P3P:
       - CP="This is not a P3P policy! See g.co/p3phelp for more info."
-      server:
+      Server:
       - gws
-      set-cookie:
-      - 1P_JAR=2020-02-18-02; expires=Thu, 19-Mar-2020 02:13:21 GMT; path=/; domain=.google.com;
+      Set-Cookie:
+      - 1P_JAR=2024-03-09-15; expires=Mon, 08-Apr-2024 15:26:05 GMT; path=/; domain=.google.com;
         Secure
-      - CGIC=IgMqLyo; expires=Sun, 16-Aug-2020 02:13:21 GMT; path=/complete/search;
-        domain=.google.com; HttpOnly
-      - CGIC=IgMqLyo; expires=Sun, 16-Aug-2020 02:13:21 GMT; path=/search; domain=.google.com;
-        HttpOnly
-      - NID=198=OPJikTqQQOJVeMlEdft-ho73xTzRZbYp6TCU5qayA2ANQ4XINFKFhKbhvpj78Xuw2S0ErxV9PJ9aQ2AYOxhlY7GxnyeNnBPGpz6j6ZmENN6EoUDlJcAYb52A-RD7IorULcrPXGqj1Ac_tw-KjoUV0e-sbrqhhSrc7eG9hVX-7QY;
-        expires=Wed, 19-Aug-2020 02:13:21 GMT; path=/; domain=.google.com; HttpOnly
-      transfer-encoding:
+      - AEC=Ae3NU9Oo_75ZK0pmtKtuXapudZq7uUfTv1SqY05GRjNLfqTYwRG4BSXx; expires=Thu,
+        05-Sep-2024 15:26:05 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax
+      - NID=512=VO8R-pIrypluTWR_pFenHwpEG2Fn4BojHFLY27ObNPuY515PmrWPcAjFSErbTPOOJkpoT3_MZD4-tnzSkb91mAelr9O3nDzp_xSGGUK99wRh_j3fmvJ-9wdfc8HUI4o5FRIvbKTGnx13y0TlFf8OpRmedOj12rhQpTSudbi2MRU;
+        expires=Sun, 08-Sep-2024 15:26:05 GMT; path=/; domain=.google.com; HttpOnly
+      Transfer-Encoding:
       - chunked
-      x-frame-options:
+      X-Frame-Options:
       - SAMEORIGIN
-      x-xss-protection:
+      X-XSS-Protection:
       - '0'
     status:
       code: 200

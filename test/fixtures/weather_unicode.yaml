@@ -1,109 +1,110 @@
 interactions:
-  - request:
-      body: null
-      headers:
-        Accept:
-          - '*/*'
-        Accept-Encoding:
-          - gzip, deflate
-        Connection:
-          - keep-alive
-        User-Agent:
-          - python-requests/2.24.0
-      method: GET
-      uri: https://api.mapbox.com/geocoding/v5/mapbox.places/%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3.json?limit=1&access_token=fake_mapbox_token
-    response:
-      body:
-        string: !!binary |
-          H4sIAAAAAAAAA41Sy27TQBT9ldGsWik4ftuTHVRUdAEtIqyqKhrbt/FQe8Ydj5tGUaQiIfEJiA0S
-          YoXYsTJbvsSfwp2kKW1XXfr4PO7cc1fULBugE3oI3HQaDlRVQW6EknRELzvQSzo5pUP/ceh/DH0/
-          9J+HPzdD/2Xovw3996H/NfS/h/7r0H9CAj0b0fOtT4uyFRUFOmuYo53juW4QuaEbxIylKfNcDHiY
-          jUBT8RxmW/j0VmldNVRwxWWOsIcsrRrQRtiUFV2IC1Fww9HorZfGHtq0pdJmlqvCuk9fPcOwNabB
-          tcHvF1zOL9TFXZrkNfyHR2RaclFxWSCh5iYvhZzPbqVP3cM95YOMJ+ofzJBl6hqXgetzAj9hSeiz
-          kDE28gInYFEa+KnvRxHzR5bBgtRPA5bEHossg0VhEIcsdcPQC3CPOUgD+tYu8uI4sawkwl9zUDUY
-          2/dq18uJEtLgCLlSuhCSm02tj6VrS5DbDe06z1Un0QtLT0IviqMwTFzX35Z+v680Zo/rMiW9q+pu
-          DeuzNY7IjdEi6zbXOaFvjqdHBy8n5O9P4ru+R17zBldFkE6EaUnbNU0lQLcOeV5VRIt5iSheJugr
-          KBzyvgWizokpRUvsOERYTfYBr58YhTjsHKeg69Zy36FU5ED2SmOadjIeLxYLp96QnFzVY56pzowR
-          aMf7DnYoNnmNkhhlx7KeQp4rjdeBb8Axid0cF7IlNV8SqQzJADUWsjOeHB/ttfsE7/1KFFCQbEkO
-          Vafby45rcOj6H4Yk/9O+AwAA
-      headers:
-        Access-Control-Allow-Origin:
-          - '*'
-        Access-Control-Expose-Headers:
-          - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
-        Cache-Control:
-          - max-age=604800
-        Connection:
-          - keep-alive
-        Content-Encoding:
-          - gzip
-        Content-Type:
-          - application/vnd.geo+json; charset=utf-8
-        Date:
-          - Fri, 05 Mar 2021 19:49:22 GMT
-        ETag:
-          - '"7b6be9fa4ac33c1ed8bff633548e2c68"'
-        Last-Modified:
-          - Wed, 03 Mar 2021 16:27:11 GMT
-        Transfer-Encoding:
-          - chunked
-        Vary:
-          - Accept-Encoding
-        Via:
-          - 1.1 2b32055d9226f21c6a6dab015aed37cf.cloudfront.net (CloudFront)
-        X-Amz-Cf-Id:
-          - wONDi0qVIzIDlZD0nMELnxyOzdOgtKbwr6-B9gvuVtxQRZtJeljmHg==
-        X-Amz-Cf-Pop:
-          - EWR53-C1
-        X-Cache:
-          - Miss from cloudfront
-        X-Powered-By:
-          - Express
-        X-Rate-Limit-Interval:
-          - '60'
-        X-Rate-Limit-Limit:
-          - '600'
-        X-Rate-Limit-Reset:
-          - '1614973822'
-      status:
-        code: 200
-        message: OK
-  - request:
-      body: null
-      headers:
-        Accept:
-          - '*/*'
-        Accept-Encoding:
-          - gzip, deflate
-        Connection:
-          - keep-alive
-        User-Agent:
-          - python-requests/2.24.0
-      method: GET
-      uri: https://api.openweathermap.org/data/2.5/forecast/daily?lat=13.75&lon=100.52&cnt=4&units=imperial&appid=fake_openweather_key
-    response:
-      body:
-        string: '{"city":{"id":1609350,"name":"Bangkok","coord":{"lon":100.52,"lat":13.75},"country":"TH","population":5104476,"timezone":25200},"cod":"200","message":17.3847657,"cnt":4,"list":[{"dt":1615006800,"sunrise":1614987092,"sunset":1615030033,"temp":{"day":93.51,"min":80.67,"max":95.76,"night":83.7,"eve":91.15,"morn":80.69},"feels_like":{"day":94.59,"night":86.16,"eve":91.67,"morn":85.14},"pressure":1013,"humidity":41,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":8.43,"deg":187,"clouds":0,"pop":0},{"dt":1615093200,"sunrise":1615073454,"sunset":1615116442,"temp":{"day":94.77,"min":81.68,"max":95.77,"night":84.11,"eve":89.78,"morn":81.7},"feels_like":{"day":93.78,"night":85.46,"eve":90,"morn":85.15},"pressure":1012,"humidity":36,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":10.09,"deg":178,"clouds":0,"pop":0.08},{"dt":1615179600,"sunrise":1615159816,"sunset":1615202849,"temp":{"day":92.44,"min":82,"max":92.44,"night":83.98,"eve":85.84,"morn":82},"feels_like":{"day":92.44,"night":86.41,"eve":87.46,"morn":85.98},"pressure":1011,"humidity":47,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":12.88,"deg":178,"clouds":0,"pop":0.14},{"dt":1615266000,"sunrise":1615246178,"sunset":1615289257,"temp":{"day":95.22,"min":81.93,"max":95.22,"night":84.38,"eve":86.68,"morn":81.93},"feels_like":{"day":94.62,"night":87.08,"eve":88.61,"morn":87.3},"pressure":1011,"humidity":39,"weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}],"speed":11.48,"deg":163,"clouds":14,"pop":0.37}]}'
-      headers:
-        Access-Control-Allow-Credentials:
-          - 'true'
-        Access-Control-Allow-Methods:
-          - GET, POST
-        Access-Control-Allow-Origin:
-          - '*'
-        Connection:
-          - keep-alive
-        Content-Length:
-          - '1622'
-        Content-Type:
-          - application/json; charset=utf-8
-        Date:
-          - Fri, 05 Mar 2021 19:49:23 GMT
-        Server:
-          - openresty
-        X-Cache-Key:
-          - /data/2.5/forecast/daily?cnt=4&lat=13.75&lon=100.52&units=imperial
-      status:
-        code: 200
-        message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.mapbox.com/geocoding/v5/mapbox.places/%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3.json?limit=1&access_token=fake_mapbox_token
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"query\":[\"\u0E01\u0E23\u0E38\u0E07\u0E40\u0E17\u0E1E\u0E21\u0E2B\u0E32\u0E19\u0E04\u0E23\"],\"features\":[{\"id\":\"place.25821\",\"type\":\"Feature\",\"place_type\":[\"region\",\"place\"],\"relevance\":1,\"properties\":{\"mapbox_id\":\"dXJuOm1ieHBsYzpaTjA\",\"wikidata\":\"Q1861\",\"short_code\":\"TH-10\"},\"text\":\"Bangkok\",\"place_name\":\"Bangkok,
+        Thailand\",\"matching_text\":\"\u0E01\u0E23\u0E38\u0E07\u0E40\u0E17\u0E1E\u0E21\u0E2B\u0E32\u0E19\u0E04\u0E23\",\"matching_place_name\":\"\u0E01\u0E23\u0E38\u0E07\u0E40\u0E17\u0E1E\u0E21\u0E2B\u0E32\u0E19\u0E04\u0E23,
+        Thailand\",\"bbox\":[100.327975,13.3905792,100.93829,13.954364],\"center\":[100.4935089,13.7524938],\"geometry\":{\"type\":\"Point\",\"coordinates\":[100.4935089,13.7524938]},\"context\":[{\"id\":\"country.8925\",\"mapbox_id\":\"dXJuOm1ieHBsYzpJdDA\",\"wikidata\":\"Q869\",\"short_code\":\"th\",\"text\":\"Thailand\"}]}],\"attribution\":\"NOTICE:
+        \xA9 2024 Mapbox and its suppliers. All rights reserved. Use of this data
+        is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/).
+        This response and the information it contains may not be retained. POI(s)
+        provided by Foursquare.\"}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
+      Age:
+      - '224'
+      Cache-Control:
+      - max-age=432000,stale-while-revalidate=600,stale-if-error=86400
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.geo+json; charset=utf-8
+      Date:
+      - Sat, 09 Mar 2024 16:04:05 GMT
+      ETag:
+      - '"8ed7b397ab685a588f6e476d017e2a0b"'
+      Last-Modified:
+      - Fri, 08 Mar 2024 01:28:48 GMT
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 11140291d542e546b40770525cf1e1b4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 8yjlRSv6Vlvx7kaeQr_Qaupku7GhKydO2qxGhjPaGyFoOI14GylW8w==
+      X-Amz-Cf-Pop:
+      - EWR53-P1
+      X-Cache:
+      - Hit from cloudfront
+      X-Powered-By:
+      - Express
+      X-Rate-Limit-Interval:
+      - '60'
+      X-Rate-Limit-Limit:
+      - '600'
+      X-Rate-Limit-Reset:
+      - '1710000305'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.openweathermap.org/data/2.5/forecast/daily?lat=13.75&lon=100.49&cnt=4&units=imperial&appid=fake_openweather_key
+  response:
+    body:
+      string: '{"city":{"id":1608132,"name":"Nonthaburi","coord":{"lon":100.49,"lat":13.75},"country":"TH","population":1045341,"timezone":25200},"cod":"200","message":7.4075144,"cnt":4,"list":[{"dt":1709960400,"sunrise":1709940576,"sunset":1709983666,"temp":{"day":92.28,"min":83.28,"max":92.53,"night":84.63,"eve":87.49,"morn":83.28},"feels_like":{"day":98.04,"night":97.23,"eve":93.24,"morn":89.24},"pressure":1011,"humidity":48,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":13.51,"deg":174,"gust":20.29,"clouds":100,"pop":0.39,"rain":1.17},{"dt":1710046800,"sunrise":1710026937,"sunset":1710070073,"temp":{"day":93.43,"min":83.19,"max":95.22,"night":84.81,"eve":88.59,"morn":83.21},"feels_like":{"day":99.27,"night":92.26,"eve":95.49,"morn":88.54},"pressure":1013,"humidity":46,"weather":[{"id":801,"main":"Clouds","description":"few
+        clouds","icon":"02d"}],"speed":15.17,"deg":169,"gust":19.55,"clouds":17,"pop":0.24},{"dt":1710133200,"sunrise":1710113298,"sunset":1710156480,"temp":{"day":94.41,"min":83.32,"max":96.01,"night":85.01,"eve":90.01,"morn":83.32},"feels_like":{"day":100.67,"night":92.73,"eve":96.03,"morn":90.21},"pressure":1013,"humidity":45,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":14.79,"deg":173,"gust":18.66,"clouds":32,"pop":0.76,"rain":0.23},{"dt":1710219600,"sunrise":1710199658,"sunset":1710242886,"temp":{"day":94.14,"min":83.34,"max":94.62,"night":85.5,"eve":86.59,"morn":83.34},"feels_like":{"day":100.11,"night":92.28,"eve":93.04,"morn":90.27},"pressure":1012,"humidity":45,"weather":[{"id":501,"main":"Rain","description":"moderate
+        rain","icon":"10d"}],"speed":14.45,"deg":175,"gust":21.18,"clouds":70,"pop":0.75,"rain":2.29}]}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1727'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 09 Mar 2024 16:07:49 GMT
+      Server:
+      - openresty
+      X-Cache-Key:
+      - /data/2.5/forecast/daily?cnt=4&lat=13.75&lon=100.49&units=imperial
+    status:
+      code: 200
+      message: OK
 version: 1
