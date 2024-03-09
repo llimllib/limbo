@@ -1,111 +1,110 @@
 interactions:
-  - request:
-      body: null
-      headers:
-        Accept:
-          - '*/*'
-        Accept-Encoding:
-          - gzip, deflate
-        Connection:
-          - keep-alive
-        User-Agent:
-          - python-requests/2.24.0
-      method: GET
-      uri: https://api.mapbox.com/geocoding/v5/mapbox.places/Oahu%2C%20HI.json?limit=1&access_token=fake_mapbox_token
-    response:
-      body:
-        string: !!binary |
-          H4sIAAAAAAAAA42Tz07cMBDGX8XyCaSQjZ0/dvZWoSI4UKhYekEIeZOBdZvYwXZYVqt9oL5Gn6zj
-          XbYraA/NzV9mfjPzebymYTUAndIzUGF0cGq7DpqgraEJfR7Brej0jlq1GPG80PQ+oY+7SI8/1lS3
-          mKvaFs8+req6EEywsuBVmUvMeA9HYehUAw87+W6fGKkOOnhRpkGdYZizA7igY5U1VU0zOtVgK9QH
-          BxDoBtHwGlC42rW24xrVw5uWkEs7mqC0Id80LBNyrpZKa1JXQrCE3BodoCU3QQWskdAGTACHPZ2w
-          skxZxliZZZxxLhNWp4UQOE9R8bqqCmz2CWwPIXqz3o94bbUJEWSta7XZYv+Ltok5ZjfN3tDB+tDY
-          FlLGC5llpZRZVcsirzL6Z/DtIGjEPiUakMo6k1KWdcHwkzyGL/UP3aqgMOYrz/Nc1PUB8s6jA6zV
-          6LNuAtYXUpR1mYuK8+ovXiFFnhcH3JvHp5G6OuAcPOFCpawSlWBZJpn8J01IjopfWBce4vSo3d6c
-          nF985B/ATSzkVilDM9CjsiirXHBefyTn2Ufw6A/U97uwud/gDauABszH7UOY0i9Xs4vTz1Py6yfh
-          eI/kUg1z+0qUaYkOnvhxGDoNzqfkU9cRp58WqOJmg3uBNiW3Hoh9JGGhPYktER1z5t/xoZFgUYc9
-          cQau9zH2BlN1A+RoEcLgp5PJcrlM+21Q2th+ouZ2DBMU/OQ4JbNIxnqDNVgqthWZ2jxa16s4A7ZJ
-          4pbhVXvSqxUxNpA5YE6UYo/XVxdH/pjgw3vRLboxX5EzOzr/PCoHKd38BorxRdgpBAAA
-      headers:
-        Access-Control-Allow-Origin:
-          - '*'
-        Access-Control-Expose-Headers:
-          - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
-        Age:
-          - '1'
-        Cache-Control:
-          - max-age=604800
-        Connection:
-          - keep-alive
-        Content-Encoding:
-          - gzip
-        Content-Type:
-          - application/vnd.geo+json; charset=utf-8
-        Date:
-          - Fri, 05 Mar 2021 19:49:22 GMT
-        ETag:
-          - '"7b6be9fa4ac33c1ed8bff633548e2c68"'
-        Last-Modified:
-          - Wed, 03 Mar 2021 16:27:11 GMT
-        Transfer-Encoding:
-          - chunked
-        Vary:
-          - Accept-Encoding
-        Via:
-          - 1.1 6cf3377e93378c7e591abeecafea2e6a.cloudfront.net (CloudFront)
-        X-Amz-Cf-Id:
-          - hRYzVowtQmjgTxrJQdKw7E5Q1EK1THjEB65_PrG-YkF9N52JCL9m6A==
-        X-Amz-Cf-Pop:
-          - EWR53-C1
-        X-Cache:
-          - Hit from cloudfront
-        X-Powered-By:
-          - Express
-        X-Rate-Limit-Interval:
-          - '60'
-        X-Rate-Limit-Limit:
-          - '600'
-        X-Rate-Limit-Reset:
-          - '1614973821'
-      status:
-        code: 200
-        message: OK
-  - request:
-      body: null
-      headers:
-        Accept:
-          - '*/*'
-        Accept-Encoding:
-          - gzip, deflate
-        Connection:
-          - keep-alive
-        User-Agent:
-          - python-requests/2.24.0
-      method: GET
-      uri: https://api.openweathermap.org/data/2.5/forecast/daily?lat=19.48&lon=-155.10&cnt=4&units=metric&appid=fake_openweather_key
-    response:
-      body:
-        string: '{"city":{"id":5855088,"name":"Fern Acres","coord":{"lon":-155.1,"lat":19.48},"country":"US","population":1504,"timezone":-36000},"cod":"200","message":5.0247318,"cnt":4,"list":[{"dt":1614981600,"sunrise":1614962198,"sunset":1615004833,"temp":{"day":19.74,"min":15.1,"max":19.97,"night":15.89,"eve":17.41,"morn":15.14},"feels_like":{"day":18.34,"night":14.99,"eve":16.87,"morn":14.41},"pressure":1018,"humidity":67,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":3.53,"deg":65,"clouds":99,"pop":0.88,"rain":1.93},{"dt":1615068000,"sunrise":1615048550,"sunset":1615091252,"temp":{"day":19.75,"min":15.01,"max":19.93,"night":16.17,"eve":18.42,"morn":15.17},"feels_like":{"day":17.5,"night":15.06,"eve":16.52,"morn":14.06},"pressure":1019,"humidity":74,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":5.51,"deg":37,"clouds":54,"pop":0.59,"rain":4.39},{"dt":1615154400,"sunrise":1615134902,"sunset":1615177670,"temp":{"day":20.66,"min":15.58,"max":20.66,"night":17.14,"eve":17.6,"morn":15.58},"feels_like":{"day":19.1,"night":16.14,"eve":16.5,"morn":14.07},"pressure":1019,"humidity":71,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":4.65,"deg":32,"clouds":27,"pop":1,"rain":39.92},{"dt":1615240800,"sunrise":1615221253,"sunset":1615264088,"temp":{"day":16.48,"min":15.99,"max":16.89,"night":16.05,"eve":16.01,"morn":16.72},"feels_like":{"day":15.92,"night":14.86,"eve":15.1,"morn":16.09},"pressure":1020,"humidity":94,"weather":[{"id":502,"main":"Rain","description":"heavy intensity rain","icon":"10d"}],"speed":3.37,"deg":24,"clouds":100,"pop":1,"rain":107.89}]}'
-      headers:
-        Access-Control-Allow-Credentials:
-          - 'true'
-        Access-Control-Allow-Methods:
-          - GET, POST
-        Access-Control-Allow-Origin:
-          - '*'
-        Connection:
-          - keep-alive
-        Content-Length:
-          - '1682'
-        Content-Type:
-          - application/json; charset=utf-8
-        Date:
-          - Fri, 05 Mar 2021 19:49:23 GMT
-        Server:
-          - openresty
-        X-Cache-Key:
-          - /data/2.5/forecast/daily?cnt=4&lat=19.48&lon=-155.1&units=metric
-      status:
-        code: 200
-        message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.mapbox.com/geocoding/v5/mapbox.places/Honolulu%2C%20HI.json?limit=1&access_token=fake_mapbox_token
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"query\":[\"honolulu\",\"hi\"],\"features\":[{\"id\":\"place.153061612\",\"type\":\"Feature\",\"place_type\":[\"place\"],\"relevance\":1,\"properties\":{\"mapbox_id\":\"dXJuOm1ieHBsYzpDUitJN0E\",\"wikidata\":\"Q18094\"},\"text\":\"Honolulu\",\"place_name\":\"Honolulu,
+        Hawaii, United States\",\"bbox\":[-157.9727507,21.2297956,-157.6217611,21.4019829],\"center\":[-157.855676,21.304547],\"geometry\":{\"type\":\"Point\",\"coordinates\":[-157.855676,21.304547]},\"context\":[{\"id\":\"district.10536684\",\"mapbox_id\":\"dXJuOm1ieHBsYzpvTWJz\",\"wikidata\":\"Q487704\",\"text\":\"Honolulu
+        County\"},{\"id\":\"region.369900\",\"mapbox_id\":\"dXJuOm1ieHBsYzpCYVRz\",\"wikidata\":\"Q782\",\"short_code\":\"US-HI\",\"text\":\"Hawaii\"},{\"id\":\"country.8940\",\"mapbox_id\":\"dXJuOm1ieHBsYzpJdXc\",\"wikidata\":\"Q30\",\"short_code\":\"us\",\"text\":\"United
+        States\"}]}],\"attribution\":\"NOTICE: \xA9 2024 Mapbox and its suppliers.
+        All rights reserved. Use of this data is subject to the Mapbox Terms of Service
+        (https://www.mapbox.com/about/maps/). This response and the information it
+        contains may not be retained. POI(s) provided by Foursquare.\"}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - x-rate-limit-interval,x-rate-limit-limit,x-rate-limit-remaining,x-rate-limit-reset
+      Age:
+      - '93'
+      Cache-Control:
+      - max-age=432000,stale-while-revalidate=600,stale-if-error=86400
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.geo+json; charset=utf-8
+      Date:
+      - Sat, 09 Mar 2024 16:07:49 GMT
+      ETag:
+      - '"4cd1e85a2048225bf6f1d5a693173d86"'
+      Last-Modified:
+      - Fri, 08 Mar 2024 01:28:48 GMT
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 e5bd532dbdee524acdf00690205f3b5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 8ot4dWUOH7pIWnmHc-HEYHjehURnRlqNq4WpPSjI1jx5O-ZMXmaSMw==
+      X-Amz-Cf-Pop:
+      - EWR53-P1
+      X-Cache:
+      - Hit from cloudfront
+      X-Powered-By:
+      - Express
+      X-Rate-Limit-Interval:
+      - '60'
+      X-Rate-Limit-Limit:
+      - '600'
+      X-Rate-Limit-Reset:
+      - '1710000528'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.openweathermap.org/data/2.5/forecast/daily?lat=21.30&lon=-157.86&cnt=4&units=metric&appid=fake_openweather_key
+  response:
+    body:
+      string: '{"city":{"id":5856195,"name":"Honolulu","coord":{"lon":-157.86,"lat":21.3},"country":"US","population":371657,"timezone":-36000},"cod":"200","message":5.7490353,"cnt":4,"list":[{"dt":1710021600,"sunrise":1710002689,"sunset":1710045539,"temp":{"day":23.42,"min":21.63,"max":23.47,"night":22,"eve":22.54,"morn":21.63},"feels_like":{"day":23.62,"night":22.16,"eve":22.78,"morn":21.7},"pressure":1022,"humidity":69,"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"speed":12.4,"deg":68,"gust":13.99,"clouds":100,"pop":0.08},{"dt":1710108000,"sunrise":1710089035,"sunset":1710131959,"temp":{"day":22.99,"min":21.83,"max":23.27,"night":22.07,"eve":22.56,"morn":21.87},"feels_like":{"day":23.28,"night":22.29,"eve":22.83,"morn":22.1},"pressure":1021,"humidity":74,"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"speed":11.69,"deg":67,"gust":14.14,"clouds":100,"pop":0.27},{"dt":1710194400,"sunrise":1710175382,"sunset":1710218379,"temp":{"day":23.46,"min":21.91,"max":23.71,"night":22.45,"eve":23.04,"morn":22.07},"feels_like":{"day":23.79,"night":22.79,"eve":23.25,"morn":22.37},"pressure":1019,"humidity":74,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":11.32,"deg":68,"gust":13.21,"clouds":100,"pop":0.2,"rain":0.1},{"dt":1710280800,"sunrise":1710261728,"sunset":1710304799,"temp":{"day":24.18,"min":22.39,"max":24.36,"night":22.58,"eve":24.1,"morn":22.39},"feels_like":{"day":24.4,"night":22.98,"eve":24.37,"morn":22.72},"pressure":1019,"humidity":67,"weather":[{"id":500,"main":"Rain","description":"light
+        rain","icon":"10d"}],"speed":6.87,"deg":77,"gust":8.94,"clouds":26,"pop":0.37,"rain":1.12}]}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1707'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 09 Mar 2024 16:09:23 GMT
+      Server:
+      - openresty
+      X-Cache-Key:
+      - /data/2.5/forecast/daily?cnt=4&lat=21.3&lon=-157.86&units=metric
+    status:
+      code: 200
+      message: OK
 version: 1

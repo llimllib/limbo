@@ -8,6 +8,12 @@ At the moment, I consider limbo to be feature complete, and the project is in ma
 
 Contributions will be considered and may be accepted, you may want to [email me](bill@billmill.org) because I might not notice your PR.
 
+## Python Versions
+
+At the moment, this software only officially supports python 3.10, because the test fixtures fail on older versions of python due to some weird urllib3 inconsistency.
+
+It may run on other versions of python, but for the moment they're unfortunately not tested.
+
 ## Installation
 
 1. Clone the repo
@@ -49,7 +55,6 @@ By default, plugins won't react to messages from other bots (just messages from 
 
 These are the current default plugins:
 
-- [calc](https://github.com/llimllib/limbo/wiki/Calc-Plugin)
 - [emoji](https://github.com/llimllib/limbo/wiki/Emoji-Plugin)
 - [flip](https://github.com/llimllib/limbo/wiki/Flip-Plugin)
 - [gif](https://github.com/llimllib/limbo/wiki/Gif-Plugin)
@@ -58,21 +63,8 @@ These are the current default plugins:
 - [image](https://github.com/llimllib/limbo/wiki/Image-Plugin)
 - [map](https://github.com/llimllib/limbo/wiki/Map-Plugin)
 - [poll](https://github.com/llimllib/limbo/wiki/Poll-Plugin)
-- [stock](https://github.com/llimllib/limbo/wiki/Stock-Plugin)
-- [stockphoto](https://github.com/llimllib/limbo/wiki/Stock-Photo-Plugin)
 - [weather](https://github.com/llimllib/limbo/wiki/Weather-Plugin)
 - [wiki](https://github.com/llimllib/limbo/wiki/Wiki-Plugin)
-- [youtube](https://github.com/llimllib/limbo/wiki/Youtube-Plugin)
-
-## Docker
-
-- How do I try out Limbo via docker?
-  - @PeterGrace maintains a public build of limbo, available from the docker registry. Executing `make docker_run` will start the default bot.
-  - `make docker_stop` will stop the bot
-- When I start the docker container, I see an error about unable to source limbo.env. Is this a problem?
-  - No. The limbo.env file only exists when using Kubernetes with the included opaque secret recipe for storing your environment variables.
-- I'd like to develop plugins for Limbo, but would still like to use Docker to run the bot. Is there a quick way to add plugins to the bot?
-  - Yes! Use the included Dockerfile.dev as a template, and simply build via `make docker_build` You'll then need to start the bot with your new_image_name, for example `docker run -d -e SLACK_TOKEN=<your_token> new_image_name`
 
 ## Contributors
 

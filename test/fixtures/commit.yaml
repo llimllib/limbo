@@ -2,23 +2,68 @@ interactions:
 - request:
     body: null
     headers:
-      Accept: ['*/*']
-      Accept-Encoding: ['gzip, deflate']
-      Connection: [keep-alive]
-      User-Agent: [python-requests/2.5.2 CPython/2.6.9 Darwin/15.0.0]
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
     method: GET
     uri: http://whatthecommit.com/index.txt
   response:
-    body: {string: !!python/unicode 'stuff
-
-        '}
+    body:
+      string: ''
     headers:
-      connection: [keep-alive]
-      content-length: ['6']
-      content-type: [text/plain]
-      date: ['Fri, 23 Oct 2015 23:27:27 GMT']
-      etag: ['"003d0450f6f7e6db635a04d23245b68e13365463"']
-      server: [TornadoServer/4.2]
-      via: [1.1 vegur]
-    status: {code: 200, message: OK}
+      Connection:
+      - close
+      Content-Length:
+      - '0'
+      Date:
+      - Sat, 09 Mar 2024 15:26:05 GMT
+      Location:
+      - https://whatthecommit.com/index.txt
+      Server:
+      - Caddy
+    status:
+      code: 308
+      message: Permanent Redirect
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://whatthecommit.com/index.txt
+  response:
+    body:
+      string: 'what the hell happened here
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '28'
+      Content-Type:
+      - text/plain
+      Date:
+      - Sat, 09 Mar 2024 15:26:05 GMT
+      Etag:
+      - '"01d730603893381e193bf57eab84d7eb8d6326be"'
+      Server:
+      - Caddy
+      - TornadoServer/6.2
+      X-Message-Hash:
+      - 5262c0ddb32fffba1bef8144794dffb3
+    status:
+      code: 200
+      message: OK
 version: 1

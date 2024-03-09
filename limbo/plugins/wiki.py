@@ -1,5 +1,7 @@
 """!wiki <topic> returns a wiki link for <topic>"""
+
 import re
+
 try:
     from urllib import quote
 except ImportError:
@@ -21,7 +23,7 @@ def wiki(searchterm):
     pages = result["query"]["search"]
 
     # try to reject disambiguation pages
-    pages = [p for p in pages if 'may refer to' not in p["snippet"]]
+    pages = [p for p in pages if "may refer to" not in p["snippet"]]
 
     if not pages:
         return ""
@@ -30,13 +32,19 @@ def wiki(searchterm):
     link = "http://en.wikipedia.org/wiki/{0}".format(page)
 
     r = requests.get(
-        "http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".
-        format(page)).json()
+        "http://en.wikipedia.org/w/api.php?format=json&action=parse&page={0}".format(
+            page
+        )
+    ).json()
     soup = BeautifulSoup(r["parse"]["text"]["*"], "html5lib")
-    p = soup.find('p').get_text()
-    p = p[:8000]
+    ps = soup.find_all("p")
+    first_para = None
+    for p in ps:
+        if p.get_text().strip():
+            first_para = str(p)[:8000]
+            break
 
-    return u"{0}\n{1}".format(p, link)
+    return f"{first_para}\n{link}"
 
 
 def on_message(msg, server):

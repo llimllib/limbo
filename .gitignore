@@ -21,3 +21,5 @@ slask.egg-info/
 __pycache__
 .pytest_cache
 .tool-versions
+.venv
+.mise.toml
