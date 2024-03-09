@@ -10,9 +10,9 @@ Contributions will be considered and may be accepted, you may want to [email me]
 
 ## Python Versions
 
-At the moment, this software only officially supports python 3.10, because the test fixtures fail on older versions of python due to some weird urllib3 inconsistency.
+At the moment, this software only officially supports python >=3.10, because the test fixtures fail on older versions of python due to an urllib3 inconsistency I don't understand.
 
-It may run on other versions of python, but for the moment they're unfortunately not tested.
+It should still run on other versions of python, but for the moment they're unfortunately not tested.
 
 ## Installation
 
