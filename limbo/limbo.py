@@ -11,6 +11,7 @@ import sqlite3
 import sys
 import time
 import traceback
+from typing import List
 
 from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
@@ -47,12 +48,11 @@ def strip_extension(lst):
     return (os.path.splitext(l)[0] for l in lst)
 
 
-def init_plugins(plugindir, plugins_to_load=None, extra_plugin_dirs=[]):
-    if not plugindir:
-        plugindir = DIR("plugins")
+def init_plugins(plugindirs: List[str], plugins_to_load=None):
+    if not plugindirs:
+        plugindirs = [DIR("plugins")]
 
-    plugindirs = [plugindir] + extra_plugin_dirs
-    for directory in plugindirs:
+    for plugindir in plugindirs:
         if not os.path.isdir(plugindir):
             raise InvalidPluginDir(plugindir)
 
@@ -290,7 +290,7 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
     config_plugins = config.get("plugins")
     plugins_to_load = config_plugins.split(",") if config_plugins else []
     
-    hooks = init_plugins(args.pluginpath, plugins_to_load, args.extrapluginpaths)
+    hooks = init_plugins(args.pluginpath, plugins_to_load)
     try:
         slack = Client(config["token"])
     except KeyError:
@@ -334,8 +334,7 @@ def main(args):
                 FakeServer(db=db),
                 args.hook,
                 args.pluginpath,
-                config.get("plugins"),
-                args.extrapluginpaths
+                config.get("plugins")
             )
         )
         return
@@ -358,8 +357,8 @@ def main(args):
 
 # run a command. cmd should be a unicode string
 # returns a string appropriate for printing
-def run_cmd(cmd, server, hook, pluginpath, plugins_to_load, extra_plugin_dirs):
-    server.hooks = init_plugins(pluginpath, plugins_to_load, extra_plugin_dirs)
+def run_cmd(cmd, server, hook, pluginpath, plugins_to_load):
+    server.hooks = init_plugins(pluginpath, plugins_to_load)
     event = {
         "type": hook,
         "text": cmd,
@@ -385,7 +384,7 @@ def repl(server, args):
             if cmd.lower() == "quit" or cmd.lower() == "exit":
                 return
 
-            print(run_cmd(cmd, server, args.hook, args.pluginpath, None, args.extrapluginpaths))
+            print(run_cmd(cmd, server, args.hook, args.pluginpath, None))
     except (EOFError, KeyboardInterrupt):
         print()
         pass
