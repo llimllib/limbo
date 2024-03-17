@@ -25,7 +25,7 @@ PARENT = os.path.split(DIR)[0]
 os.environ["LIMBO_LOGFILE"] = "/tmp/deleteme"
 
 def test_plugin_success():
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     assert len(hooks) == 9
     assert "message" in hooks
     assert isinstance(hooks, dict)
@@ -33,7 +33,7 @@ def test_plugin_success():
     assert len(hooks["message"]) == 2
 
 def test_config_plugin_none_success():
-    hooks = limbo.init_plugins("test/plugins", None)
+    hooks = limbo.init_plugins(["test/plugins"], None)
     assert len(hooks) == 9
     assert "message" in hooks
     assert isinstance(hooks, dict)
@@ -41,7 +41,7 @@ def test_config_plugin_none_success():
     assert len(hooks["message"]) == 2
 
 def test_config_plugin_empty_string_success():
-    hooks = limbo.init_plugins("test/plugins", "")
+    hooks = limbo.init_plugins(["test/plugins"], "")
     assert len(hooks) == 9
     assert "message" in hooks
     assert isinstance(hooks, dict)
@@ -49,7 +49,7 @@ def test_config_plugin_empty_string_success():
     assert len(hooks["message"]) == 2
 
 def test_config_plugin_success():
-    hooks = limbo.init_plugins("test/plugins", "echo,loop")
+    hooks = limbo.init_plugins(["test/plugins"], "echo,loop")
     assert len(hooks) == 5
     assert "message" in hooks
     assert isinstance(hooks, dict)
@@ -57,12 +57,48 @@ def test_config_plugin_success():
     assert len(hooks["message"]) == 1
 
 def test_config_plugin_doesnt_exist():
-    hooks = limbo.init_plugins("test/plugins", "doesnotexist")
+    hooks = limbo.init_plugins(["test/plugins"], "doesnotexist")
     assert len(hooks) == 0
+
+def test_extra_plugin_empty_success():
+    hooks = limbo.init_plugins(["test/plugins"], None)
+    assert len(hooks) == 9
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 2
+
+def test_extra_plugin_one_success():
+    hooks = limbo.init_plugins(["test/plugins", "test/extraplugins"], None)
+    assert len(hooks) == 11
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 3
+
+def test_extra_plugin_two_success():
+    hooks = limbo.init_plugins(["test/plugins", "test/extraplugins", "test/moreextraplugins"], None)
+    assert len(hooks) == 11
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 4
+
+def test_extra_plugin_with_empty_list():
+    hooks = limbo.init_plugins(["test/plugins", "test/extraplugins"], "doesnotexist")
+    assert len(hooks) == 0
+
+def test_extra_plugin_with_list():
+    hooks = limbo.init_plugins(["test/plugins", "test/extraplugins"], "echo,loop")
+    assert len(hooks) == 5
+    assert "message" in hooks
+    assert isinstance(hooks, dict)
+    assert isinstance(hooks["message"], list)
+    assert len(hooks["message"]) == 1
 
 def test_plugin_invalid_dir():
     try:
-        limbo.init_plugins("invalid/package")
+        limbo.init_plugins(["invalid/package"])
     except limbo.InvalidPluginDir:
         return
     1 / 0
@@ -70,17 +106,17 @@ def test_plugin_invalid_dir():
 def test_plugin_logs():
     mhdr = MockHandler()
     logging.getLogger("limbo.limbo").addHandler(mhdr)
-    limbo.init_plugins("test/plugins")
+    limbo.init_plugins(["test/plugins"])
     mhdr.check("debug", "attaching message hook for echo")
 
 # test run_hook
 
 def test_run_hook():
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     assert limbo.run_hook(hooks, "message", {"text": u"!echo bananas"}, None) == [u"!echo bananas"]
 
 def test_missing_hook():
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     assert limbo.run_hook(hooks, "nonexistant", {"text": u"!echo bananas"}, None) == []
 
 # test handle_message
@@ -106,7 +142,7 @@ def test_handle_message_basic():
     msg = u"!echo Iñtërnâtiônàlizætiøn"
     event = {"user": "2", "text": msg}
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == msg
@@ -119,7 +155,7 @@ def test_handle_channel_join():
       "text": "User has joined"
     }
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == "saw user 2 join"
@@ -130,7 +166,7 @@ def test_handle_member_joined():
       "user": "2"
     }
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_event(event, server) == "user 2 joined"
@@ -141,7 +177,7 @@ def test_handle_member_left():
       "user": "2"
     }
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_event(event, server) == "user 2 left"
@@ -153,7 +189,7 @@ def test_handle_message_slack_user_nil():
     event = {"user": "msguser", "text": msg}
     users = {"0": User("nobody", 0, "", 0)}
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     slack = limbo.FakeSlack(users=users)
     server = limbo.FakeServer(slack=slack, hooks=hooks)
 
@@ -163,7 +199,7 @@ def test_handle_bot_message():
     msg = u"!echo Iñtërnâtiônàlizætiøn bot"
     event = {"bot_id": "2", "text": msg, "subtype": "bot_message"}
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == msg
@@ -176,7 +212,7 @@ def test_handle_edit_message():
             "previous_message": {"text": oldmsg},
             "message": {"text": newmsg, "user": "msguser"}}
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == "Changed: {}".format(newmsg)
@@ -187,7 +223,7 @@ def test_handle_delete_message():
             "subtype": "message_deleted",
             "previous_message": {"text": oldmsg, "user": "msguser"}}
 
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
 
     assert limbo.handle_message(event, server) == "Deleted: {}".format(oldmsg)
@@ -205,7 +241,7 @@ class FakeSlackClient(object):
         return self.connect
 
 def test_loop_hook():
-    hooks = limbo.init_plugins("test/plugins")
+    hooks = limbo.init_plugins(["test/plugins"])
     server = limbo.FakeServer(hooks=hooks)
     slack = limbo.FakeSlack()
     limbo.loop(server, test_loop=1)

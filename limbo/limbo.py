@@ -11,6 +11,7 @@ import sqlite3
 import sys
 import time
 import traceback
+from typing import List
 
 from .slack import SlackClient, SlackConnectionError, SlackLoginError
 from .server import LimboServer
@@ -47,34 +48,41 @@ def strip_extension(lst):
     return (os.path.splitext(l)[0] for l in lst)
 
 
-def init_plugins(plugindir, plugins_to_load=None):
-    if plugindir and not os.path.isdir(plugindir):
-        raise InvalidPluginDir(plugindir)
+def init_plugins(plugindirs: List[str], plugins_to_load=None):
+    if not plugindirs:
+        plugindirs = [DIR("plugins")]
 
-    if not plugindir:
-        plugindir = DIR("plugins")
-
-    logger.debug("plugindir: {0}".format(plugindir))
-
-    if os.path.isdir(plugindir):
-        pluginfiles = glob(os.path.join(plugindir, "[!_]*.py"))
-        plugins = strip_extension(os.path.basename(p) for p in pluginfiles)
-    else:
-        # we might be in an egg; try to get the files that way
-        logger.debug("trying pkg_resources")
-        import pkg_resources
-
-        try:
-            plugins = strip_extension(
-                pkg_resources.resource_listdir(__name__, "plugins")
-            )
-        except OSError:
+    for plugindir in plugindirs:
+        if not os.path.isdir(plugindir):
             raise InvalidPluginDir(plugindir)
+
+    logger.debug("plugindirs: {0}".format(plugindirs))
+
+    plugins = []
+    for directory in plugindirs:
+        if os.path.isdir(directory):
+            pluginfiles = glob(os.path.join(directory, "[!_]*.py"))
+            plugins.extend(strip_extension(os.path.basename(p) for p in pluginfiles))
+        else:
+            # I think this makes sense?
+            if directory != "plugins":
+                continue
+            # we might be in an egg; try to get the files that way
+            logger.debug("trying pkg_resources")
+            import pkg_resources
+
+            try:
+                plugins = strip_extension(
+                    pkg_resources.resource_listdir(__name__, directory)
+                )
+            except OSError:
+                raise InvalidPluginDir(directory)
 
     hooks = {}
 
     oldpath = copy.deepcopy(sys.path)
-    sys.path.insert(0, plugindir)
+    for directory in plugindirs:
+        sys.path.insert(0, directory)
 
     for plugin in plugins:
         if plugins_to_load and plugin not in plugins_to_load:
@@ -281,7 +289,7 @@ def init_server(args, config, Server=LimboServer, Client=SlackClient):
 
     config_plugins = config.get("plugins")
     plugins_to_load = config_plugins.split(",") if config_plugins else []
-
+    
     hooks = init_plugins(args.pluginpath, plugins_to_load)
     try:
         slack = Client(config["token"])
@@ -326,7 +334,7 @@ def main(args):
                 FakeServer(db=db),
                 args.hook,
                 args.pluginpath,
-                config.get("plugins"),
+                config.get("plugins")
             )
         )
         return
